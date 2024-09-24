@@ -4,6 +4,7 @@
 *:after,
 *:before {
     font-family: "Sora", sans-serif;
+    color: white;
 }
 
 @media (min-width: 1440px) {

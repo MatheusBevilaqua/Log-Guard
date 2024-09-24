@@ -17,8 +17,8 @@
 @import url(pages/dashboard.css);
 @import url(pages/cadastroEmpresa.css);
 @import url(pages/footer.css);
-@import url(pages/encerramento.css);
-
+@import url(pages/encerramento.css);    
+@import url(pages/dashboard_ADM.css);
 
 
 *,
@@ -27,7 +27,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    color: white;
 }
 
 /* LARGURA DA BARRA DE ROLAGEM */
