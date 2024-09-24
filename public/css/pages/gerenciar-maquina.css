@@ -1,0 +1,94 @@
+/* Estilos para a página dashboard */
+.page-dash {
+    display: flex;
+    width: 100%;
+    padding-top: 0;
+}
+
+/* Barra lateral */
+.nav-dash {
+    background-color: #ffffff;
+    color: white;
+    width: 220px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-dash-logo {
+    margin-bottom: 40px;
+}
+
+.nav-dash-logo img {
+    width: 100%;
+    height: 150px;
+}
+
+.nav-dash-menu {
+    width: 100%;
+}
+
+.nav-dash-list {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-dash-link {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-dash-icon {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.nav-dash-link {
+    color: #442BB3; 
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    padding: 10px 0;
+    border-radius: 70px;
+    transition: background-color 0.3s ease;
+    flex-grow: 1;
+}
+
+.nav-dash-link a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav-dash-link:hover {
+    background-color: #442BB3;
+    color: white;
+}
+
+.main-geren-page {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #e3e3e3;
+    /* display: flex; */
+    flex-direction: column;
+}
+
+.main-geren-page h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.main-geren-session1 {
+    flex: 1;
+    background-color: whitesmoke;
+    color: rgb(0, 0, 0);
+    /* padding: 22%; */
+    /* width: 100wh; */
+    height: 75vh;
+    border-radius: 12px;
+}
+
+
