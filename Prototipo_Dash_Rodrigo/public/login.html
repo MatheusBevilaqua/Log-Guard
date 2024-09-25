@@ -13,7 +13,6 @@
 
     <!-- //-- INICIO DA TELA DE LOGIN --// -->
     <section id="page-login-user">
-
         <div class="login-father">
             <div class="login-child-form">
                 <div class="login-form">
@@ -29,14 +28,14 @@
                         <span class="icon">
                             <img src="./svg/gmail-icon.svg" alt="">
                         </span>
-                        <input type="text" class="login-form-input black-text" placeholder="Digite seu e-mail" autocomplete="off"/>
+                        <input type="text" id="input_email" class="login-form-input black-text" placeholder="Digite seu e-mail" autocomplete="off"/>
                     </label>
 
                     <label class="login-form-box">
                         <span class="icon">
                             <img src="./svg/key-icon.svg" alt="">
                         </span>
-                        <input type="password" class="login-form-input black-text" placeholder="Digite sua senha" autocomplete="off"/>
+                        <input type="password" id="input_senha" class="login-form-input black-text" placeholder="Digite sua senha" autocomplete="off"/>
                     </label>
 
                     <div class="login-link-forget">
@@ -44,7 +43,7 @@
                     </div>
 
                     <div class="login-form-btn">
-                        <button class="login-btn boal">Login</button>
+                        <button class="login-btn boal" onclick="Entrar()">Login</button>
                     </div>
 
                     <div class="login-form-not-cont">
@@ -57,8 +56,6 @@
                     <a class="little-text" href="./index.html">Página Inicial</a>
                 </div>
             </div>
-
-
             <div class="login-child-content">
                 <div class="login-content">
                     <div class="content-logo-text-end">
@@ -67,11 +64,36 @@
                     <h1 class="text-center">Reduzindo riscos, aumentando a confiança.</h1>
                 </div>
             </div>
-
-
         </div>
-
     </section>
 </body>
-
 </html>
+<script> 
+
+function Entrar() {
+
+var url = "cadastroLOGGUARD.html";
+var email = input_email.value
+var senha = input_senha.value
+var emailVal = email.indexOf("@", ".");
+
+    if (emailVal < 0) {
+            alert("Email inválido. Por favor, insira um email válido.");
+    }
+    if (senha != 'logguard123') {
+            alert('Senha incorreta')
+    }
+
+    if (email == 'logguard02@gmail.com' && senha == 'logguard123') {
+            alert ('Login efetuado com sucesso')
+            window.open(url, "_self")
+    }else {
+            alert ('Informações incorretas')
+    } if (email == '' || senha == '') {
+            alert ('Espaços em branco')
+    } 
+    
+}
+
+
+</script>
