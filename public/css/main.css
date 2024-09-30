@@ -17,15 +17,9 @@
 @import url(pages/dashboard.css);
 @import url(pages/cadastroEmpresa.css);
 @import url(pages/footer.css);
-<<<<<<< HEAD
 @import url(pages/encerramento.css);    
 @import url(pages/dashboard_ADM.css);
-=======
-@import url(pages/encerramento.css);
 @import url(pages/gerenciar-maquina.css);
-
->>>>>>> e7202e155abd94dcba5c1ce9a45688b38952c0f6
-
 
 *,
 *:after,
