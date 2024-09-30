@@ -84,7 +84,7 @@
 }
 
 .select select {
-    border-radius: 20px 20px 0 0;
+    border-radius: 10px 10px 0 0;
     border-color: #ffffff;
     color: black;
     width: 12%;
@@ -104,20 +104,34 @@
 }
 
 .dash {
+    display: flex;
+    flex-direction: row;
     width: 220%;
     height: 60%;
     background-color: rgb(255, 255, 255);
     padding-right: 20%;
-    padding-top: 30%;
+    padding-top: 5%;
     border-radius: 20px 0 20px 20px ;
-    display: block;
     color: black;
+    
 }
 
 .titulos {
-color: black;
-align-items: baseline;
-display: flex;
+    color: black;
+    align-items: baseline;
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+}
+
+.coluna{
+
+    display: flex;
+    color: black;
+    width: 60px;
+    height: 10px;
+    margin-left: 40px;
+
 }
 
 .botoes {
@@ -143,6 +157,7 @@ display: flex;
     color: white;
     border: none;
 }
+
 
 
 
