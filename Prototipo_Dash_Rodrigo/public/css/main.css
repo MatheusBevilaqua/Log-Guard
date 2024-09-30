@@ -17,9 +17,9 @@
 @import url(pages/dashboard.css);
 @import url(pages/cadastroEmpresa.css);
 @import url(pages/footer.css);
-@import url(pages/encerramento.css);    
-@import url(pages/dashboard_ADM.css);
-@import url(pages/gerenciar-maquina.css);
+@import url(pages/encerramento.css);
+
+
 
 *,
 *:after,
@@ -27,11 +27,12 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    color: white;
 }
 
 /* LARGURA DA BARRA DE ROLAGEM */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
 }
 
 /* FUNDA DA BARRA DE ROLAGEM */
@@ -66,7 +67,7 @@ body {
 
 section{
     width: 100%;
-    height: 150%;
+    height: 100%;
     padding-top: 65px;
 }
 
