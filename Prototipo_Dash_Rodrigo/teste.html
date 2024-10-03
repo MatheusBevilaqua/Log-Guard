@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style> 
+dialog::backdrop{
+  background-color: rgb(0 0 0 / .5);
+}
+dialog{
+  border: none; 
+  border-radius: .5rem;
+  box-shadow: 0 0 1em rgb(0 0 0 / .5);
+  width: 50%;
+}
+</style>
+
+<body>
+
+<button> Empresa</button>
+  <dialog > 
+    <p> ola mundo</p>
+
+    <button> Fechar </button>
+  </dialog>
+
+</body>
+</html>
+
+<script>
+  const button = document.querySelector("button")
+  const modal = document.querySelector("dialog")
+  const buttonClose = document.querySelector("dialog button")
+
+  button.onclick = function (){
+    modal.showModal()
+  }
+
+  buttonClose.onclick = function (){
+    modal.close()
+  }
+</script>
+

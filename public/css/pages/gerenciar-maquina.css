@@ -72,13 +72,13 @@
     color: white;
 }
 
-.main-geren-page {
+.maingerenpage {
     width: 70%;
     margin-top: 40px;
     margin-left: 16.8%;
 }
 
-.main-geren-page h1 {
+.maingerenpage h1 {
     color: black;
     font-family:Arial, Helvetica, sans-serif;
     padding-top: 10px;
@@ -186,28 +186,9 @@
     width: 60px;
 }
 
-.dados {
-    color: black;
-    align-items: baseline;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 10%;
-    padding-top: 80px;
-    padding-right: 10%;
-    justify-content: space-around;
-}
-
-.dado {
-    padding-top: 38px;
-    color: black;
-    align-items: baseline;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 10%;
-    padding-right: 10%;
-    justify-content: space-around;
+.dados:hover{
+    background-color: rgb(174, 172, 184);
+    color: white;
 }
 
 .geren-dados {
@@ -217,5 +198,37 @@
     overflow: auto;
 }
 
+.dados {
+    padding-right: 10%;
+    flex-direction: row;
+    width: 100%;
+    align-items: baseline;
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 65px;
+    padding-top: 0px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
 
+.edit, .cad {
+    cursor: pointer;
+}
 
+.Cadastrar {
+    position: absolute;
+    z-index: auto;
+    display: none;
+}
+
+.Editar {
+    position: absolute;
+    z-index: auto;
+    display: none;
+}
+
+.linha img{
+    width: 123.58%;
+}
