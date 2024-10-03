@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogGuard - Dashboard</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+</head>
+<body>
+    <section class="page-dash">
+        <!-- Barra Lateral -->
+        <aside class="nav-dash">
+            <div class="nav-dash-logo">
+                <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
+            </div>
+            <nav class="nav-dash-menu">
+                <ul class="nav-dash-list">
+                    <li class="nav-dash-link"><img src="./img/home-1.png" class="nav-dash-icon">Visão Geral</li>
+                    <li class="nav-dash-link"><img src="./img/profit-report.png" class="nav-dash-icon">Relatórios</li>
+                    <li class="nav-dash-link"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
+                    <li class="nav-dash-link"><img src="./img/man.png" class="nav-dash-icon">Funcionários</li>
+                    <li class="nav-dash-link sair"><a href="#">Sair</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-dash-page">
+            <!-- Saudações -->
+            <div class="main-dash-greet">
+                <h1>Bem vindo(a), Claudio.</h1>
+            </div>
+
+            <!-- Indicadores de Status -->
+            <div class="main-dash-status">
+                <div class="status-card">
+                    <h4>Servidores com Problema</h4>
+                    <h2>2</h2>
+                </div>
+                <div class="status-details">
+                    <div class="status-item">
+                        <h4>CPUs</h4>
+                        <h3>3</h3>
+                    </div>
+                    <div class="status-item">
+                        <h4>RAMs</h4>
+                        <h3>6</h3>
+                    </div>
+                    <div class="status-item">
+                        <h4>Disco(s)</h4>
+                        <h3>0</h3>
+                    </div>
+                    <div class="status-item">
+                        <h4>Rede(s)</h4>
+                        <h3>1</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conteúdo Inferior: Relatórios e Tabela -->
+            <div class="main-dash-content">
+                <!-- Relatórios e Alertas -->
+                <div class="left-section">
+                    <div class="report-card">
+                        <h4>Relatórios disponíveis:</h4>
+                        <h3>2</h3>
+                    </div>
+                    <div class="alert-card">
+                        <h4>Alertas gerados nas últimas 24h</h4>
+                        <h3>10</h3>
+                    </div>
+                </div>
+
+                <!-- Máquinas em Risco -->
+                <div class="right-section">
+                    <h4>Máquinas em risco:</h4>
+                    <table class="machine-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>CPU</th>
+                                <th>Temp(CPU)</th>
+                                <th>DISCO</th>
+                                <th>REDE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>123</td>
+                                <td>80%</td>
+                                <td>75°C</td>
+                                <td>30%</td>
+                                <td>12%</td>
+                            </tr>
+                            <!-- Repetir linhas conforme necessário -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </section>
+</body>
+</html>

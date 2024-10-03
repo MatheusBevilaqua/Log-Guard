@@ -2,6 +2,7 @@
 .page-dash {
     display: flex;
     width: 100%;
+    height: 100%;
     padding-top: 0;
 }
 
@@ -10,10 +11,12 @@
     background-color: #ffffff;
     color: white;
     width: 220px;
+    height: 100%;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: fixed;
 }
 
 .nav-dash-logo {
@@ -27,6 +30,7 @@
 
 .nav-dash-menu {
     width: 100%;
+    
 }
 
 .nav-dash-list {
@@ -54,11 +58,13 @@
     border-radius: 70px;
     transition: background-color 0.3s ease;
     flex-grow: 1;
+    
 }
 
 .nav-dash-link a{
     color: inherit;
     text-decoration: none;
+    
 }
 
 .nav-dash-link:hover {
@@ -66,29 +72,163 @@
     color: white;
 }
 
-.main-geren-page {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #e3e3e3;
-    /* display: flex; */
+.maingerenpage {
+    width: 70%;
+    margin-top: 40px;
+    margin-left: 16.8%;
+}
+
+.maingerenpage h1 {
+    color: black;
+    font-family:Arial, Helvetica, sans-serif;
+    padding-top: 10px;
+}
+
+.select {
+    position:relative;
+    display: flex;
+    padding-left: 82.30%;
+    width: 105%;
+}
+
+.select select {
+    border-radius: 10px 10px 0 0;
+    border-color: #ffffff;
+    color: black;
+    width: 120%;
+    height: 40px;
+    display: flex;
+    z-index: auto;
+    background-color: rgb(255, 255, 255);
+    font-size: 15px;
+    outline: none;
+    position: relative;
+}
+
+.select option {
+    color: black;
+    font-size: 15px;
+}
+
+.dash {
+    display: flex;
     flex-direction: column;
+    width: 105%;
+    height: 65%;
+    background-color: rgb(255, 255, 255);
+    padding-right: 20%;
+    padding-top: 2%;
+    border-radius: 20px 0 20px 20px ;
+    color: black;
 }
 
-.main-geren-page h1 {
-    font-size: 28px;
-    font-weight: bold;
-    color: #333333;
-    margin-bottom: 20px;
+.titulos {
+    color: black;
+    align-items: baseline;
+    display: flex;
+    /* position: absolute; */
+    flex-direction: row;
+    width: 122%;
+    padding-right: 13%;
+    justify-content: space-around;
+    height: 10%;
 }
 
-.main-geren-session1 {
-    flex: 1;
-    background-color: whitesmoke;
-    color: rgb(0, 0, 0);
-    /* padding: 22%; */
-    /* width: 100wh; */
-    height: 75vh;
-    border-radius: 12px;
+.coluna{
+    display: flex;
+    color: black;
+    width: 60px;
+    height: 10px;
+    margin-left: 40px;
 }
 
+/* classe pai dos botões */
+.botoes {
+    padding-top: 3%;
+    display: flex;
+    gap: 20px;
+}
 
+/* botão editar */
+.edit {
+    width: 20%;
+    height: 35px;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    border: none;
+}
+
+/* botão cadastro */
+.cad {
+    width: 20%;
+    height: 35px;
+    border-radius: 20px;
+    background-color: rgba(68, 43, 179, 1);
+    color: white;
+    border: none;
+}
+
+.duvidas {
+    width: 250%;
+    display: flex;
+    padding-left: 102%;
+}
+
+.duvidas a {
+    font-size: 15px;
+    color: rgba(68, 43, 179, 1);
+}
+
+.tupla1{
+    display: flex;
+    color: black;
+    width: 60px;
+}
+
+.dados:hover{
+    background-color: rgb(174, 172, 184);
+    color: white;
+}
+
+.geren-dados {
+    flex-direction: column;
+    width: 122%;
+    height: 100%;
+    overflow: auto;
+}
+
+.dados {
+    padding-right: 10%;
+    flex-direction: row;
+    width: 100%;
+    align-items: baseline;
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 65px;
+    padding-top: 0px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
+
+.edit, .cad {
+    cursor: pointer;
+}
+
+.Cadastrar {
+    position: absolute;
+    z-index: auto;
+    display: none;
+}
+
+.Editar {
+    position: absolute;
+    z-index: auto;
+    display: none;
+}
+
+.linha img{
+    width: 123.58%;
+}
