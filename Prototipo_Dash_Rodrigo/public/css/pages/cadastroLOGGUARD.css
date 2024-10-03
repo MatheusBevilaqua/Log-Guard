@@ -127,28 +127,52 @@
     .cad_container.painel-direito-ativo .cad_sobreposicao--right {
     transform: translateX(20%);
     }
-    .cad_btn {
-    /* background-color: #eec95c; */
-    background-color: #442BB3;
-    border-color: #2E0F4C;
-    /* background-image: linear-gradient(90deg, #d6a845 0%, #eed876 74%); */
-    border-radius: 20px;
-    /* border: 1px solid blueviolet; */
-    color: var(--white);
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: bold;
-    letter-spacing: 0.1rem;
-    padding: 0.5rem 4rem;
-    /* text-transform: uppercase; */
-    transition: transform 80ms ease-in;
-    height: 6vh;
-    transition: transform 0.3s ease;
-    font-family: "Sora", sans-serif;
+
+
+
+    /* BOTÕES */
+    .cad_btn1 {
+      background-image:url("botao-voltar.png"); 
+      width:150px;
+      height:150px; 
+      background-color: transparent; 
+      border-radius: 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-color: blueviolet;
     }
-    .cad_btn:hover{
+    .cad_btn1:hover{
         transform: scale(1.1);
     }
+
+    .cad_btn2 {
+      background-image:url("proximo.png"); 
+      width:150px;
+      height:150px; 
+      background-color: transparent; 
+      border-radius: 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-color: blueviolet;
+      }
+      .cad_btn2:hover{
+          transform: scale(1.1);
+      }
+
+
+/* .botao_teste{
+  background-image:url("botao-voltar.png"); 
+  width:250px;
+  height:250px; 
+  font-size: 200px; 
+  color:red; 
+  background-color: transparent; 
+  border-radius: 50%;
+} */
+
+
     .form>.cad_btn {
     margin-top: 1.5rem;
     }
@@ -203,6 +227,9 @@
     
     
     /* ------------------------------------------------------------------------------------------- */
-    /* --// CUSTOMIZANDO FUNDO CADASTRO-EMPRESA //-- */
-    
+    /* --// TESTES //-- */
+
+    option{
+      color: #333;
+      }
     
