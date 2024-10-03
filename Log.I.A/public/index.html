@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogGuard - Dashboard</title>
+    <link rel="stylesheet" href="../../public/css/main.css">
+    <link rel="shortcut icon" type="images/png" href="../../public/svg/iceberg-icon.svg">
+</head>
+
+<body style="background-color: #e3e3e3;">
+</body>
+<section class="page-dash">
+    <aside class="nav-dash">
+        <div class="nav-dash-teste">
+            <img src="../../public/img/logo_vetorizada4.png" alt="#Logo-LogGuard">
+        </div>
+        <nav class="nav-dash-menu">
+            <ul class="nav-dash-list">
+                <a href="#">
+                    <li class="nav-dash-link"><img src="../../public/img/home-1.png" class="nav-dash-icon">Visão Geral</li>
+                </a>
+                <a href="#">
+                    <li class="nav-dash-link"><img src="./img/profit-report.png" class="nav-dash-icon">Relatórios</li>
+                </a>
+                <a href="#">
+                    <li class="nav-dash-link"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
+                </a>
+                <a href="#">
+                    <li class="nav-dash-link"><img src="./img/man.png" class="nav-dash-icon">Funcionários</li>
+                </a>
+                <a href="#">
+                    <li class="nav-dash-link-sair"><img src="./img/man.png" class="nav-dash-icon">Sair</li>
+                </a>
+            </ul>
+        </nav>
+    </aside>
+    <main class="main-dash-page">
+
+        <div class="main-dash-card-IA">
+            <h4>Recomendação de prioridade</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud
+                exercitation
+                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+
+        <div class="main-dash-right-relatorios">
+            <h2>Gerar relatórios por I.A</h2>
+            <button class="main-dash-right-botao" onclick="gerarResposta()">Gerar Relatório</button>
+            <div class="resposta-IA">
+
+                <h3>Resposta:</h3>
+                <div id="resposta" class="resposta-IA"></div>
+
+            </div>
+
+        </div>
+
+
+    </main>
+</section>
+
+<script>
+
+    async function gerarResposta() {
+        const pergunta = "Faça um resumo da história do max steel?";
+
+        const response = await fetch('/perguntar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ pergunta })
+        });
+
+        const data = await response.json();
+
+        resposta.style.display = 'block';
+        document.getElementById('resposta').innerText = data.resultado;
+    }
+
+</script>
+
+</html>

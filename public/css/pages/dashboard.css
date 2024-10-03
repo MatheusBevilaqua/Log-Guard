@@ -16,11 +16,8 @@
     align-items: center;
 }
 
-.nav-dash-logo {
-    margin-bottom: 40px;
-}
 
-.nav-dash-logo img {
+.nav-dash-teste img {
     width: 100%;
     height: 150px;
 }
@@ -182,6 +179,107 @@ justify-content: center;
     width: 100%;
     height: auto;
 }
+
+.main-dash-right-relatorios {
+    flex: 1;
+    width: 960px;
+    height: 900px;
+    margin-left: 250px;
+    background-color: #FFFFFF;
+    padding-top: 20px;
+    padding-left: 100px;
+    padding-bottom: 20px;
+    padding-right: 70px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-dash-right-relatorios h2 {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.main-dash-right-botao{
+    
+    color: #333333;
+    width: 170px;
+    border-radius: 70px;
+    padding: 10px 0;
+    font-size: 19px;
+
+ 
+ }
+
+ .main-dash-right-botao:hover{
+    
+    transition: 0.5s;
+    color: #ffffff;
+    background-color: #442BB3;
+    border-color: #00000000;
+    width: 205px;
+    height: 50px;
+    border-radius: 70px;
+    padding: 10px 0;
+    font-size: 19px;
+ 
+ }
+
+.resposta-IA {
+
+    width: 70vw;
+    height: fit-content;
+    color: #333; 
+    padding-top: 30px;
+
+}
+.resposta-IA h3 {
+
+    color: #333333;
+    height: fit-content;
+
+}
+
+.main-dash-card-IA{
+
+    display: flex;
+    flex-direction: column;
+    width: 960px;
+    height: 200px;
+    flex: 1;
+    background-color: #442BB3;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    margin-left: 250px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+
+}
+
+.nav-dash-link-sair {
+    color: #FF3B3B; 
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    padding: 10px 0;
+    border-radius: 70px;
+    transition: background-color 0.3s ease;
+    flex-grow: 1;
+}
+
+.nav-dash-link-sair a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav-dash-link-sair:hover {
+    background-color: #FF3B3B;
+    color: white;
+}
+
 
 /* Cores específicas para os indicadores */
 .dash-greet-child:nth-child(1) h3 {
