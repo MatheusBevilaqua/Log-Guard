@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogGuard Cadastro</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Document</title>
 </head>
-
+<style> 
+  body{
+    background-image: url("public/css/pages/fundo-home.png");
+  }
+  .contrato_caixa{
+    background-color: white;
+    border-radius: 20px;
+    width: 500px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+</style>
 <body>
-    <section id="page-cadastro-ind">
 
-        <div class="father-cadastro-ind">
+    <form action="https://api.staticforms.xyz/submit" method="post"> 
+
+      <section id="page-cadastro-ind">
+        <div class="father-cadastro-ind2">  
             <div class="cadastro-child-form">
                 <div class="cadastro-ind-form">
                     <div class="cadastro-form-titulo">
@@ -20,24 +34,25 @@
                         <p class="black-text">Insira os dados abaixo e entre em contato...</p>
                     </div>
 
+<!-- NOME DO USUÁRIO ---------------------------------------------------------------------------------------------------- -->
                     <label class="login-form-box">
                         <span class="icon">
                             <img src="./svg/icon-building.svg" alt="">
                         </span>
-                        <input type="text" class="login-form-input black-text" placeholder="Seu nome"
-                            autocomplete="off" />
+                        <input type="text" class="login-form-input black-text" placeholder="Digite o seu nome"  name="name" id="nome"/>
                     </label>
+
+<!-- EMAIL DO USUÁRIO ---------------------------------------------------------------------------------------------------- -->
 
                     <label class="login-form-box">
                         <span class="icon">
                             <img src="./svg/gmail-icon.svg" alt="">
                         </span>
-                        <input type="text" class="login-form-input black-text" placeholder="Email para Contato"
-                            autocomplete="off" />
+                        <input type="text" class="login-form-input black-text" placeholder="Email para Contato" name="email" id="email"/>
                     </label>
                     
                     <div class="login-form-btn">
-                        <button class="login-btn boal">Enviar</button>
+                        <button class="login-btn boal" >Enviar</button>
                     </div>
                 </div>
 
@@ -46,20 +61,24 @@
                     <a href="./index.html" class="little-text">Página Inicial</a>
                 </div>
             </div>
+        </form>  
 
-            <div class="login-child-content">
-                <div class="login-content">
-                    <div class="content-logo-text-end">
-                        <img class="content-logo" src="./img/logo_vetorizada5.png" alt="">
-                    </div>
-                    <h1 class="text-center">Contrate os serviços!</h1>
-                    <p class="text-center">Certifique-se de que o e-mail cadastrado seja responsável por responder a qualquer assunto referente a contratação do serviço.</p>
-                    <p class="text-center">O e-mail e senha cadastrados aqui são utilizados para acesso futuro a dashboard!</p>
+        <div class="login-child-content">
+            <div class="login-content">
+                <div class="content-logo-text-end">
+                    <img class="content-logo" src="./img/logo_vetorizada5.png" alt="">
                 </div>
+                <h1 class="text-center">Reduzindo riscos, aumentando a confiança.</h1>
             </div>
         </div>
+        </div>
 
-    </section>
+    <input type="hidden" name="accessKey" value="54fd681b-61d4-49e8-9fd6-3df43599c2a3">
+    <input type="hidden" name="redirectTo" value="http://127.0.0.1:5500/public/index.html">
+    
+</form>
+</div>
+
+
 </body>
-
 </html>

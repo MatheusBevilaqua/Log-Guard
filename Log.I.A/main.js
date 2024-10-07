@@ -18,7 +18,11 @@ app.use(express.json());
 
 // configurando o servidor para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
+<<<<<<< HEAD
 app.use(express.static('../../public/css/main.css')); 
+=======
+app.use(express.static('../../public/css'))
+>>>>>>> f892156ec8f70c062d349ba4150f298307d065fc
 
 
 // configurando CORS
