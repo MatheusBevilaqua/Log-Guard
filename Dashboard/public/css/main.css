@@ -20,6 +20,7 @@
 @import url(pages/encerramento.css);    
 @import url(pages/dashboard_ADM.css);
 @import url(pages/gerenciar-maquina.css);
+@import url(pages/gerenciar-func.css);
 
 *,
 *:after,
