@@ -1,0 +1,108 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: #000;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.sidebar a.active {
+    color: #fff;
+    background-color: #6a0dad;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar a i {
+    margin-right: 10px;
+}
+
+.sidebar .logout {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.sidebar .logout a {
+    color: #000;
+    text-decoration: none;
+}
+
+.alerta, .info {
+    margin: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.container .alerta,
+.container .stats {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 10px); 
+    box-sizing: border-box;
+}
+
+.container .stats {
+    background-color: #442BB3;
+    color: #FFFF;
+}
+
+.content .info table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content .info table th, .content .info table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.content .info table th {
+    background-color: #f9f9f9;
+}
+
+.green{
+    color: green;
+}
+
+.red{
+    color: red;
+}
