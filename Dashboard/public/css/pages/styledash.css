@@ -5,10 +5,6 @@ body {
     background-color: #f0f0f0;
 }
 
-.container {
-    display: flex;
-}
-
 .sidebar {
     width: 200px;
     background-color: #fff;
@@ -50,9 +46,21 @@ body {
     text-decoration: none;
 }
 
-.content {
-    flex: 1;
+.alerta, .info {
+    margin: 10px;
     padding: 20px;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
 }
 
 .content h1 {
@@ -60,74 +68,41 @@ body {
     margin-bottom: 20px;
 }
 
-.content .stats,
-.content .logs,
-.content .machines {
+.container .alerta,
+.container .stats {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 10px); 
+    box-sizing: border-box;
 }
 
-.content .stats {
-    display: flex;
-    justify-content: space-between;
+.container .stats {
+    background-color: #442BB3;
+    color: #FFFF;
 }
 
-.content .stats div {
-    flex: 1;
-    text-align: center;
-    margin: 0 10px;
-}
-
-.content .stats div h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.content .stats div p {
-    font-size: 36px;
-    margin: 0;
-}
-
-.content .stats div p.red {
-    color: red;
-}
-
-.content .stats div p.green {
-    color: green;
-}
-
-.content .stats div p.purple {
-    color: purple;
-}
-
-.content .logs table,
-.content .machines table {
+.content .info table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.content .logs table th,
-.content .logs table td,
-.content .machines table th,
-.content .machines table td {
+.content .info table th, .content .info table td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-.content .logs table th,
-.content .machines table th {
+.content .info table th {
     background-color: #f9f9f9;
 }
 
-.content .logs table td.red,
-.content .machines table td.red {
-    color: red;
+.green{
+    color: green;
 }
 
-.content .machines table td {
-    text-align: center;
+.red{
+    color: red;
 }
