@@ -9,11 +9,10 @@
         <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
     </head>
 
-<body> 
+<body id="body_login"> 
 
     <!-- //-- INICIO DA TELA DE LOGIN --// -->
     <section id="page-login-user">
-
         <div class="login-father">
             <div class="login-child-form">
                 <div class="login-form">
@@ -29,14 +28,14 @@
                         <span class="icon">
                             <img src="./svg/gmail-icon.svg" alt="">
                         </span>
-                        <input type="text" class="login-form-input black-text" placeholder="Digite seu e-mail" autocomplete="off"/>
+                        <input type="text" id="input_email" class="login-form-input black-text" placeholder="Digite seu e-mail" autocomplete="off"/ >
                     </label>
 
                     <label class="login-form-box">
                         <span class="icon">
                             <img src="./svg/key-icon.svg" alt="">
                         </span>
-                        <input type="password" class="login-form-input black-text" placeholder="Digite sua senha" autocomplete="off"/>
+                        <input type="password" id="senha_input" class="login-form-input black-text" placeholder="Digite sua senha" autocomplete="off"/>
                     </label>
 
                     <div class="login-link-forget">
@@ -44,12 +43,11 @@
                     </div>
 
                     <div class="login-form-btn">
-                        <button class="login-btn boal">Login</button>
+                        <button class="login-btn boal" onclick="entrar()">Login</button>
                     </div>
 
                     <div class="login-form-not-cont">
-                        <p class="bold text-purple text-center">Não tem uma conta? <a class="link-text" href="./cadastroEmpresa.html">Cadastre-se</a></p>
-                        <p class="text-purple text-center">Contato: <a class="link-text" href="">log.guard@sptech.school</a></p>
+                        <p class="text-purple text-center">Contato: <a class="link-text" href="mailto: logguard02@gmail.com">logguard02@gmail.com</a></p>
                     </div>
 
                 </div>
@@ -58,8 +56,6 @@
                     <a class="little-text" href="./index.html">Página Inicial</a>
                 </div>
             </div>
-
-
             <div class="login-child-content">
                 <div class="login-content">
                     <div class="content-logo-text-end">
@@ -68,11 +64,84 @@
                     <h1 class="text-center">Reduzindo riscos, aumentando a confiança.</h1>
                 </div>
             </div>
-
-
         </div>
-
     </section>
 </body>
-
 </html>
+<script> 
+
+function entrar() {
+        var emailVar = input_email.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            alert("Erro: Todos os campos devem ser preenchidos")
+            return false;
+        }
+        else {
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.emailUsuario;
+                    sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.TIPO_USUARIO = json.tipoPerfilUsuario;
+
+                    setTimeout(function () {
+
+                        if (sessionStorage.TIPO_USUARIO == "ADMINISTRADOR") {
+                            window.location = "dashboard_ADM.html";
+                        }
+
+                        if (sessionStorage.TIPO_USUARIO == "COMUM") {
+                            window.location = "dashboardFuncionario.html";
+                        }
+
+                        if (sessionStorage.TIPO_USUARIO == "LOG_GUARD") {
+                            window.location = "cadastroEmpresa.html";
+                        }
+                       
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+        }
+
+       
+    }
+
+
+
+</script>

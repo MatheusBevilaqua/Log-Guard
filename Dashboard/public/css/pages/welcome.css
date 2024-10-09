@@ -42,6 +42,10 @@
 .welcome-logo{
     width: 70%;
 }
+.welcome-card-titulo b{
+    text-align: center;
+    color: blueviolet;
+}
 
 /* RESPONSIVIDADE DA PAGE WELCOME */
 @media (max-width: 1140px){
@@ -83,6 +87,10 @@
 
     .welcome-card-titulo{
         text-align: center;
+    }
+    .welcome-card-titulo b{
+        text-align: center;
+        color: blueviolet;
     }
 
     .welcome-card-argument{

@@ -4,10 +4,20 @@ USE logGuard;
 CREATE TABLE empresa(
 idEmpresa INT PRIMARY KEY auto_increment,
 nomeEmpresa VARCHAR(225),
-nomeResponsavel VARCHAR(225),
+emailInstitucional VARCHAR(225),
 emailResponsavel VARCHAR(225),
-cnpj CHAR(14)
+cnpj CHAR(14),
+cep CHAR(9)
 );
+
+insert into empresa VALUES(default,'LOG GUARD', 'log.guard@sptech.school','log.guard@sptech.school','10101010101010','101010101');
+
+select * from empresa;
+
+INSERT INTO empresa  VALUES(
+default, nomeEmpresa, EmailInstitucional,emailResponsavel, cnpj, cep 
+);
+
 
 CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY auto_increment,
@@ -16,10 +26,14 @@ FOREIGN KEY usuario(fkEmpresaUsuario) REFERENCES empresa(idEmpresa),
 nomeUsuario VARCHAR(225),
 emailUsuario VARCHAR(225),
 senhaUsuario VARCHAR(225),
-tipoPerfilUsuario VARCHAR(11),
+tipoPerfilUsuario VARCHAR(13),
 CONSTRAINT CHK_TIPO CHECK (tipoPerfilUsuario ='ADMINISTRADOR' OR tipoPerfilUsuario ='LOG_GUARD' OR tipoPerfilUsuario ='COMUM')
 );
+INSERT INTO usuario VALUES(default, 5,'Ademir', 'ademir@logguard.com', 'Admin123','LOG_GUARD');
 
+
+
+select * from usuario;
 
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
@@ -87,4 +101,6 @@ fkTipoArmazenamento INT,
 FOREIGN KEY (fkTipoArmazenamento) REFERENCES tipoArmazenamento(idtipoArmazenamento),
 capacidade DECIMAL (8,5)
 );
+
+
 

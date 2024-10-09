@@ -1,5 +1,10 @@
 /* --// CUSTOMIZANDO FUNDO LOGIN //-- */
 
+#body_login{
+
+    margin-top: 0%;
+}
+
 #page-login-user{
     background: url(../../img/fundo-home.png) no-repeat center center;
     background-size: cover;
