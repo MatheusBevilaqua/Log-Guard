@@ -8,7 +8,7 @@
 }
 
 .mainfuncpage {
-    width: 70%;
+    width: 100%;
     margin-top: 40px;
     margin-left: 16.8%;
 }
@@ -22,7 +22,7 @@
 .select-func {
     position:relative;
     display: flex;
-    padding-left: 70.30%;
+    padding-left: 60.30%;
     width: 89%;
     gap: 20px;
 }
@@ -31,7 +31,7 @@
     border-radius: 10px 10px 0 0;
     border-color: #ffffff;
     color: black;
-    width: 120%;
+    width: 46.50%;
     height: 40px;
     display: flex;
     z-index: auto;
@@ -50,9 +50,9 @@
     display: flex;
     flex-direction: column;
     width: 89%;
-    height: 65%;
+    height: 100%;
     background-color: rgb(255, 255, 255);
-    padding-right: 20%;
+    /* padding-right: 20%; */
     padding-top: 2%;
     border-radius: 20px 0 20px 20px ;
     color: black;
@@ -62,7 +62,7 @@
     color: black;
     align-items: baseline;
     display: grid;
-    grid-template-columns: 10% 20% 30% 20%;
+    grid-template-columns: 10% 18% 25% 35%;
     flex-direction: row;
     width: 122%;
     padding-right: 13%;
@@ -147,7 +147,7 @@
 
 .func-dados {
     flex-direction: column;
-    width: 122%;
+    width: 99%;
     height: 100%;
     overflow: auto;
 }
@@ -399,7 +399,7 @@ margin: 0;
 }
 
 .linha-func img{
-    width: 128.78%;
+    width: 100%;
 }
 
 .confirmar-func{
@@ -419,3 +419,62 @@ select option:hover{
     color: white;
 }
 
+.metricas-func {
+    flex-direction:row;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 70%;
+    padding-top: 0;
+    background-color: #E3E3E3;
+}
+
+.me1-func {
+    display: flex;
+    width: 260px;;
+    height: 200px;
+    background-color: #442BB3;
+    border-radius: 20px;
+    color: white;
+    position: fixed;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    top: 100px; 
+}
+
+.me2-func {
+    display: flex;
+    width: 260px;;
+    height: 200px;
+    background-color: #1C0E5B;
+    border-radius: 20px  ;
+    color: white;
+    position:fixed;
+    top: 270px; 
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.me3-func {
+    display: flex;
+    width: 260px;;
+    height: 200px;
+    background-color: #0A0329;
+    border-radius: 20px  ;
+    color: white;
+    position:fixed;
+    top: 400px; 
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.tre-func {
+    width: 383px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

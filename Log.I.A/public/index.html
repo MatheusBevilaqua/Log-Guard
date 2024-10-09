@@ -5,37 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogGuard - Dashboard</title>
-<<<<<<< HEAD
-    <link rel="stylesheet" href="../../../Log-Guard/public/css/main.css">
-=======
-    <link rel="stylesheet" href="../../public/css/main.css">
->>>>>>> f892156ec8f70c062d349ba4150f298307d065fc
+    <link rel="stylesheet" href="./css/main.css">
     <link rel="shortcut icon" type="images/png" href="../../public/svg/iceberg-icon.svg">
 </head>
 
 <body style="background-color: #e3e3e3;">
-<<<<<<< HEAD
 
     <section class="page-dash">
         <aside class="nav-dash">
             <div class="nav-dash-teste">
-                <img src="../../public/img/logo_vetorizada4.png" alt="#Logo-LogGuard">
+                <img src="./img/logo-preta-transparent.png" alt="#Logo-LogGuard">
             </div>
             <nav class="nav-dash-menu">
                 <ul class="nav-dash-list">
                     <a href="#">
-                        <li class="nav-dash-link"><img src="../../public/img/home-1.png" class="nav-dash-icon">Visão
+                        <li class="nav-dash-link"><img src="./svg/key-icon.svg" class="nav-dash-icon">Visão
                             Geral</li>
                     </a>
                     <a href="#">
-                        <li class="nav-dash-link"><img src="./img/profit-report.png" class="nav-dash-icon">Relatórios
+                        <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon">Relatórios
                         </li>
                     </a>
                     <a href="#">
                         <li class="nav-dash-link"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
                     </a>
                     <a href="#">
-                        <li class="nav-dash-link"><img src="./img/man.png" class="nav-dash-icon">Funcionários</li>
+                        <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
                     </a>
                     <a href="#">
                         <li class="nav-dash-link-sair"><img src="./img/man.png" class="nav-dash-icon">Sair</li>
@@ -71,70 +66,11 @@
         </main>
     </section>
 </body>
-=======
-</body>
-<section class="page-dash">
-    <aside class="nav-dash">
-        <div class="nav-dash-teste">
-            <img src="../../public/img/logo_vetorizada4.png" alt="#Logo-LogGuard">
-        </div>
-        <nav class="nav-dash-menu">
-            <ul class="nav-dash-list">
-                <a href="#">
-                    <li class="nav-dash-link"><img src="../../public/img/home-1.png" class="nav-dash-icon">Visão Geral</li>
-                </a>
-                <a href="#">
-                    <li class="nav-dash-link"><img src="./img/profit-report.png" class="nav-dash-icon">Relatórios</li>
-                </a>
-                <a href="#">
-                    <li class="nav-dash-link"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
-                </a>
-                <a href="#">
-                    <li class="nav-dash-link"><img src="./img/man.png" class="nav-dash-icon">Funcionários</li>
-                </a>
-                <a href="#">
-                    <li class="nav-dash-link-sair"><img src="./img/man.png" class="nav-dash-icon">Sair</li>
-                </a>
-            </ul>
-        </nav>
-    </aside>
-    <main class="main-dash-page">
-
-        <div class="main-dash-card-IA">
-            <h4>Recomendação de prioridade</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud
-                exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-        </div>
-
-        <div class="main-dash-right-relatorios">
-            <h2>Gerar relatórios por I.A</h2>
-            <button class="main-dash-right-botao" onclick="gerarResposta()">Gerar Relatório</button>
-            <div class="resposta-IA">
-
-                <h3>Resposta:</h3>
-                <div id="resposta" class="resposta-IA"></div>
-
-            </div>
-
-        </div>
-
-
-    </main>
-</section>
->>>>>>> f892156ec8f70c062d349ba4150f298307d065fc
 
 <script>
 
     async function gerarResposta() {
-<<<<<<< HEAD
         const pergunta = "Me explique como é desenvolvido um relatório por Inteligência artificial";
-=======
-        const pergunta = "Faça um resumo da história do max steel?";
->>>>>>> f892156ec8f70c062d349ba4150f298307d065fc
 
         const response = await fetch('/perguntar', {
             method: 'POST',

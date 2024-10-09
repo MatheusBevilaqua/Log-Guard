@@ -48,6 +48,7 @@
                     </div>
                 </select>
                 </div>
+                <div class="metricas-func">
             <div class="dash-func">
                 <div class="titulos-func">
                         <div class="coluna-func">ID</div>
@@ -127,6 +128,24 @@
                 </div>
         </div>
             </div>
+            <div class="tre-func">
+                <div class="me1-func">
+                    <h5>Total de funcionários:</h5>
+                    <br><br>
+                    <h2>10</h2>
+                </div>
+                <div class="me2-func">
+                    <h5>Administradores:</h5>
+                    <br>
+                    <h2>1</h2>
+                </div>
+                <div class="me3-func">
+                    <h5>Analistas:</h5>
+                    <br><br>
+                    <h2>9</h2>
+                </div>
+            </div>
+            </div>
             <div class="botoes-func">
                 <button onclick="editar()" class="edit-func">Editar</button>
                 <button onclick="cadastrar()" class="cad-func">Cadastrar</button>
@@ -139,30 +158,27 @@
 
         <div class="Editarfunc">
         <div class="Editar-func-primeiro">
-            <h1>Alterar as configurações do servidor:</h1>
-            <input placeholder="Nome da máquina" type="text" id="input_alterar_nome">
+            <h1>Alterar as configurações do perfil:</h1>
+            <input placeholder="Nome Completo" type="text" id="input_alterar_nome">
             <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Modelo da CPU" type="text" id="input_alterar_cpu">
+            <input placeholder="E-Mail" type="text" id="input_alterar_email">
             <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="RAM(Gb)" type="text" id="input_alterar_memoria">
+
+            <select name="select">
+                <option value="valor1" selected disabled>Selecionar cargo</option>
+                <option value="valor2">Analista</option>
+                <option value="valor3">Administrador</option>
+              </select>
+
             <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Disco(TB)" type="text" id="input_alterar_disco">
-            <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Rede(Mbps)" type="text" id="input_alterar_rede">
-            <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Localidade" type="text" id="input_alterar_localidade">
+            <input placeholder="Senha" type="text" id="input_alterar_senha">
             <img src="./img/Line1cadastro.png" alt="">
         </div>
-        <div class="Editar-func-segundo">
-            <div class="Editar-func-confirmudanca">
-            
-            <input type="checkbox" id="input_alterar_checkbox">
-            <label>Confirmar mudanças</label><br>
+        <img src="./img/Line1cadastro.png" class="line1-func" alt="">
+        <div class="editar-func-titulodelet">
         </div>
-        <div class="Editar-func-botoes">
-            <button onclick="confirmar_editar()" class="confirmar-func">Confirmar</button>
-            <button onclick="cancelar_editar()" class="cancelar-func">Cancelar</button>
-        </div>
+        <div class="Editar-func-botao-delete">
+            <button onclick="atribuicao_editar()" class="confirmar-func">Editar atribuição de servidores</button>
         </div>
         <img src="./img/Line1cadastro.png" class="line1-func" alt="">
         <div class="editar-func-titulodelet">
