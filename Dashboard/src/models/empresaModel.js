@@ -24,4 +24,12 @@ function cadastrar(nomeEmpresa,EmailInstitucional,emailResponsavel,cnpj,cep ) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+
+// FAZER UM VIEW DO SELECT DEPOIS
+function visualizarEmpresas() {
+  var instrucaoSql = `SELECT * FROM visualizar_empresas;`;
+
+  return database.executar(instrucaoSql);
+}
+
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, visualizarEmpresas };
