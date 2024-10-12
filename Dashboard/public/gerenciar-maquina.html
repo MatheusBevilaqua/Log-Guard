@@ -18,16 +18,17 @@
     <nav class="nav-dash-menu-geren">
         <ul class="nav-dash-list-geren">
             <a href="#">
-                <li class="nav-dash-link-geren"><img src="./img/home-1.png" class="nav-dash-icon-geren">Visão Geral</li>
+                <li class="nav-dash-link-geren"><img src="./img/home.svg" class="nav-dash-icon-geren-1">Visão Geral</li>
             </a>
             <a href="#">
-                <li class="nav-dash-link-geren"><img src="./img/profit-report.png" class="nav-dash-icon-geren">Relatórios</li>
+                <li class="nav-dash-link-geren"><img src="./img/profit-report.svg"
+                        class="nav-dash-icon-geren-2">Relatórios</li>
             </a>
             <a href="#">
-                <li class="nav-dash-link-geren"><img src="./img/monitor.png" class="nav-dash-icon-geren">Máquinas</li>
+                <li class="nav-dash-link-geren"><img src="./img/monitor.svg" class="nav-dash-icon-geren-3">Máquinas</li>
             </a>
             <a href="#">
-                <li class="nav-dash-link-geren"><img src="./img/man.png" class="nav-dash-icon-geren">Funcionários</li>
+                <li class="nav-dash-link-geren"><img src="./img/man.svg" class="nav-dash-icon-geren-3">Funcionários</li>
             </a>
             <a href="#">
                 <li class="nav-dash-link-geren">Sair</li>
@@ -257,6 +258,7 @@
         // temporario
         document.querySelector('.maingerenpage').style.filter = "blur(0px)";
         document.querySelector('.Editargeren').style.display = "none";
+        window.location.reload(true); //reload na página
     }
 
     function cancelar_editar() {
@@ -265,9 +267,10 @@
     }
 
     function excluir_editar() {
-        // temporario
-        document.querySelector('.maingerenpage').style.filter = "blur(0px)";
-        document.querySelector('.Editargeren').style.display = "none";
+        var r = confirm("Tem certeza que deseja excluir este servidor?");
+            if (r == true) {
+                window.location.reload(true); //reload na página
+            }
     }
 
     function confirmar_cadastrar() {

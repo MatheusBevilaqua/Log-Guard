@@ -152,6 +152,11 @@ body{
     color: white;
 }
 
+.dados-func-atribuicao:hover{
+    background-color: #E3E3E3;
+    color: white;
+}
+
 .func-dados {
     flex-direction: column;
     width: 99%;
@@ -586,3 +591,151 @@ select option:hover{
 ::-webkit-input-placeholder {
     color: black;
  }
+
+.Editaratribuicaofunc {
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left:45%; 
+    transform: translate(-30%, -50%); 
+    width: 60%; 
+    height: 570px;
+    background-color: #FFF;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 0px 4px 39.4px 19px rgba(0, 0, 0, 0.36);
+
+}
+
+.Editaratribuicaofunc h1 {
+    color: black;
+    font-size: 30px;
+    padding-left: 5%;
+    padding-top: 20px;
+}
+
+.dash-func-atribuicao {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    background-color: rgb(255, 255, 255);
+    /* padding-right: 20%; */
+    padding-top: 7%;
+    padding-bottom: 2%;
+    border-radius: 20px 0 20px 20px ;
+    color: black;
+    padding-left: 5%;
+    padding-right: 5%;
+
+}
+
+.func-dados-atribuicao {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.dados-func-atribuicao {
+    padding-right: 10%;
+    flex-direction: row;
+    width: 100%;
+    align-items: baseline;
+    color: black;
+    display: grid;
+    grid-template-columns: 6% 20% 35% 35%;
+    justify-content:space-between;
+    align-items: center;
+    height: 65px;
+    padding-top: 0px;
+    padding-bottom: 15px;
+    cursor: pointer;  
+}
+
+.coluna-func-atribuicao {
+    display: flex;
+    color: black;
+    width: 60px;
+    height: 10px;
+    margin-left: 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cadastrar-func-a03 {
+    display: grid;
+    grid-template-columns: 68% 15% 15%;
+    flex-direction: row;
+    width: 100%; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 10px 0;
+}
+
+.cadastrar-func-a03 .confirmar-func-a03 {
+    border-radius: 40px;
+    background: #442BB3;
+    color: white;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.cadastrar-func-a03 .cancelar-func-a03 {
+    border-radius: 40px;
+    background: white;
+    color: black;
+    width: 120px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.criacaocheck label {
+    color: black;
+}
+
+.input_criacao label {
+    color: black;
+}
+
+.titulos-func-atribuicao {
+    color: black;
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: 10% 25% 45%;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10%;
+    padding-left: 55px;
+}
+
+.nav-dash-icon-geren-1 {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+}
+
+.nav-dash-icon-geren-2 {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+}
+
+.nav-dash-icon-geren-3 {
+    width: 20px;
+    height: 14px;
+    padding-right: 5px;
+}
+
+.nav-dash-icon-geren-4 {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+}
