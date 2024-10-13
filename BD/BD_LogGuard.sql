@@ -1,6 +1,7 @@
 CREATE DATABASE logGuard;
 USE logGuard;
 
+
 CREATE TABLE empresa(
 idEmpresa INT PRIMARY KEY auto_increment,
 nomeEmpresa VARCHAR(225),
@@ -12,13 +13,6 @@ cep CHAR(9)
 
 insert into empresa VALUES(default,'LOG GUARD', 'log.guard@sptech.school','log.guard@sptech.school','10101010101010','101010101');
 
-select * from empresa;
-
-INSERT INTO empresa  VALUES(
-default, nomeEmpresa, EmailInstitucional,emailResponsavel, cnpj, cep 
-);
-
-
 CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY auto_increment,
 fkEmpresaUsuario INT,
@@ -29,24 +23,24 @@ senhaUsuario VARCHAR(225),
 tipoPerfilUsuario VARCHAR(13),
 CONSTRAINT CHK_TIPO CHECK (tipoPerfilUsuario ='ADMINISTRADOR' OR tipoPerfilUsuario ='LOG_GUARD' OR tipoPerfilUsuario ='COMUM')
 );
-INSERT INTO usuario VALUES(default, 5,'Ademir', 'ademir@logguard.com', 'Admin123','LOG_GUARD');
 
-
-
-select * from usuario;
+INSERT INTO usuario VALUES(default, 1,'Ademir', 'ademir@logguard.com', 'Admin123','LOG_GUARD');
 
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
 fkEmpresaMaquina INT,
-FOREIGN KEY maquina(fkEmpresaMaquina) REFERENCES empresa(idEmpresa),
+FOREIGN KEY (fkEmpresaMaquina) REFERENCES empresa(idEmpresa),
+fkUsuarioMaquina INT,
+FOREIGN KEY (fkUsuarioMaquina) REFERENCES usuario(idUsuario),
 nomeMaquina VARCHAR(255),
 modeloCPU VARCHAR(45),
 qtdNucleos INT,
 capacidadeRAM DECIMAL(8,3),
-MACAdress VARCHAR(45),
-numeroSerial VARCHAR(255) UNIQUE,
+MACAdress VARCHAR(45) UNIQUE,
 latencia INT
 );
+
+insert into maquina (fkEmpresaMaquina,fkUsuarioMaquina,nomeMaquina,modeloCPU,capacidadeRAM,MACAdress,latencia)values();
 
 CREATE TABLE relatorio(
 idRelatorio INT auto_increment,
@@ -88,19 +82,6 @@ registro DECIMAL (8,3),
 dtCriacaoCaptura DATETIME
 );
 
-CREATE TABLE tipoArmazenamento(
-idtipoArmazenamento INT PRIMARY KEY auto_increment,
-tipoArmazenamento VARCHAR(45)
-);
-
-CREATE TABLE maquinaArmazenamento(
-idMaquinaArmazenamento INT PRIMARY KEY auto_increment,
-fkMaquinaArmazenamento INT,
-FOREIGN KEY (fkMaquinaArmazenamento) REFERENCES maquina(idMaquina),
-fkTipoArmazenamento INT,
-FOREIGN KEY (fkTipoArmazenamento) REFERENCES tipoArmazenamento(idtipoArmazenamento),
-capacidade DECIMAL (8,5)
-);
 
 
 
