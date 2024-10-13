@@ -88,19 +88,4 @@ registro DECIMAL (8,3),
 dtCriacaoCaptura DATETIME
 );
 
-CREATE TABLE tipoArmazenamento(
-idtipoArmazenamento INT PRIMARY KEY auto_increment,
-tipoArmazenamento VARCHAR(45)
-);
-
-CREATE TABLE maquinaArmazenamento(
-idMaquinaArmazenamento INT PRIMARY KEY auto_increment,
-fkMaquinaArmazenamento INT,
-FOREIGN KEY (fkMaquinaArmazenamento) REFERENCES maquina(idMaquina),
-fkTipoArmazenamento INT,
-FOREIGN KEY (fkTipoArmazenamento) REFERENCES tipoArmazenamento(idtipoArmazenamento),
-capacidade DECIMAL (8,5)
-);
-
-
 
