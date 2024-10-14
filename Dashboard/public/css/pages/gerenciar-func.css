@@ -1,10 +1,6 @@
 /* Estilos para a página dashboard */
 
-body{
 
-    overflow: hidden;
-
-}
 
 .page-dash-func {
     display: flex;
@@ -12,6 +8,7 @@ body{
     height: 100%;
     padding-top: 0;
     background-color: #E3E3E3;
+    overflow: hidden;
 }
 
 .mainfuncpage {
