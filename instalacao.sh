@@ -2,29 +2,25 @@
 
 sudo apt update && sudo apt upgrade -y
 
-java -version #verifica versao atual do java
+java --version #verifica versao atual do java
     if [ $? = 0 ]; #se retorno for igual a 0
-
-        then #entao,
             echo “java instalado” #print no terminal
-    
     else #se nao,
 
         echo “java não instalado” #print no terminal
         echo “gostaria de instalar o java? - s/n - ” #print no terminal
         read get #variável que guarda resposta do usuário
         if [ “$get” == “s” ]; #se retorno for igual a s
-        
-            then #entao
                 sudo apt install openjdk-17-jre -y #executa instalacao do java
+                else [ "$get" == “n”];
+                    echo "Java não instalado"
         fi #fecha o 2º if
     fi #fecha o 1º if
 
-docker -version
+docker --version
 
  if [ $? = 0 ]; #se retorno for igual a 0
 
-        then #entao,
             echo "Docker instalado" #print no terminal
     
 else #se nao,
@@ -33,36 +29,40 @@ else #se nao,
         echo “gostaria de instalar o Docker? - s/n - ” #print no terminal
         read get #variável que guarda resposta do usuário
         if [ “$get” == “s” ]; #se retorno for igual a s
+            sudo apt install docker.io -y #executa instalacao do docker
+            
+            else [ "$get" == “n”];
+                
+                echo "Docker não instalado"
         
-            then #entao
-                sudo apt install docker.io -y #executa instalacao do docker
         fi #fecha o 2º if
     fi #fecha o 1º if
 
-python3 -version
+python3 --version
 
  if [ $? = 0 ]; #se retorno for igual a 0
 
-        then #entao,
-            echo Python instalado” #print no terminal
-    
+            echo Python instalado” #print no terminal    
+     
     else #se nao,
 
         echo Python não instalado” #print no terminal
         echo “gostaria de instalar o Python? - s/n - ” #print no terminal
         read get #variável que guarda resposta do usuário
-        if [ “$get” == “s” ]; #se retorno for igual a s
-        
-            then #entao
-                sudo apt-get install python3.9 -y #executa instalacao do python
+
+        if [ “$get” == “s”]; #se retorno for igual a s
+                        sudo apt-get install python3.9 -y #executa instalacao do python
+            else [ "$get" == “n”];
+
+                echo "Python não instalado"
+
         fi #fecha o 2º if
-    fi #fecha o 1º if
+fi #fecha o 1º if
 
 echo "Deseja iniciar a criação de container?"
 read get #variável que guarda resposta do usuário
-        if [ \“$get\” == \“s\”]; #se retorno for igual a s
-        
-            then
+        if [ \“$get\” == \“s\" ]; #se retorno for igual a s
+                
                 sudo systemctl start docker -y # inicia o controlador de serviços do docker 
                 sudo systemctl enable docker -y
                 sudo docker pull eduardomiyasaki/site:v1

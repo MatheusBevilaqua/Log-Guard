@@ -34,13 +34,11 @@ fkUsuarioMaquina INT,
 FOREIGN KEY (fkUsuarioMaquina) REFERENCES usuario(idUsuario),
 nomeMaquina VARCHAR(255),
 modeloCPU VARCHAR(45),
-qtdNucleos INT,
 capacidadeRAM DECIMAL(8,3),
-MACAdress VARCHAR(45) UNIQUE,
-latencia INT
-);
-
-insert into maquina (fkEmpresaMaquina,fkUsuarioMaquina,nomeMaquina,modeloCPU,capacidadeRAM,MACAdress,latencia)values();
+disco INT,
+latencia INT,
+MACAdress VARCHAR(45)
+); 
 
 CREATE TABLE relatorio(
 idRelatorio INT auto_increment,
@@ -82,6 +80,22 @@ registro DECIMAL (8,3),
 dtCriacaoCaptura DATETIME
 );
 
+<<<<<<< HEAD
+CREATE TABLE tipoArmazenamento(
+idtipoArmazenamento INT PRIMARY KEY auto_increment,
+tipoArmazenamento VARCHAR(45)
+);
+
+-- CREATE TABLE maquinaArmazenamento(
+-- idMaquinaArmazenamento INT PRIMARY KEY auto_increment,
+-- fkMaquinaArmazenamento INT,
+-- FOREIGN KEY (fkMaquinaArmazenamento) REFERENCES maquina(idMaquina),
+-- fkTipoArmazenamento INT,
+-- FOREIGN KEY (fkTipoArmazenamento) REFERENCES tipoArmazenamento(idtipoArmazenamento),
+-- capacidade DECIMAL (8,5)
+-- );
 
 
+=======
+>>>>>>> 36988b7ee98894aaef97b73ce5df77374a161834
 

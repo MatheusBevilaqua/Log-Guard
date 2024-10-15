@@ -11,12 +11,12 @@
 
 <body>
 </body>
-<aside class="nav-dash-geren">
-    <div class="nav-dash-logo-geren">
-        <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo-geren" alt="#Logo-LogGuard">
+<aside class="nav-dash">
+    <div class="nav-dash-teste">
+        <img src="./img/logo-preta-transparent.png" alt="#Logo-LogGuard">
     </div>
-    <nav class="nav-dash-menu-geren">
-        <ul class="nav-dash-list-geren">
+    <nav class="nav-dash-menu">
+        <ul class="nav-dash-list">
             <a href="#">
                 <li class="nav-dash-link-geren"><img src="./img/home.svg" class="nav-dash-icon-geren-1">Visão Geral</li>
             </a>
@@ -31,12 +31,12 @@
                 <li class="nav-dash-link-geren"><img src="./img/man.svg" class="nav-dash-icon-geren-3">Funcionários</li>
             </a>
             <a href="#">
-                <li class="nav-dash-link-geren">Sair</li>
+                <li class="nav-dash-link-sair"><img src="./img/man.png" class="nav-dash-icon">Sair</li>
             </a>
         </ul>
     </nav>
 </aside>
-<section class="page-dash-geren">
+<section class="page-dash-geren" onload="validarSessao()">
     
         <div class="maingerenpage">
             <h1>Gerenciar Máquinas:</h1>
@@ -175,11 +175,11 @@
         </div>
             </div>
             <div class="botoes-geren">
-                <button onclick="editar()" class="edit-geren">Editar</button>
-                <button onclick="cadastrar()" class="cad-geren">Cadastrar</button>
+                <button onclick="editar_maquina()" class="edit-geren">Editar</button>
+                <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar</button>
             </div>
 
-            <div class="duvidas-geren">
+            <div class="duvidas-func">
             <a href="#">Duvidas? Clique aqui!</a>
             </div>
         </div>
@@ -195,11 +195,12 @@
             <img src="./img/Line1cadastro.png" alt="">
             <input placeholder="Disco(TB)" type="text" id="input_alterar_disco">
             <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Rede(Mbps)" type="text" id="input_alterar_rede">
-            <img src="./img/Line1cadastro.png" alt="">
             <input placeholder="Localidade" type="text" id="input_alterar_localidade">
             <img src="./img/Line1cadastro.png" alt="">
         </div>
+            <input placeholder="Rede(Mbps)" type="text" id="input_alterar_rede">
+            <img src="./img/Line1cadastro.png" alt="">
+          
         <div class="Editar-geren-segundo">
             <div class="Editar-geren-confirmudanca">
             
@@ -223,19 +224,19 @@
         <div class="Cadastrargeren">
             <h1>Complete os campos:</h1>
         <div class="cadastrar-geren-primeiro">
-            <input placeholder="Nome da máquina" type="text" id="input_cadastro_nome">
+            <input placeholder="Nome da máquina" type="text" id="nome_input">
             <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Modelo da CPU" type="text" id="input_cadastro_cpu">
+            <input placeholder="Modelo da CPU" type="text" id="modeloCPU_input">
             <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="RAM(Gb)" type="text" id="input_cadastro_memoria">
+            <input placeholder="RAM(Gb)" type="text" id="capacidadeRAM_input">
             <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Disco(TB)" type="text" id="input_cadastro_disco">
+            <input placeholder="Disco(TB)" type="text" id="disco_input">
             <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Rede(Mbps)" type="text" id="input_cadastro_rede">
+            <input placeholder="Localidade" type="text" id="localidade_input">
             <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Localidade" type="text" id="input_cadastro_localidade">
+            <input placeholder="Endereço MAC" type="text" id="MACAdress_input">
             <img src="./img/Line1cadastro.png" alt="">
-
+     
         </div>
         <div class="cadastrar-geren-segundo">
             <input type="checkbox" id="input_cadastro_checkbox">
@@ -253,6 +254,8 @@
 </html>
 
 <script>
+
+    var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
 
     function confirmar_editar() {
         // temporario
@@ -273,7 +276,72 @@
             }
     }
 
-    function confirmar_cadastrar() {
+function confirmar_cadastrar() {
+
+  alert("hi")
+
+  var nomeMaquinaVAR = nome_input.value;
+  var modeloCPUVAR = modeloCPU_input.value;
+  var capacidadeRAMVAR = capacidadeRAM_input.value;
+  var discoVAR = disco_input.value;
+  var localidadeVAR = localidade_input.value;
+  var MACAdressVAR = MACAdress_input.value;
+
+  alert (nomeMaquinaVAR)
+  alert (modeloCPUVAR)
+  alert (capacidadeRAMVAR)
+  alert (discoVAR)
+  alert (localidadeVAR)
+  alert (MACAdressVAR)
+
+  alert(sessionStorage.EMPRESA_USUARIO)
+
+  if ( 
+    nomeMaquinaVAR== "" ||
+    modeloCPUVAR == "" ||
+    capacidadeRAMVAR  == "" ||
+    discoVAR== "" ||
+    localidadeVAR == "" ||
+    MACAdressVAR == "" 
+    ) {
+    alert("Todos os campos dever ser preenchidos!")
+      return false;
+    } else {
+   
+    fetch("/empresas/confirmar_cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+
+        nomeMaquinaServer:nomeMaquinaVAR,
+        modeloCServer:modeloCPUVAR,
+        capacidadeServer:capacidadeRAMVAR,
+        discoServer:discoVAR,
+        localidadeServer:localidadeVAR,
+        MACAdressServer:MACAdressVAR ,
+        fkEmpresaMaquinaServer: sessionStorage.EMPRESA_USUARIO
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+       
+            alert("CADASTRO EXECUTADO!")
+     
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+   
+      });
+
+         return false;
+        }
         // temporario
         document.querySelector('.maingerenpage').style.filter = "blur(0px)";
         document.querySelector('.Cadastrargeren').style.display = "none";
@@ -284,13 +352,13 @@
         document.querySelector('.Cadastrargeren').style.display = "none";
     }
 
-    function editar() {
+    function editar_maquina() {
         document.querySelector('.maingerenpage').style.filter = "blur(5px)";
         document.querySelector('.Editargeren').style.display = "block";
 
     }
 
-    function cadastrar() {
+    function cadastrar_maquina() {
         document.querySelector('.maingerenpage').style.filter = "blur(5px)";
         document.querySelector('.Cadastrargeren').style.display = "block";
 

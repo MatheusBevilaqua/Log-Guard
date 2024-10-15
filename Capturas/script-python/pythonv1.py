@@ -2,6 +2,7 @@
 import time
 import psutil as ps
 from mysql.connector import connect, Error
+from mysql.connector import connect, Error
 
 def main(): # Função principal, fiz assim por questão de organização
     imprimeMenu("Olá, Bem vindo(a)! Aqui está a captura de dados em tempo real de: Uso de CPU, Uso de RAM, Uso de Disco e Conexões Abertas em Rede!")
@@ -9,8 +10,8 @@ def main(): # Função principal, fiz assim por questão de organização
     habilitarInsercao = True
     time.sleep(2.5)
     print("\n------------------ USO DE HARDWARE ------------------\n")
-    print(formataLinha('CPU (%)', 'RAM (%)', 'Uso de disco(%)'))
-    print('-' * 53)
+    print(formataLinha('CPU (%)', 'RAM (%)', 'DISCOLIVRE (GB)'))
+    print('-' * 45)
 
     enderecoMAC = obtemMAC()
     insertMACQuery = montaQueryMAC(enderecoMAC)
@@ -93,11 +94,12 @@ def obterDadosSistema(): # Aqui, colho os dados por componente separadamente:
 
     # Uso de Disco
     usoDisco = ps.disk_usage('/')
-    usadoDisco = usoDisco.used / (1024 ** 3)  # Convertendo de bytes para GB
+    #usadoDisco = usoDisco.used / (1024 ** 3)  # Convertendo de bytes para GB
     livreDisco = usoDisco.free / (1024 ** 3)  # Convertendo de bytes para GB
+    DiscoLivre = round(livreDisco,1)
 
     # Conexões Abertas em Rede
-    conexoesRede = len(ps.net_connections()) # Length (Largura) da lista de conexões com internet
+    #conexoesRede = len(ps.net_connections()) # Length (Largura) da lista de conexões com internet
 
     return (porcentagemCpu, porcentagemMemoria, usadoDisco)
 

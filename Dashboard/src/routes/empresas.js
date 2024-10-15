@@ -19,9 +19,23 @@ router.get("/buscar/:id", function (req, res) {
 router.get("/listar", function (req, res) {
   empresaController.listar(req, res);
 });
+router.post("/confirmar_cadastrar", function (req, res) {
+  empresaController.confirmar_cadastrar(req, res);
+});
+// router.get("/excluir_editar", function (req, res) {
+//   empresaController.listar(req, res);
+// });
+// router.get("/confirmar_editar", function (req, res) {
+//   empresaController.listar(req, res);
+// });
 
+<<<<<<< HEAD
+
+module.exports = router;
+=======
 router.get("/visualizarEmpresas", function(req,res){
   empresaController.visualizarEmpresas(req, res);
 })
 
 module.exports = router;
+>>>>>>> 36988b7ee98894aaef97b73ce5df77374a161834
