@@ -12,6 +12,8 @@ body{
     height: 100%;
     padding-top: 0;
     background-color: #E3E3E3;
+    margin-left: 30px;
+    padding-bottom: 90px;
 }
 
 .mainfuncpage {
@@ -32,6 +34,7 @@ body{
     padding-left: 60.30%;
     width: 89%;
     gap: 20px;
+    padding-right: 96px;
 }
 
 .select-func select {
@@ -46,6 +49,7 @@ body{
     font-size: 15px;
     outline: none;
     position: relative;
+    padding-left: 5px;
 }
 
 .select-func option {
@@ -132,8 +136,11 @@ body{
 
 .duvidas-func {
     width: 250%;
+    height: 100px;
     display: flex;
-    padding-left: 102%;
+    padding-left: 82%;
+    padding-bottom: 100px;
+
 }
 
 .duvidas-func a {
@@ -455,14 +462,16 @@ select option:hover{
     height: 70%;
     padding-top: 0;
     background-color: #E3E3E3;
+    margin-bottom: 10px;
 }
 
 .me1-func {
     display: flex;
     width: 260px;;
-    height: 463px;
+    height: 200px;
     background-color: #442BB3;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     color: white;
     align-items: center;
     flex-direction: column;
@@ -475,9 +484,10 @@ select option:hover{
 .me2-func {
     display: flex;
     width: 260px;;
-    height: 230px;
+    height: 170px;
     background-color: #1C0E5B;
-    border-radius: 20px  ;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     color: white;
     top: 270px; 
     align-items: center;
@@ -485,14 +495,14 @@ select option:hover{
     justify-content: flex-start;
     z-index: -10;
     padding-top: 20px; 
-    margin-top: 5px;
+    margin-top: 20px;
 
 }
 
 .me3-func {
     display: flex;
     width: 260px;
-    height: 350px;
+    height: 170px;
     background-color: #0A0329;
     border-radius: 20px  ;
     color: white;
@@ -502,16 +512,16 @@ select option:hover{
     justify-content: flex-start;
     z-index: 15;
     padding-top: 20px;
-    padding-bottom: 70px; 
-    margin-top: 15px;
+    padding-bottom: 20px; 
+    margin-top: 20px;
 }
 
 .tre-func {
     width: 383px;
-    height: 900px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 90px;
 }
 
 .select-func-primeiro {
