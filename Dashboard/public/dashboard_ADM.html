@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
+
 <body>
     <section class="page-dash">
         <!-- Barra Lateral -->
@@ -14,14 +16,29 @@
             <div class="nav-dash-logo">
                 <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
             </div>
-            <nav class="nav-dash-menu">
-                <ul class="nav-dash-list">
-                    <li class="nav-dash-link"><img src="./img/home-1.png" class="nav-dash-icon">Visão Geral</li>
-                    <li class="nav-dash-link"><img src="./img/profit-report.png" class="nav-dash-icon">Relatórios</li>
-                    <li class="nav-dash-link"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
-                    <li class="nav-dash-link"><img src="./img/man.png" class="nav-dash-icon">Funcionários</li>
-                    <li class="nav-dash-link sair"><a href="#">Sair</a></li>
+            <nav class="nav-dash-menu-geren">
+                <ul class="nav-dash-list-geren">
+                    <a href="#">
+                        <li class="nav-dash-link-geren"><img src="./img/home.svg" class="nav-dash-icon-geren-1">Visão
+                            Geral</li>
+                    </a>
+                    <a href="#">
+                        <li class="nav-dash-link-geren"><img src="./img/profit-report.svg"
+                                class="nav-dash-icon-geren-2">Relatórios</li>
+                    </a>
+                    <a href="#">
+                        <li class="nav-dash-link-geren"><img src="./img/monitor.svg"
+                                class="nav-dash-icon-geren-3">Máquinas</li>
+                    </a>
+                    <a href="#">
+                        <li class="nav-dash-link-geren"><img src="./img/man.svg"
+                                class="nav-dash-icon-geren-3">Funcionários</li>
+                    </a>
+                    <a href="#">
+                        <li class="nav-dash-link-geren">Sair</li>
+                    </a>
                 </ul>
+            </nav>
             </nav>
         </aside>
 
@@ -33,36 +50,36 @@
             </div>
 
             <!-- Indicadores de Status -->
-            <div class="main-dash-status">
-                <div class="status-card">
-                    <h4>Servidores com Problema</h4>
-                    <h2>2</h2>
+            <div class="indicadores-ADM">
+                <div class="main-dash-status">
+                    <div class="titulos-indicadores-adm">
+                        <div class="indi-titulo-adm">Servidores com Problema</div>
+                        <div class="indi-titulo-adm">Relatórios disponíveis</div>
+                        <div class="indi-titulo-adm">Alertas gerados(últimas 24h)</div>
+                    </div>
+                    <div class="dados-indicadores-adm">
+                        <div class="dado-titulo-adm">5</div>
+                        <div class="dado-titulo-adm">2</div>
+                        <div class="dado-titulo-adm">7</div>
+                    </div>
                 </div>
-                <div class="status-details">
-                    <div class="status-item">
-                        <h4>CPUs</h4>
-                        <h3>3</h3>
-                    </div>
-                    <div class="status-item">
-                        <h4>RAMs</h4>
-                        <h3>6</h3>
-                    </div>
-                    <div class="status-item">
-                        <h4>Disco(s)</h4>
-                        <h3>0</h3>
-                    </div>
-                    <div class="status-item">
-                        <h4>Rede(s)</h4>
-                        <h3>1</h3>
-                    </div>
-                    <div class="status-card">
-                        <h4>Relatórios disponíveis </h4>
-                        <h3></h3>
-                    </div>
-                    <div class="status-card">
-                        <h4>Alertas gerados nas últimas 24h </h4>
-                        <h3></h3>
-
+                <div class="irregularidade-ADM">
+                    <div class="main-dash-irreguladirades">
+                        <div class="titulo-adm">
+                            <h3>Irregularidades em tempo real</h3>
+                        </div>
+                        <div class="titulos-indicadores-adm">
+                            <div class="indi-titulo-adm">CPU(s)</div>
+                            <div class="indi-titulo-adm">RAM(s)</div>
+                            <div class="indi-titulo-adm">DISCO(s)</div>
+                            <div class="indi-titulo-adm">REDE(s)</div>
+                        </div>
+                        <div class="dados-indicadores-irre">
+                            <div class="dado-titulo-adm-irre">5</div>
+                            <div class="dado-titulo-adm-irre">2</div>
+                            <div class="dado-titulo-adm-irre">7</div>
+                            <div class="dado-titulo-adm-irre">2</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,105 +90,146 @@
                     margin: 0;
                     padding: 0;
                 }
+
                 body {
                     font-family: Arial, sans-serif;
                     background-color: #f0f0f0;
                     display: flex;
                     height: 100vh;
                 }
-        
-                /* Sidebar fixa */
-               
-        
-                /* Container principal das divs */
-                .main-content {
-                    margin-left: 240px; /* Espaço para a sidebar */
-                    width: calc(100% - 240px); /* Largura total menos a sidebar */
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 20px;
-                }
-        
-                /* Estilo das divs */
-                .box {
-                    background-color: white;
-                    border-radius: 10px;
-                    padding: 20px;
-                    width: 48%;
-                    height: 600px; /* Aumentando a altura */
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                    color: black; /* Texto preto */
-                    overflow-y: auto; /* Para permitir rolagem, útil para a lista */
-                }
-        
+
                 canvas {
-                    width: 100%; /* O gráfico ocupa toda a largura da div */
-                    height: 100%; /* O gráfico ocupa toda a altura da div */
+                    width: 100%;
+                    height: 100%;
                 }
             </style>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        </head>
-        <body>
-        
-            <!-- Sidebar fixa -->
-            <div class="sidebar">
-                <h2>Sidebar</h2>
-                <p>Menu</p>
-            </div>
-        
-            <!-- Conteúdo principal -->
-            <div class="main-content">
-                <!-- Div para a lista -->
-                <div class="box">
-                    <h2>Máquinas em risco</h2>
-                    <ul>
-                       
-                    </ul>
+            </head>
+
+            <body>
+
+
+
+                <!-- Conteúdo principal -->
+                <div class="main-content">
+                    <!-- Div para a lista -->
+                    <div class="box1">
+                        <h2>Máquinas em risco</h2>
+                        <ul>
+                            <div class="dash-func-atribuicao-adm">
+                                <div class="titulos-func-atribuicao-adm">
+                                    <div class="coluna-func-adm">ID</div>
+                                    <div class="coluna-func">Máquina</div>
+                                    <div class="coluna-func">Localidade</div>
+                                </div>
+                                <div class="linha-func">
+                                    <img src="./img/Line1cadastro.png" alt="">
+                                </div>
+                                <div class="table-dash-ADM">
+                                    <div class="func-dados-atribuicao">
+                                        <div class="dados-func-atribuicao-adm">
+                                            <div class="coluna-func-atribuicao-adm">102</div>
+                                            <div class="coluna-func-atribuicao-adm">DESKTOP-L776AUQ</div>
+                                            <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
+                                        </div>
+                                        <div class="dados-func-atribuicao-adm">
+                                            <div class="coluna-func-atribuicao-adm">102</div>
+                                            <div class="coluna-func-atribuicao-adm">DESKTOP-L776AUQ</div>
+                                            <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
+                                        </div>
+                                        <div class="dados-func-atribuicao-adm">
+                                            <div class="coluna-func-atribuicao-adm">102</div>
+                                            <div class="coluna-func-atribuicao-adm">DESKTOP-L776AUQ</div>
+                                            <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
+                                        </div>
+                                        <div class="dados-func-atribuicao-adm">
+                                            <div class="coluna-func-atribuicao-adm">102</div>
+                                            <div class="coluna-func-atribuicao-adm">DESKTOP-L776AUQ</div>
+                                            <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
+                                        </div>
+                                        <div class="dados-func-atribuicao-adm">
+                                            <div class="coluna-func-atribuicao-adm">102</div>
+                                            <div class="coluna-func-atribuicao-adm">DESKTOP-L776AUQ</div>
+                                            <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
+                                        </div>
+                                        <div class="dados-func-atribuicao-adm">
+                                            <div class="coluna-func-atribuicao-adm">102</div>
+                                            <div class="coluna-func-atribuicao-adm">DESKTOP-L776AUQ</div>
+                                            <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
+                                        </div>
+                                        <div class="dados-func-atribuicao-adm">
+                                            <div class="coluna-func-atribuicao-adm">102</div>
+                                            <div class="coluna-func-atribuicao-adm">DESKTOP-L776AUQ</div>
+                                            <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
+                                        </div>
+                                        <div class="dados-func-atribuicao-adm">
+                                            <div class="coluna-func-atribuicao-adm">102</div>
+                                            <div class="coluna-func-atribuicao-adm">DESKTOP-L776AUQ</div>
+                                            <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
+                                        </div>
+                                        <div class="dados-func-atribuicao-adm">
+                                            <div class="coluna-func-atribuicao-adm">102</div>
+                                            <div class="coluna-func-atribuicao-adm">DESKTOP-L776AUQ</div>
+                                            <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
+                                        </div>
+                                        <div class="dados-func-atribuicao-adm">
+                                            <div class="coluna-func-atribuicao-adm">102</div>
+                                            <div class="coluna-func-atribuicao-adm">DESKTOP-L776AUQ</div>
+                                            <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
+                                        </div>
+                                        <div class="dados-func-atribuicao-adm">
+                                            <div class="coluna-func-atribuicao-adm">102</div>
+                                            <div class="coluna-func-atribuicao-adm">DESKTOP-L776AUQ</div>
+                                            <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <!-- Div para o gráfico -->
+                    <div class="box2">
+                        <h2>Alertas por semana</h2>
+                        <canvas id="myChart"></canvas>
+                    </div>
                 </div>
-        
-                <!-- Div para o gráfico -->
-                <div class="box">
-                    <h2>Gráfico</h2>
-                    <canvas id="myChart"></canvas>
-                </div>
-            </div>
-        
-            <!-- Script para o Chart.js -->
-            <script>
-                var ctx = document.getElementById('myChart').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                        datasets: [{
-                            label: 'Alertas',
-                            data: [12, 19, 3, 5, 2, 3],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
+
+                <!-- Script para o Chart.js -->
+                <script>
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                            datasets: [{
+                                label: 'Alertas',
+                                data: [12, 19, 3, 5, 2, 3],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
                             }
                         }
-                    }
-                });
-            </script>
+                    });
+                </script>
