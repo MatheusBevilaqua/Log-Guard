@@ -1,10 +1,19 @@
 /* Estilos para a página dashboard */
+
+
+
 .page-dash-func {
     display: flex;
     width: 100%;
     height: 100%;
     padding-top: 0;
     background-color: #E3E3E3;
+<<<<<<< HEAD
+    margin-left: 30px;
+    padding-bottom: 90px;
+=======
+    overflow: hidden;
+>>>>>>> ddd7a90db47f2bdfd424d7391fc0fc2a3458a705
 }
 
 .mainfuncpage {
@@ -25,6 +34,7 @@
     padding-left: 60.30%;
     width: 89%;
     gap: 20px;
+    padding-right: 96px;
 }
 
 .select-func select {
@@ -39,6 +49,7 @@
     font-size: 15px;
     outline: none;
     position: relative;
+    padding-left: 5px;
 }
 
 .select-func option {
@@ -62,7 +73,7 @@
     color: black;
     align-items: baseline;
     display: grid;
-    grid-template-columns: 10% 18% 25% 35%;
+    grid-template-columns: 6% 28% 29% 30%;
     flex-direction: row;
     width: 122%;
     padding-right: 13%;
@@ -77,7 +88,7 @@
     align-items: baseline;
     color: black;
     display: grid;
-    grid-template-columns: 10% 20% 30% 20%;
+    grid-template-columns: 6% 33% 35% 13%;
     justify-content:space-between;
     align-items: center;
     height: 65px;
@@ -125,8 +136,11 @@
 
 .duvidas-func {
     width: 250%;
+    height: 100px;
     display: flex;
-    padding-left: 102%;
+    padding-left: 82%;
+    padding-bottom: 100px;
+
 }
 
 .duvidas-func a {
@@ -141,6 +155,11 @@
 }
 
 .dados-func:hover{
+    background-color: #E3E3E3;
+    color: white;
+}
+
+.dados-func-atribuicao:hover{
     background-color: #E3E3E3;
     color: white;
 }
@@ -193,7 +212,7 @@
 .Editar-func-primeiro input {
     margin-bottom: 15px;
     width: 80%;
-    height: 30px;
+    height: 45px;
     border: none;
     color: black;
     margin-top: 5px;
@@ -273,6 +292,26 @@ font-size: 10px;
     height: 10%;
     justify-content: center;
     padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.Editar-func-botao-editar{
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.Editar-func-botao-editar .editar-func {
+    border-radius: 40px;
+    background: #442BB3;
+    color: white;
+    width: 240px;
+    height: 40px;
+    cursor: pointer;
 }
 
 .editar-func-titulodelet {
@@ -293,6 +332,7 @@ font-size: 10px;
     color: white;
     width: 240px;
     height: 40px;
+    cursor: pointer;
 }
 
 
@@ -427,6 +467,7 @@ select option:hover{
     height: 70%;
     padding-top: 0;
     background-color: #E3E3E3;
+    margin-bottom: 10px;
 }
 
 .me1-func {
@@ -434,47 +475,277 @@ select option:hover{
     width: 260px;;
     height: 200px;
     background-color: #442BB3;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     color: white;
-    position: fixed;
     align-items: center;
     flex-direction: column;
     justify-content: flex-start;
-    top: 100px; 
+    top: 100px;
+    z-index: 1;
+    padding-top: 20px; 
 }
 
 .me2-func {
     display: flex;
     width: 260px;;
-    height: 200px;
+    height: 170px;
     background-color: #1C0E5B;
-    border-radius: 20px  ;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     color: white;
-    position:fixed;
     top: 270px; 
     align-items: center;
     flex-direction: column;
     justify-content: flex-start;
+    z-index: -10;
+    padding-top: 20px; 
+    margin-top: 20px;
+
 }
 
 .me3-func {
     display: flex;
-    width: 260px;;
-    height: 200px;
+    width: 260px;
+    height: 170px;
     background-color: #0A0329;
     border-radius: 20px  ;
     color: white;
-    position:fixed;
     top: 400px; 
     align-items: center;
     flex-direction: column;
     justify-content: flex-start;
+    z-index: 15;
+    padding-top: 20px;
+    padding-bottom: 20px; 
+    margin-top: 20px;
 }
 
 .tre-func {
     width: 383px;
-    height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 90px;
+}
+
+.select-func-primeiro {
+    width: 100%;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+}
+
+.select-func-segundo {
+    width: 100%;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+}
+
+.select-func-primeiro select{
+    color: black;
+    width: 90%;
+    border: none;
+    height: 45px;
+}
+
+.select-func-segundo select{
+    color: black;
+    width: 90%;
+    border: none;
+    height: 40px;
+}
+
+select option {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+select option:hover{
+    background-color: black;
+    color: rgb(0, 0, 0);
+}
+
+.Editar-func-botao-fechar {
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.Editar-func-botao-fechar .fechar-func {
+    border-radius: 40px;
+    background: #442BB3;
+    color: white;
+    width: 240px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.linhacad{
+    width: 100%;
+    height: 1px;
+}
+
+.linhacad2{
+    width: 100%;
+    height: 0.5px;
+}
+
+::-webkit-input-placeholder {
+    color: black;
+ }
+
+.Editaratribuicaofunc {
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left:45%; 
+    transform: translate(-30%, -50%); 
+    width: 60%; 
+    height: 570px;
+    background-color: #FFF;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 0px 4px 39.4px 19px rgba(0, 0, 0, 0.36);
+
+}
+
+.Editaratribuicaofunc h1 {
+    color: black;
+    font-size: 30px;
+    padding-left: 5%;
+    padding-top: 20px;
+}
+
+.dash-func-atribuicao {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    background-color: rgb(255, 255, 255);
+    /* padding-right: 20%; */
+    padding-top: 7%;
+    padding-bottom: 2%;
+    border-radius: 20px 0 20px 20px ;
+    color: black;
+    padding-left: 5%;
+    padding-right: 5%;
+
+}
+
+.func-dados-atribuicao {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.dados-func-atribuicao {
+    padding-right: 10%;
+    flex-direction: row;
+    width: 100%;
+    align-items: baseline;
+    color: black;
+    display: grid;
+    grid-template-columns: 6% 20% 35% 35%;
+    justify-content:space-between;
+    align-items: center;
+    height: 65px;
+    padding-top: 0px;
+    padding-bottom: 15px;
+    cursor: pointer;  
+}
+
+.coluna-func-atribuicao {
+    display: flex;
+    color: black;
+    width: 60px;
+    height: 10px;
+    margin-left: 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cadastrar-func-a03 {
+    display: grid;
+    grid-template-columns: 68% 15% 15%;
+    flex-direction: row;
+    width: 100%; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 10px 0;
+}
+
+.cadastrar-func-a03 .confirmar-func-a03 {
+    border-radius: 40px;
+    background: #442BB3;
+    color: white;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.cadastrar-func-a03 .cancelar-func-a03 {
+    border-radius: 40px;
+    background: white;
+    color: black;
+    width: 120px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.criacaocheck label {
+    color: black;
+}
+
+.input_criacao label {
+    color: black;
+}
+
+.titulos-func-atribuicao {
+    color: black;
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: 10% 25% 45%;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10%;
+    padding-left: 55px;
+}
+
+.nav-dash-icon-geren-1 {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+}
+
+.nav-dash-icon-geren-2 {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+}
+
+.nav-dash-icon-geren-3 {
+    width: 20px;
+    height: 14px;
+    padding-right: 5px;
+}
+
+.nav-dash-icon-geren-4 {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
 }

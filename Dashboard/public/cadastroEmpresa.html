@@ -37,7 +37,7 @@ dialog{
   border: none; 
   border-radius: .5rem;
   box-shadow: 0 0 1em rgb(0 0 0 / .5);
-  width: 50%;
+  width: 70%;
   height: 50%;
   position: fixed; /* Faz o dialog ficar relativo à tela */
   top: 50%; /* Centraliza verticalmente */
@@ -45,7 +45,7 @@ dialog{
   transform: translate(-50%, -50%); /* Ajusta o ponto de ancoragem para o centro */
   padding: 1rem;
   background-color:#E3E3E3;
-  /* overflow: auto; */
+  overflow: unset; 
 }
 .caixa_lista::-webkit-scrollbar {
   width: 5px;
@@ -77,7 +77,7 @@ dialog button{
   height: 7%;
   border: none;
   cursor: pointer;
-
+  
   border-radius: 10px;
   background: var(--purple-blue);
 }
@@ -94,6 +94,52 @@ font-size: medium;
 .botao_listar{
   border: none;
 }
+.titulos-empresa {
+    color: black;
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: 6% 35% 37% 13%;
+    flex-direction: row;
+    width: 100%;
+    padding-right: 13%;
+    justify-content: space-between;
+    height: 10%;
+}
+.coluna-func{
+    display: flex;
+    color: black;
+    width: 60px;
+    height: 10px;
+    margin-left: 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dash-func {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    border-radius: 20px;
+}
+
+.dados-func {
+    display: grid;
+    grid-template-columns: 6% 35% 36% 15%;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.func-dados {
+    flex-direction: column;
+    width: 99%;
+    height: 100%;
+    overflow: auto;
+}
+
+
+
+
+
 </style>
 
 <body>
@@ -113,7 +159,7 @@ font-size: medium;
 
   
 
-<h2 class="bold black-text text-center">Cadastro - <button id="opener" onclick="listar()" class="botao_listar"> <b style="color: blueviolet;"> Empresa </b> </button> </h2>
+<h2 class="bold black-text text-center">Cadastro - <button id="opener" onclick="listarEmpresa(); verEmpresas()" class="botao_listar"> <b style="color: blueviolet;"> Empresa </b> </button> </h2>
 
 
 <!-- DIALOG LISTA DE EMPRESAS -------------------------------------------------------------------------------------------------------- -->
@@ -121,46 +167,20 @@ font-size: medium;
 <dialog> 
   <p> Lista de Empresas</p>
   <div class="caixa_lista"> 
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-<div class="lista">
-  <h4> EXEMPLO LISTA EMPRESA </h4>
-</div>
-</div>
+
+ <div class="dash-func" id="dash-func">
+    <div class="titulos-empresa">
+    <div class="coluna-func"><p> ID </p> </div>
+    <div class="coluna-func"> <p> Nome </p> </div>
+    <div class="coluna-func"> <p>E-Mail do Responsável</p></div>
+    <div class="coluna-func"> <p> CNPJ </p> </div>
+    </div>
+    <div class="linha-func">
+    <img src="./img/Line1cadastro.png" alt="">
+    </div>
+    </div>
+  </div>
+  
 <button> Fechar </button>
 </dialog>
 
@@ -368,7 +388,7 @@ font-size: medium;
 
   menuSlide();
 
-  function listar(){
+  function listarEmpresa(){
     const modal = document.querySelector("dialog")
     const buttonClose = document.querySelector("dialog button")
     modal.showModal()
@@ -519,6 +539,83 @@ font-size: medium;
     return false;
     }
   }
+
+
+  function verEmpresas() {
+
+        fetch("/empresas/visualizarEmpresas").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var lista = document.getElementById("dash-func");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhuma empresa encontrada."
+                    lista.appendChild(mensagem);
+                    throw "Nenhuma resultada encontrada!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var lista = document.getElementById("dash-func");
+            
+
+                    // var divTitulos = document.createElement("div")
+                    // var divTituloId = document.createElement("div");
+                    // var divTituloNome = document.createElement("div");
+                    // var divTituloEmail = document.createElement("div");
+                    // var divTituloCNPJ = document.createElement("div");
+
+                    // divTitulos.className = "titulos-func";
+                    // divTituloId.className = "coluna-func";
+                    // divTituloNome.className = "coluna-func";
+                    // divTituloEmail.className = "coluna-func";
+                    // divTituloCNPJ.className = "coluna-func";
+
+                   
+                    // divTituloId.innerHTML = "ID";
+                    // divTituloNome.innerHTML = "NOME DA EMPRESA";
+                    // divTituloEmail.innerHTML = "EMAIL DO RESPONSÁVEL";
+                    // divTituloCNPJ.innerHTML = "CNPJ";
+
+
+                    // lista.appendChild(divTitulos)
+
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        var tupla = resposta[i];
+                        var divLista= document.createElement("div");
+                        var divId = document.createElement("div");
+                        var divnome = document.createElement("div");
+                        var divEmail = document.createElement("div");
+                        var divCNPJ = document.createElement("div");
+
+                        divLista.className = "dados-func";
+                        divId.className = "coluna-func";
+                        divnome.className = "coluna-func";
+                        divEmail.className = "coluna-func";
+                        divCNPJ.className = "coluna-func";
+                  
+                        divId.innerHTML = tupla.idEmpresa;
+                        divnome.innerHTML = tupla.nomeEmpresa;
+                        divEmail.innerHTML = tupla.emailResponsavel;
+                        divCNPJ.innerHTML = tupla.cnpj ;
+
+                        divLista.appendChild(divId);
+                        divLista.appendChild(divnome);
+                        divLista.appendChild(divEmail);
+                        divLista.appendChild(divCNPJ);
+                        lista.appendChild(divLista);
+                    }
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
 
   
   </script>

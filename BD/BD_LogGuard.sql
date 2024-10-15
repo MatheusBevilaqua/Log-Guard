@@ -87,6 +87,7 @@ registro DECIMAL (8,3),
 dtCriacaoCaptura DATETIME
 );
 
+<<<<<<< HEAD
 CREATE TABLE tipoArmazenamento(
 idtipoArmazenamento INT PRIMARY KEY auto_increment,
 tipoArmazenamento VARCHAR(45)
@@ -102,4 +103,6 @@ tipoArmazenamento VARCHAR(45)
 -- );
 
 
+=======
+>>>>>>> 36988b7ee98894aaef97b73ce5df77374a161834
 

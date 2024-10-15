@@ -24,6 +24,7 @@ function cadastrar(nomeEmpresa,EmailInstitucional,emailResponsavel,cnpj,cep ) {
   return database.executar(instrucaoSql);
 }
 
+<<<<<<< HEAD
 // Gerenciamento de máquina
 function confirmar_editar(){
   var instrucaoSql = `SELECT * FROM empresa`;
@@ -44,3 +45,14 @@ module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, confirmar_edit
 
 
 
+=======
+
+// FAZER UM VIEW DO SELECT DEPOIS
+function visualizarEmpresas() {
+  var instrucaoSql = `SELECT * FROM visualizar_empresas;`;
+
+  return database.executar(instrucaoSql);
+}
+
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, visualizarEmpresas };
+>>>>>>> 36988b7ee98894aaef97b73ce5df77374a161834

@@ -11,26 +11,27 @@
 
 <body>
 </body>
-<aside class="nav-dash-geren">
-    <div class="nav-dash-logo-geren">
-        <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo-geren" alt="#Logo-LogGuard">
+<aside class="nav-dash">
+    <div class="nav-dash-teste">
+        <img src="./img/logo-preta-transparent.png" alt="#Logo-LogGuard">
     </div>
-    <nav class="nav-dash-menu-geren">
-        <ul class="nav-dash-list-geren">
+    <nav class="nav-dash-menu">
+        <ul class="nav-dash-list">
             <a href="#">
-                <li class="nav-dash-link-geren"><img src="./img/home-1.png" class="nav-dash-icon-geren">Visão Geral</li>
+                <li class="nav-dash-link-geren"><img src="./img/home.svg" class="nav-dash-icon-geren-1">Visão Geral</li>
             </a>
             <a href="#">
-                <li class="nav-dash-link-geren"><img src="./img/profit-report.png" class="nav-dash-icon-geren">Relatórios</li>
+                <li class="nav-dash-link-geren"><img src="./img/profit-report.svg"
+                        class="nav-dash-icon-geren-2">Relatórios</li>
             </a>
             <a href="#">
-                <li class="nav-dash-link-geren"><img src="./img/monitor.png" class="nav-dash-icon-geren">Máquinas</li>
+                <li class="nav-dash-link-geren"><img src="./img/monitor.svg" class="nav-dash-icon-geren-3">Máquinas</li>
             </a>
             <a href="#">
-                <li class="nav-dash-link-geren"><img src="./img/man.png" class="nav-dash-icon-geren">Funcionários</li>
+                <li class="nav-dash-link-geren"><img src="./img/man.svg" class="nav-dash-icon-geren-3">Funcionários</li>
             </a>
             <a href="#">
-                <li class="nav-dash-link-geren">Sair</li>
+                <li class="nav-dash-link-sair"><img src="./img/man.png" class="nav-dash-icon">Sair</li>
             </a>
         </ul>
     </nav>
@@ -178,7 +179,7 @@
                 <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar</button>
             </div>
 
-            <div class="duvidas-geren">
+            <div class="duvidas-func">
             <a href="#">Duvidas? Clique aqui!</a>
             </div>
         </div>
@@ -204,7 +205,7 @@
             <div class="Editar-geren-confirmudanca">
             
             <input type="checkbox" id="input_alterar_checkbox">
-            <label>Confirmar mudanças</label><br>
+            <label for="input_alterar_checkbox">Confirmar mudanças</label><br>
         </div>
         <div class="Editar-geren-botoes">
             <button onclick="confirmar_editar()" class="confirmar-geren">Confirmar</button>
@@ -239,7 +240,7 @@
         </div>
         <div class="cadastrar-geren-segundo">
             <input type="checkbox" id="input_cadastro_checkbox">
-            <label>Confirmar criação</label>
+            <label for="input_cadastro_checkbox">Confirmar criação</label>
             </div>
             <div class="cadastrar-geren-terceiro">
             <button onclick="confirmar_cadastrar()" class="confirmar-geren">Confirmar</button>
@@ -260,6 +261,7 @@
         // temporario
         document.querySelector('.maingerenpage').style.filter = "blur(0px)";
         document.querySelector('.Editargeren').style.display = "none";
+        window.location.reload(true); //reload na página
     }
 
     function cancelar_editar() {
@@ -268,9 +270,10 @@
     }
 
     function excluir_editar() {
-        // temporario
-        document.querySelector('.maingerenpage').style.filter = "blur(0px)";
-        document.querySelector('.Editargeren').style.display = "none";
+        var r = confirm("Tem certeza que deseja excluir este servidor?");
+            if (r == true) {
+                window.location.reload(true); //reload na página
+            }
     }
 
 function confirmar_cadastrar() {

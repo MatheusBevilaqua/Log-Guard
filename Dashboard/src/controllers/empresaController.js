@@ -71,12 +71,32 @@ var MACAdress = req.body.MACAdressServer;
 });
 }
 
+
+function visualizarEmpresas(req, res) {
+  empresaModel.visualizarEmpresas().then(function (resultado) {
+      if (resultado.length > 0) {
+          res.status(200).json(resultado);
+      } else {
+          res.status(204).send("Nenhum resultado encontrado!")
+      }
+  }).catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+  });
+
+}
+
 module.exports = {
   buscarPorCnpj,
   buscarPorId,
   cadastrar,
   listar,
+<<<<<<< HEAD
   confirmar_cadastrar
   // confirmar_editar,
   // excluir_editar
+=======
+  visualizarEmpresas
+>>>>>>> 36988b7ee98894aaef97b73ce5df77374a161834
 };
