@@ -24,4 +24,23 @@ function cadastrar(nomeEmpresa,EmailInstitucional,emailResponsavel,cnpj,cep ) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+// Gerenciamento de máquina
+function confirmar_editar(){
+  var instrucaoSql = `SELECT * FROM empresa`;
+  return database.executar(instrucaoSql);
+}
+function excluir_editar(){
+  var instrucaoSql =`SELECT * FROM empresa`;
+  return database.executar(instrucaoSql);
+}
+function confirmar_cadastrar(fkEmpresaMaquina,nomeMaquina,modeloCPU,capacidadeRAM,disco,localidade,MACAdress){
+  var instrucaoSql = `INSERT INTO maquina VALUES (default,'${fkEmpresaMaquina}','${nomeMaquina}', '${modeloCPU}', '${capacidadeRAM}', '${disco}', '${localidade}','${MACAdress}')`;
+  return database.executar(instrucaoSql);
+} 
+
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, confirmar_editar, excluir_editar, confirmar_cadastrar};
+
+
+
+
+

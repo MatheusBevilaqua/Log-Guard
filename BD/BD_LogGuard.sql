@@ -41,12 +41,11 @@ fkEmpresaMaquina INT,
 FOREIGN KEY maquina(fkEmpresaMaquina) REFERENCES empresa(idEmpresa),
 nomeMaquina VARCHAR(255),
 modeloCPU VARCHAR(45),
-qtdNucleos INT,
 capacidadeRAM DECIMAL(8,3),
-MACAdress VARCHAR(45),
-numeroSerial VARCHAR(255) UNIQUE,
-latencia INT
-);
+disco INT,
+latencia INT,
+MACAdress VARCHAR(45)
+); 
 
 CREATE TABLE relatorio(
 idRelatorio INT auto_increment,
@@ -93,14 +92,14 @@ idtipoArmazenamento INT PRIMARY KEY auto_increment,
 tipoArmazenamento VARCHAR(45)
 );
 
-CREATE TABLE maquinaArmazenamento(
-idMaquinaArmazenamento INT PRIMARY KEY auto_increment,
-fkMaquinaArmazenamento INT,
-FOREIGN KEY (fkMaquinaArmazenamento) REFERENCES maquina(idMaquina),
-fkTipoArmazenamento INT,
-FOREIGN KEY (fkTipoArmazenamento) REFERENCES tipoArmazenamento(idtipoArmazenamento),
-capacidade DECIMAL (8,5)
-);
+-- CREATE TABLE maquinaArmazenamento(
+-- idMaquinaArmazenamento INT PRIMARY KEY auto_increment,
+-- fkMaquinaArmazenamento INT,
+-- FOREIGN KEY (fkMaquinaArmazenamento) REFERENCES maquina(idMaquina),
+-- fkTipoArmazenamento INT,
+-- FOREIGN KEY (fkTipoArmazenamento) REFERENCES tipoArmazenamento(idtipoArmazenamento),
+-- capacidade DECIMAL (8,5)
+-- );
 
 
 

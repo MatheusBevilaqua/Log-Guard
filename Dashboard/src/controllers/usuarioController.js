@@ -24,6 +24,7 @@ function autenticar(req, res) {
                                 if (resultadoAutenticar.length > 0) {
                                     res.json({
                                         emailUsuario: resultadoAutenticar[0].emailUsuario,
+                                        fkEmpresaUsuario: resultadoAutenticar[0].empresaId,
                                         nomeUsuario: resultadoAutenticar[0].nomeUsuario,
                                         idUsuario: resultadoAutenticar[0].idUsuario,
                                         tipoPerfilUsuario: resultadoAutenticar[0].tipoPerfilUsuario,
