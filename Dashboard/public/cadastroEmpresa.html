@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro-LogGuard</title>
   <!-- <link rel="stylesheet" href="css/pages/style.css"> -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
   <link rel="stylesheet" href="css/pages/cadastroLOGGUARD.css">
@@ -14,87 +16,101 @@
 
 </head>
 <style>
-body{
+  body {
     background-image: url(img/fundo-home.png);
-    background-size: cover; 
+    background-size: cover;
     padding-top: 0;
-    display: flex; 
-    justify-content: center;
-    overflow: hidden;
-} 
-  body{
-    background-image: url(img/fundo-home.png); 
-    background-size: cover; 
-    padding-top: 0;display: flex; 
+    display: flex;
     justify-content: center;
     overflow: hidden;
   }
-dialog::backdrop{
-  background-color: rgb(0 0 0 / .5);
-}
 
-dialog{
-  border: none; 
-  border-radius: .5rem;
-  box-shadow: 0 0 1em rgb(0 0 0 / .5);
-  width: 70%;
-  height: 50%;
-  position: fixed; /* Faz o dialog ficar relativo à tela */
-  top: 50%; /* Centraliza verticalmente */
-  left: 50%; /* Centraliza horizontalmente */
-  transform: translate(-50%, -50%); /* Ajusta o ponto de ancoragem para o centro */
-  padding: 1rem;
-  background-color:#E3E3E3;
-  overflow: unset; 
-}
-.caixa_lista::-webkit-scrollbar {
-  width: 5px;
-}
+  body {
+    background-image: url(img/fundo-home.png);
+    background-size: cover;
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
 
-.caixa_lista::-webkit-scrollbar-thumb {
-  background-color: #442BB3;
-  border-radius: 5px;
-}
+  dialog::backdrop {
+    background-color: rgb(0 0 0 / .5);
+  }
 
-.caixa_lista{
-  width: 100%;
-  height: 70%;
-  overflow: auto;
-}
-dialog p{
-  color: black;
-}
-dialog button{
-  color: white;
-  /* width: 20%; */
-  /* background-color: #442BB3;  */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-top: 5%;
-  font-family: "Sora", sans-serif;
-  width: 30%;
-  height: 7%;
-  border: none;
-  cursor: pointer;
-  
-  border-radius: 10px;
-  background: var(--purple-blue);
-}
-dialog h4{
-font-family: "Sora", sans-serif;
-color: black;
-font-size: medium;
-}
-.lista{
-  border-radius: 5%;
-  background-color: white;
-  text-align: left;
-}
-.botao_listar{
-  border: none;
-}
-.titulos-empresa {
+  dialog {
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 0 0 1em rgb(0 0 0 / .5);
+    width: 70%;
+    height: 50%;
+    position: fixed;
+    /* Faz o dialog ficar relativo à tela */
+    top: 50%;
+    /* Centraliza verticalmente */
+    left: 50%;
+    /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%);
+    /* Ajusta o ponto de ancoragem para o centro */
+    padding: 1rem;
+    background-color: #E3E3E3;
+    overflow: unset;
+  }
+
+  .caixa_lista::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .caixa_lista::-webkit-scrollbar-thumb {
+    background-color: #442BB3;
+    border-radius: 5px;
+  }
+
+  .caixa_lista {
+    width: 100%;
+    height: 70%;
+    overflow: auto;
+  }
+
+  dialog p {
+    color: black;
+  }
+
+  dialog button {
+    color: white;
+    /* width: 20%; */
+    /* background-color: #442BB3;  */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 5%;
+    font-family: "Sora", sans-serif;
+    width: 30%;
+    height: 7%;
+    border: none;
+    cursor: pointer;
+
+    border-radius: 10px;
+    background: var(--purple-blue);
+  }
+
+  dialog h4 {
+    font-family: "Sora", sans-serif;
+    color: black;
+    font-size: medium;
+  }
+
+  .lista {
+    border-radius: 5%;
+    background-color: white;
+    text-align: left;
+  }
+
+  .botao_listar {
+    border: none;
+  }
+
+  .titulos-empresa {
     color: black;
     align-items: baseline;
     display: grid;
@@ -104,8 +120,9 @@ font-size: medium;
     padding-right: 13%;
     justify-content: space-between;
     height: 10%;
-}
-.coluna-func{
+  }
+
+  .coluna-func {
     display: flex;
     color: black;
     width: 60px;
@@ -113,223 +130,240 @@ font-size: medium;
     margin-left: 40px;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
+  }
 
-.dash-func {
+  .dash-func {
     width: 100%;
     height: 100%;
     overflow: auto;
     border-radius: 20px;
-}
+  }
 
-.dados-func {
+  .dados-func {
     display: grid;
     grid-template-columns: 6% 35% 36% 15%;
     height: 90px;
     margin-top: 20px;
-}
+  }
 
-.func-dados {
+  .func-dados {
     flex-direction: column;
     width: 99%;
     height: 100%;
     overflow: auto;
-}
-
-
-
-
-
+  }
 </style>
 
 <body>
- 
- <!-- <section id="page-cadastro-ind"> -->
-    <!-- Cadastro de Empresa -->
-  
-    <div class="cad_container painel-direito-ativo">
-    <div class="cad_container__form cad_container--logIn">      
-    <!-- FIM TESTE ------------------------------------------------------------------------------------------------------ -->
-    <form action="#" class="form" id="form1">
 
-<div class="father-cadastro-ind">
-<div class="cadastro-child-form">
-<div class="cadastro-ind-form">
-<div class="cadastro-form-titulo">
+  <!-- <section id="page-cadastro-ind"> -->
+  <!-- Cadastro de Empresa -->
 
-  
+  <div class="cad_container painel-direito-ativo">
+    <div class="cad_container__form cad_container--logIn">
+      <!-- FIM TESTE ------------------------------------------------------------------------------------------------------ -->
+      <form action="#" class="form" id="form1">
 
-<h2 class="bold black-text text-center">Cadastro - <button id="opener" onclick="listarEmpresa(); verEmpresas()" class="botao_listar"> <b style="color: blueviolet;"> Empresa </b> </button> </h2>
+        <div class="father-cadastro-ind">
+          <div class="cadastro-child-form">
+            <div class="cadastro-ind-form">
+              <div class="cadastro-form-titulo">
 
 
-<!-- DIALOG LISTA DE EMPRESAS -------------------------------------------------------------------------------------------------------- -->
 
-<dialog> 
-  <p> Lista de Empresas</p>
-  <div class="caixa_lista"> 
-
- <div class="dash-func" id="dash-func">
-    <div class="titulos-empresa">
-    <div class="coluna-func"><p> ID </p> </div>
-    <div class="coluna-func"> <p> Nome </p> </div>
-    <div class="coluna-func"> <p>E-Mail do Responsável</p></div>
-    <div class="coluna-func"> <p> CNPJ </p> </div>
-    </div>
-    <div class="linha-func">
-    <img src="./img/Line1cadastro.png" alt="">
-    </div>
-    </div>
-  </div>
-  
-<button> Fechar </button>
-</dialog>
-
-</div>
+                <h2 class="bold black-text text-center">Cadastro - <button id="opener"
+                    onclick="listarEmpresa(); verEmpresas()" class="botao_listar"> <b style="color: blueviolet;">
+                      Empresa </b> </button> </h2>
 
 
-<!-- CADASTRO DE EMPRESA -------------------------------------------------------------------------------------------------------- -->
-<label class="login-form-box">
-  <span class="icon">
-  <img src="./svg/icon-building.svg" alt="">
-  </span>
-  <input type="text" class="login-form-input black-text" placeholder="Nome da empresa" autocomplete="off" id="nomeEmpresa_Input" />
-  </label>
+                <!-- DIALOG LISTA DE EMPRESAS -------------------------------------------------------------------------------------------------------- -->
 
-  <label class="login-form-box">
-  <span class="icon">
-  <img src="./svg/icon-building.svg" alt="">
-  </span>
-  <input type="text" class="login-form-input black-text" placeholder="CNPJ" autocomplete="off" id="cnpj_Input" />
-  </label>
+                <dialog>
+                  <p> Lista de Empresas</p>
+                  <div class="caixa_lista">
 
-  <label class="login-form-box">
-    <span class="icon">
-    <img src="./svg/icon-building.svg" alt="">
-    </span>
-    <input type="text" class="login-form-input black-text" placeholder="CEP" autocomplete="off" id="cep_Input"  />
-    </label>
+                    <div class="dash-func">
+                      <div class="titulos-empresa">
+                        <div class="coluna-func">
+                          <p> ID </p>
+                        </div>
+                        <div class="coluna-func">
+                          <p> Nome </p>
+                        </div>
+                        <div class="coluna-func">
+                          <p>E-Mail do Responsável</p>
+                        </div>
+                        <div class="coluna-func">
+                          <p> CNPJ </p>
+                        </div>
+                      </div>
+                      <div class="linha-func">
+                        <img src="./img/Line1cadastro.png" alt="">
+                      </div>
+                      <div class="dash-empresa">
+                        <div id="dash-func"></div>
+                      </div>
+                    </div>
+                  </div>
 
-  <label class="login-form-box">
-  <span class="icon">
-  <img src="./svg/gmail-icon.svg" alt="">
-  </span>
-  <input type="text" class="login-form-input black-text" placeholder="Email do responsável" autocomplete="off" id="emailRes_Input"/>
-  </label>
+                  <button> Fechar </button>
+                </dialog>
 
-
-  <label class="login-form-box">
-    <span class="icon">
-    <img src="./svg/gmail-icon.svg" alt="">
-    </span>
-    <input type="text" class="login-form-input black-text" placeholder="Email institucional" autocomplete="off" id="emailInst_Input"/>
-    </label>
-  
-  <div class="login-form-btn">
-      <button onclick="cadastrarEmpresa()" class="login-btn boal">Cadastrar</button>
-  </div>
-  
-  <div class="login-link-exit">
-    <img style="width: 10px; margin-right: 5px;" src="./svg/trian-icon.svg" alt="">
-    <a href="paginaInicial.html" class="little-text">Página Inicial</a>
-  </div>
+              </div>
 
 
-  </div>
-  </div>
-  </div>
-  </form>
-</div>
+              <!-- CADASTRO DE EMPRESA -------------------------------------------------------------------------------------------------------- -->
+              <label class="login-form-box">
+                <span class="icon">
+                  <img src="./svg/icon-building.svg" alt="">
+                </span>
+                <input type="text" class="login-form-input black-text" placeholder="Nome da empresa" autocomplete="off"
+                  id="nomeEmpresa_Input" />
+              </label>
 
-     <!-- Cadastro de Usuário -->
-    <div class="cad_container__form cad_container--cadastro">
-    <form action="#" class="form" id="form2">
+              <label class="login-form-box">
+                <span class="icon">
+                  <img src="./svg/icon-building.svg" alt="">
+                </span>
+                <input type="text" class="login-form-input black-text" placeholder="CNPJ" autocomplete="off"
+                  id="cnpj_Input" />
+              </label>
 
-      <div class="father-cadastro-ind">
-        <div class="cadastro-child-form">
-        <div class="cadastro-ind-form">
-        <div class="cadastro-form-titulo">
+              <label class="login-form-box">
+                <span class="icon">
+                  <img src="./svg/icon-building.svg" alt="">
+                </span>
+                <input type="text" class="login-form-input black-text" placeholder="CEP" autocomplete="off"
+                  id="cep_Input" />
+              </label>
 
-        <h2 class="bold black-text text-center">Cadastro - 
-        <b style="color: blueviolet;"> Usuário </b>
+              <label class="login-form-box">
+                <span class="icon">
+                  <img src="./svg/gmail-icon.svg" alt="">
+                </span>
+                <input type="text" class="login-form-input black-text" placeholder="Email do responsável"
+                  autocomplete="off" id="emailRes_Input" />
+              </label>
+
+
+              <label class="login-form-box">
+                <span class="icon">
+                  <img src="./svg/gmail-icon.svg" alt="">
+                </span>
+                <input type="text" class="login-form-input black-text" placeholder="Email institucional"
+                  autocomplete="off" id="emailInst_Input" />
+              </label>
+
+              <div class="login-form-btn">
+                <button onclick="cadastrarEmpresa()" class="login-btn boal">Cadastrar</button>
+              </div>
+
+              <div class="login-link-exit">
+                <img style="width: 10px; margin-right: 5px;" src="./svg/trian-icon.svg" alt="">
+                <a href="paginaInicial.html" class="little-text">Página Inicial</a>
+              </div>
+
+
+            </div>
+          </div>
         </div>
-        
-        <label class="login-form-box">
-        <span class="icon">
-        <img src="./svg/icon-building.svg" alt="">
-        </span>
-        <input type="text" class="login-form-input black-text" placeholder="Nome do usuário" autocomplete="off" id="input_nomeUsuario"/>
-        </label>
-
-          <label class="login-form-box">
-          <span class="icon">
-          <img src="./svg/icon-building.svg" alt="">
-          </span>
-
-          <select class="login-form-input black-text" id="lista_select">
-            <option  value="#" disabled selected>Selecione uma empresa</option>
-          </select>
-          </label>
-        
-          <label class="login-form-box">
-          <span class="icon">
-          <img src="./svg/gmail-icon.svg" alt="">
-          </span>
-          <input type="text" class="login-form-input black-text" placeholder="Email do usuário" autocomplete="off" id="input_emailUsuario"/>
-          </label>
-        
-          <label class="login-form-box">
-          <span class="icon">
-          <img src="./svg/key-icon.svg" alt="">
-          </span>
-          <input type="password" class="login-form-input black-text" placeholder="Senha" autocomplete="off" id="input_senhaUsuario" />
-          </label>
-        
-          <label class="login-form-box">
-          <span class="icon">
-          <img src="./svg/key-icon.svg    " alt="">
-          </span>
-          <input type="password" class="login-form-input black-text" placeholder="Confirme a senha" autocomplete="off" id="input_confirmarSenha" />
-          </label>
-
-          
-          <div class="login-form-btn">
-              <button class="login-btn boal" onclick="cadastrarUsuario()">Cadastrar</button>
-        
-          </div>
-
-          <div class="login-link-exit">
-            <img style="width: 10px; margin-right: 5px;" src="./svg/trian-icon.svg" alt="">
-            <a href="paginaInicial.html" class="little-text">Página Inicial</a>
-          </div>
-
-
-          </div>
-          </div>
-          </div>        
-
-    </form>
+      </form>
     </div>
-        <!-- cad_sobreposicao -->
-  <div class="cad_container__cad_sobreposicao">
-  <div class="cad_sobreposicao">
-    
-  <div class="cad_sobreposicao__panel cad_sobreposicao--esquerdo">
-        <!-- PRÓXIMO -->
-  <button class="cad_btn1" id="login"></button>
-  </div>
 
-  <div class="cad_sobreposicao__panel cad_sobreposicao--right">
-        <!-- VOLTAR -->
-  <button class="cad_btn2" id="cadastro"></button>
-  </div>
+    <!-- Cadastro de Usuário -->
+    <div class="cad_container__form cad_container--cadastro">
+      <form action="#" class="form" id="form2">
 
-  </div>
-  </div>
+        <div class="father-cadastro-ind">
+          <div class="cadastro-child-form">
+            <div class="cadastro-ind-form">
+              <div class="cadastro-form-titulo">
+
+                <h2 class="bold black-text text-center">Cadastro -
+                  <b style="color: blueviolet;"> Usuário </b>
+              </div>
+
+              <label class="login-form-box">
+                <span class="icon">
+                  <img src="./svg/icon-building.svg" alt="">
+                </span>
+                <input type="text" class="login-form-input black-text" placeholder="Nome do usuário" autocomplete="off"
+                  id="input_nomeUsuario" />
+              </label>
+
+              <label class="login-form-box">
+                <span class="icon">
+                  <img src="./svg/icon-building.svg" alt="">
+                </span>
+
+                <select class="login-form-input black-text" id="lista_select">
+                  <option value="#" disabled selected>Selecione uma empresa</option>
+                </select>
+              </label>
+
+              <label class="login-form-box">
+                <span class="icon">
+                  <img src="./svg/gmail-icon.svg" alt="">
+                </span>
+                <input type="text" class="login-form-input black-text" placeholder="Email do usuário" autocomplete="off"
+                  id="input_emailUsuario" />
+              </label>
+
+              <label class="login-form-box">
+                <span class="icon">
+                  <img src="./svg/key-icon.svg" alt="">
+                </span>
+                <input type="password" class="login-form-input black-text" placeholder="Senha" autocomplete="off"
+                  id="input_senhaUsuario" />
+              </label>
+
+              <label class="login-form-box">
+                <span class="icon">
+                  <img src="./svg/key-icon.svg    " alt="">
+                </span>
+                <input type="password" class="login-form-input black-text" placeholder="Confirme a senha"
+                  autocomplete="off" id="input_confirmarSenha" />
+              </label>
+
+
+              <div class="login-form-btn">
+                <button class="login-btn boal" onclick="cadastrarUsuario()">Cadastrar</button>
+
+              </div>
+
+              <div class="login-link-exit">
+                <img style="width: 10px; margin-right: 5px;" src="./svg/trian-icon.svg" alt="">
+                <a href="paginaInicial.html" class="little-text">Página Inicial</a>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <!-- cad_sobreposicao -->
+    <div class="cad_container__cad_sobreposicao">
+      <div class="cad_sobreposicao">
+
+        <div class="cad_sobreposicao__panel cad_sobreposicao--esquerdo">
+          <!-- PRÓXIMO -->
+          <button class="cad_btn1" id="login"></button>
+        </div>
+
+        <div class="cad_sobreposicao__panel cad_sobreposicao--right">
+          <!-- VOLTAR -->
+          <button class="cad_btn2" id="cadastro"></button>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <!-- <div class="cad_espaco"></div> -->
 
-<!-- </section> -->
+  <!-- </section> -->
 
 </body>
 
@@ -341,7 +375,7 @@ font-size: medium;
 
 <script>
 
-    window.onload = listar()
+  window.onload = listar()
 
   const logincad_Btn = document.getElementById("login");
   const cadastrocad_Btn = document.getElementById("cadastro");
@@ -388,20 +422,20 @@ font-size: medium;
 
   menuSlide();
 
-  function listarEmpresa(){
+  function listarEmpresa() {
     const modal = document.querySelector("dialog")
     const buttonClose = document.querySelector("dialog button")
     modal.showModal()
-    buttonClose.onclick = function (){
-    modal.close()
-  }
+    buttonClose.onclick = function () {
+      modal.close()
+    }
   }
 
 
 
   function cadastrarEmpresa() {
     alert("OI")
-     
+
     var nomeVar = nomeEmpresa_Input.value;
     var cnpjVar = cnpj_Input.value;
     var cepVar = cep_Input.value;
@@ -411,9 +445,9 @@ font-size: medium;
     alert(nomeVar)
     alert(cnpjVar)
     alert(cepVar)
-    alert(emailInstVar) 
+    alert(emailInstVar)
 
-   
+
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
@@ -422,42 +456,42 @@ font-size: medium;
       emailRespVar == "" ||
       emailInstVar == ""
     ) {
-    alert("Todos os campos dever ser preenchidos!")
+      alert("Todos os campos dever ser preenchidos!")
       return false;
     } else {
-   
-    fetch("/empresas/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
 
-        nomeServer: nomeVar,
-        cnpjServer: cnpjVar,
-        cepServer: cepVar,
-        emailRespServer:emailRespVar,
-        emailInstServer:emailInstVar
+      fetch("/empresas/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
 
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+          nomeServer: nomeVar,
+          cnpjServer: cnpjVar,
+          cepServer: cepVar,
+          emailRespServer: emailRespVar,
+          emailInstServer: emailInstVar
 
-        if (resposta.ok) {
-       
-            alert("CADASTRO EXECUTADO!")
-     
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
+        }),
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-   
-      });
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
 
-    return false;
+          if (resposta.ok) {
+
+            alert("CADASTRO EXECUTADO!")
+
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+
+        });
+
+      return false;
     }
   }
 
@@ -479,13 +513,13 @@ font-size: medium;
 
   function cadastrarUsuario() {
     alert("OI")
-     
+
     var nomeUsuarioVar = input_nomeUsuario.value;
     var emailUsuarioVar = input_emailUsuario.value;
     var senhaUsuarioVar = input_senhaUsuario.value;
     var empresaUsuarioVar = lista_select.value;
     var tipoUsuarioVar = "ADMINISTRADOR";
-    
+
 
     alert(nomeUsuarioVar)
     alert(emailUsuarioVar)
@@ -493,129 +527,129 @@ font-size: medium;
     alert(empresaUsuarioVar)
 
 
-   
+
     // Verificando se há algum campo em branco
     if (
-        nomeUsuarioVar == "" ||
-        emailUsuarioVar == "" ||
-        senhaUsuarioVar == "" ||
-        empresaUsuarioVar == "#" && (senhaUsuarioVar != input_confirmarSenha )
+      nomeUsuarioVar == "" ||
+      emailUsuarioVar == "" ||
+      senhaUsuarioVar == "" ||
+      empresaUsuarioVar == "#" && (senhaUsuarioVar != input_confirmarSenha)
     ) {
-    alert("Todos os campos dever ser preenchidos!")
+      alert("Todos os campos dever ser preenchidos!")
       return false;
     } else {
-   
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
 
-        nomeUsuarioServer: nomeUsuarioVar,
-        emailUsuarioServer: emailUsuarioVar,
-        senhaUsuarioServer: senhaUsuarioVar,
-        empresaUsuarioServer:empresaUsuarioVar,
-        tipoUsuariosServer: tipoUsuarioVar
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
 
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+          nomeUsuarioServer: nomeUsuarioVar,
+          emailUsuarioServer: emailUsuarioVar,
+          senhaUsuarioServer: senhaUsuarioVar,
+          empresaUsuarioServer: empresaUsuarioVar,
+          tipoUsuariosServer: tipoUsuarioVar
 
-        if (resposta.ok) {
-       
-            alert("CADASTRO EXECUTADO!")
-     
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
+        }),
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-   
-      });
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
 
-    return false;
+          if (resposta.ok) {
+
+            alert("CADASTRO EXECUTADO!")
+
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+
+        });
+
+      return false;
     }
   }
 
 
   function verEmpresas() {
 
-        fetch("/empresas/visualizarEmpresas").then(function (resposta) {
-            if (resposta.ok) {
-                if (resposta.status == 204) {
-                    var lista = document.getElementById("dash-func");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhuma empresa encontrada."
-                    lista.appendChild(mensagem);
-                    throw "Nenhuma resultada encontrada!!";
-                }
+    fetch("/empresas/visualizarEmpresas").then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          var lista = document.getElementById("dash-func");
+          var mensagem = document.createElement("span");
+          mensagem.innerHTML = "Nenhuma empresa encontrada."
+          lista.appendChild(mensagem);
+          throw "Nenhuma resultada encontrada!!";
+        }
 
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+        resposta.json().then(function (resposta) {
+          console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    var lista = document.getElementById("dash-func");
-            
-
-                    // var divTitulos = document.createElement("div")
-                    // var divTituloId = document.createElement("div");
-                    // var divTituloNome = document.createElement("div");
-                    // var divTituloEmail = document.createElement("div");
-                    // var divTituloCNPJ = document.createElement("div");
-
-                    // divTitulos.className = "titulos-func";
-                    // divTituloId.className = "coluna-func";
-                    // divTituloNome.className = "coluna-func";
-                    // divTituloEmail.className = "coluna-func";
-                    // divTituloCNPJ.className = "coluna-func";
-
-                   
-                    // divTituloId.innerHTML = "ID";
-                    // divTituloNome.innerHTML = "NOME DA EMPRESA";
-                    // divTituloEmail.innerHTML = "EMAIL DO RESPONSÁVEL";
-                    // divTituloCNPJ.innerHTML = "CNPJ";
+          var lista = document.getElementById("dash-func");
 
 
-                    // lista.appendChild(divTitulos)
+          // var divTitulos = document.createElement("div")
+          // var divTituloId = document.createElement("div");
+          // var divTituloNome = document.createElement("div");
+          // var divTituloEmail = document.createElement("div");
+          // var divTituloCNPJ = document.createElement("div");
 
-                    for (let i = 0; i < resposta.length; i++) {
+          // divTitulos.className = "titulos-func";
+          // divTituloId.className = "coluna-func";
+          // divTituloNome.className = "coluna-func";
+          // divTituloEmail.className = "coluna-func";
+          // divTituloCNPJ.className = "coluna-func";
 
-                        var tupla = resposta[i];
-                        var divLista= document.createElement("div");
-                        var divId = document.createElement("div");
-                        var divnome = document.createElement("div");
-                        var divEmail = document.createElement("div");
-                        var divCNPJ = document.createElement("div");
 
-                        divLista.className = "dados-func";
-                        divId.className = "coluna-func";
-                        divnome.className = "coluna-func";
-                        divEmail.className = "coluna-func";
-                        divCNPJ.className = "coluna-func";
-                  
-                        divId.innerHTML = tupla.idEmpresa;
-                        divnome.innerHTML = tupla.nomeEmpresa;
-                        divEmail.innerHTML = tupla.emailResponsavel;
-                        divCNPJ.innerHTML = tupla.cnpj ;
+          // divTituloId.innerHTML = "ID";
+          // divTituloNome.innerHTML = "NOME DA EMPRESA";
+          // divTituloEmail.innerHTML = "EMAIL DO RESPONSÁVEL";
+          // divTituloCNPJ.innerHTML = "CNPJ";
 
-                        divLista.appendChild(divId);
-                        divLista.appendChild(divnome);
-                        divLista.appendChild(divEmail);
-                        divLista.appendChild(divCNPJ);
-                        lista.appendChild(divLista);
-                    }
 
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
+          // lista.appendChild(divTitulos)
+
+          for (let i = 0; i < resposta.length; i++) {
+
+            var tupla = resposta[i];
+            var divLista = document.createElement("div");
+            var divId = document.createElement("div");
+            var divnome = document.createElement("div");
+            var divEmail = document.createElement("div");
+            var divCNPJ = document.createElement("div");
+
+            divLista.className = "dados-func";
+            divId.className = "coluna-func";
+            divnome.className = "coluna-func";
+            divEmail.className = "coluna-func";
+            divCNPJ.className = "coluna-func";
+
+            divId.innerHTML = tupla.idEmpresa;
+            divnome.innerHTML = tupla.nomeEmpresa;
+            divEmail.innerHTML = tupla.emailResponsavel;
+            divCNPJ.innerHTML = tupla.cnpj;
+
+            divLista.appendChild(divId);
+            divLista.appendChild(divnome);
+            divLista.appendChild(divEmail);
+            divLista.appendChild(divCNPJ);
+            lista.appendChild(divLista);
+          }
+
         });
-    }
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+    });
+  }
 
 
-  
-  </script>
+
+</script>

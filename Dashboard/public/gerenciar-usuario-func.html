@@ -37,165 +37,168 @@
                 </ul>
             </nav>
         </aside>
-    <section class="page-dash-func">
-    
-        <div class="mainfuncpage">
-            <h1>Gerenciar Usuários:</h1>
-            <div class="select-func">
-                <select name="select">
-                    <div class="select-items-func">
-                        <option value="valor1" selected disabled>Filtro</option>
-                        <option value="valor2">ADM</option>
-                        <option value="valor3">Analista</option>
-                    </div>
-                </select>
-            </div>
-            <div class="metricas-func">
-                <div class="dash-func">
-                    <div class="titulos-func">
-                        <div class="coluna-func">ID</div>
-                        <div class="coluna-func">Nome</div>
-                        <div class="coluna-func">E-Mail</div>
-                        <div class="coluna-func">Cargo</div>
-                    </div>
-                    <div class="linha-func">
-                        <img src="./img/Line1cadastro.png" alt="">
-                    </div>
-                    <div id="dash-func"></div>
-                    <div>
-                
-                    </div>
+        <section class="page-dash-func">
+
+            <div class="mainfuncpage">
+                <h1>Gerenciar Usuários:</h1>
+                <div class="select-func">
+                    <select name="select">
+                        <div class="select-items-func">
+                            <option value="valor1" selected disabled>Filtro</option>
+                            <option value="valor2">ADM</option>
+                            <option value="valor3">Analista</option>
+                        </div>
+                    </select>
                 </div>
-                <div class="tre-func">
-                    <div class="me1-func">
-                        <h5>Total de funcionários:</h5>
-                        <br><br>
-                        <h2>10</h2>
-                        <div class="me2-func">
-                            <h5>Administradores:</h5>
-                            <br>
-                            <h2>1</h2>
-    
-                            <div class="me3-func">
-                                <h5>Analistas:</h5>
-                                <br><br>
-                                <h2>9</h2>
+                <div class="metricas-func">
+                    <div class="dash-func">
+                        <div class="titulos-func">
+                            <div class="coluna-func">ID</div>
+                            <div class="coluna-func">Nome</div>
+                            <div class="coluna-func">E-Mail</div>
+                            <div class="coluna-func">Cargo</div>
+                        </div>
+                        <div class="linha-func">
+                            <img src="./img/Line1cadastro.png" alt="">
+                        </div>
+
+                        
+                        <div class="dash-func">
+                            <div id="dash-func"></div>
+                        </div>
+                    </div>
+                    <div class="tre-func">
+                        <div class="me1-func">
+                            <h5>Total de funcionários:</h5>
+                            <br><br>
+                            <h2>10</h2>
+                            <div class="me2-func">
+                                <h5>Administradores:</h5>
+                                <br>
+                                <h2>1</h2>
+
+                                <div class="me3-func">
+                                    <h5>Analistas:</h5>
+                                    <br><br>
+                                    <h2>9</h2>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="botoes-func">
-                <button onclick="editar_gefunc()" class="edit-func">Editar</button>
-                <button onclick="cadastrar_gefunc()" class="cad-func">Cadastrar</button>
-            </div>
-    
-            <div class="duvidas-func">
-                <a href="#">Duvidas? Clique aqui!</a>
-            </div>
-        </div>
-    
-        <div class="Editarfunc">
-            <div class="Editar-func-primeiro">
-                <h1>Alterar as configurações do perfil:</h1>
-                <input placeholder="Nome Completo" type="text" id="input_alterar_nome">
-                <img src="./img/Line1cadastro.png" alt="">
-                <input placeholder="E-Mail" type="text" id="input_alterar_email">
-                <img src="./img/Line1cadastro.png" alt="">
-                <div class="select-func-primeiro">
-                    <select name="select">
-                        <option value="valor1" selected disabled>Selecionar cargo</option>
-                        <option value="valor2">Analista</option>
-                        <option value="valor3">Administrador</option>
-                    </select>
+                <div class="botoes-func">
+                    <button onclick="editar_gefunc()" class="edit-func">Editar</button>
+                    <button onclick="cadastrar_gefunc()" class="cad-func">Cadastrar</button>
                 </div>
-                <img src="./img/Line1cadastro.png" alt="">
-                <input placeholder="Senha" type="text" id="input_alterar_senha">
-                <img src="./img/Line1cadastro.png" alt="">
-    
-            </div>
-            <div class="editar-func-titulodelet">
-            </div>
-            <div class="Editar-func-botao-editar">
-                <button onclick="atribuicao_editar_gefunc()" class="editar-func">Editar atribuição de servidores</button>
-            </div>
-            <img src="./img/Line1cadastro.png" class="linhacad">
-            <div class="Editar-func-botao-delete">
-                <button onclick="excluir_editar_gefunc()" class="excluir-func">Excluir Perfil</button>
-            </div>
-            <img src="./img/Line1cadastro.png" class="linhacad2">
-            <div class="Editar-func-botao-fechar">
-                <button onclick="fechar_gefunc()" class="fechar-func">Fechar</button>
-            </div>
-        </div>
-    
-        <div class="Editaratribuicaofunc">
-            <h1>Editar atribuição de servidores</h1>
-            <div class="dash-func-atribuicao">
-                <div class="titulos-func-atribuicao">
-                    <div class="coluna-func">ID</div>
-                    <div class="coluna-func">Máquina</div>
-                    <div class="coluna-func">Localidade</div>
+
+                <div class="duvidas-func">
+                    <a href="#">Duvidas? Clique aqui!</a>
                 </div>
-                <div class="linha-func">
+            </div>
+
+            <div class="Editarfunc">
+                <div class="Editar-func-primeiro">
+                    <h1>Alterar as configurações do perfil:</h1>
+                    <input placeholder="Nome Completo" type="text" id="input_alterar_nome">
                     <img src="./img/Line1cadastro.png" alt="">
+                    <input placeholder="E-Mail" type="text" id="input_alterar_email">
+                    <img src="./img/Line1cadastro.png" alt="">
+                    <div class="select-func-primeiro">
+                        <select name="select">
+                            <option value="valor1" selected disabled>Selecionar cargo</option>
+                            <option value="valor2">Analista</option>
+                            <option value="valor3">Administrador</option>
+                        </select>
+                    </div>
+                    <img src="./img/Line1cadastro.png" alt="">
+                    <input placeholder="Senha" type="text" id="input_alterar_senha">
+                    <img src="./img/Line1cadastro.png" alt="">
+
                 </div>
-                <div class="func-dados-atribuicao">
-                    <div class="dados-func-atribuicao">
-                        <input type="checkbox" id="input_cadastro_checkbox">
-                        <div class="coluna-func-atribuicao">102</div>
-                        <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                <div class="editar-func-titulodelet">
+                </div>
+                <div class="Editar-func-botao-editar">
+                    <button onclick="atribuicao_editar_gefunc()" class="editar-func">Editar atribuição de
+                        servidores</button>
+                </div>
+                <img src="./img/Line1cadastro.png" class="linhacad">
+                <div class="Editar-func-botao-delete">
+                    <button onclick="excluir_editar_gefunc()" class="excluir-func">Excluir Perfil</button>
+                </div>
+                <img src="./img/Line1cadastro.png" class="linhacad2">
+                <div class="Editar-func-botao-fechar">
+                    <button onclick="fechar_gefunc()" class="fechar-func">Fechar</button>
+                </div>
+            </div>
+
+            <div class="Editaratribuicaofunc">
+                <h1>Editar atribuição de servidores</h1>
+                <div class="dash-func-atribuicao">
+                    <div class="titulos-func-atribuicao">
+                        <div class="coluna-func">ID</div>
+                        <div class="coluna-func">Máquina</div>
+                        <div class="coluna-func">Localidade</div>
                     </div>
-                    <div class="dados-func-atribuicao">
-                        <input type="checkbox" id="input_cadastro_checkbox">
-                        <div class="coluna-func-atribuicao">102</div>
-                        <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                    <div class="linha-func">
+                        <img src="./img/Line1cadastro.png" alt="">
                     </div>
-                    <div class="dados-func-atribuicao">
-                        <input type="checkbox" id="input_cadastro_checkbox">
-                        <div class="coluna-func-atribuicao">102</div>
-                        <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-atribuicao">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao">
-                        <input type="checkbox" id="input_cadastro_checkbox">
-                        <div class="coluna-func-atribuicao">102</div>
-                        <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-atribuicao">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao">
-                        <input type="checkbox" id="input_cadastro_checkbox">
-                        <div class="coluna-func-atribuicao">102</div>
-                        <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-atribuicao">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao">
-                        <input type="checkbox" id="input_cadastro_checkbox">
-                        <div class="coluna-func-atribuicao">102</div>
-                        <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-atribuicao">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao">
-                        <input type="checkbox" id="input_cadastro_checkbox">
-                        <div class="coluna-func-atribuicao">102</div>
-                        <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-atribuicao">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao">
-                        <input type="checkbox" id="input_cadastro_checkbox">
-                        <div class="coluna-func-atribuicao">102</div>
-                        <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-atribuicao">DATACENTER 5</div>
-                    </div>
-    </section>
+                    <div class="func-dados-atribuicao">
+                        <div class="dados-func-atribuicao">
+                            <input type="checkbox" id="input_cadastro_checkbox">
+                            <div class="coluna-func-atribuicao">102</div>
+                            <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
+                            <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                        </div>
+                        <div class="dados-func-atribuicao">
+                            <input type="checkbox" id="input_cadastro_checkbox">
+                            <div class="coluna-func-atribuicao">102</div>
+                            <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
+                            <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                        </div>
+                        <div class="dados-func-atribuicao">
+                            <input type="checkbox" id="input_cadastro_checkbox">
+                            <div class="coluna-func-atribuicao">102</div>
+                            <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
+                            <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                        </div>
+                        <div class="dados-func-atribuicao">
+                            <input type="checkbox" id="input_cadastro_checkbox">
+                            <div class="coluna-func-atribuicao">102</div>
+                            <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
+                            <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                        </div>
+                        <div class="dados-func-atribuicao">
+                            <input type="checkbox" id="input_cadastro_checkbox">
+                            <div class="coluna-func-atribuicao">102</div>
+                            <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
+                            <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                        </div>
+                        <div class="dados-func-atribuicao">
+                            <input type="checkbox" id="input_cadastro_checkbox">
+                            <div class="coluna-func-atribuicao">102</div>
+                            <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
+                            <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                        </div>
+                        <div class="dados-func-atribuicao">
+                            <input type="checkbox" id="input_cadastro_checkbox">
+                            <div class="coluna-func-atribuicao">102</div>
+                            <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
+                            <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                        </div>
+                        <div class="dados-func-atribuicao">
+                            <input type="checkbox" id="input_cadastro_checkbox">
+                            <div class="coluna-func-atribuicao">102</div>
+                            <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
+                            <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                        </div>
+        </section>
 </body>
+
 </html>
 
 <script>
 
-var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
+    var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
 
     function confirmar_editar_gefunc() {
         // temporario
@@ -275,70 +278,70 @@ var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
     });
 
 
-function verUsuarios() {
-fetch("/usuarios/visualizarUsuarios", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-        idEmpresaUsuarioServer: idEmpresaUsuario
-    }),
-})
-    .then(function (resposta) {
-        console.log("resposta: ", resposta);
+    function verUsuarios() {
+        fetch("/usuarios/visualizarUsuarios", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idEmpresaUsuarioServer: idEmpresaUsuario
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
+                if (resposta.ok) {
 
-                if (resposta.status == 204) {
-                    var lista = document.getElementById("dash-func");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhuma empresa encontrada."
-                    lista.appendChild(mensagem);
-                    throw "Nenhuma resultada encontrada!!";
+                    if (resposta.status == 204) {
+                        var lista = document.getElementById("dash-func");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhuma empresa encontrada."
+                        lista.appendChild(mensagem);
+                        throw "Nenhuma resultada encontrada!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                        var lista = document.getElementById("dash-func");
+
+
+                        for (let i = 0; i < resposta.length; i++) {
+
+                            var tupla = resposta[i];
+                            var divLista = document.createElement("div");
+                            var divId = document.createElement("div");
+                            var divnome = document.createElement("div");
+                            var divEmail = document.createElement("div");
+                            var divCargo = document.createElement("div");
+
+                            divLista.className = "dados-func";
+                            divId.className = "coluna-func";
+                            divnome.className = "coluna-func";
+                            divEmail.className = "coluna-func";
+                            divCargo.className = "coluna-func";
+
+                            divId.innerHTML = tupla.idUsuario;
+                            divnome.innerHTML = tupla.nomeUsuario;
+                            divEmail.innerHTML = tupla.emailUsuario;
+                            divCargo.innerHTML = tupla.tipoPerfilUsuario;
+
+                            divLista.appendChild(divId);
+                            divLista.appendChild(divnome);
+                            divLista.appendChild(divEmail);
+                            divLista.appendChild(divCargo);
+                            lista.appendChild(divLista);
+                        }
+
+                    });
+                } else {
+                    throw ('Houve um erro na API!');
                 }
-
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var lista = document.getElementById("dash-func");
-                    
-
-                     for (let i = 0; i < resposta.length; i++) {
-
-                var tupla = resposta[i];
-                var divLista= document.createElement("div");
-                var divId = document.createElement("div");
-                var divnome = document.createElement("div");
-                var divEmail = document.createElement("div");
-                var divCargo = document.createElement("div");
-
-                divLista.className = "dados-func";
-                divId.className = "coluna-func";
-                divnome.className = "coluna-func";
-                divEmail.className = "coluna-func";
-                divCargo.className = "coluna-func";
-          
-                divId.innerHTML = tupla.idUsuario;
-                divnome.innerHTML = tupla.nomeUsuario;
-                divEmail.innerHTML = tupla.emailUsuario;
-                divCargo.innerHTML = tupla.tipoPerfilUsuario ;
-
-                divLista.appendChild(divId);
-                divLista.appendChild(divnome);
-                divLista.appendChild(divEmail);
-                divLista.appendChild(divCargo);
-                lista.appendChild(divLista);
-            }
-
-        });
-    } else {
-        throw ('Houve um erro na API!');
+            }).catch(function (resposta) {
+                console.error(resposta);
+            });
     }
-}).catch(function (resposta) {
-    console.error(resposta);
-});
-}
 
 
     // var ServidorSelected = [];
