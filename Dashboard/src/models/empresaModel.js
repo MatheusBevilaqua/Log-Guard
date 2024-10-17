@@ -24,7 +24,13 @@ function cadastrar(nomeEmpresa,EmailInstitucional,emailResponsavel,cnpj,cep ) {
   return database.executar(instrucaoSql);
 }
 
-<<<<<<< HEAD
+
+function visualizarEmpresas() {
+  var instrucaoSql = `SELECT * FROM visualizar_empresas;`;
+  return database.executar(instrucaoSql);
+}
+
+
 // Gerenciamento de máquina
 function confirmar_editar(){
   var instrucaoSql = `SELECT * FROM empresa`;
@@ -39,20 +45,9 @@ function confirmar_cadastrar(fkEmpresaMaquina,nomeMaquina,modeloCPU,capacidadeRA
   return database.executar(instrucaoSql);
 } 
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, confirmar_editar, excluir_editar, confirmar_cadastrar};
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar,visualizarEmpresas, confirmar_editar, excluir_editar, confirmar_cadastrar};
 
 
 
 
 
-=======
-
-// FAZER UM VIEW DO SELECT DEPOIS
-function visualizarEmpresas() {
-  var instrucaoSql = `SELECT * FROM visualizar_empresas;`;
-
-  return database.executar(instrucaoSql);
-}
-
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, visualizarEmpresas };
->>>>>>> 36988b7ee98894aaef97b73ce5df77374a161834

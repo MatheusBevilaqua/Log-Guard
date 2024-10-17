@@ -20,7 +20,13 @@ function cadastrar(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresaUsuario,tip
     return database.executar(instrucaoSql);
 }
 
+function visualizarUsuarios(idEmpresaUsuario) {
+    var instrucaoSql = `SELECT * FROM usuario WHERE fkEmpresaUsuario ='${idEmpresaUsuario}';`;
+    return database.executar(instrucaoSql);
+  }
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    visualizarUsuarios
 };

@@ -71,7 +71,6 @@ var MACAdress = req.body.MACAdressServer;
 });
 }
 
-
 function visualizarEmpresas(req, res) {
   empresaModel.visualizarEmpresas().then(function (resultado) {
       if (resultado.length > 0) {
@@ -92,11 +91,8 @@ module.exports = {
   buscarPorId,
   cadastrar,
   listar,
-<<<<<<< HEAD
-  confirmar_cadastrar
+  confirmar_cadastrar,
+  visualizarEmpresas
   // confirmar_editar,
   // excluir_editar
-=======
-  visualizarEmpresas
->>>>>>> 36988b7ee98894aaef97b73ce5df77374a161834
 };
