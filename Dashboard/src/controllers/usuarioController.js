@@ -174,6 +174,29 @@ function totalanalista(req, res) {
     });
 }
 
+function exibirDadosEdicaoUsuario(req, res) {
+
+    var idUsuario = req.body.idUsuarioServer;
+
+    usuarioModel.exibirDadosEdicaoUsuario(idUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.json({
+                nomeUsuario: resultado[0].nomeUsuario,
+                emailUsuario: resultado[0].emailUsuario,
+                tipoPerfilUsuario: resultado[0].tipoPerfilUsuario,
+                senhaUsuario: resultado[0].senhaUsuario
+            });
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+
+}
+
 
 
 module.exports = {
@@ -184,5 +207,6 @@ module.exports = {
     visualizarUsuariosCOMUM,
     totalfunc,
     totaladms,
-    totalanalista
+    totalanalista,
+    exibirDadosEdicaoUsuario
 }

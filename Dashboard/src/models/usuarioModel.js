@@ -58,6 +58,13 @@ function totalanalista(idEmpresaUsuario) {
     });
 }
 
+function exibirDadosEdicaoUsuario(idUsuario) {
+    var instrucaoSql = `SELECT *  FROM usuario WHERE idUsuario = '${idUsuario}';`;
+    return database.executar(instrucaoSql)
+      
+    }
+
+
 
 module.exports = {
     autenticar,
@@ -67,5 +74,6 @@ module.exports = {
     visualizarUsuariosCOMUM,
     totalfunc,
     totalanalista,
-    totaladms
+    totaladms,
+    exibirDadosEdicaoUsuario
 };

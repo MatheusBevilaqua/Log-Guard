@@ -2,7 +2,6 @@
 import time
 import psutil as ps
 from mysql.connector import connect, Error
-from mysql.connector import connect, Error
 
 def main(): # Função principal, fiz assim por questão de organização
     imprimeMenu("Olá, Bem vindo(a)! Aqui está a captura de dados em tempo real de: Uso de CPU, Uso de RAM, Uso de Disco e Conexões Abertas em Rede!")

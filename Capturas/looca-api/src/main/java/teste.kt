@@ -6,6 +6,8 @@ fun main(){
     while (true) {
         val looca = Looca()
 
+        val teste = looca.sistema
+
         val rede = looca.rede
         val mem = looca.memoria
         val sys = looca.sistema
