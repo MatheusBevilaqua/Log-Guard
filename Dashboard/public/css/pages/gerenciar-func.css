@@ -745,3 +745,7 @@ select option:hover{
     height: 20px;
     padding-right: 5px;
 }
+
+.totalfuncs {
+    font-size: 20px;
+}
