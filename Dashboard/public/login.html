@@ -101,11 +101,14 @@ function entrar() {
                     console.log(json);
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.emailUsuario;
+                    sessionStorage.EMPRESA_USUARIO = json.fkEmpresaUsuario;
                     sessionStorage.NOME_USUARIO = json.nomeUsuario;
                     sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.TIPO_USUARIO = json.tipoPerfilUsuario;
 
                     setTimeout(function () {
+
+                        alert(sessionStorage.EMPRESA_USUARIO)
 
                         if (sessionStorage.TIPO_USUARIO == "ADMINISTRADOR") {
                             window.location = "dashboard_ADM.html";

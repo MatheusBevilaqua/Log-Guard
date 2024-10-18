@@ -24,4 +24,15 @@ router.get("/visualizarEmpresas", function(req,res){
   empresaController.visualizarEmpresas(req, res);
 })
 
+router.post("/confirmar_cadastrar", function (req, res) {
+  empresaController.confirmar_cadastrar(req, res);
+});
+// router.get("/excluir_editar", function (req, res) {
+//   empresaController.listar(req, res);
+// });
+// router.get("/confirmar_editar", function (req, res) {
+//   empresaController.listar(req, res);
+// });
+
+
 module.exports = router;

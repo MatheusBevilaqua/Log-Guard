@@ -24,10 +24,11 @@ function autenticar(req, res) {
                                 if (resultadoAutenticar.length > 0) {
                                     res.json({
                                         emailUsuario: resultadoAutenticar[0].emailUsuario,
+                                        fkEmpresaUsuario: resultadoAutenticar[0].empresaId,
                                         nomeUsuario: resultadoAutenticar[0].nomeUsuario,
                                         idUsuario: resultadoAutenticar[0].idUsuario,
                                         tipoPerfilUsuario: resultadoAutenticar[0].tipoPerfilUsuario,
-                                        senhaUsuario: resultadoAutenticar[0].senhaUsuario                                    
+                                        senhaUsuario: resultadoAutenticar[0].senhaUsuario
                                     });
                                 }
                             })
@@ -67,7 +68,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresaUsuario,tipoPerfilUsuario)
+        usuarioModel.cadastrar(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresaUsuario, tipoPerfilUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -85,7 +86,103 @@ function cadastrar(req, res) {
     }
 }
 
+function visualizarUsuarios(req, res) {
+
+    var idEmpresaUsuario = req.body.idEmpresaUsuarioServer;
+
+    usuarioModel.visualizarUsuarios(idEmpresaUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+
+}
+
+function visualizarUsuariosADM(req, res) {
+
+    var idEmpresaUsuario = req.body.idEmpresaUsuarioServer;
+
+    usuarioModel.visualizarUsuariosADM(idEmpresaUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+
+}
+
+function visualizarUsuariosCOMUM(req, res) {
+
+    var idEmpresaUsuario = req.body.idEmpresaUsuarioServer;
+
+    usuarioModel.visualizarUsuariosCOMUM(idEmpresaUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+
+}
+
+function totalfunc(req, res) {
+    var idEmpresaUsuario = req.body.idEmpresaUsuarioServer;
+    usuarioModel.totalfunc(idEmpresaUsuario).then(function (total) {
+        res.status(200).json(total);
+    }).catch(function (erro) {
+        console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function totaladms(req, res) {
+    var idEmpresaUsuario = req.body.idEmpresaUsuarioServer;
+    console.log("ID da Empresa:", idEmpresaUsuario);
+    usuarioModel.totaladms(idEmpresaUsuario).then(function (total) {
+        console.log("Total de administradores do banco:", total);
+        res.status(200).json(total);
+    }).catch(function (erro) {
+        console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function totalanalista(req, res) {
+    var idEmpresaUsuario = req.body.idEmpresaUsuarioServer;
+    console.log("ID da Empresa:", idEmpresaUsuario);
+    usuarioModel.totalanalista(idEmpresaUsuario).then(function (total) {
+        console.log("Total de analistas do banco:", total);
+        res.status(200).json(total);
+    }).catch(function (erro) {
+        console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    visualizarUsuarios,
+    visualizarUsuariosADM,
+    visualizarUsuariosCOMUM,
+    totalfunc,
+    totaladms,
+    totalanalista
 }

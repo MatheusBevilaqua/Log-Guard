@@ -42,7 +42,34 @@ function cadastrar(req, res) {
     }
   });
 }
+//Gerenciamento de máquinas
+// function confirmar_editar(req, res){
 
+// }
+// function excluir_editar(req, res){
+
+// }
+function confirmar_cadastrar(req, res){
+var fkEmpresaMaquina = req.body.fkEmpresaMaquinaServer;
+var nomeMaquina = req.body.nomeMaquinaServer;
+var modeloCPU = req.body.modeloCServer;
+var capacidadeRAM =req.body.capacidadeServer;
+var disco = req.body.discoServer;
+var localidade= req.body.localidadeServer;
+var MACAdress = req.body.MACAdressServer;
+
+ empresaModel.confirmar_cadastrar(fkEmpresaMaquina,nomeMaquina,modeloCPU,capacidadeRAM,disco,localidade,MACAdress).then((resultado) => {
+  if (resultado.length > 0) {
+    res
+      .status(401)
+      .json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
+  } else {
+    empresaModel.cadastrar(fkEmpresaMaquina,nomeMaquina, nomeMaquina,modeloCPU,capacidadeRAM,disco,localidade,MACAdress).then((resultado) => {
+      res.status(201).json(resultado);
+    });
+  }
+});
+}
 
 function visualizarEmpresas(req, res) {
   empresaModel.visualizarEmpresas().then(function (resultado) {
@@ -64,5 +91,8 @@ module.exports = {
   buscarPorId,
   cadastrar,
   listar,
+  confirmar_cadastrar,
   visualizarEmpresas
+  // confirmar_editar,
+  // excluir_editar
 };
