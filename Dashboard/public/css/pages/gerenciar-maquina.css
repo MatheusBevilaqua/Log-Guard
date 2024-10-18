@@ -1,4 +1,6 @@
+
 /* Estilos para a página dashboard */
+
 .page-dash-geren {
     display: flex;
     width: 100%;
@@ -6,6 +8,8 @@
     padding-top: 0;
     background-color: #E3E3E3;
     margin-left: 30px;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 /* Barra lateral */
