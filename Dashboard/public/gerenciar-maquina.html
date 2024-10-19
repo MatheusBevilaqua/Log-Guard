@@ -12,78 +12,73 @@
 <body>
 </body>
 <aside class="nav-dash">
-    <div class="nav-dash-teste">
-        <img src="./img/logo-preta-transparent.png" alt="#Logo-LogGuard">
+    <div class="nav-dash-logo">
+        <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
     </div>
-    <nav class="nav-dash-menu">
-        <ul class="nav-dash-list">
-<<<<<<< HEAD
-            <a href="#">
-=======
-            <a href="dashboard_ADM.html">
->>>>>>> 0e7d0c076563ef4dc4c53c4778d664cec04345ab
-                <li class="nav-dash-link"><img src="./svg/key-icon.svg" class="nav-dash-icon">Visão
-                    Geral</li>
-            </a>
-            <a href="#">
-                <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon">Relatórios
-                </li>
-            </a>
-            <a href="#">
-<<<<<<< HEAD
-                <li class="nav-dash-link"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
-            </a>
-            <a href="#">
-=======
-                <li class="nav-dash-link"><img src="./img/monitor.svg" class="nav-dash-icon">Máquinas</li>
-            </a>
-            <a href="gerenciar-usuario-func.html">
->>>>>>> 0e7d0c076563ef4dc4c53c4778d664cec04345ab
-                <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
-            </a>
-            <a href="index.html">
-                <li class="nav-dash-link-sair"><img src="./img/sair.png" class="nav-dash-icon" style="padding-left: 3%;">Sair</li>
-            </a>
-        </ul>
+    av class="nav-dash-menu">
+    <ul class="nav-dash-list">
+        <a href="dashboard_ADM.html">
+            <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon"
+                    style="padding-left: 3%;">Visão
+                Geral</li>
+        </a>
+        <a href="#">
+            <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon"
+                    style="padding-left: 3%;">Relatórios
+            </li>
+        </a>
+        <a href="gerenciar-maquina.html">
+            <li class="nav-dash-link"><img src="./img/monitor.svg" class="nav-dash-icon"
+                    style="padding-left: 3%;">Máquinas</li>
+        </a>
+        <a href="gerenciar-usuario-func.html">
+            <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
+        </a>
+        <a href="index.html">
+            <li class="nav-dash-link-sair"><img src="./img/sair.png" class="nav-dash-icon"
+                    style="padding-left: 3%;">Sair</li>
+        </a>
+    </ul>
+    </nav>
     </nav>
 </aside>
 <section class="page-dash-geren" onload="validarSessao()">
-    
-        <div class="maingerenpage">
-            <h1>Gerenciar Máquinas:</h1>
-            <div class="select-geren">
-                <select name="select">
-                    <div class="select-items-geren">
+
+    <div class="maingerenpage">
+        <h1>Gerenciar Máquinas:</h1>
+        <div class="select-geren">
+            <select name="select">
+                <div class="select-items-geren">
                     <option value="valor1" selected disabled>Filtro</option>
                     <option value="valor2">Crescente</option>
                     <option value="valor3">Decrescente</option>
-                    </div>
-                </select>
-                <select name="select">
-                    <div class="select-items-geren">
+                </div>
+            </select>
+            <select name="select">
+                <div class="select-items-geren">
                     <option value="valor1" selected disabled>Componente</option>
                     <option value="valor2">CPU</option>
                     <option value="valor3">Memória</option>
                     <option value="valor3">Disco</option>
                     <option value="valor3">Rede</option>
                     <option value="valor3">Localidade</option>
-                    </div>
-                </select>
-            </div>
-            <div class="dash-geren">
-                <div class="titulos-geren">
-                        <div class="coluna-geren">ID</div>
-                        <div class="coluna-geren">Nome</div>
-                        <div class="coluna-geren">CPU</div>
-                        <div class="coluna-geren">Memória</div>
-                        <div class="coluna-geren">Disco</div>
-                        <div class="coluna-geren">Rede</div>
-                        <div class="coluna-geren">Localidade</div>
                 </div>
-                <div class="linha-geren">
+            </select>
+        </div>
+        <div class="dash-geren">
+            <div class="titulos-geren">
+                <div class="coluna-geren">ID</div>
+                <div class="coluna-geren">Nome</div>
+                <div class="coluna-geren">CPU</div>
+                <div class="coluna-geren">Memória</div>
+                <div class="coluna-geren">Disco</div>
+                <div class="coluna-geren">Rede</div>
+                <div class="coluna-geren">Localidade</div>
+            </div>
+            <div class="linha-geren">
                 <img src="./img/Line1cadastro.png" alt="">
             </div>
-        <div class="geren-dados">
+            <div class="geren-dados">
                 <div class="dados-geren">
                     <div class="coluna-geren">102</div>
                     <div class="coluna-geren">DESKTOP-L776AUQ</div>
@@ -183,19 +178,19 @@
                     <div class="coluna-geren">0 Mbps</div>
                     <div class="coluna-geren">DATACENTER5</div>
                 </div>
+            </div>
         </div>
-            </div>
-            <div class="botoes-geren">
-                <button onclick="editar_maquina()" class="edit-geren">Editar</button>
-                <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar</button>
-            </div>
+        <div class="botoes-geren">
+            <button onclick="editar_maquina()" class="edit-geren">Editar</button>
+            <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar</button>
+        </div>
 
-            <div class="duvidas-func">
+        <div class="duvidas-func">
             <a href="#">Duvidas? Clique aqui!</a>
-            </div>
         </div>
+    </div>
 
-        <div class="Editargeren">
+    <div class="Editargeren">
         <div class="Editar-geren-primeiro">
             <h1>Alterar as configurações do servidor:</h1>
             <input placeholder="Nome da máquina" type="text" id="input_alterar_nome">
@@ -209,19 +204,19 @@
             <input placeholder="Localidade" type="text" id="input_alterar_localidade">
             <img src="./img/Line1cadastro.png" alt="">
         </div>
-            <input placeholder="Rede(Mbps)" type="text" id="input_alterar_rede">
-            <img src="./img/Line1cadastro.png" alt="">
-          
+        <input placeholder="Rede(Mbps)" type="text" id="input_alterar_rede">
+        <img src="./img/Line1cadastro.png" alt="">
+
         <div class="Editar-geren-segundo">
             <div class="Editar-geren-confirmudanca">
-            
-            <input type="checkbox" id="input_alterar_checkbox">
-            <label for="input_alterar_checkbox">Confirmar mudanças</label><br>
-        </div>
-        <div class="Editar-geren-botoes">
-            <button onclick="confirmar_editar()" class="confirmar-geren">Confirmar</button>
-            <button onclick="cancelar_editar()" class="cancelar-geren">Cancelar</button>
-        </div>
+
+                <input type="checkbox" id="input_alterar_checkbox">
+                <label for="input_alterar_checkbox">Confirmar mudanças</label><br>
+            </div>
+            <div class="Editar-geren-botoes">
+                <button onclick="confirmar_editar()" class="confirmar-geren">Confirmar</button>
+                <button onclick="cancelar_editar()" class="cancelar-geren">Cancelar</button>
+            </div>
         </div>
         <img src="./img/Line1cadastro.png" class="line1-geren" alt="">
         <div class="editar-geren-titulodelet">
@@ -230,10 +225,10 @@
         <div class="Editar-geren-botao-delete">
             <button onclick="excluir_editar()" class="confirmar-geren">Excluir Servidor</button>
         </div>
-        </div>
+    </div>
 
-        <div class="Cadastrargeren">
-            <h1>Complete os campos:</h1>
+    <div class="Cadastrargeren">
+        <h1>Complete os campos:</h1>
         <div class="cadastrar-geren-primeiro">
             <input placeholder="Nome da máquina" type="text" id="nome_input">
             <img src="./img/Line1cadastro.png" alt="">
@@ -247,19 +242,19 @@
             <img src="./img/Line1cadastro.png" alt="">
             <input placeholder="Endereço MAC" type="text" id="MACAdress_input">
             <img src="./img/Line1cadastro.png" alt="">
-     
+
         </div>
         <div class="cadastrar-geren-segundo">
             <input type="checkbox" id="input_cadastro_checkbox">
             <label for="input_cadastro_checkbox">Confirmar criação</label>
-            </div>
-            <div class="cadastrar-geren-terceiro">
+        </div>
+        <div class="cadastrar-geren-terceiro">
             <button onclick="confirmar_cadastrar()" class="confirmar-geren">Confirmar</button>
             <button onclick="cancelar_cadastrar()" class="cancelar-geren">Cancelar</button>
         </div>
-        </div>
-        </div>
-        
+    </div>
+    </div>
+
 </section>
 
 </html>
@@ -282,69 +277,69 @@
 
     function excluir_editar() {
         var r = confirm("Tem certeza que deseja excluir este servidor?");
-            if (r == true) {
-                window.location.reload(true); //reload na página
-            }
+        if (r == true) {
+            window.location.reload(true); //reload na página
+        }
     }
 
-function confirmar_cadastrar() {
+    function confirmar_cadastrar() {
 
 
-  var nomeMaquinaVAR = nome_input.value;
-  var modeloCPUVAR = modeloCPU_input.value;
-  var capacidadeRAMVAR = capacidadeRAM_input.value;
-  var discoVAR = disco_input.value;
-  var localidadeVAR = localidade_input.value;
-  var MACAdressVAR = MACAdress_input.value;
+        var nomeMaquinaVAR = nome_input.value;
+        var modeloCPUVAR = modeloCPU_input.value;
+        var capacidadeRAMVAR = capacidadeRAM_input.value;
+        var discoVAR = disco_input.value;
+        var localidadeVAR = localidade_input.value;
+        var MACAdressVAR = MACAdress_input.value;
 
 
-  alert(sessionStorage.EMPRESA_USUARIO)
+        alert(sessionStorage.EMPRESA_USUARIO)
 
-  if ( 
-    nomeMaquinaVAR== "" ||
-    modeloCPUVAR == "" ||
-    capacidadeRAMVAR  == "" ||
-    discoVAR== "" ||
-    localidadeVAR == "" ||
-    MACAdressVAR == "" 
-    ) {
-    alert("Todos os campos dever ser preenchidos!")
-      return false;
-    } else {
-   
-    fetch("/empresas/confirmar_cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-
-        nomeMaquinaServer:nomeMaquinaVAR,
-        modeloCServer:modeloCPUVAR,
-        capacidadeServer:capacidadeRAMVAR,
-        discoServer:discoVAR,
-        localidadeServer:localidadeVAR,
-        MACAdressServer:MACAdressVAR ,
-        fkEmpresaMaquinaServer: sessionStorage.EMPRESA_USUARIO
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-       
-            alert("CADASTRO EXECUTADO!")
-     
+        if (
+            nomeMaquinaVAR == "" ||
+            modeloCPUVAR == "" ||
+            capacidadeRAMVAR == "" ||
+            discoVAR == "" ||
+            localidadeVAR == "" ||
+            MACAdressVAR == ""
+        ) {
+            alert("Todos os campos dever ser preenchidos!")
+            return false;
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-   
-      });
 
-         return false;
+            fetch("/empresas/confirmar_cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+
+                    nomeMaquinaServer: nomeMaquinaVAR,
+                    modeloCServer: modeloCPUVAR,
+                    capacidadeServer: capacidadeRAMVAR,
+                    discoServer: discoVAR,
+                    localidadeServer: localidadeVAR,
+                    MACAdressServer: MACAdressVAR,
+                    fkEmpresaMaquinaServer: sessionStorage.EMPRESA_USUARIO
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+
+                        alert("CADASTRO EXECUTADO!")
+
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+
+                });
+
+            return false;
         }
         // temporario
         document.querySelector('.maingerenpage').style.filter = "blur(0px)";
