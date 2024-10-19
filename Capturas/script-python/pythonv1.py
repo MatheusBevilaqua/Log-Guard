@@ -1,6 +1,7 @@
 # Imports de módulos externos necessários para manipular tempo,capturar dados e conectar com o BD MySQL
 import time
 import psutil as ps
+import math
 from mysql.connector import connect, Error
 from mysql.connector import connect, Error
 
@@ -10,7 +11,7 @@ def main(): # Função principal, fiz assim por questão de organização
     habilitarInsercao = True
     time.sleep(2.5)
     print("\n------------------ USO DE HARDWARE ------------------\n")
-    print(formataLinha('CPU (%)', 'RAM (%)', 'DISCOLIVRE (GB)'))
+    print('CPU (%)', 'RAM (%)', 'DISCOLIVRE (GB)')
     print('-' * 45)
 
     enderecoMAC = obtemMAC()
@@ -25,7 +26,7 @@ def main(): # Função principal, fiz assim por questão de organização
              query = montaQuery(*dados)
              executarQuery(query)
         # Imprime os dados na tabela
-        print(formataLinha(*dados)) # Utilizando o "*" como forma de "expandir" a tupla em dados separados, pois se passasse sem isso, ficaria apenas 1 tupla inteira como parâmetro.
+        print(*dados) # Utilizando o "*" como forma de "expandir" a tupla em dados separados, pois se passasse sem isso, ficaria apenas 1 tupla inteira como parâmetro.
         time.sleep(2)
 
 def obtemMAC():
@@ -40,7 +41,7 @@ def montaQueryMAC(*enderecoMAC):
 def executarQuery(script): # Função responsável por inserir os dados no banco, recebe uma query SQL qualquer como parâmetro e a executa, usando as credenciais específicas
      config = {
        'user': 'root',
-       'password': 'Senha123',
+       'password': 'bonacelli',
        'host': 'localhost',
        'database': 'logGuard'
      }
@@ -78,11 +79,12 @@ def imprimeMenu(texto): # Função responsável por imprimir o menu inicial, con
 """)
     print(texto)
 
-def formataLinha(*args): # Função de formatação utilizada nas tabelas, espera n parâmetros, ou seja, um número variável de parâmetros, denotado pelo uso de "*" antes do nome do argumento esperado
+#def formataLinha(*args): # Função de formatação utilizada nas tabelas, espera n parâmetros, ou seja, um número variável
+    # de parâmetros, denotado pelo uso de "*" antes do nome do argumento esperado
     # a parte de ' | '.join(...) é responsável por juntar os elementos da sequência fornecida com o separador "|"
     # "f'{item:^10}'" é uma string formatada, onde item representa cada elemento dentro dos argumentos fornecidos
     # "^" diz que item será centralizado em um campo de 10 caracteres, onde o resto será preenchido com espaços
-    return ' | '.join(f'{item:^10}' for item in args)
+#    return ' | '.join(item**10 for item in args)
 
 def obterDadosSistema(): # Aqui, colho os dados por componente separadamente:
     # Uso de CPU
@@ -101,10 +103,10 @@ def obterDadosSistema(): # Aqui, colho os dados por componente separadamente:
     # Conexões Abertas em Rede
     #conexoesRede = len(ps.net_connections()) # Length (Largura) da lista de conexões com internet
 
-    return (porcentagemCpu, porcentagemMemoria, usadoDisco)
+    return (porcentagemCpu, porcentagemMemoria, usoDisco)
 
 def montaQuery(*dados):
-     return "INSERT INTO DadoCapturado (`CPU%`, `RAM%`, `ConexoesRede`, `TempoAtividade`) VALUES ('{}', '{}', '{}')".format(*dados)
+     return "INSERT INTO captura (`CPU%`, `RAM%`, `ConexoesRede`, `TempoAtividade`) VALUES ('{}', '{}', '{}')".format(*dados)
 
 # Como quis rodar o arquivo pela função "main()", preciso fazer isso:
 # A variável "__name__" é uma variável que tem seu valor atribuído automaticamente pelo Python.

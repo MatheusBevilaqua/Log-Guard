@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogGuard - Dashboard</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" type="images/png" href="../../public/svg/iceberg-icon.svg">
+    <script src="./js/sessao.js"></script>
+
+</head>
+
+<body style="background-color: #e3e3e3; color: black;">
+
+    <section class="page-dash">
+        <aside class="nav-dash">
+            <div class="nav-dash-teste">
+                <img src="./img/logo-preta-transparent.png" alt="#Logo-LogGuard">
+            </div>
+            <nav class="nav-dash-menu">
+                <ul class="nav-dash-list">
+                    <a href="#">
+                        <li class="nav-dash-link"><img src="./svg/key-icon.svg" class="nav-dash-icon">Visão
+                            Geral</li>
+                    </a>
+                    <a href="#">
+                        <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon">Relatórios
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li class="nav-dash-link"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
+                    </a>
+                    <a href="#">
+                        <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
+                    </a>
+                    <a href="#">
+                        <li class="nav-dash-link-sair"><img src="./img/man.png" class="nav-dash-icon">Sair</li>
+                    </a>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="main-relatorios-page">
+
+            <h1>Todos os relatórios</h1>
+            <div class="div-results">
+            
+                <div id="feed_container" class="feed-container">
+
+            </div>
+
+    </section>
+</body>]
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    b_usuario.innerHTML = sessionStorage.EMPRESA_USUARIO;
+    b_usuario.innerHTML = sessionStorage.TIPO_USUARIO;
+
+    function cadastrar_maquina() {
+        document.querySelector('.maingerenpage').style.filter = "blur(5px)";
+        document.querySelector('.Cadastrargeren').style.display = "block";
+
+    }
+
+
+    function limparFormulario() {
+        document.getElementById("form_postagem").reset();
+    }
+
+    function publicar() {
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            titulo: form_postagem.titulo.value,
+            descricao: form_postagem.descricao.value
+        }
+
+        fetch(`/relatorio/publicar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                window.location = "/dashboard/mural.html";
+                limparFormulario();
+                finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+
+        });
+
+        return false;
+
+    }
+
+    function editar(idrelatorio) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idrelatorio;
+
+        console.log("cliquei em editar - " + idrelatorio);
+        window.alert("Você será redirecionado à página de edição do relatorio de id número: " + idrelatorio);
+        window.location = "/dashboard/edicao-relatorio.html"
+
+    }
+
+    function deletar(idrelatorio) {
+        console.log("Criar função de apagar post escolhido - ID" + idrelatorio);
+        fetch(`/relatorio/deletar/${idrelatorio}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "/dashboard/mural.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function atualizarFeed() {
+        fetch("/relatorio/listar").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var relatorio = document.createElement("span");
+                    relatorio.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(relatorio);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var relatorio = resposta[i];
+
+                        if (relatorio.fk_usuario == sessionStorage.ID_USUARIO) {
+
+
+                            var divrelatorio = document.createElement("div");
+                            var spanID = document.createElement("span");
+                            var spanTitulo = document.createElement("span");
+                            var spanNome = document.createElement("span");
+                            var divDescricao = document.createElement("div");
+                            var divButtons = document.createElement("div");
+                            var divButtons = document.createElement("div");
+                            var btnEditar = document.createElement("button");
+                            var btnDeletar = document.createElement("button");
+
+
+
+                            spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b><br>";
+                            spanNome.innerHTML = "Autor: <b>" + relatorio.nome + "</b> <br><br>";
+                            spanSituacao.innerHTML = "Status: <b>" + relatorio.estado + "</b> <br><br>";
+                            divDescricao.innerHTML = "Descrição: <b>" + relatorio.descricao + "</b>";
+                            btnEditar.innerHTML = "Editar";
+                            btnDeletar.innerHTML = "Deletar";
+
+
+                            divrelatorio.className = "relatorio";
+                            spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
+                            spanNome.className = "relatorio-nome";
+                            spanTitulo.className = "relatorio-titulo";
+                            divDescricao.className = "relatorio-descricao";
+
+                            divButtons.className = "div-buttons"
+
+
+                            btnEditar.className = "relatorio-btn-editar"
+                            btnEditar.id = "btnEditar" + relatorio.idrelatorio;
+                            btnEditar.setAttribute("onclick", `editar(${relatorio.idrelatorio})`);
+
+                            btnDeletar.className = "relatorio-btn-editar"
+                            btnDeletar.id = "btnDeletar" + relatorio.idrelatorio;
+                            btnDeletar.setAttribute("onclick", `deletar(${relatorio.idrelatorio})`);
+
+
+
+
+                            divrelatorio.appendChild(spanID);
+                            divrelatorio.appendChild(spanNome);
+                            divrelatorio.appendChild(spanTitulo);
+                            divrelatorio.appendChild(divDescricao);
+                            divrelatorio.appendChild(divButtons);
+                            divButtons.appendChild(btnEditar);
+                            divButtons.appendChild(btnDeletar);
+                            feed.appendChild(divrelatorio);
+                        } else {
+
+
+                            var divrelatorio = document.createElement("div");
+                            var spanID = document.createElement("span");
+                            var spanTitulo = document.createElement("span");
+                            var spanNome = document.createElement("span");
+                            var divDescricao = document.createElement("div");
+                            var divButtons = document.createElement("div");
+
+
+
+                            spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b><br>";
+                            spanNome.innerHTML = "Autor: <b>" + relatorio.nome + "</b><br><br>";
+                            divDescricao.innerHTML = "Descrição: <b>" + relatorio.descricao + "</b>";
+
+
+                            divrelatorio.className = "relatorio";
+                            spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
+                            spanNome.className = "relatorio-nome";
+                            spanTitulo.className = "relatorio-titulo";
+                            divDescricao.className = "relatorio-descricao";
+
+                            divButtons.className = "div-buttons"
+
+
+
+                            divrelatorio.appendChild(spanID);
+                            divrelatorio.appendChild(spanNome);
+                            divrelatorio.appendChild(spanTitulo);
+                            divrelatorio.appendChild(divDescricao);
+                            divrelatorio.appendChild(divButtons);
+
+                            feed.appendChild(divrelatorio);
+
+                        }
+                    }
+
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+
+        });
+    }
+
+</script>

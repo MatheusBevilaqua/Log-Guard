@@ -8,6 +8,8 @@
 @import url(partials/animations.css);
 
 /* IMPORTANDO ESTILZAÇÃO DAS PAGINAS DO SITE */
+@import url(pages/styledash.css);
+@import url(pages/dashFuncionario.css);
 @import url(pages/welcome.css);
 @import url(pages/aboutUs.css);
 @import url(pages/pillars.css);
@@ -21,6 +23,7 @@
 @import url(pages/dashboard_ADM.css);
 @import url(pages/gerenciar-maquina.css);
 @import url(pages/gerenciar-func.css);
+@import url(pages/relatorios.css);
 
 
 *,
