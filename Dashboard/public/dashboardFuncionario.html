@@ -5,234 +5,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Funcionario</title>
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/main.css"> 
 </head>
 
 <body onload="validarSessao()">
 
-<<<<<<<<< Temporary merge branch 1
-   
-    <nav class="nav-dash-menu">
+    <section class="page-dash">
+        <aside class="nav-dash">
+            <div class="nav-dash-logo">
+                <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
+            </div>
+            av class="nav-dash-menu">
         <ul class="nav-dash-list">
-            <a href="ashboard_ADM.html">
-                <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon">Visão
+            <a href="dashboard_ADM.html">
+                <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon" style="padding-left: 3%;">Visão
                     Geral</li>
             </a>
             <a href="#">
-                <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon">Relatórios
+                <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon" style="padding-left: 3%;">Relatórios
                 </li>
             </a>
             <a href="gerenciar-maquina.html">
-                <li class="nav-dash-link"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
+                <li class="nav-dash-link"><img src="./img/monitor.svg" class="nav-dash-icon" style="padding-left: 3%;">Máquinas</li>
             </a>
             <a href="gerenciar-usuario-func.html">
                 <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
             </a>
             <a href="index.html">
-                <li class="nav-dash-link-sair"><img src="./img/man.png" class="nav-dash-icon">Sair</li>
+                <li class="nav-dash-link-sair"><img src="./img/sair.png" class="nav-dash-icon" style="padding-left: 3%;">Sair</li>
             </a>
         </ul>
     </nav>
-=========
-    <section class="page-dash">
-        <aside class="nav-dash">
-            <div class="nav-dash-teste">
-                <img src="./img/logo-preta-transparent.png" alt="#Logo-LogGuard">
-            </div>
-            <nav class="nav-dash-menu">
-                <ul class="nav-dash-list">
-                    <a href="#">
-                        <li class="nav-dash-link"><img src="./svg/key-icon.svg" class="nav-dash-icon">Visão
-                            Geral</li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon">Relatórios
-                        </li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-dash-link"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-dash-link-sair"><img src="./img/man.png" class="nav-dash-icon">Sair</li>
-                    </a>
-                </ul>
             </nav>
         </aside>
->>>>>>>>> Temporary merge branch 2
 
 
 
         
 
         <div class="main-dash-funcionarios">
-            <h1>Ola, Claudio!</h1>
+            <h1>Olá de volta, <span class="b_usuario" id="b_usuario">Bruno</span></h1>
             <div class="alerta-funcionario">
                 <h3>Quantidade de irregularidades por componente (todas as máquinas)</h3>
                 <div class="tempo-real-func">
                     <br>
                     <p><b>CPUs</b></p>
                     <p class="red"><b>3</b></p>
-                </div>
 
-                <div>
                     <p><b>RAMs</b></p>
                     <p class="red"><b>6</b></p>
-                </div>
 
-                <div>
                     <p><b>DISCO(s)</b></p>
                     <p class="green"><b>0</b></p>
-                </div>
+                
 
-                <div>
+                
                     <p><b>REDE(s)</b></p>
                     <p class="red"><b>1</b></p>
                 </div>
             </div>
 
-            <div class="stats">
+            <div class="div-grafico-funcionario">
                 <div>
                     <h2>Consumo de Componentes</h2>
-                    <p>GRÁFICO DE CONSUMO DE COMPONENTES (BARRA)</p>
+                    <p>GRÁFICO DE CONSUMO DE COMPONENTES</p>
                 </div>
             </div>
 
-        </div>
 
-        <div class="content">
-            <div class="container">
-                <div class="info">
-                    <h2>Listagem de log's:</h2>
+            <div class="div-listas-funcionario">
+                <div class="container">
+                    <div class="info">
+                        <h2>Listagem de log's:</h2>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Conteúdo</th>
-                                <th>Tipo</th>
-                                <th>Data</th>
-                            </tr>
-                        </thead>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Conteúdo</th>
+                                    <th>Tipo</th>
+                                    <th>Data</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <td>123</td>
+                                    <td>Perda de pacotes</td>
+                                    <td>Rede</td>
+                                    <td>19/10/2021</td>
+                                </tr>
 
-                        <tbody>
-                            <tr>
-                                <td>123</td>
-                                <td>Perda de pacotes</td>
-                                <td>Rede</td>
-                                <td>19/10/2021</td>
-                            </tr>
+                                <tr>
+                                    <td>123</td>
+                                    <td>Perda de pacotes</td>
+                                    <td>Rede</td>
+                                    <td>19/10/2021</td>
+                                </tr>
 
-                            <tr>
-                                <td>123</td>
-                                <td>Perda de pacotes</td>
-                                <td>Rede</td>
-                                <td>19/10/2021</td>
-                            </tr>
+                                <tr>
+                                    <td>123</td>
+                                    <td>Perda de pacotes</td>
+                                    <td>Rede</td>
+                                    <td>19/10/2021</td>
+                                </tr>
 
-                            <tr>
-                                <td>123</td>
-                                <td>Perda de pacotes</td>
-                                <td>Rede</td>
-                                <td>19/10/2021</td>
-                            </tr>
+                                <tr>
+                                    <td>123</td>
+                                    <td>Perda de pacotes</td>
+                                    <td>Rede</td>
+                                    <td>19/10/2021</td>
+                                </tr>
 
-                            <tr>
-                                <td>123</td>
-                                <td>Perda de pacotes</td>
-                                <td>Rede</td>
-                                <td>19/10/2021</td>
-                            </tr>
+                                <tr>
+                                    <td>123</td>
+                                    <td>Perda de pacotes</td>
+                                    <td>Rede</td>
+                                    <td>19/10/2021</td>
+                                </tr>
 
-                            <tr>
-                                <td>123</td>
-                                <td>Perda de pacotes</td>
-                                <td>Rede</td>
-                                <td>19/10/2021</td>
-                            </tr>
+                                <tr>
+                                    <td>123</td>
+                                    <td>Perda de pacotes</td>
+                                    <td>Rede</td>
+                                    <td>19/10/2021</td>
+                                </tr>
+                        </table>
+                    </div>
 
-                            <tr>
-                                <td>123</td>
-                                <td>Perda de pacotes</td>
-                                <td>Rede</td>
-                                <td>19/10/2021</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    <div class="info">
+                        <h2>
+                            Máquinas em risco:
+                        </h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>CPU</th>
+                                    <th>Temp(CPU)</th>
+                                    <th>DISCO</th>
+                                    <th>REDE</th>
+                                </tr>
+                            </thead>
 
-                <div class="info">
-                    <h2>
-                        Máquinas em risco:
-                    </h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>CPU</th>
-                                <th>Temp(CPU)</th>
-                                <th>DISCO</th>
-                                <th>REDE</th>
-                            </tr>
-                        </thead>
+                            <tbody>
+                                <tr>
+                                    <td>123</td>
+                                    <td>80%</td>
+                                    <td>75ºC</td>
+                                    <td>30%</td>
+                                    <td>12%</td>
+                                </tr>
 
-                        <tbody>
-                            <tr>
-                                <td>123</td>
-                                <td>80%</td>
-                                <td>75ºC</td>
-                                <td>30%</td>
-                                <td>12%</td>
-                            </tr>
+                                <tr>
+                                    <td>123</td>
+                                    <td>80%</td>
+                                    <td>75ºC</td>
+                                    <td>30%</td>
+                                    <td>12%</td>
+                                </tr>
 
-                            <tr>
-                                <td>123</td>
-                                <td>80%</td>
-                                <td>75ºC</td>
-                                <td>30%</td>
-                                <td>12%</td>
-                            </tr>
+                                <tr>
+                                    <td>123</td>
+                                    <td>80%</td>
+                                    <td>75ºC</td>
+                                    <td>30%</td>
+                                    <td>12%</td>
+                                </tr>
 
-                            <tr>
-                                <td>123</td>
-                                <td>80%</td>
-                                <td>75ºC</td>
-                                <td>30%</td>
-                                <td>12%</td>
-                            </tr>
+                                <tr>
+                                    <td>123</td>
+                                    <td>80%</td>
+                                    <td>75ºC</td>
+                                    <td>30%</td>
+                                    <td>12%</td>
+                                </tr>
 
-                            <tr>
-                                <td>123</td>
-                                <td>80%</td>
-                                <td>75ºC</td>
-                                <td>30%</td>
-                                <td>12%</td>
-                            </tr>
+                                <tr>
+                                    <td>123</td>
+                                    <td>80%</td>
+                                    <td>75ºC</td>
+                                    <td>30%</td>
+                                    <td>12%</td>
+                                </tr>
 
-                            <tr>
-                                <td>123</td>
-                                <td>80%</td>
-                                <td>75ºC</td>
-                                <td>30%</td>
-                                <td>12%</td>
-                            </tr>
+                                <tr>
+                                    <td>123</td>
+                                    <td>80%</td>
+                                    <td>75ºC</td>
+                                    <td>30%</td>
+                                    <td>12%</td>
+                                </tr>
 
-                            <tr>
-                                <td>123</td>
-                                <td>80%</td>
-                                <td>75ºC</td>
-                                <td>30%</td>
-                                <td>12%</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    
+
+
 </body>
 
 </html>
