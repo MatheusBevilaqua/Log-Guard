@@ -36,4 +36,9 @@ router.post("/totaladms", function (req, res) {
     usuarioController.totaladms(req, res);
 });
 
+router.post("/exibirDadosEdicaoUsuario", function (req, res) {
+    usuarioController.exibirDadosEdicaoUsuario(req, res);
+});
+
+
 module.exports = router;

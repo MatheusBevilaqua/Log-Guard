@@ -15,27 +15,27 @@
             <div class="nav-dash-teste">
                 <img src="./img/logo-preta-transparent.png" alt="#Logo-LogGuard">
             </div>
-            <nav class="nav-dash-menu">
-                <ul class="nav-dash-list">
-                    <a href="#">
-                        <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon">Visão
-                            Geral</li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon">Relatórios
-                        </li>
-                    </a>
-                    <a href="gerenciar-maquina.html">
-                        <li class="nav-dash-link"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
-                    </a>
-                    <a href="gerenciar-usuario-func.html">
-                        <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
-                    </a>
-                    <a href="index.html">
-                        <li class="nav-dash-link-sair"><img src="./img/man.png" class="nav-dash-icon">Sair</li>
-                    </a>
-                </ul>
-            </nav>
+            av class="nav-dash-menu">
+        <ul class="nav-dash-list">
+            <a href="dashboard_ADM.html">
+                <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon" style="padding-left: 3%;">Visão
+                    Geral</li>
+            </a>
+            <a href="#">
+                <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon" style="padding-left: 3%;">Relatórios
+                </li>
+            </a>
+            <a href="gerenciar-maquina.html">
+                <li class="nav-dash-link"><img src="./img/monitor.svg" class="nav-dash-icon" style="padding-left: 3%;">Máquinas</li>
+            </a>
+            <a href="gerenciar-usuario-func.html">
+                <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
+            </a>
+            <a href="index.html">
+                <li class="nav-dash-link-sair"><img src="./img/sair.png" class="nav-dash-icon" style="padding-left: 3%;">Sair</li>
+            </a>
+        </ul>
+    </nav>
         </aside>
         <section class="page-dash-func">
 
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="botoes-func">
-                    <button onclick="editar_gefunc()" class="edit-func">Editar</button>
+                    <!-- <button onclick="editar_gefunc()" class="edit-func">Editar</button> -->
                     <button onclick="cadastrar_gefunc()" class="cad-func">Cadastrar</button>
                 </div>
 
@@ -96,6 +96,8 @@
                 </div>
             </div>
 
+
+            <!-- EDITAR FUNCIONÁRIO ----------------------------------------------------------------------------------- --> 
             <div class="Editarfunc">
                 <div class="Editar-func-primeiro">
                     <h1>Alterar as configurações do perfil:</h1>
@@ -104,7 +106,7 @@
                     <input placeholder="E-Mail" type="text" id="input_alterar_email">
                     <img src="./img/Line1cadastro.png" alt="">
                     <div class="select-func-primeiro">
-                        <select name="select">
+                        <select id="select_alterar_cargo">
                             <option value="valor1" selected disabled>Selecionar cargo</option>
                             <option value="valor2">Analista</option>
                             <option value="valor3">Administrador</option>
@@ -117,10 +119,10 @@
                 </div>
                 <div class="editar-func-titulodelet">
                 </div>
-                <div class="Editar-func-botao-editar">
+                <!-- <div class="Editar-func-botao-editar">
                     <button onclick="atribuicao_editar_gefunc()" class="editar-func">Editar atribuição de
                         servidores</button>
-                </div>
+                </div> -->
                 <img src="./img/Line1cadastro.png" class="linhacad">
                 <div class="Editar-func-botao-delete">
                     <button onclick="excluir_editar_gefunc()" class="excluir-func">Excluir Perfil</button>
@@ -130,6 +132,9 @@
                     <button onclick="fechar_gefunc()" class="fechar-func">Fechar</button>
                 </div>
             </div>
+            <!-- FIM EDITAR FUNCIONÁRIO ----------------------------------------------------------------------------------- --> 
+
+
 
             <div class="Editaratribuicaofunc">
                 <h1>Editar atribuição de servidores</h1>
@@ -197,6 +202,10 @@
 </html>
 
 <script>
+
+  
+    
+
 
     var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
 
@@ -328,7 +337,7 @@
 
                         for (let i = 0; i < resposta.length; i++) {
 
-                            var tupla = resposta[i];
+                            let tupla = resposta[i];
                             var divLista = document.createElement("div");
                             var divId = document.createElement("div");
                             var divnome = document.createElement("div");
@@ -351,6 +360,20 @@
                             divLista.appendChild(divEmail);
                             divLista.appendChild(divCargo);
                             lista.appendChild(divLista);
+
+
+                            let debounceTimeout;
+                            divLista.addEventListener("click", function() {
+                            if (debounceTimeout) {
+                                clearTimeout(debounceTimeout);
+                            }
+
+                            debounceTimeout = setTimeout(function() {
+                                gerenciarUsuario(tupla.idUsuario);
+                             }, 200); 
+                            });
+
+                             lista.appendChild(divLista);
                         }
 
                     });
@@ -584,6 +607,49 @@ function totalanalista() {
     }).catch(function (erro) {
         console.error('Erro ao buscar dados:', erro);
     });
+}
+
+function gerenciarUsuario(idUsuarioSelecionado) {
+    // Exibe o ID do usuário para confirmação
+    alert("ID do usuário selecionado: " + idUsuarioSelecionado);
+
+    fetch("/usuarios/exibirDadosEdicaoUsuario", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idUsuarioServer: idUsuarioSelecionado,
+        }),
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(function (json) {
+                // Aqui você já tem os dados do usuário retornados pela API
+                let nomeUsuarioEdicao = json.nomeUsuario;
+                let emailUsuarioEdicao = json.emailUsuario;
+                let senhaUsuarioEdicao = json.senhaUsuario;
+                let cargoUsuarioEdicao = json.tipoPerfilUsuario;
+
+                // Preenche os inputs do modal com os dados recebidos
+                document.getElementById("input_alterar_nome").value = nomeUsuarioEdicao;
+                document.getElementById("input_alterar_email").value = emailUsuarioEdicao;
+                document.getElementById("input_alterar_senha").value = senhaUsuarioEdicao;
+                document.getElementById("select_alterar_cargo").value = cargoUsuarioEdicao;
+
+                // Agora que os dados estão prontos, exibe o modal
+                document.querySelector('.mainfuncpage').style.filter = "blur(5px)";
+                document.querySelector('.Editarfunc').style.display = "block";
+            });
+        } else {
+            console.error("Houve um erro na requisição");
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro ao tentar buscar os dados do usuário:", erro);
+    });
+
+      return false;
 }
 
 
