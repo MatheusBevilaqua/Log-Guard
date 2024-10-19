@@ -6,26 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogGuard - Dashboard</title>
     <link rel="stylesheet" href="./css/main.css">
+     <script src="js/sessao.js"></script>   
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body>
+<body onload="validarSessao()">
     <section class="page-dash">
         <!-- Barra Lateral -->
         <aside class="nav-dash">
             <div class="nav-dash-logo">
                 <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
             </div>
-            <nav class="nav-dash-menu">
-                <ul class="nav-dash-list">
-                    <li class="nav-dash-link"><img src="./img/home-1.png" class="nav-dash-icon">Visão Geral</li>
-                    <li class="nav-dash-link"><img src="./img/profit-report.png" class="nav-dash-icon">Relatórios</li>
-                    <li class="nav-dash-link" href="gerenciar-maquina.html"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
-                    
-                    <li class="nav-dash-link"><img src="./img/man.png" class="nav-dash-icon">Funcionários</li>
-                    <li class="nav-dash-link sair"><a href="#">Sair</a></li>
-                </ul>
-            </nav>
+            av class="nav-dash-menu">
+        <ul class="nav-dash-list">
+            <a href="dashboard_ADM.html">
+                <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon" style="padding-left: 3%;">Visão
+                    Geral</li>
+            </a>
+            <a href="#">
+                <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon" style="padding-left: 3%;">Relatórios
+                </li>
+            </a>
+            <a href="gerenciar-maquina.html">
+                <li class="nav-dash-link"><img src="./img/monitor.svg" class="nav-dash-icon" style="padding-left: 3%;">Máquinas</li>
+            </a>
+            <a href="gerenciar-usuario-func.html">
+                <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
+            </a>
+            <a href="index.html">
+                <li class="nav-dash-link-sair"><img src="./img/sair.png" class="nav-dash-icon" style="padding-left: 3%;">Sair</li>
+            </a>
+        </ul>
+    </nav>
             </nav>
         </aside>
 
@@ -33,7 +45,7 @@
         <main class="main-dash-page">
             <!-- Saudações -->
             <div class="main-dash-greet">
-                <h1>Olá de volta, Claudio.</h1>
+                <h1>Olá de volta, <span class="b_usuario" id="b_usuario">Bruno</span></h1>
             </div>
 
             <!-- Indicadores de Status -->

@@ -1,6 +1,7 @@
 CREATE DATABASE logGuard;
 USE logGuard;
 
+
 CREATE TABLE empresa(
 idEmpresa INT PRIMARY KEY auto_increment,
 nomeEmpresa VARCHAR(225),
@@ -10,7 +11,6 @@ cnpj CHAR(14),
 cep CHAR(9)
 );
 
-select * from empresa;
 CREATE VIEW visualizar_empresas AS SELECT * FROM empresa;
 
 
@@ -33,7 +33,6 @@ senhaUsuario VARCHAR(225),
 tipoPerfilUsuario VARCHAR(13),
 CONSTRAINT CHK_TIPO CHECK (tipoPerfilUsuario ='ADMINISTRADOR' OR tipoPerfilUsuario ='LOG_GUARD' OR tipoPerfilUsuario ='COMUM')
 );
-SELECT * FROM usuario;
 
 
 -- Inserindo 10 funcionários para Empresa A
@@ -50,33 +49,67 @@ VALUES
 (1, 'Funcionario 9A', 'funcionario9a@empresaa.com', 'senha123senha123', 'ADMINISTRADOR'),
 (1, 'Funcionario 10A', 'funcionario10a@empresaa.com', 'senha123', 'COMUM');
 
+INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
+VALUES 
+(2, 'Funcionario 11A', 'funcionario11a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 12A', 'funcionario12a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 13A', 'funcionario13a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 14A', 'funcionario14a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 15A', 'funcionario15a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 16A', 'funcionario16a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 17A', 'funcionario17a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 18A', 'funcionario18a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 19A', 'funcionario19a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 20A', 'funcionario20a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 21A', 'funcionario21a@empresaa.com', 'senha123', 'ADMINISTRADOR'),
+(2, 'Funcionario 22A', 'funcionario22a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 23A', 'funcionario23a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 24A', 'funcionario24a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 25A', 'funcionario25a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 26A', 'funcionario26a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 27A', 'funcionario27a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 28A', 'funcionario28a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 29A', 'funcionario29a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 30A', 'funcionario30a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 31A', 'funcionario31a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 32A', 'funcionario32a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 33A', 'funcionario33a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 34A', 'funcionario34a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 35A', 'funcionario35a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 36A', 'funcionario36a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 37A', 'funcionario37a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 38A', 'funcionario38a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 39A', 'funcionario39a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 40A', 'funcionario40a@empresaa.com', 'senha123', 'COMUM');
+
+
 -- Inserindo 10 funcionários para Empresa B
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
-(2, 'Funcionario 1B', 'funcionario1b@empresab.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 2B', 'funcionario2b@empresab.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 3B', 'funcionario3b@empresab.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 4B', 'funcionario4b@empresab.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 5B', 'funcionario5b@empresab.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 6B', 'funcionario6b@empresab.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 7B', 'funcionario7b@empresab.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 8B', 'funcionario8b@empresab.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 9B', 'funcionario9b@empresab.com', 'senha123', 'ADMINISTRADOR'),
-(2, 'Funcionario 10B', 'funcionario10b@empresab.com', 'senha123', 'COMUM');
+(3, 'Funcionario 1B', 'funcionario1b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 2B', 'funcionario2b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 3B', 'funcionario3b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 4B', 'funcionario4b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 5B', 'funcionario5b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 6B', 'funcionario6b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 7B', 'funcionario7b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 8B', 'funcionario8b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 9B', 'funcionario9b@empresab.com', 'senha123', 'ADMINISTRADOR'),
+(3, 'Funcionario 10B', 'funcionario10b@empresab.com', 'senha123', 'COMUM');
 
 -- Inserindo 10 funcionários para Empresa C
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
-(3, 'Funcionario 1C', 'funcionario1c@empresac.com', 'senha123', 'COMUM'),
-(3, 'Funcionario 2C', 'funcionario2c@empresac.com', 'senha123', 'COMUM'),
-(3, 'Funcionario 3C', 'funcionario3c@empresac.com', 'senha123', 'COMUM'),
-(3, 'Funcionario 4C', 'funcionario4c@empresac.com', 'senha123', 'COMUM'),
-(3, 'Funcionario 5C', 'funcionario5c@empresac.com', 'senha123', 'COMUM'),
-(3, 'Funcionario 6C', 'funcionario6c@empresac.com', 'senha123', 'COMUM'),
-(3, 'Funcionario 7C', 'funcionario7c@empresac.com', 'senha123', 'COMUM'),
-(3, 'Funcionario 8C', 'funcionario8c@empresac.com', 'senha123', 'COMUM'),
-(3, 'Funcionario 9C', 'funcionario9c@empresac.com', 'senha123', 'ADMINISTRADOR'),
-(3, 'Funcionario 10C', 'funcionario10c@empresac.com', 'senha123', 'COMUM');
+(4, 'Funcionario 1C', 'funcionario1c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 2C', 'funcionario2c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 3C', 'funcionario3c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 4C', 'funcionario4c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 5C', 'funcionario5c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 6C', 'funcionario6c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 7C', 'funcionario7c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 8C', 'funcionario8c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 9C', 'funcionario9c@empresac.com', 'senha123', 'ADMINISTRADOR'),
+(4, 'Funcionario 10C', 'funcionario10c@empresac.com', 'senha123', 'COMUM');
 
 
 
@@ -90,11 +123,11 @@ nomeMaquina VARCHAR(255),
 modeloCPU VARCHAR(45),
 capacidadeRAM DECIMAL(8,3),
 disco INT,
-latencia INT,
 MACAdress VARCHAR(45)
 ); 
 
-select * from maquina;
+insert into maquina (MACAdress) values ('00:e2:69:6b:fc:0f');
+
 
 CREATE TABLE relatorio(
 idRelatorio INT auto_increment,
@@ -110,10 +143,16 @@ statusMaquina VARCHAR(10),
 CONSTRAINT CHK_STATUS CHECK (statusMaquina ='EMERGÊNCIA' OR statusMaquina ='ALERTA' OR statusMaquina ='NORMAL')
 );
 
+
 CREATE TABLE recurso(
 idRecurso INT PRIMARY KEY auto_increment,
 nomeRecurso VARCHAR(45)
 );
+
+INSERT INTO recurso VALUES(default, 'Uso de CPU');
+INSERT INTO recurso VALUES(default, 'Uso de RAM');
+INSERT INTO recurso VALUES(default, 'Uso de Disco');
+INSERT INTO recurso VALUES(default, 'Taxa de uso da largura de banda');
 
 CREATE TABLE maquinaRecurso(
 idMaquinaRecurso INT PRIMARY KEY auto_increment,
@@ -121,9 +160,19 @@ fkMaquinaRecurso INT,
 FOREIGN KEY (fkMaquinaRecurso) REFERENCES maquina(idMaquina),
 fkrecurso INT,
 FOREIGN KEY (fkrecurso) REFERENCES recurso(idRecurso),
-max DECIMAL (8,5)
+parametro DECIMAL (8,5)
 );
 
+
+-- METRICAS BASEADAS EM PESQUISA (SOMENTE PARA DEMONSTRAÇÃO NA SPRINT 2)
+INSERT INTO maquinaRecurso VALUES(default, 1, 1, 65.0);
+INSERT INTO maquinaRecurso VALUES(default, 1, 2, 70.0);
+INSERT INTO maquinaRecurso VALUES(default, 1, 3, 80.0);
+INSERT INTO maquinaRecurso VALUES(default, 1, 4, 100.0);
+
+SELECT parametro FROM maquinaRecurso WHERE fkMaquinaRecurso = 1 AND fkrecurso = 4;
+
+-- MUDAR ISSO PARA TERCEIRA SPRINT, TANTO A TABELA maquinaRecurso quanto a tabela captura pedem fk da máquina. o que acontece se eles forem diferentes?????
 CREATE TABLE captura(
 idCaptura INT PRIMARY KEY auto_increment,
 fkMaquinaCaptura INT,
@@ -132,7 +181,15 @@ fkRecursoCaptura INT,
 FOREIGN KEY (fkRecursoCaptura) REFERENCES recurso(idRecurso),
 fkMaquinaRecursoCaptura INT,
 FOREIGN KEY (fkMaquinaRecursoCaptura) REFERENCES maquinaRecurso(idMaquinaRecurso),
-registro DECIMAL (8,3),
+registro DECIMAL (6,3),
+tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
+
+select * from captura;
+
+
+
+
+
 
