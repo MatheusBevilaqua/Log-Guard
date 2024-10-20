@@ -9,7 +9,7 @@
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body onload="verUsuarios(); totalfunc(); totaladms(); totalanalista();">
+<body onload="verUsuarios(); totalfunc(); totaladms(); totalanalista(); ">
     <section class="page-dash">
         <aside class="nav-dash">
             <div class="nav-dash-logo">
@@ -616,6 +616,48 @@ function gerenciarUsuario(idUsuarioSelecionado) {
 
     fetch("/usuarios/exibirDadosEdicaoUsuario", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idUsuarioServer: idUsuarioSelecionado,
+        }),
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(function (json) {
+                // Aqui você já tem os dados do usuário retornados pela API
+                let nomeUsuarioEdicao = json.nomeUsuario;
+                let emailUsuarioEdicao = json.emailUsuario;
+                let senhaUsuarioEdicao = json.senhaUsuario;
+                let cargoUsuarioEdicao = json.tipoPerfilUsuario;
+
+                // Preenche os inputs do modal com os dados recebidos
+                document.getElementById("input_alterar_nome").value = nomeUsuarioEdicao;
+                document.getElementById("input_alterar_email").value = emailUsuarioEdicao;
+                document.getElementById("input_alterar_senha").value = senhaUsuarioEdicao;
+                document.getElementById("select_alterar_cargo").value = cargoUsuarioEdicao;
+
+                // Agora que os dados estão prontos, exibe o modal
+                document.querySelector('.mainfuncpage').style.filter = "blur(5px)";
+                document.querySelector('.Editarfunc').style.display = "block";
+            });
+        } else {
+            console.error("Houve um erro na requisição");
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro ao tentar buscar os dados do usuário:", erro);
+    });
+
+      return false;
+}
+
+function deletarusuario(idUsuarioSelecionado) {
+    alert("ID do usuário selecionado: " + idUsuarioSelecionado);
+
+    fetch("/usuarios/deletarusuario", {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },

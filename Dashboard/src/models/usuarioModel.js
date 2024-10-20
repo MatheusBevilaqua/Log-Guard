@@ -21,7 +21,7 @@ function cadastrar(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresaUsuario, ti
 }
 
 function visualizarUsuarios(idEmpresaUsuario) {
-    var instrucaoSql = `SELECT * FROM usuario WHERE fkEmpresaUsuario ='${idEmpresaUsuario}';`;
+    var instrucaoSql = `SELECT * FROM usuario WHERE fkEmpresaUsuario = '${idEmpresaUsuario}' AND tipoPerfilUsuario != 'DESATIVADO';`;
     return database.executar(instrucaoSql);
 }
 
@@ -64,6 +64,14 @@ function exibirDadosEdicaoUsuario(idUsuario) {
       
     }
 
+    // --------------------------------------------------------------------
+
+function deletarusuario(idUsuario) {
+    var instrucaoSql = `
+    UPDATE usuario SET tipoPerfilUsuario = "DESATIVADO" WHERE idUsuario = '${idUsuario}';`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 
 module.exports = {
@@ -75,5 +83,6 @@ module.exports = {
     totalfunc,
     totalanalista,
     totaladms,
-    exibirDadosEdicaoUsuario
+    exibirDadosEdicaoUsuario,
+    deletarusuario
 };

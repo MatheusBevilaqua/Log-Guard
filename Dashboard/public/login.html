@@ -1,15 +1,15 @@
-    <!DOCTYPE html>
-    <html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>LogGuard Login</title>
-        <link rel="stylesheet" href="./css/main.css">
-        <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogGuard Login</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+</head>
 
-<body id="body_login"> 
+<body id="body_login">
 
     <!-- //-- INICIO DA TELA DE LOGIN --// -->
     <section id="page-login-user" class="login">
@@ -28,14 +28,16 @@
                         <span class="icon">
                             <img src="./svg/gmail-icon.svg" alt="">
                         </span>
-                        <input type="text" id="input_email" class="login-form-input black-text" placeholder="Digite seu e-mail" autocomplete="off"/ >
+                        <input type="text" id="input_email" class="login-form-input black-text"
+                            placeholder="Digite seu e-mail" autocomplete="off" />
                     </label>
 
                     <label class="login-form-box">
                         <span class="icon">
                             <img src="./svg/key-icon.svg" alt="">
                         </span>
-                        <input type="password" id="senha_input" class="login-form-input black-text" placeholder="Digite sua senha" autocomplete="off"/>
+                        <input type="password" id="senha_input" class="login-form-input black-text"
+                            placeholder="Digite sua senha" autocomplete="off" />
                     </label>
 
                     <div class="login-link-forget">
@@ -47,7 +49,8 @@
                     </div>
 
                     <div class="login-form-not-cont">
-                        <p class="text-purple text-center">Contato: <a class="link-text" href="mailto: logguard02@gmail.com">logguard02@gmail.com</a></p>
+                        <p class="text-purple text-center">Contato: <a class="link-text"
+                                href="mailto: logguard02@gmail.com">logguard02@gmail.com</a></p>
                     </div>
 
                 </div>
@@ -67,10 +70,11 @@
         </div>
     </section>
 </body>
-</html>
-<script> 
 
-function entrar() {
+</html>
+<script>
+
+    function entrar() {
         var emailVar = input_email.value;
         var senhaVar = senha_input.value;
 
@@ -79,71 +83,79 @@ function entrar() {
             return false;
         }
         else {
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
 
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.emailUsuario;
+                        sessionStorage.EMPRESA_USUARIO = json.fkEmpresaUsuario;
+                        sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
+                        sessionStorage.TIPO_USUARIO = json.tipoPerfilUsuario;
+
+                        setTimeout(function () {
+
+                            
+
+
+
+                            if (sessionStorage.TIPO_USUARIO == "DESATIVADO") {
+                                alert("Você não possui mais cadastro nessa empresa!")
+                            } else {
+                                if (sessionStorage.TIPO_USUARIO == "ADMINISTRADOR") {
+                                    window.location = "dashboard_ADM.html";
+                                }
+
+                                if (sessionStorage.TIPO_USUARIO == "COMUM") {
+                                    window.location = "dashboardFuncionario.html";
+                                }
+
+                                if (sessionStorage.TIPO_USUARIO == "LOG_GUARD") {
+                                    window.location = "cadastroEmpresa.html";
+                                }
+
+                                alert(sessionStorage.EMPRESA_USUARIO)
+                            alert(sessionStorage.NOME_USUARIO)
+                            }
+
+                        }, 1000); // apenas para exibir o loading
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
             })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
 
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.emailUsuario;
-                    sessionStorage.EMPRESA_USUARIO = json.fkEmpresaUsuario;
-                    sessionStorage.NOME_USUARIO = json.nomeUsuario;
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.TIPO_USUARIO = json.tipoPerfilUsuario;
-
-                    setTimeout(function () {
-
-                        alert(sessionStorage.EMPRESA_USUARIO)
-                        alert(sessionStorage.NOME_USUARIO)
-
-                        if (sessionStorage.TIPO_USUARIO == "ADMINISTRADOR") {
-                            window.location = "dashboard_ADM.html";
-                        }
-
-                        if (sessionStorage.TIPO_USUARIO == "COMUM") {
-                            window.location = "dashboardFuncionario.html";
-                        }
-
-                        if (sessionStorage.TIPO_USUARIO == "LOG_GUARD") {
-                            window.location = "cadastroEmpresa.html";
-                        }
-                       
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+            return false;
         }
 
-       
+
     }
 
 

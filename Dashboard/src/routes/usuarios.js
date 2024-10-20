@@ -40,5 +40,10 @@ router.post("/exibirDadosEdicaoUsuario", function (req, res) {
     usuarioController.exibirDadosEdicaoUsuario(req, res);
 });
 
+router.post("/deletarusuario", function (req, res) {
+    usuarioController.deletarusuario(req, res);
+});
+
+
 
 module.exports = router;
