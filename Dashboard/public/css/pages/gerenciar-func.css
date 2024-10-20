@@ -340,7 +340,7 @@ font-size: 10px;
     left: 50%; 
     transform: translate(-30%, -50%); 
     width: 30%; 
-    height: 570px;
+    height: 500px;
     background-color: #FFF;
     flex-direction: column;
     align-items: center;

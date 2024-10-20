@@ -44,6 +44,15 @@ router.post("/deletarusuario", function (req, res) {
     usuarioController.deletarusuario(req, res);
 });
 
+router.post("/editarusuario", function (req, res) {
+    usuarioController.editarusuario(req, res);
+});
+
+router.post("/cadastrarnovouser", function (req, res) {
+    usuarioController.cadastrarnovouser(req, res);
+});
+
+
 
 
 module.exports = router;
