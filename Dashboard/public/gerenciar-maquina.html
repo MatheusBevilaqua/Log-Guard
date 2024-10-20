@@ -96,17 +96,16 @@
                 <h1>Alterar as configurações do servidor:</h1>
                 <input placeholder="Nome da máquina" type="text" id="input_alterar_nome">
                 <img src="./img/Line1cadastro.png" alt="">
-                <input placeholder="Modelo da CPU" type="text" id="input_alterar_cpu">
+                <input placeholder="Modelo da CPU" type="text" id="input_alterar_modeloCPU">
                 <img src="./img/Line1cadastro.png" alt="">
-                <input placeholder="RAM(Gb)" type="text" id="input_alterar_memoria">
+                <input placeholder="RAM(Gb)" type="text" id="input_alterar_capacidadeRAM">
                 <img src="./img/Line1cadastro.png" alt="">
                 <input placeholder="Disco(TB)" type="text" id="input_alterar_disco">
                 <img src="./img/Line1cadastro.png" alt="">
                 <input placeholder="Localidade" type="text" id="input_alterar_localidade">
                 <img src="./img/Line1cadastro.png" alt="">
             </div>
-            <input placeholder="Rede(Mbps)" type="text" id="input_alterar_rede">
-            <img src="./img/Line1cadastro.png" alt="">
+           
     
             <div class="Editar-geren-segundo">
                 <div class="Editar-geren-confirmudanca">
@@ -165,13 +164,24 @@
 <script>
 
     var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
+    var idMaquina = ""
 
     function confirmar_editar() {
         // temporario
         document.querySelector('.maingerenpage').style.filter = "blur(0px)";
         document.querySelector('.Editargeren').style.display = "none";
         window.location.reload(true); //reload na página
+        {
+ var r = confirm("Tem certeza que deseja alterar este perfil?");
+    if (r == true) {
+       editarMaquina();
+    } else {
+        alert("Algo deu errado na alteração de perfil!");
     }
+}
+    }
+
+
 
     function cancelar_editar() {
         document.querySelector('.maingerenpage').style.filter = "blur(0px)";
@@ -180,7 +190,8 @@
 
     function excluir_editar() {
         var r = confirm("Tem certeza que deseja excluir este servidor?");
-        if (r == true) {
+        if (r == true) { 
+            deletarMaquina()
             window.location.reload(true); //reload na página
         }
     }
@@ -254,11 +265,6 @@
         document.querySelector('.Cadastrargeren').style.display = "none";
     }
 
-    function editar_maquina() {
-        document.querySelector('.maingerenpage').style.filter = "blur(5px)";
-        document.querySelector('.Editargeren').style.display = "block";
-
-    }
 
     function cadastrar_maquina() {
         document.querySelector('.maingerenpage').style.filter = "blur(5px)";
@@ -284,9 +290,6 @@
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-
-                    alert(idEmpresaUsuario)
-
                     if (resposta.status == 204) {
                         var lista = document.getElementById("dash-func");
                         var mensagem = document.createElement("span");
@@ -333,26 +336,24 @@
                             divLista.appendChild(divId);
                             divLista.appendChild(divnome);
                             divLista.appendChild(divCPU);
+                            divLista.appendChild(divRAM);
                             divLista.appendChild(divDisco);
                             divLista.appendChild(divLocalidade);
                             divLista.appendChild(divMAC);
 
+                            let debounceTimeout;
+                            divLista.addEventListener("click", function() {
+                            if (debounceTimeout) {
+                                clearTimeout(debounceTimeout);
+                            }
 
-                            // let debounceTimeout;
-                            // divLista.addEventListener("click", function() {
-                            // if (debounceTimeout) {
-                            //     clearTimeout(debounceTimeout);
-                            // }
+                            debounceTimeout = setTimeout(function() {
+                                gerenciarMaquina(tupla.idMaquina);
+                             }, 200); 
+                            });
 
-                            // debounceTimeout = setTimeout(function() {
-                            //     alert("TESTE:" + tupla.nomeMaquina)
-                            //  }, 200); // Atraso de 200 ms para evitar múltiplos cliques rápidos
-                            // });
-
+                            
                              lista.appendChild(divLista);
-
-
-
                         }
 
                     });
@@ -363,5 +364,139 @@
                 console.error(resposta);
             });
     }
+
+    function gerenciarMaquina(idMaquinaSelecionada) {
+
+    idMaquina = idMaquinaSelecionada
+
+    fetch("/empresas/exibirDadosEdicaoMaquina", {
+    method: "POST",
+    headers: { 
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ 
+        idMaquinaServer: idMaquinaSelecionada,
+    }),
+    })
+    .then(function (resposta) {
+    if (resposta.ok) {
+        resposta.json().then(function (json) {
+
+            let nomeMaquinaEdicao = json.nomeMaquina;
+            let modeloCPUMaquinaEdicao = json.modeloCPU;
+            let capacidadeRAMaquinaEdicao = json.capacidadeRAM;
+            let discoMaquinaEdicao = json.disco;
+            let localidadeMaquinaEdicao = json.localidade;
+
+
+            document.getElementById("input_alterar_nome").value = nomeMaquinaEdicao;
+            document.getElementById("input_alterar_modeloCPU").value = modeloCPUMaquinaEdicao;
+            document.getElementById("input_alterar_capacidadeRAM").value = capacidadeRAMaquinaEdicao;
+            document.getElementById("input_alterar_disco").value = discoMaquinaEdicao;
+            document.getElementById("input_alterar_localidade").value = localidadeMaquinaEdicao;
+
+              document.querySelector('.maingerenpage').style.filter = "blur(5px)";
+            document.querySelector('.Editargeren').style.display = "block";
+
+
+        });
+    } else {
+        console.error("Houve um erro na requisição");
+    }
+    })
+    .catch(function (erro) {
+    console.error("Erro ao tentar buscar os dados do usuário:", erro);
+    });
+
+    return false;
+    }
+
+    function deletarMaquina() {
+    alert("ID da selecionado: " + idMaquina);
+    
+    fetch("/empresas/deletarMaquina", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idMaquinaServer: idMaquina,
+        }),
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(function (json) {
+                console.log("Máquina deletada com sucesso:", json);
+                verUsuarios();
+            });
+        } else {
+            console.error("Houve um erro na requisição");
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro ao tentar deletar a máquina:", erro);
+    });
+
+    return false;
+}
+function editarMaquina() {
+    alert("teste")
+
+    var nomeMaquinaVAR = input_alterar_nome.value;
+    var modeloCPUVAR = input_alterar_modeloCPU.value;
+    var capacidadeRAMVAR =  input_alterar_capacidadeRAM.value;
+    var discoVAR =  input_alterar_disco.value;
+    var localidadeVAR = input_alterar_localidade.value;
+
+    alert(idMaquina)
+    alert(nomeMaquinaVAR)
+    alert(modeloCPUVAR)
+    alert(capacidadeRAMVAR)
+    alert(discoVAR)
+    alert(localidadeVAR)
+       
+    console.log("Dados a serem enviados:", {
+        nomeMaquinaServer: nomeMaquinaVAR,
+        modeloCPUServer: modeloCPUVAR,
+        capacidadeRAMServer: capacidadeRAMVAR,
+        discoServer: discoVAR,
+        localidadeServer: localidadeVAR,
+    });
+    fetch("/empresas/editarMaquina", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idMaquinaServer: idMaquina,
+            nomeMaquinaServer: nomeMaquinaVAR,
+            modeloCPUServer: modeloCPUVAR,
+            capacidadeRAMServer: capacidadeRAMVAR,
+            discoServer: discoVAR,
+            localidadeServer: localidadeVAR,
+        }),
+    })
+    .then(function (resposta) {
+        console.log("Status da resposta:", resposta.status);
+        if (resposta.ok) {
+            alert("teste 02")
+
+            resposta.json().then(function (json) {
+                console.log("Máquina atualizada com sucesso:", json);
+                alert("Perfil alterado com sucesso!");
+                window.location.reload(true);
+            });
+        } else {
+            resposta.text().then(function (texto) {
+                console.error("Erro na resposta:", texto);
+            });
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro ao tentar alterar os dados da máquina:", erro);
+    });
+}
+
+
 
 </script>

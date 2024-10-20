@@ -48,7 +48,22 @@ function visualizarMaquinas(idEmpresaMaquina) {
   var instrucaoSql = `SELECT * FROM maquina WHERE fkEmpresaMaquina ='${idEmpresaMaquina}';`;
   return database.executar(instrucaoSql);
 }
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar,visualizarEmpresas, confirmar_editar, excluir_editar, confirmar_cadastrar,visualizarMaquinas};
+function deletarMaquina(idMaquina) {
+  var instrucaoSql = `DELETE from maquina WHERE idMaquina = '${idMaquina}';`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function exibirDadosEdicaoMaquina(idMaquina) {
+  var instrucaoSql = `SELECT * FROM maquina WHERE idMaquina = '${idMaquina}';`;
+  return database.executar(instrucaoSql)
+}
+function editarMaquina(idMaquina,nomeMaquina,modeloCPU,capacidadeRAM,disco,localidade) {
+  var instrucaoSql = `UPDATE maquina SET nomeMaquina = '${nomeMaquina}', modeloCPU = '${modeloCPU}', capacidadeRAM  = '${capacidadeRAM }',disco = '${disco}',localidade = '${localidade}' WHERE idMaquina = '${idMaquina}';`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar,visualizarEmpresas, confirmar_editar, excluir_editar, confirmar_cadastrar,visualizarMaquinas,deletarMaquina,exibirDadosEdicaoMaquina,editarMaquina};
 
 
 

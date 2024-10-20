@@ -61,7 +61,6 @@ function totalanalista(idEmpresaUsuario) {
 function exibirDadosEdicaoUsuario(idUsuario) {
     var instrucaoSql = `SELECT *  FROM usuario WHERE idUsuario = '${idUsuario}';`;
     return database.executar(instrucaoSql)
-
 }
 
 // --------------------------------------------------------------------
