@@ -35,4 +35,9 @@ router.post("/confirmar_cadastrar", function (req, res) {
 // });
 
 
+router.post("/visualizarMaquinas", function (req, res) {
+  empresaController.visualizarMaquinas(req, res);
+});
+
+
 module.exports = router;

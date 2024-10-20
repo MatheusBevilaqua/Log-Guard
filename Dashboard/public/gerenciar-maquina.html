@@ -9,253 +9,156 @@
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body>
-</body>
-<aside class="nav-dash">
-    <div class="nav-dash-logo">
-        <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
-    </div>
-    av class="nav-dash-menu">
-    <ul class="nav-dash-list">
-        <a href="dashboard_ADM.html">
-            <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon"
-                    style="padding-left: 3%;">Visão
-                Geral</li>
-        </a>
-        <a href="#">
-            <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon"
-                    style="padding-left: 3%;">Relatórios
-            </li>
-        </a>
-        <a href="gerenciar-maquina.html">
-            <li class="nav-dash-link"><img src="./img/monitor.svg" class="nav-dash-icon"
-                    style="padding-left: 3%;">Máquinas</li>
-        </a>
-        <a href="gerenciar-usuario-func.html">
-            <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
-        </a>
-        <a href="index.html">
-            <li class="nav-dash-link-sair"><img src="./img/sair.png" class="nav-dash-icon"
-                    style="padding-left: 3%;">Sair</li>
-        </a>
-    </ul>
-    </nav>
-    </nav>
-</aside>
-<section class="page-dash-geren" onload="validarSessao()">
-
-    <div class="maingerenpage">
-        <h1>Gerenciar Máquinas:</h1>
-        <div class="select-geren">
-            <select name="select">
-                <div class="select-items-geren">
-                    <option value="valor1" selected disabled>Filtro</option>
-                    <option value="valor2">Crescente</option>
-                    <option value="valor3">Decrescente</option>
-                </div>
-            </select>
-            <select name="select">
-                <div class="select-items-geren">
-                    <option value="valor1" selected disabled>Componente</option>
-                    <option value="valor2">CPU</option>
-                    <option value="valor3">Memória</option>
-                    <option value="valor3">Disco</option>
-                    <option value="valor3">Rede</option>
-                    <option value="valor3">Localidade</option>
-                </div>
-            </select>
+<body onload="visualizarMaquinas()">
+    <aside class="nav-dash">
+        <div class="nav-dash-logo">
+            <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
         </div>
-        <div class="dash-geren">
-            <div class="titulos-geren">
-                <div class="coluna-geren">ID</div>
-                <div class="coluna-geren">Nome</div>
-                <div class="coluna-geren">CPU</div>
-                <div class="coluna-geren">Memória</div>
-                <div class="coluna-geren">Disco</div>
-                <div class="coluna-geren">Rede</div>
-                <div class="coluna-geren">Localidade</div>
+        av class="nav-dash-menu">
+        <ul class="nav-dash-list">
+            <a href="dashboard_ADM.html">
+                <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon"
+                        style="padding-left: 3%;">Visão
+                    Geral</li>
+            </a>
+            <a href="#">
+                <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon"
+                        style="padding-left: 3%;">Relatórios
+                </li>
+            </a>
+            <a href="gerenciar-maquina.html">
+                <li class="nav-dash-link"><img src="./img/monitor.svg" class="nav-dash-icon"
+                        style="padding-left: 3%;">Máquinas</li>
+            </a>
+            <a href="gerenciar-usuario-func.html">
+                <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
+            </a>
+            <a href="index.html">
+                <li class="nav-dash-link-sair"><img src="./img/sair.png" class="nav-dash-icon"
+                        style="padding-left: 3%;">Sair</li>
+            </a>
+        </ul>
+        </nav>
+        </nav>
+    </aside>
+    <section class="page-dash-geren" onload="validarSessao()">
+    
+        <div class="maingerenpage">
+            <h1>Gerenciar Máquinas:</h1>
+            <div class="select-geren">
+                <select name="select">
+                    <div class="select-items-geren">
+                        <option value="valor1" selected disabled>Filtro</option>
+                        <option value="valor2">Crescente</option>
+                        <option value="valor3">Decrescente</option>
+                    </div>
+                </select>
+                <select name="select">
+                    <div class="select-items-geren">
+                        <option value="valor1" selected disabled>Componente</option>
+                        <option value="valor2">CPU</option>
+                        <option value="valor3">Memória</option>
+                        <option value="valor3">Disco</option>
+                        <option value="valor3">Localidade</option>
+                        <option value="valor3">Endereço MAC</option>
+                    </div>
+                </select>
             </div>
-            <div class="linha-geren">
+            <div class="dash-geren">
+                <div class="titulos-geren">
+                    <div class="coluna-geren">ID</div>
+                    <div class="coluna-geren">Nome</div>
+                    <div class="coluna-geren">CPU</div>
+                    <div class="coluna-geren">Memória</div>
+                    <div class="coluna-geren">Disco</div>
+                    <div class="coluna-geren">Localidade</div>
+                    <div class="coluna-geren">Endereço MAC</div>
+                </div>
+                <div class="linha-geren">
+                    <img src="./img/Line1cadastro.png" alt="">
+                </div>
+                <div class="geren-dados" id="geren-dados"> 
+                    
+                </div>
+            </div>
+            <div class="botoes-geren">
+                <button onclick="editar_maquina()" class="edit-geren">Editar</button>
+                <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar</button>
+            </div>
+    
+            <div class="duvidas-func">
+                <a href="#">Duvidas? Clique aqui!</a>
+            </div>
+        </div>
+    
+        <div class="Editargeren">
+            <div class="Editar-geren-primeiro">
+                <h1>Alterar as configurações do servidor:</h1>
+                <input placeholder="Nome da máquina" type="text" id="input_alterar_nome">
+                <img src="./img/Line1cadastro.png" alt="">
+                <input placeholder="Modelo da CPU" type="text" id="input_alterar_cpu">
+                <img src="./img/Line1cadastro.png" alt="">
+                <input placeholder="RAM(Gb)" type="text" id="input_alterar_memoria">
+                <img src="./img/Line1cadastro.png" alt="">
+                <input placeholder="Disco(TB)" type="text" id="input_alterar_disco">
+                <img src="./img/Line1cadastro.png" alt="">
+                <input placeholder="Localidade" type="text" id="input_alterar_localidade">
                 <img src="./img/Line1cadastro.png" alt="">
             </div>
-            <div class="geren-dados">
-                <div class="dados-geren">
-                    <div class="coluna-geren">102</div>
-                    <div class="coluna-geren">DESKTOP-L776AUQ</div>
-                    <div class="coluna-geren">i7-11370H</div>
-                    <div class="coluna-geren">24GB</div>
-                    <div class="coluna-geren">200TB</div>
-                    <div class="coluna-geren">0 Mbps</div>
-                    <div class="coluna-geren">DATACENTER5</div>
+            <input placeholder="Rede(Mbps)" type="text" id="input_alterar_rede">
+            <img src="./img/Line1cadastro.png" alt="">
+    
+            <div class="Editar-geren-segundo">
+                <div class="Editar-geren-confirmudanca">
+    
+                    <input type="checkbox" id="input_alterar_checkbox">
+                    <label for="input_alterar_checkbox">Confirmar mudanças</label><br>
                 </div>
-                <div class="dados-geren">
-                    <div class="coluna-geren">102</div>
-                    <div class="coluna-geren">DESKTOP-L776AUQ</div>
-                    <div class="coluna-geren">i7-11370H</div>
-                    <div class="coluna-geren">24GB</div>
-                    <div class="coluna-geren">200TB</div>
-                    <div class="coluna-geren">0 Mbps</div>
-                    <div class="coluna-geren">DATACENTER5</div>
-                </div>
-                <div class="dados-geren">
-                    <div class="coluna-geren">102</div>
-                    <div class="coluna-geren">DESKTOP-L776AUQ</div>
-                    <div class="coluna-geren">i7-11370H</div>
-                    <div class="coluna-geren">24GB</div>
-                    <div class="coluna-geren">200TB</div>
-                    <div class="coluna-geren">0 Mbps</div>
-                    <div class="coluna-geren">DATACENTER5</div>
-                </div>
-                <div class="dados-geren">
-                    <div class="coluna-geren">102</div>
-                    <div class="coluna-geren">DESKTOP-L776AUQ</div>
-                    <div class="coluna-geren">i7-11370H</div>
-                    <div class="coluna-geren">24GB</div>
-                    <div class="coluna-geren">200TB</div>
-                    <div class="coluna-geren">0 Mbps</div>
-                    <div class="coluna-geren">DATACENTER5</div>
-                </div>
-                <div class="dados-geren">
-                    <div class="coluna-geren">102</div>
-                    <div class="coluna-geren">DESKTOP-L776AUQ</div>
-                    <div class="coluna-geren">i7-11370H</div>
-                    <div class="coluna-geren">24GB</div>
-                    <div class="coluna-geren">200TB</div>
-                    <div class="coluna-geren">0 Mbps</div>
-                    <div class="coluna-geren">DATACENTER5</div>
-                </div>
-                <div class="dados-geren">
-                    <div class="coluna-geren">102</div>
-                    <div class="coluna-geren">DESKTOP-L776AUQ</div>
-                    <div class="coluna-geren">i7-11370H</div>
-                    <div class="coluna-geren">24GB</div>
-                    <div class="coluna-geren">200TB</div>
-                    <div class="coluna-geren">0 Mbps</div>
-                    <div class="coluna-geren">DATACENTER5</div>
-                </div>
-                <div class="dados-geren">
-                    <div class="coluna-geren">102</div>
-                    <div class="coluna-geren">DESKTOP-L776AUQ</div>
-                    <div class="coluna-geren">i7-11370H</div>
-                    <div class="coluna-geren">24GB</div>
-                    <div class="coluna-geren">200TB</div>
-                    <div class="coluna-geren">0 Mbps</div>
-                    <div class="coluna-geren">DATACENTER5</div>
-                </div>
-                <div class="dados-geren">
-                    <div class="coluna-geren">102</div>
-                    <div class="coluna-geren">DESKTOP-L776AUQ</div>
-                    <div class="coluna-geren">i7-11370H</div>
-                    <div class="coluna-geren">24GB</div>
-                    <div class="coluna-geren">200TB</div>
-                    <div class="coluna-geren">0 Mbps</div>
-                    <div class="coluna-geren">DATACENTER5</div>
-                </div>
-                <div class="dados-geren">
-                    <div class="coluna-geren">102</div>
-                    <div class="coluna-geren">DESKTOP-L776AUQ</div>
-                    <div class="coluna-geren">i7-11370H</div>
-                    <div class="coluna-geren">24GB</div>
-                    <div class="coluna-geren">200TB</div>
-                    <div class="coluna-geren">0 Mbps</div>
-                    <div class="coluna-geren">DATACENTER5</div>
-                </div>
-                <div class="dados-geren">
-                    <div class="coluna-geren">102</div>
-                    <div class="coluna-geren">DESKTOP-L776AUQ</div>
-                    <div class="coluna-geren">i7-11370H</div>
-                    <div class="coluna-geren">24GB</div>
-                    <div class="coluna-geren">200TB</div>
-                    <div class="coluna-geren">0 Mbps</div>
-                    <div class="coluna-geren">DATACENTER5</div>
-                </div>
-                <div class="dados-geren">
-                    <div class="coluna-geren">102</div>
-                    <div class="coluna-geren">DESKTOP-L776AUQ</div>
-                    <div class="coluna-geren">i7-11370H</div>
-                    <div class="coluna-geren">24GB</div>
-                    <div class="coluna-geren">200TB</div>
-                    <div class="coluna-geren">0 Mbps</div>
-                    <div class="coluna-geren">DATACENTER5</div>
+
+
+                <div class="Editar-geren-botoes">
+                    <button onclick="confirmar_editar()" class="confirmar-geren">Confirmar</button>
+                    <button onclick="cancelar_editar()" class="cancelar-geren">Cancelar</button>
                 </div>
             </div>
-        </div>
-        <div class="botoes-geren">
-            <button onclick="editar_maquina()" class="edit-geren">Editar</button>
-            <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar</button>
-        </div>
-
-        <div class="duvidas-func">
-            <a href="#">Duvidas? Clique aqui!</a>
-        </div>
-    </div>
-
-    <div class="Editargeren">
-        <div class="Editar-geren-primeiro">
-            <h1>Alterar as configurações do servidor:</h1>
-            <input placeholder="Nome da máquina" type="text" id="input_alterar_nome">
-            <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Modelo da CPU" type="text" id="input_alterar_cpu">
-            <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="RAM(Gb)" type="text" id="input_alterar_memoria">
-            <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Disco(TB)" type="text" id="input_alterar_disco">
-            <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Localidade" type="text" id="input_alterar_localidade">
-            <img src="./img/Line1cadastro.png" alt="">
-        </div>
-        <input placeholder="Rede(Mbps)" type="text" id="input_alterar_rede">
-        <img src="./img/Line1cadastro.png" alt="">
-
-        <div class="Editar-geren-segundo">
-            <div class="Editar-geren-confirmudanca">
-
-                <input type="checkbox" id="input_alterar_checkbox">
-                <label for="input_alterar_checkbox">Confirmar mudanças</label><br>
+            <img src="./img/Line1cadastro.png" class="line1-geren" alt="">
+            <div class="editar-geren-titulodelet">
+                <h1>Excluir servidor:</h1>
             </div>
-            <div class="Editar-geren-botoes">
-                <button onclick="confirmar_editar()" class="confirmar-geren">Confirmar</button>
-                <button onclick="cancelar_editar()" class="cancelar-geren">Cancelar</button>
+            <div class="Editar-geren-botao-delete">
+                <button onclick="excluir_editar()" class="confirmar-geren">Excluir Servidor</button>
             </div>
         </div>
-        <img src="./img/Line1cadastro.png" class="line1-geren" alt="">
-        <div class="editar-geren-titulodelet">
-            <h1>Excluir servidor:</h1>
+    
+        <div class="Cadastrargeren">
+            <h1>Complete os campos:</h1>
+            <div class="cadastrar-geren-primeiro">
+                <input placeholder="Nome da máquina" type="text" id="nome_input">
+                <img src="./img/Line1cadastro.png" alt="">
+                <input placeholder="Modelo da CPU" type="text" id="modeloCPU_input">
+                <img src="./img/Line1cadastro.png" alt="">
+                <input placeholder="RAM(Gb)" type="text" id="capacidadeRAM_input">
+                <img src="./img/Line1cadastro.png" alt="">
+                <input placeholder="Disco(TB)" type="text" id="disco_input">
+                <img src="./img/Line1cadastro.png" alt="">
+                <input placeholder="Localidade" type="text" id="localidade_input">
+                <img src="./img/Line1cadastro.png" alt="">
+                <input placeholder="Endereço MAC" type="text" id="MACAdress_input">
+                <img src="./img/Line1cadastro.png" alt="">
+    
+            </div>
+            <div class="cadastrar-geren-segundo">
+                <input type="checkbox" id="input_cadastro_checkbox">
+                <label for="input_cadastro_checkbox">Confirmar criação</label>
+            </div>
+            <div class="cadastrar-geren-terceiro">
+                <button onclick="confirmar_cadastrar()" class="confirmar-geren">Confirmar</button>
+                <button onclick="cancelar_cadastrar()" class="cancelar-geren">Cancelar</button>
+            </div>
         </div>
-        <div class="Editar-geren-botao-delete">
-            <button onclick="excluir_editar()" class="confirmar-geren">Excluir Servidor</button>
         </div>
-    </div>
-
-    <div class="Cadastrargeren">
-        <h1>Complete os campos:</h1>
-        <div class="cadastrar-geren-primeiro">
-            <input placeholder="Nome da máquina" type="text" id="nome_input">
-            <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Modelo da CPU" type="text" id="modeloCPU_input">
-            <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="RAM(Gb)" type="text" id="capacidadeRAM_input">
-            <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Disco(TB)" type="text" id="disco_input">
-            <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Localidade" type="text" id="localidade_input">
-            <img src="./img/Line1cadastro.png" alt="">
-            <input placeholder="Endereço MAC" type="text" id="MACAdress_input">
-            <img src="./img/Line1cadastro.png" alt="">
-
-        </div>
-        <div class="cadastrar-geren-segundo">
-            <input type="checkbox" id="input_cadastro_checkbox">
-            <label for="input_cadastro_checkbox">Confirmar criação</label>
-        </div>
-        <div class="cadastrar-geren-terceiro">
-            <button onclick="confirmar_cadastrar()" class="confirmar-geren">Confirmar</button>
-            <button onclick="cancelar_cadastrar()" class="cancelar-geren">Cancelar</button>
-        </div>
-    </div>
-    </div>
-
-</section>
+    </section>
+</body>
 
 </html>
 
@@ -357,9 +260,108 @@
 
     }
 
-    function publicar_relatorio() {
+    function cadastrar_maquina() {
         document.querySelector('.maingerenpage').style.filter = "blur(5px)";
         document.querySelector('.Cadastrargeren').style.display = "block";
 
     }
+    // function publicar_relatorio() {
+    //     document.querySelector('.maingerenpage').style.filter = "blur(5px)";
+    //     document.querySelector('.Cadastrargeren').style.display = "block";
+
+    // }
+    function visualizarMaquinas() {
+        fetch("/empresas/visualizarMaquinas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idEmpresaMaquinaServer: idEmpresaUsuario
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    alert(idEmpresaUsuario)
+
+                    if (resposta.status == 204) {
+                        var lista = document.getElementById("dash-func");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhuma máquina encontrada."
+                        throw "Nenhum resultado encontrada!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                        var lista = document.getElementById("geren-dados");
+
+
+                        for (let i = 0; i < resposta.length; i++) {
+
+                            let tupla = resposta[i];
+                            var divLista = document.createElement("div");
+                            var divId = document.createElement("div");
+                            var divnome = document.createElement("div");
+                            var divCPU = document.createElement("div");
+                            var divRAM = document.createElement("div");
+                            var divDisco = document.createElement("div");
+                            var divLocalidade = document.createElement("div");
+                            var divMAC = document.createElement("div");
+
+                            divLista.className = "dados-geren";
+                            divId.className = "coluna-geren";
+                            divnome.className = "coluna-geren";
+                            divCPU.className = "coluna-geren";
+                            divRAM.className = "coluna-geren";
+                            divDisco.className = "coluna-geren";
+                            divLocalidade.className = "coluna-geren";
+                            divMAC.className = "coluna-geren";
+
+                            divId.innerHTML = tupla.idMaquina;
+                            divnome.innerHTML = tupla.nomeMaquina;
+                            divCPU.innerHTML = tupla.modeloCPU;
+                            divRAM.innerHTML= tupla.capacidadeRAM;
+                            divDisco.innerHTML = tupla.disco;
+                            divLocalidade.innerHTML = tupla.localidade;
+                            divMAC.innerHTML = tupla.MACAdress;
+
+
+                            divLista.appendChild(divId);
+                            divLista.appendChild(divnome);
+                            divLista.appendChild(divCPU);
+                            divLista.appendChild(divDisco);
+                            divLista.appendChild(divLocalidade);
+                            divLista.appendChild(divMAC);
+
+
+                            // let debounceTimeout;
+                            // divLista.addEventListener("click", function() {
+                            // if (debounceTimeout) {
+                            //     clearTimeout(debounceTimeout);
+                            // }
+
+                            // debounceTimeout = setTimeout(function() {
+                            //     alert("TESTE:" + tupla.nomeMaquina)
+                            //  }, 200); // Atraso de 200 ms para evitar múltiplos cliques rápidos
+                            // });
+
+                             lista.appendChild(divLista);
+
+
+
+                        }
+
+                    });
+                } else {
+                    throw ('Houve um erro na API!');
+                }
+            }).catch(function (resposta) {
+                console.error(resposta);
+            });
+    }
+
 </script>

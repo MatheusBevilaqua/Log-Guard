@@ -44,8 +44,11 @@ function confirmar_cadastrar(fkEmpresaMaquina,nomeMaquina,modeloCPU,capacidadeRA
   var instrucaoSql = `INSERT INTO maquina VALUES (default,'${fkEmpresaMaquina}','${nomeMaquina}', '${modeloCPU}', '${capacidadeRAM}', '${disco}', '${localidade}','${MACAdress}')`;
   return database.executar(instrucaoSql);
 } 
-
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar,visualizarEmpresas, confirmar_editar, excluir_editar, confirmar_cadastrar};
+function visualizarMaquinas(idEmpresaMaquina) {
+  var instrucaoSql = `SELECT * FROM maquina WHERE fkEmpresaMaquina ='${idEmpresaMaquina}';`;
+  return database.executar(instrucaoSql);
+}
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar,visualizarEmpresas, confirmar_editar, excluir_editar, confirmar_cadastrar,visualizarMaquinas};
 
 
 

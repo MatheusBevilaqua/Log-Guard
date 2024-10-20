@@ -204,10 +204,6 @@
 
 <script>
 
-  
-    
-
-
     var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
 
     function confirmar_editar_gefunc() {
@@ -308,7 +304,7 @@
 
 
     function verUsuarios() {
-        fetch("/usuarios/visualizarUsuarios", {
+        fetch("/usuarios/verUsuarios", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
