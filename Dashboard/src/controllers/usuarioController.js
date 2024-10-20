@@ -197,7 +197,21 @@ function exibirDadosEdicaoUsuario(req, res) {
 
 }
 
+function deletarusuario(req, res){
+    var idUsuario = req.body.idUsuarioServer;
 
+    usuarioModel.exibirDadosEdicaoUsuario(idUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.json({
+                idUsuario: resultado[0].idUsuario
+            });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 module.exports = {
     autenticar,
@@ -208,5 +222,6 @@ module.exports = {
     totalfunc,
     totaladms,
     totalanalista,
-    exibirDadosEdicaoUsuario
+    exibirDadosEdicaoUsuario,
+    deletarusuario
 }

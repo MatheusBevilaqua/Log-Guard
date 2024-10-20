@@ -9,7 +9,7 @@
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body onload="verUsuarios(); totalfunc(); totaladms(); totalanalista();">
+<body onload="verUsuarios(); totalfunc(); totaladms(); totalanalista(); ">
     <section class="page-dash">
         <aside class="nav-dash">
             <div class="nav-dash-logo">
@@ -367,14 +367,10 @@
 
                             debounceTimeout = setTimeout(function() {
                                 gerenciarUsuario(tupla.idUsuario);
-                             }, 200); // Atraso de 200 ms para evitar múltiplos cliques rápidos
+                             }, 200); 
                             });
 
                              lista.appendChild(divLista);
-
-
-                        
-
                         }
 
                     });
@@ -611,8 +607,8 @@ function totalanalista() {
 }
 
 function gerenciarUsuario(idUsuarioSelecionado) {
-    
-    alert(idUsuarioSelecionado)
+    // Exibe o ID do usuário para confirmação
+    alert("ID do usuário selecionado: " + idUsuarioSelecionado);
 
     fetch("/usuarios/exibirDadosEdicaoUsuario", {
         method: "POST",
@@ -620,64 +616,77 @@ function gerenciarUsuario(idUsuarioSelecionado) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-
-            idUsuarioServer:idUsuarioSelecionado,
-          
+            idUsuarioServer: idUsuarioSelecionado,
         }),
-      })
-        .then(function (resposta) {
-          console.log("resposta: ", resposta);
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(function (json) {
+                // Aqui você já tem os dados do usuário retornados pela API
+                let nomeUsuarioEdicao = json.nomeUsuario;
+                let emailUsuarioEdicao = json.emailUsuario;
+                let senhaUsuarioEdicao = json.senhaUsuario;
+                let cargoUsuarioEdicao = json.tipoPerfilUsuario;
 
-          if (resposta.ok) {
-                console.log(resposta);
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    nomeUsuarioEdicao = json.nomeUsuario;
-                    emailUsuarioEdicao = json.emailUsuario;
-                    SenhaUsuarioEdicao = json.senhaUsuario;
-                    CargoUsuarioEdicao = json.tipoPerfilUsuario;
-                });
+                // Preenche os inputs do modal com os dados recebidos
+                document.getElementById("input_alterar_nome").value = nomeUsuarioEdicao;
+                document.getElementById("input_alterar_email").value = emailUsuarioEdicao;
+                document.getElementById("input_alterar_senha").value = senhaUsuarioEdicao;
+                document.getElementById("select_alterar_cargo").value = cargoUsuarioEdicao;
 
-                alert(nomeUsuarioEdicao)
-                alert(emailUsuarioEdicao)
-                alert(SenhaUsuarioEdicao)
-                alert(CargoUsuarioEdicao)
-
-                
-                
-
-                // let alterar_nome = document.getElementById("input_alterar_nome");
-                // alterar_nome.value = nomeUsuarioEdicao;
-
-                // let alterar_email = document.getElementById("input_alterar_email");
-                // alterar_email.value = emailUsuarioEdicao;
-
-                // let alterar_senha = document.getElementById("input_alterar_senha");
-                // alterar_senha.value = SenhaUsuarioEdicao;
-
-                // let alterar_cargo = document.getElementById("select_alterar_cargo");
-                // alterar_senha.value = CargoUsuarioEdicao;
-
-
-                  
+                // Agora que os dados estão prontos, exibe o modal
                 document.querySelector('.mainfuncpage').style.filter = "blur(5px)";
                 document.querySelector('.Editarfunc').style.display = "block";
+            });
+        } else {
+            console.error("Houve um erro na requisição");
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro ao tentar buscar os dados do usuário:", erro);
+    });
 
+      return false;
+}
 
-            } else {
+function deletarusuario(idUsuarioSelecionado) {
+    alert("ID do usuário selecionado: " + idUsuarioSelecionado);
 
-                console.log("Houve um erro");
+    fetch("/usuarios/deletarusuario", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idUsuarioServer: idUsuarioSelecionado,
+        }),
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(function (json) {
+                // Aqui você já tem os dados do usuário retornados pela API
+                let nomeUsuarioEdicao = json.nomeUsuario;
+                let emailUsuarioEdicao = json.emailUsuario;
+                let senhaUsuarioEdicao = json.senhaUsuario;
+                let cargoUsuarioEdicao = json.tipoPerfilUsuario;
 
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-        })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
+                // Preenche os inputs do modal com os dados recebidos
+                document.getElementById("input_alterar_nome").value = nomeUsuarioEdicao;
+                document.getElementById("input_alterar_email").value = emailUsuarioEdicao;
+                document.getElementById("input_alterar_senha").value = senhaUsuarioEdicao;
+                document.getElementById("select_alterar_cargo").value = cargoUsuarioEdicao;
 
-        });
+                // Agora que os dados estão prontos, exibe o modal
+                document.querySelector('.mainfuncpage').style.filter = "blur(5px)";
+                document.querySelector('.Editarfunc').style.display = "block";
+            });
+        } else {
+            console.error("Houve um erro na requisição");
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro ao tentar buscar os dados do usuário:", erro);
+    });
 
       return false;
 }
