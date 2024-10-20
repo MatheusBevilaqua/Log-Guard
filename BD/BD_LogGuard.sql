@@ -1,7 +1,5 @@
 CREATE DATABASE logGuard;
 USE logGuard;
-
-
 CREATE TABLE empresa(
 idEmpresa INT PRIMARY KEY auto_increment,
 nomeEmpresa VARCHAR(225),
@@ -10,19 +8,14 @@ emailResponsavel VARCHAR(225),
 cnpj CHAR(14),
 cep CHAR(9)
 );
-
 CREATE VIEW visualizar_empresas AS SELECT * FROM empresa;
-
-
 insert into empresa VALUES(default,'LOG GUARD', 'log.guard@sptech.school','log.guard@sptech.school','10101010101010','101010101');
-
-
+select * from empresa;
 INSERT INTO empresa (nomeEmpresa, emailInstitucional, emailResponsavel) 
 VALUES 
 ('Empresa A', 'contato@empresaa.com', 'responsavelA@empresaa.com'),
 ('Empresa B', 'contato@empresab.com', 'responsavelB@empresab.com'),
 ('Empresa C', 'contato@empresac.com', 'responsavelC@empresac.com');
-
 CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY auto_increment,
 fkEmpresaUsuario INT,
@@ -31,9 +24,16 @@ nomeUsuario VARCHAR(225),
 emailUsuario VARCHAR(225),
 senhaUsuario VARCHAR(225),
 tipoPerfilUsuario VARCHAR(13),
-CONSTRAINT CHK_TIPO CHECK (tipoPerfilUsuario ='ADMINISTRADOR' OR tipoPerfilUsuario ='LOG_GUARD' OR tipoPerfilUsuario ='COMUM')
+CONSTRAINT CHK_TIPO CHECK (tipoPerfilUsuario ='ADMINISTRADOR' OR tipoPerfilUsuario ='LOG_GUARD' OR tipoPerfilUsuario ='COMUM' OR tipoPerfilUsuario = 'DESATIVADO')
 );
-
+INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
+VALUES 
+(1, 'jhonatan', 'jhonatan@gmail.com', 'senha123', 'LOG_GUARD'),
+(1, 'carol', 'carol@gmail.com', 'senha123', 'LOG_GUARD'),
+(1, 'bruno', 'bruno@gmail.com', 'senha123', 'LOG_GUARD'),
+(1, 'matheus', 'matheus@gmail.com', 'senha123', 'LOG_GUARD'),
+(1, 'fabricio', 'fabricio@gmail.com', 'senha123', 'LOG_GUARD'),
+(1, 'rodrigo', 'rodrigo@gmail.com', 'senha123', 'LOG_GUARD');
 
 -- Inserindo 10 funcionários para Empresa A
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
@@ -81,8 +81,6 @@ VALUES
 (2, 'Funcionario 38A', 'funcionario38a@empresaa.com', 'senha123', 'COMUM'),
 (2, 'Funcionario 39A', 'funcionario39a@empresaa.com', 'senha123', 'COMUM'),
 (2, 'Funcionario 40A', 'funcionario40a@empresaa.com', 'senha123', 'COMUM');
-
-
 -- Inserindo 10 funcionários para Empresa B
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -110,9 +108,7 @@ VALUES
 (4, 'Funcionario 8C', 'funcionario8c@empresac.com', 'senha123', 'COMUM'),
 (4, 'Funcionario 9C', 'funcionario9c@empresac.com', 'senha123', 'ADMINISTRADOR'),
 (4, 'Funcionario 10C', 'funcionario10c@empresac.com', 'senha123', 'COMUM');
-
-
-
+select * from usuario;
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
 fkEmpresaMaquina INT,
@@ -123,12 +119,10 @@ nomeMaquina VARCHAR(255),
 modeloCPU VARCHAR(45),
 capacidadeRAM DECIMAL(8,3),
 disco INT,
+localidade VARCHAR(45),
 MACAdress VARCHAR(45)
 ); 
-
 insert into maquina (MACAdress) values ('00:e2:69:6b:fc:0f');
-
-
 CREATE TABLE relatorio(
 idRelatorio INT auto_increment,
 fkMaquinaRelatorio INT,
@@ -142,18 +136,14 @@ dtCriacaoRelatorio DATETIME,
 statusMaquina VARCHAR(10),
 CONSTRAINT CHK_STATUS CHECK (statusMaquina ='EMERGÊNCIA' OR statusMaquina ='ALERTA' OR statusMaquina ='NORMAL')
 );
-
-
 CREATE TABLE recurso(
 idRecurso INT PRIMARY KEY auto_increment,
 nomeRecurso VARCHAR(45)
 );
-
 INSERT INTO recurso VALUES(default, 'Uso de CPU');
 INSERT INTO recurso VALUES(default, 'Uso de RAM');
 INSERT INTO recurso VALUES(default, 'Uso de Disco');
 INSERT INTO recurso VALUES(default, 'Taxa de uso da largura de banda');
-
 CREATE TABLE maquinaRecurso(
 idMaquinaRecurso INT PRIMARY KEY auto_increment,
 fkMaquinaRecurso INT,
@@ -162,16 +152,12 @@ fkrecurso INT,
 FOREIGN KEY (fkrecurso) REFERENCES recurso(idRecurso),
 parametro DECIMAL (8,5)
 );
-
-
 -- METRICAS BASEADAS EM PESQUISA (SOMENTE PARA DEMONSTRAÇÃO NA SPRINT 2)
 INSERT INTO maquinaRecurso VALUES(default, 1, 1, 65.0);
 INSERT INTO maquinaRecurso VALUES(default, 1, 2, 70.0);
 INSERT INTO maquinaRecurso VALUES(default, 1, 3, 80.0);
 INSERT INTO maquinaRecurso VALUES(default, 1, 4, 100.0);
-
 SELECT parametro FROM maquinaRecurso WHERE fkMaquinaRecurso = 1 AND fkrecurso = 4;
-
 -- MUDAR ISSO PARA TERCEIRA SPRINT, TANTO A TABELA maquinaRecurso quanto a tabela captura pedem fk da máquina. o que acontece se eles forem diferentes?????
 CREATE TABLE captura(
 idCaptura INT PRIMARY KEY auto_increment,
@@ -185,11 +171,4 @@ registro DECIMAL (6,3),
 tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
-
 select * from captura;
-
-
-
-
-
-
