@@ -205,6 +205,7 @@
 <script>
 
     var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
+    var idUsuario = "";
 
     function confirmar_editar_gefunc() {
         // temporario
@@ -221,6 +222,7 @@
     function excluir_editar_gefunc() {
         var r = confirm("Tem certeza que deseja excluir este perfil?");
         if (r == true) {
+            deletarUsuario();
             window.location.reload(true); //reload na página
         }
     }
@@ -304,7 +306,7 @@
 
 
     function verUsuarios() {
-        fetch("/usuarios/verUsuarios", {
+        fetch("/usuarios/visualizarUsuarios", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -609,7 +611,7 @@ function totalanalista() {
 function gerenciarUsuario(idUsuarioSelecionado) {
     // Exibe o ID do usuário para confirmação
     alert("ID do usuário selecionado: " + idUsuarioSelecionado);
-
+    idUsuario = idUsuarioSelecionado;
     fetch("/usuarios/exibirDadosEdicaoUsuario", {
         method: "POST",
         headers: {
@@ -649,55 +651,35 @@ function gerenciarUsuario(idUsuarioSelecionado) {
       return false;
 }
 
-function deletarusuario(idUsuarioSelecionado) {
-    alert("ID do usuário selecionado: " + idUsuarioSelecionado);
+function deletarUsuario() {
+    // Exibe o ID do usuário para confirmação
+    alert("ID do usuário selecionado: " + idUsuario);
 
     fetch("/usuarios/deletarusuario", {
-        method: "GET",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            idUsuarioServer: idUsuarioSelecionado,
+            idUsuarioServer: idUsuario,
         }),
     })
     .then(function (resposta) {
         if (resposta.ok) {
             resposta.json().then(function (json) {
-                // Aqui você já tem os dados do usuário retornados pela API
-                let nomeUsuarioEdicao = json.nomeUsuario;
-                let emailUsuarioEdicao = json.emailUsuario;
-                let senhaUsuarioEdicao = json.senhaUsuario;
-                let cargoUsuarioEdicao = json.tipoPerfilUsuario;
-
-                // Preenche os inputs do modal com os dados recebidos
-                document.getElementById("input_alterar_nome").value = nomeUsuarioEdicao;
-                document.getElementById("input_alterar_email").value = emailUsuarioEdicao;
-                document.getElementById("input_alterar_senha").value = senhaUsuarioEdicao;
-                document.getElementById("select_alterar_cargo").value = cargoUsuarioEdicao;
-
-                // Agora que os dados estão prontos, exibe o modal
-                document.querySelector('.mainfuncpage').style.filter = "blur(5px)";
-                document.querySelector('.Editarfunc').style.display = "block";
+                console.log("Usuário deletado com sucesso:", json);
+                verUsuarios();
             });
         } else {
             console.error("Houve um erro na requisição");
         }
     })
     .catch(function (erro) {
-        console.error("Erro ao tentar buscar os dados do usuário:", erro);
+        console.error("Erro ao tentar deletar o usuário:", erro);
     });
 
-      return false;
+    return false;
 }
 
-
-
-
-    // var ServidorSelected = [];
-    // document.querySelectorAll('.dados-func-atribuicao input[type="checkbox"]').forEach(checkbox => {
-    //     if(checkbox.checked) {
-    //         ServodorSelected.push(checkbox.id);
-    //     }
-    // });
+    
 </script>

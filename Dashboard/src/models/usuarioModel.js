@@ -26,17 +26,17 @@ function visualizarUsuarios(idEmpresaUsuario) {
 }
 
 function visualizarUsuariosADM(idEmpresaUsuario) {
-    var instrucaoSql = `SELECT * FROM usuario WHERE fkEmpresaUsuario ='${idEmpresaUsuario}' AND tipoPerfilUsuarIo = "ADMINISTRADOR";`;
+    var instrucaoSql = `SELECT * FROM usuario WHERE fkEmpresaUsuario ='${idEmpresaUsuario}' AND tipoPerfilUsuarIo = "ADMINISTRADOR" AND tipoPerfilUsuario != 'DESATIVADO';`;
     return database.executar(instrucaoSql);
 }
 
 function visualizarUsuariosCOMUM(idEmpresaUsuario) {
-    var instrucaoSql = `SELECT * FROM usuario WHERE fkEmpresaUsuario ='${idEmpresaUsuario}' AND tipoPerfilUsuarIo = "COMUM";`;
+    var instrucaoSql = `SELECT * FROM usuario WHERE fkEmpresaUsuario ='${idEmpresaUsuario}' AND tipoPerfilUsuarIo = "COMUM" AND tipoPerfilUsuario != 'DESATIVADO';`;
     return database.executar(instrucaoSql);
 }
 
 function totalfunc(idEmpresaUsuario) {
-    var instrucaoSql = `SELECT COUNT(*) AS total_usuarios FROM usuario WHERE fkEmpresaUsuario ='${idEmpresaUsuario}';`;
+    var instrucaoSql = `SELECT COUNT(*) AS total_usuarios FROM usuario WHERE fkEmpresaUsuario ='${idEmpresaUsuario}' AND tipoPerfilUsuario != 'DESATIVADO';`;
     return database.executar(instrucaoSql).then(resultados => {
         return resultados[0].total_usuarios;
     });
@@ -67,8 +67,7 @@ function exibirDadosEdicaoUsuario(idUsuario) {
     // --------------------------------------------------------------------
 
 function deletarusuario(idUsuario) {
-    var instrucaoSql = `
-    UPDATE usuario SET tipoPerfilUsuario = "DESATIVADO" WHERE idUsuario = '${idUsuario}';`;
+    var instrucaoSql = `UPDATE usuario SET tipoPerfilUsuario = "DESATIVADO" WHERE idUsuario = '${idUsuario}';`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }

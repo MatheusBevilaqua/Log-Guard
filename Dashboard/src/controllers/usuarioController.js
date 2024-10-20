@@ -197,21 +197,21 @@ function exibirDadosEdicaoUsuario(req, res) {
 
 }
 
-function deletarusuario(req, res){
+function deletarusuario(req, res) {
     var idUsuario = req.body.idUsuarioServer;
-
-    usuarioModel.exibirDadosEdicaoUsuario(idUsuario).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.json({
-                idUsuario: resultado[0].idUsuario
-            });
+    usuarioModel.deletarusuario(idUsuario).then(function (resultado) {
+        if (resultado.affectedRows > 0) {
+            res.status(200).json({ mensagem: "Usuário desativado com sucesso" });
+        } else {
+            res.status(404).send("Nenhum usuário encontrado");
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        console.log("Houve um erro ao deletar o usuário: ", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
+
 
 module.exports = {
     autenticar,
