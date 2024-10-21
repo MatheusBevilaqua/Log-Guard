@@ -11,7 +11,7 @@
 
 </head>
 
-<body style="background-color: #e3e3e3; color: black;">
+<body style="background-color: #e3e3e3; color: black;" onload="atualizarFeed()">
 
     <section class="page-dash">
         <aside class="nav-dash">
@@ -53,7 +53,7 @@
 
             </div>
 
-           
+
 
     </section>
     <div class="publicar-relatorio">
@@ -61,8 +61,8 @@
             <h1>Publicar Relatório</h1>
             <input placeholder="Titulo" name="titulo" id="titulo" maxlength="100" type="text">
             <img src="./img/Line1cadastro.png" alt="">
-            <textarea placeholder="Texto" class="TextoArea" name="descricao" id="textarea_descricao" maxlength="500"
-                rows="5"></textarea> <img src="./img/Line1cadastro.png" alt="">
+            <textarea placeholder="Texto" class="TextoArea" name="descricao" id="textoPublicar" maxlength="500"rows="5"></textarea>
+            <img src="./img/Line1cadastro.png" alt="">
             <div class="select-func-primeiro">
                 <select id="select_status">
                     <option selected value="#" disabled>Selecionar Status</option>
@@ -84,41 +84,42 @@
         </div>
         <img src="./img/Line1cadastro.png" class="linhacad2">
     </div>
-        <div class="editar-relatorio">
+    <div class="editar-relatorio">
+        <div class="Editar-func-primeiro">
+            <h1>Editar um Relatorio</h1>
             <div class="Editar-func-primeiro">
-                <h1>Editar um Relatorio</h1>
-                <div class="Editar-func-primeiro">
-                    <label>
-                        Descrição (máximo de 250 caracteres):
-                        <br>
-                        <textarea class="TextoAreaE" id="textarea_descricao" maxlength="250" rows="13"></textarea>
-                    </label>
-                    <img src="./img/Line1cadastro.png" alt="">
-                        
-                    <div class="Editar-func-botao-delete">
-                        <button style="background-color: #442BB3;" class="cad-func" onclick="editar()">Confirmar Edição</button>
-                        <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cad-func">Cancelar</button>
-                    </div>
-                </div>
+                <label>
+                    Descrição (máximo de 250 caracteres):
+                    <br>
+                    <textarea class="TextoAreaE" id="textarea_descricao" maxlength="250" rows="13"></textarea>
+                </label>
+                <img src="./img/Line1cadastro.png" alt="">
 
+                <div class="Editar-func-botao-delete">
+                    <button style="background-color: #442BB3;" class="cad-func" onclick="editar()">Confirmar
+                        Edição</button>
+                    <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cad-func">Cancelar</button>
+                </div>
             </div>
+
         </div>
+    </div>
 
 </body>
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    b_usuario.innerHTML = sessionStorage.EMPRESA_USUARIO;
+    var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
     var tipoPerfilUsuario = b_usuario.innerHTML = sessionStorage.TIPO_USUARIO;
 
-    function relatorio_IA(){
+    function relatorio_IA() {
 
-       window.location = href = "http://localhost:3000" 
+        window.location = href = "http://localhost:3000"
 
     }
 
-    function verifica_User(){
+    function verifica_User() {
 
-        if(tipoPerfilUsuario != "ADMINISTRADOR"){
+        if (tipoPerfilUsuario != "ADMINISTRADOR") {
 
             document.querySelector('.botaoI.A').style.display = "none";
 
@@ -145,17 +146,32 @@
     }
 
     function publicar() {
-
+      
         var idUsuario = sessionStorage.ID_USUARIO;
-        var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
+        var idUsuarioEmpresa = sessionStorage.EMPRESA_USUARIO;
+
+        var tituloVar = document.getElementById('titulo').value;
+        var descricaoVar = document.getElementById('textoPublicar').value;
+        var statusVar = document.getElementById('select_status').value
+
+       
+
+        
 
         var corpo = {
-            titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value,
-            status: form_postagem.select_status.value
+            titulo: tituloVar,
+            descricao: descricaoVar,
+            status: statusVar,
+            idEmpresaUsuario: idUsuarioEmpresa
+        }
+    
+
+        if (!tituloVar || !descricaoVar || !statusVar) {
+        alert('Erro: Campos obrigatórios não preenchidos');
+        return;
         }
 
-        fetch(`/relatorio/publicar/${idUsuario}`, {
+        fetch(`/relatorios/publicar/${idUsuario}`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
@@ -166,8 +182,8 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/relatorios.html";
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "da empresa de ID: "+ idEmpresaUsuario + "!");
+                window.location = "relatorios.html";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
@@ -192,7 +208,7 @@
     }
 
     function editar() {
-        fetch(`/mensagem/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+        fetch(`/relatorios/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -204,7 +220,7 @@
 
             if (resposta.ok) {
                 window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/relatorios.html"
+                window.location = "relatorios.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -218,7 +234,7 @@
 
     function deletar(idrelatorio) {
         console.log("Criar função de apagar post escolhido - ID" + idrelatorio);
-        fetch(`/relatorio/deletar/${idrelatorio}`, {
+        fetch(`/relatorios/deletar/${idrelatorio}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -227,7 +243,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/relatorios.html"
+                window.location = "relatorios.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -239,7 +255,8 @@
     }
 
     function atualizarFeed() {
-        fetch("/relatorio/listar").then(function (resposta) {
+
+        fetch("/relatorios/listar").then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
@@ -256,93 +273,108 @@
                     feed.innerHTML = "";
                     for (let i = 0; i < resposta.length; i++) {
                         var relatorio = resposta[i];
-
-                        if (relatorio.fk_usuario == sessionStorage.ID_USUARIO) {
-
-
-                            var divrelatorio = document.createElement("div");
-                            var spanID = document.createElement("span");
-                            var spanTitulo = document.createElement("span");
-                            var spanNome = document.createElement("span");
-                            var divDescricao = document.createElement("div");
-                            var divButtons = document.createElement("div");
-                            var divButtons = document.createElement("div");
-                            var btnEditar = document.createElement("button");
-                            var btnDeletar = document.createElement("button");
+                        if (relatorio.fkEmpresaRelatorio == sessionStorage.EMPRESA_USUARIO) {
+                            if (relatorio.fkUsuarioRelatorio == sessionStorage.ID_USUARIO ) {
 
 
-
-                            spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b><br>";
-                            spanNome.innerHTML = "Autor: <b>" + relatorio.nome + "</b> <br><br>";
-                            spanSituacao.innerHTML = "Status: <b>" + relatorio.estado + "</b> <br><br>";
-                            divDescricao.innerHTML = "Descrição: <b>" + relatorio.descricao + "</b>";
-                            btnEditar.innerHTML = "Editar";
-                            btnDeletar.innerHTML = "Deletar";
-
-
-                            divrelatorio.className = "relatorio";
-                            spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
-                            spanNome.className = "relatorio-nome";
-                            spanTitulo.className = "relatorio-titulo";
-                            divDescricao.className = "relatorio-descricao";
-
-                            divButtons.className = "div-buttons"
-
-
-                            btnEditar.className = "relatorio-btn-editar"
-                            btnEditar.id = "btnEditar" + relatorio.idrelatorio;
-                            btnEditar.setAttribute("onclick", `editar_relatorio(${relatorio.idrelatorio})`);
-
-                            btnDeletar.className = "relatorio-btn-editar"
-                            btnDeletar.id = "btnDeletar" + relatorio.idrelatorio;
-                            btnDeletar.setAttribute("onclick", `deletar(${relatorio.idrelatorio})`);
+                                var divrelatorio = document.createElement("div");
+                                var spanID = document.createElement("span");
+                                var spanTitulo = document.createElement("span");
+                                var spanNome = document.createElement("span");
+                                var spanData = document.createElement("span")
+                                var spanSituacao = document.createElement("span")
+                                var divDescricao = document.createElement("div");
+                                var divButtons = document.createElement("div");
+                                var divButtons = document.createElement("div");
+                                var btnEditar = document.createElement("button");
+                                var btnDeletar = document.createElement("button");
 
 
 
-
-                            divrelatorio.appendChild(spanID);
-                            divrelatorio.appendChild(spanNome);
-                            divrelatorio.appendChild(spanTitulo);
-                            divrelatorio.appendChild(divDescricao);
-                            divrelatorio.appendChild(divButtons);
-                            divButtons.appendChild(btnEditar);
-                            divButtons.appendChild(btnDeletar);
-                            feed.appendChild(divrelatorio);
-                        } else {
+                                spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b>";
+                                spanNome.innerHTML = "Autor: <b>" + relatorio.nomeUsuario + "</b> ";
+                                spanData.innerHTML = "Data de criação: <b>"+ relatorio.data +"</b> <br><br>";
+                                spanSituacao.innerHTML = "Status: <b>" + relatorio.statusRelatorio + "</b> <br><br>";
+                                divDescricao.innerHTML = "Descrição: <b>" + relatorio.texto + "</b>";
+                                btnEditar.innerHTML = "Editar";
+                                btnDeletar.innerHTML = "Deletar";
 
 
-                            var divrelatorio = document.createElement("div");
-                            var spanID = document.createElement("span");
-                            var spanTitulo = document.createElement("span");
-                            var spanNome = document.createElement("span");
-                            var divDescricao = document.createElement("div");
-                            var divButtons = document.createElement("div");
+                                divrelatorio.className = "relatorio";
+                                spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
+                                spanSituacao.className = "relatorio-situacao"
+                                spanNome.className = "relatorio-nome";
+                                spanData.className = "relatorio-situacao"
+                                spanTitulo.className = "relatorio-titulo";
+                                divDescricao.className = "relatorio-descricao";
+
+                                divButtons.className = "div-buttons"
 
 
+                                btnEditar.className = "relatorio-btn-editar"
+                                btnEditar.id = "btnEditar" + relatorio.idrelatorio;
+                                btnEditar.setAttribute("onclick", `editar_relatorio(${relatorio.idrelatorio})`);
 
-                            spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b><br>";
-                            spanNome.innerHTML = "Autor: <b>" + relatorio.nome + "</b><br><br>";
-                            divDescricao.innerHTML = "Descrição: <b>" + relatorio.descricao + "</b>";
-
-
-                            divrelatorio.className = "relatorio";
-                            spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
-                            spanNome.className = "relatorio-nome";
-                            spanTitulo.className = "relatorio-titulo";
-                            divDescricao.className = "relatorio-descricao";
-
-                            divButtons.className = "div-buttons"
+                                btnDeletar.className = "relatorio-btn-deletar"
+                                btnDeletar.id = "btnDeletar" + relatorio.idrelatorio;
+                                btnDeletar.setAttribute("onclick", `deletar(${relatorio.idrelatorio})`);
 
 
 
-                            divrelatorio.appendChild(spanID);
-                            divrelatorio.appendChild(spanNome);
-                            divrelatorio.appendChild(spanTitulo);
-                            divrelatorio.appendChild(divDescricao);
-                            divrelatorio.appendChild(divButtons);
 
-                            feed.appendChild(divrelatorio);
+                                divrelatorio.appendChild(spanID);
+                                divrelatorio.appendChild(spanNome);
+                                divrelatorio.appendChild(spanData);
 
+                                divrelatorio.appendChild(spanTitulo);
+                                divrelatorio.appendChild(spanSituacao);
+                                divrelatorio.appendChild(divDescricao);
+                                divrelatorio.appendChild(divButtons);
+                                divButtons.appendChild(btnEditar);
+                                divButtons.appendChild(btnDeletar);
+                                feed.appendChild(divrelatorio);
+                            } else {
+
+
+                                var divrelatorio = document.createElement("div");
+                                var spanID = document.createElement("span");
+                                var spanTitulo = document.createElement("span");
+                                var spanNome = document.createElement("span");
+                                var spanData = document.createElement("span")
+                                var spanSituacao = document.createElement("div");
+                                var divDescricao = document.createElement("div");
+                                var divButtons = document.createElement("div");
+
+
+
+                                spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b>";
+                                spanNome.innerHTML = "Autor: <b>" + relatorio.nomeUsuario + "</b> ";
+                                spanData.innerHTML = "Data de criação: <b>"+ relatorio.data +"</b> <br><br>";
+                                spanSituacao.innerHTML = "Status: <b>" + relatorio.statusRelatorio + "</b> <br><br>";
+                                divDescricao.innerHTML = "Descrição: <b>" + relatorio.texto + "</b>";
+
+
+                                divrelatorio.className = "relatorio";
+                                spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
+                                spanNome.className = "relatorio-nome";
+                                spanData.className = "relatorio-nome"
+                                spanSituacao.className = "relatorio-situacao";
+                                spanTitulo.className = "relatorio-titulo";
+                                divDescricao.className = "relatorio-descricao";
+
+
+
+                                divrelatorio.appendChild(spanID);
+                                divrelatorio.appendChild(spanNome);
+                                divrelatorio.appendChild(spanData);
+                                divrelatorio.appendChild(spanTitulo);
+                                divrelatorio.appendChild(spanSituacao);
+                                divrelatorio.appendChild(divDescricao);
+                                divrelatorio.appendChild(divButtons);
+
+                                feed.appendChild(divrelatorio);
+
+                            }
                         }
                     }
 

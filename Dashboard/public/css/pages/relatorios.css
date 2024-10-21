@@ -17,7 +17,7 @@
 
 }
 
-.publicacao-btn-editar {
+.relatorios-btn-editar {
     cursor: pointer;
     border: 0;
     border-radius: 5px;
@@ -29,7 +29,7 @@
     width: 80px;
   }
   
-  .publicacao {
+  .relatorio {
     display: flex;
     flex-wrap: wrap;
     align-content: stretch;
@@ -40,10 +40,13 @@
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 10px;
+    color: black;
+
   }
   
   .publicacao>*:not(:last-child) {
     padding: 0 0 10px 0;
+    color: black;
   }
   
   .div-results {
@@ -51,6 +54,8 @@
     height: 700px;
     border-color:  #442BB3;
     border-width: 5px;
+    color: black;
+
   }
   
   .div-results .feed-container {
@@ -63,11 +68,14 @@
     padding-bottom: 20px;
     height: 400px;
     overflow-x: hidden;
+    color: black;
+
   }
   
   .div-buttons {
     display: flex;
     justify-content: flex-end;
+    color: #000000;
   }
   
   .div-buttons>* {
@@ -128,6 +136,7 @@
     width: 300px;
     margin-top: 10px; 
     margin-bottom: 10px;
+    color: black;
 
   }
 
@@ -138,6 +147,7 @@
     width: 480px;
     margin-top: 10px; 
     margin-bottom: 10px;
+    color: black;
 
   }
 
@@ -148,4 +158,53 @@
     background-color: rgba(68, 43, 179, 1);
     color: white;
     border: none;
+}
+
+.relatorio-nome{
+
+  color: #000000;
+
+
+}
+
+.relatorio-situacao {
+
+  color: #000000;
+
+
+}
+
+.relatorio-titulo {
+
+  color: #000000;
+
+
+}
+
+.relatorio-descricao{
+
+  color: #000000;
+
+}
+
+.relatorio-btn-editar{
+
+  width: 20%;
+  height: 35px;
+  border-radius: 20px;
+  background-color: rgba(68, 43, 179, 1);
+  color: white;
+  border: none;
+
+}
+
+.relatorio-btn-deletar{
+
+
+  width: 20%;
+  height: 35px;
+  border-radius: 20px;
+  background-color: red;
+  color: white;
+  border: none;
 }

@@ -137,7 +137,7 @@ FOREIGN KEY relatorio(fkEmpresaRelatorio) REFERENCES empresa(idEmpresa),
 fkUsuarioRelatorio INT,
 FOREIGN KEY (fkUsuarioRelatorio) REFERENCES usuario(idUsuario),
 titulo VARCHAR(255),
-texto BLOB,
+texto VARCHAR(255),
 dtCriacaoRelatorio DATETIME default current_timestamp,
 statusRelatorio VARCHAR(10),
 CONSTRAINT CHK_STATUS CHECK (statusRelatorio ='EMERGÊNCIA' OR statusRelatorio ='ALERTA' OR statusRelatorio ='NORMAL')
