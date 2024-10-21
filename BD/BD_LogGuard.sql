@@ -109,6 +109,7 @@ VALUES
 (4, 'Funcionario 9C', 'funcionario9c@empresac.com', 'senha123', 'ADMINISTRADOR'),
 (4, 'Funcionario 10C', 'funcionario10c@empresac.com', 'senha123', 'COMUM');
 select * from usuario;
+
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
 fkEmpresaMaquina INT,
@@ -122,6 +123,8 @@ disco INT,
 localidade VARCHAR(45),
 MACAdress VARCHAR(45)
 ); 
+
+
 insert into maquina (MACAdress) values ('00:e2:69:6b:fc:0f');
 CREATE TABLE relatorio(
 idRelatorio INT auto_increment,
@@ -136,6 +139,7 @@ dtCriacaoRelatorio DATETIME,
 statusMaquina VARCHAR(10),
 CONSTRAINT CHK_STATUS CHECK (statusMaquina ='EMERGÊNCIA' OR statusMaquina ='ALERTA' OR statusMaquina ='NORMAL')
 );
+
 CREATE TABLE recurso(
 idRecurso INT PRIMARY KEY auto_increment,
 nomeRecurso VARCHAR(45)
@@ -144,20 +148,20 @@ INSERT INTO recurso VALUES(default, 'Uso de CPU');
 INSERT INTO recurso VALUES(default, 'Uso de RAM');
 INSERT INTO recurso VALUES(default, 'Uso de Disco');
 INSERT INTO recurso VALUES(default, 'Taxa de uso da largura de banda');
+
 CREATE TABLE maquinaRecurso(
 idMaquinaRecurso INT PRIMARY KEY auto_increment,
-fkMaquinaRecurso INT,
-FOREIGN KEY (fkMaquinaRecurso) REFERENCES maquina(idMaquina),
 fkrecurso INT,
 FOREIGN KEY (fkrecurso) REFERENCES recurso(idRecurso),
 parametro DECIMAL (8,5)
 );
 -- METRICAS BASEADAS EM PESQUISA (SOMENTE PARA DEMONSTRAÇÃO NA SPRINT 2)
-INSERT INTO maquinaRecurso VALUES(default, 1, 1, 65.0);
-INSERT INTO maquinaRecurso VALUES(default, 1, 2, 70.0);
-INSERT INTO maquinaRecurso VALUES(default, 1, 3, 80.0);
-INSERT INTO maquinaRecurso VALUES(default, 1, 4, 100.0);
-SELECT parametro FROM maquinaRecurso WHERE fkMaquinaRecurso = 1 AND fkrecurso = 4;
+INSERT INTO maquinaRecurso VALUES(default, 1, 65.0);
+INSERT INTO maquinaRecurso VALUES(default, 2, 70.0);
+INSERT INTO maquinaRecurso VALUES(default, 3, 80.0);
+INSERT INTO maquinaRecurso VALUES(default, 4, 100.0);
+
+
 -- MUDAR ISSO PARA TERCEIRA SPRINT, TANTO A TABELA maquinaRecurso quanto a tabela captura pedem fk da máquina. o que acontece se eles forem diferentes?????
 CREATE TABLE captura(
 idCaptura INT PRIMARY KEY auto_increment,
@@ -168,7 +172,8 @@ FOREIGN KEY (fkRecursoCaptura) REFERENCES recurso(idRecurso),
 fkMaquinaRecursoCaptura INT,
 FOREIGN KEY (fkMaquinaRecursoCaptura) REFERENCES maquinaRecurso(idMaquinaRecurso),
 registro DECIMAL (6,3),
-tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
+
+-- Adicionar coluna tem_problema boolean aqui
 select * from captura;
