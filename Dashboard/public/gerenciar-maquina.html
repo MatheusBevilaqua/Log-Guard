@@ -14,28 +14,24 @@
         <div class="nav-dash-logo">
             <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
         </div>
-        av class="nav-dash-menu">
+
         <ul class="nav-dash-list">
             <a href="dashboard_ADM.html">
-                <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon"
-                        style="padding-left: 3%;">Visão
+            <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon" style="padding-left: 3%;">Visão
                     Geral</li>
             </a>
             <a href="relatorios.html">
-                <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon"
-                        style="padding-left: 3%;">Relatórios
+            <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon" style="padding-left: 3%;">Relatórios
                 </li>
             </a>
             <a href="gerenciar-maquina.html">
-                <li class="nav-dash-link"><img src="./img/monitor.svg" class="nav-dash-icon"
-                        style="padding-left: 3%;">Máquinas</li>
+            <li class="nav-dash-link"><img src="./img/monitor.svg" class="nav-dash-icon" style="padding-left: 3%;">Máquinas</li>
             </a>
             <a href="gerenciar-usuario-func.html">
                 <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
             </a>
             <a href="index.html">
-                <li class="nav-dash-link-sair"><img src="./img/sair.png" class="nav-dash-icon"
-                        style="padding-left: 3%;">Sair</li>
+            <li class="nav-dash-link-sair"><img src="./img/sair.png" class="nav-dash-icon" style="padding-left: 3%;">Sair</li>
             </a>
         </ul>
         </nav>
@@ -82,7 +78,7 @@
                 </div>
             </div>
             <div class="botoes-geren">
-                <button onclick="editar_maquina()" class="edit-geren">Editar</button>
+                <!-- <button onclick="editar_maquina()" class="edit-geren">Editar</button> -->
                 <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar</button>
             </div>
     
@@ -207,7 +203,6 @@
         var MACAdressVAR = MACAdress_input.value;
 
 
-        alert(sessionStorage.EMPRESA_USUARIO)
 
         if (
             nomeMaquinaVAR == "" ||
@@ -440,7 +435,6 @@
     return false;
 }
 function editarMaquina() {
-    alert("teste")
 
     var nomeMaquinaVAR = input_alterar_nome.value;
     var modeloCPUVAR = input_alterar_modeloCPU.value;
@@ -448,12 +442,17 @@ function editarMaquina() {
     var discoVAR =  input_alterar_disco.value;
     var localidadeVAR = input_alterar_localidade.value;
 
-    alert(idMaquina)
-    alert(nomeMaquinaVAR)
-    alert(modeloCPUVAR)
-    alert(capacidadeRAMVAR)
-    alert(discoVAR)
-    alert(localidadeVAR)
+    if (
+            nomeMaquinaVAR == "" ||
+            modeloCPUVAR == "" ||
+            capacidadeRAMVAR == "" ||
+            discoVAR == "" ||
+            localidadeVAR == "" 
+        ) {
+            alert("Todos os campos dever ser preenchidos!")
+            return false;
+        } else {
+
        
     console.log("Dados a serem enviados:", {
         nomeMaquinaServer: nomeMaquinaVAR,
@@ -495,6 +494,7 @@ function editarMaquina() {
     .catch(function (erro) {
         console.error("Erro ao tentar alterar os dados da máquina:", erro);
     });
+}
 }
 
 

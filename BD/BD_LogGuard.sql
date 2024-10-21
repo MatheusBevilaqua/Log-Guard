@@ -8,14 +8,17 @@ emailResponsavel VARCHAR(225),
 cnpj CHAR(14),
 cep CHAR(9)
 );
+
 CREATE VIEW visualizar_empresas AS SELECT * FROM empresa;
+
 insert into empresa VALUES(default,'LOG GUARD', 'log.guard@sptech.school','log.guard@sptech.school','10101010101010','101010101');
-select * from empresa;
+
 INSERT INTO empresa (nomeEmpresa, emailInstitucional, emailResponsavel) 
 VALUES 
 ('Empresa A', 'contato@empresaa.com', 'responsavelA@empresaa.com'),
 ('Empresa B', 'contato@empresab.com', 'responsavelB@empresab.com'),
 ('Empresa C', 'contato@empresac.com', 'responsavelC@empresac.com');
+
 CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY auto_increment,
 fkEmpresaUsuario INT,
@@ -26,6 +29,7 @@ senhaUsuario VARCHAR(225),
 tipoPerfilUsuario VARCHAR(13),
 CONSTRAINT CHK_TIPO CHECK (tipoPerfilUsuario ='ADMINISTRADOR' OR tipoPerfilUsuario ='LOG_GUARD' OR tipoPerfilUsuario ='COMUM' OR tipoPerfilUsuario = 'DESATIVADO')
 );
+
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
 (1, 'jhonatan', 'jhonatan@gmail.com', 'senha123', 'LOG_GUARD'),
@@ -35,19 +39,18 @@ VALUES
 (1, 'fabricio', 'fabricio@gmail.com', 'senha123', 'LOG_GUARD'),
 (1, 'rodrigo', 'rodrigo@gmail.com', 'senha123', 'LOG_GUARD');
 
--- Inserindo 10 funcionários para Empresa A
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
-(1, 'Funcionario 1A', 'funcionario1a@empresaa.com', 'senha123', 'COMUM'),
-(1, 'Funcionario 2A', 'funcionario2a@empresaa.com', 'senha123', 'COMUM'),
-(1, 'Funcionario 3A', 'funcionario3a@empresaa.com', 'senha123', 'COMUM'),
-(1, 'Funcionario 4A', 'funcionario4a@empresaa.com', 'senha123', 'COMUM'),
-(1, 'Funcionario 5A', 'funcionario5a@empresaa.com', 'senha123', 'COMUM'),
-(1, 'Funcionario 6A', 'funcionario6a@empresaa.com', 'senha123', 'COMUM'),
-(1, 'Funcionario 7A', 'funcionario7a@empresaa.com', 'senha123', 'COMUM'),
-(1, 'Funcionario 8A', 'funcionario8a@empresaa.com', 'senha123', 'COMUM'),
-(1, 'Funcionario 9A', 'funcionario9a@empresaa.com', 'senha123senha123', 'ADMINISTRADOR'),
-(1, 'Funcionario 10A', 'funcionario10a@empresaa.com', 'senha123', 'COMUM');
+(2, 'Funcionario 1A', 'funcionario1a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 2A', 'funcionario2a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 3A', 'funcionario3a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 4A', 'funcionario4a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 5A', 'funcionario5a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 6A', 'funcionario6a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 7A', 'funcionario7a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 8A', 'funcionario8a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 9A', 'funcionario9a@empresaa.com', 'senha123senha123', 'ADMINISTRADOR'),
+(2, 'Funcionario 10A', 'funcionario10a@empresaa.com', 'senha123', 'COMUM');
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -81,7 +84,8 @@ VALUES
 (2, 'Funcionario 38A', 'funcionario38a@empresaa.com', 'senha123', 'COMUM'),
 (2, 'Funcionario 39A', 'funcionario39a@empresaa.com', 'senha123', 'COMUM'),
 (2, 'Funcionario 40A', 'funcionario40a@empresaa.com', 'senha123', 'COMUM');
--- Inserindo 10 funcionários para Empresa B
+
+
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
 (3, 'Funcionario 1B', 'funcionario1b@empresab.com', 'senha123', 'COMUM'),
@@ -95,7 +99,7 @@ VALUES
 (3, 'Funcionario 9B', 'funcionario9b@empresab.com', 'senha123', 'ADMINISTRADOR'),
 (3, 'Funcionario 10B', 'funcionario10b@empresab.com', 'senha123', 'COMUM');
 
--- Inserindo 10 funcionários para Empresa C
+
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
 (4, 'Funcionario 1C', 'funcionario1c@empresac.com', 'senha123', 'COMUM'),
@@ -108,7 +112,7 @@ VALUES
 (4, 'Funcionario 8C', 'funcionario8c@empresac.com', 'senha123', 'COMUM'),
 (4, 'Funcionario 9C', 'funcionario9c@empresac.com', 'senha123', 'ADMINISTRADOR'),
 (4, 'Funcionario 10C', 'funcionario10c@empresac.com', 'senha123', 'COMUM');
-select * from usuario;
+
 
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
@@ -124,20 +128,19 @@ localidade VARCHAR(45),
 MACAdress VARCHAR(45)
 ); 
 
+-- insert into maquina (MACAdress) values ('00:e2:69:6b:fc:0f');
 
-insert into maquina (MACAdress) values ('00:e2:69:6b:fc:0f');
 CREATE TABLE relatorio(
-idRelatorio INT auto_increment,
-fkMaquinaRelatorio INT,
-FOREIGN KEY (fkMaquinaRelatorio) REFERENCES maquina(idMaquina),
+idRelatorio INT PRIMARY KEY auto_increment,
+fkEmpresaRelatorio INT,
+FOREIGN KEY relatorio(fkEmpresaRelatorio) REFERENCES empresa(idEmpresa),
 fkUsuarioRelatorio INT,
 FOREIGN KEY (fkUsuarioRelatorio) REFERENCES usuario(idUsuario),
-PRIMARY KEY (idRelatorio,fkMaquinaRelatorio,fkUsuarioRelatorio),
 titulo VARCHAR(255),
 texto BLOB,
-dtCriacaoRelatorio DATETIME,
-statusMaquina VARCHAR(10),
-CONSTRAINT CHK_STATUS CHECK (statusMaquina ='EMERGÊNCIA' OR statusMaquina ='ALERTA' OR statusMaquina ='NORMAL')
+dtCriacaoRelatorio DATETIME default current_timestamp,
+statusRelatorio VARCHAR(10),
+CONSTRAINT CHK_STATUS CHECK (statusRelatorio ='EMERGÊNCIA' OR statusRelatorio ='ALERTA' OR statusRelatorio ='NORMAL')
 );
 
 CREATE TABLE recurso(
