@@ -103,19 +103,32 @@
 .titulos-geren {
     color: black;
     align-items: baseline;
-    display: flex;
-    /* position: absolute; */
+    display: grid;
+    grid-template-columns: 65px 155px 210px 145px 110px 180px 160px;
     flex-direction: row;
-    width: 122%;
+    width: 100%;
     padding-right: 13%;
-    justify-content: space-around;
     height: 10%;
+}
+
+.dados-geren {
+    padding-right: 10%;
+    width: 100%;
+    align-items: baseline;
+    color: black;
+    display: grid;
+    grid-template-columns: 65px 155px 210px 145px 110px 180px 160px;
+    align-items: center;
+    height: 65px;
+    padding-top: 0px;
+    padding-bottom: 15px;
+    cursor: pointer;
 }
 
 .coluna-geren{
     display: flex;
     color: black;
-    width: 60px;
+    width: 200px;
     height: 10px;
     margin-left: 40px;
 }
@@ -177,20 +190,7 @@
     overflow: auto;
 }
 
-.dados-geren {
-    padding-right: 10%;
-    flex-direction: row;
-    width: 100%;
-    align-items: baseline;
-    color: black;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 65px;
-    padding-top: 0px;
-    padding-bottom: 15px;
-    cursor: pointer;
-}
+
 
 .edit-geren, .cad-geren {
     cursor: pointer;

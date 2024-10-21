@@ -15,7 +15,7 @@
             <div class="nav-dash-logo">
                 <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
             </div>
-            av class="nav-dash-menu">
+
             <ul class="nav-dash-list">
                 <a href="dashboard_ADM.html">
                 <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon" style="padding-left: 3%;">Visão
@@ -41,7 +41,7 @@
         <section class="page-dash-func">
 
             <div class="mainfuncpage">
-                <h1>Gerenciar Usuários:</h1>
+                <h1>Gerenciar Funcionários:</h1>
                 <div class="select-func">
                     <select id="selectgerenciarusuario" name="select">
                         <div class="select-items-func">
@@ -777,6 +777,30 @@
         var senha = document.getElementById("input_alterar_senha").value;
         var cargo = document.getElementById("select_alterar_cargo").value;
 
+if (
+     nome == "" ||
+     email == "" ||
+     senha == "" 
+    ) {
+     alert("Todos os campos dever ser preenchidos!")
+     return false;
+}
+
+if ( nome == "" ) {
+	alert("Preencha o campo do nome!")
+        return false;
+}
+
+if ( email == "" ) {
+	alert("Preencha o campo do email!")
+        return false;
+}
+
+if ( senha == "" ) {
+	alert("Preencha o campo da senha!")
+        return false;
+}
+
         console.log("Dados a serem enviados:", {
             idUsuarioServer: idUsuario,
             nomeUsuario: nome,
@@ -827,15 +851,36 @@
 
 
         // Verificando se há algum campo em branco
-        if (
-            nomeUsuarioVar == "" ||
-            emailUsuarioVar == "" ||
-            senhaUsuarioVar == "" ||
-            senhaUsuarioVar != input_repetir_func.value
-        ) {
-            alert("Todos os campos dever ser preenchidos!")
-            return false;
-        } else {
+
+if (
+     nomeUsuarioVar == "" ||
+     emailUsuarioVar == "" ||
+     senhaUsuarioVar == "" 
+    ) {
+     alert("Todos os campos dever ser preenchidos!")
+     return false;
+}
+
+if ( nomeUsuarioVar == "" ) {
+	alert("Preencha o campo do nome!")
+        return false;
+}
+
+if ( emailUsuarioVar == "" ) {
+	alert("Preencha o campo do email!")
+        return false;
+}
+
+if ( senhaUsuarioVar == "" ) {
+	alert("Preencha o campo da senha!")
+        return false;
+}
+
+
+
+if ( senhaUsuarioVar != input_repetir_func.value ) {
+     alert("As senhas não coincidem")
+} else {
 
             fetch("/usuarios/cadastrar", {
                 method: "POST",
