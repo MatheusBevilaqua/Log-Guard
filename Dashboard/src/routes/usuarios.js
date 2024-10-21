@@ -16,6 +16,10 @@ router.post("/visualizarUsuarios", function (req, res) {
     usuarioController.visualizarUsuarios(req, res);
 })
 
+router.post("/visualizarMaquinas", function (req, res) {
+    usuarioController.visualizarMaquinas(req, res);
+});
+
 router.post("/visualizarUsuariosADM", function (req, res) {
     usuarioController.visualizarUsuariosADM(req, res);
 })

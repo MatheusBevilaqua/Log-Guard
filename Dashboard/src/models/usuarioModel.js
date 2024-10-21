@@ -25,6 +25,12 @@ function visualizarUsuarios(idEmpresaUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function visualizarMaquinas(idEmpresaUsuario) {
+    var instrucaoSql = `SELECT idMaquina, nomeMaquina, localidade FROM maquina WHERE fkEmpresaMaquina = '${idEmpresaUsuario}'`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function visualizarUsuariosADM(idEmpresaUsuario) {
     var instrucaoSql = `SELECT * FROM usuario WHERE fkEmpresaUsuario ='${idEmpresaUsuario}' AND tipoPerfilUsuarIo = "ADMINISTRADOR" AND tipoPerfilUsuario != 'DESATIVADO';`;
     return database.executar(instrucaoSql);
@@ -97,5 +103,6 @@ module.exports = {
     exibirDadosEdicaoUsuario,
     deletarusuario,
     editarusuario,
-    cadastrarnovouser
+    cadastrarnovouser,
+    visualizarMaquinas
 };
