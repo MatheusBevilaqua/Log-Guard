@@ -1,0 +1,75 @@
+.main-relatorios-page{
+
+    display: flex;
+    margin-left: 270px;
+    padding: 10px;
+    width: 100%;
+    height: fit-content;
+    overflow-x: hidden;
+    flex-direction: column;
+
+}
+
+.main-relatorios-page h1{
+
+    color: black;
+    margin-bottom: 30px;
+
+}
+
+.publicacao-btn-editar {
+    cursor: pointer;
+    font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 5px 8px;
+    color: white;
+    background-color: rebeccapurple;
+    width: 80px;
+  }
+  
+  .publicacao {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    border: 3px solid  rebeccapurple;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .publicacao>*:not(:last-child) {
+    padding: 0 0 10px 0;
+  }
+  
+  .div-results {
+    width: 100%;
+    height: fit-content;
+    border-color:  rebeccapurple;
+    border-width: 5px;
+  }
+  
+  .div-results .feed-container {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-top: 20px;
+    margin-bottom: 80px;
+    border-color: rebeccapurple;
+    padding-bottom: 20px;
+    
+  }
+  
+  .div-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .div-buttons>* {
+    margin-left: 30px;
+  }

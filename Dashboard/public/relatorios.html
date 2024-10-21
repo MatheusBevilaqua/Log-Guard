@@ -45,36 +45,114 @@
 
             <h1>Todos os relatórios</h1>
             <div class="div-results">
-            
-                <div id="feed_container" class="feed-container">
+
+                <div id="feed_container" class="feed-container"></div>
+
+                <button onclick='escrever_relatorio()' class="cad-func">Escrever relatório</button>
+                <button onclick='relatorio_IA()' class="cadIA">Relatório IA</button>
 
             </div>
 
+           
+
     </section>
-</body>]
+    <div class="publicar-relatorio">
+        <div id="form_postagem" class="Editar-func-primeiro">
+            <h1>Publicar Relatório</h1>
+            <input placeholder="Titulo" name="titulo" id="titulo" maxlength="100" type="text">
+            <img src="./img/Line1cadastro.png" alt="">
+            <textarea placeholder="Texto" class="TextoArea" name="descricao" id="textarea_descricao" maxlength="500"
+                rows="5"></textarea> <img src="./img/Line1cadastro.png" alt="">
+            <div class="select-func-primeiro">
+                <select id="select_status">
+                    <option selected value="#" disabled>Selecionar Status</option>
+                    <option value="EMERGENCIAL">EMERGENCIAL</option>
+                    <option value="ALERTA">ALERTA</option>
+                    <option value="NORMAL">NORMAL</option>
+
+                </select>
+
+            </div>
+            <img src="./img/Line1cadastro.png" alt="">
+
+        </div>
+
+        <img src="./img/Line1cadastro.png" class="linhacad">
+        <div class="Editar-func-botao-delete">
+            <button onclick="publicar()" class="cad-func" style="background-color: #442BB3;">Publicar</button>
+            <button onclick="cancelar_relatorio()" style="margin-left: 10px;" class="cad-func">Cancelar</button>
+        </div>
+        <img src="./img/Line1cadastro.png" class="linhacad2">
+    </div>
+        <div class="editar-relatorio">
+            <div class="Editar-func-primeiro">
+                <h1>Editar um Relatorio</h1>
+                <div class="Editar-func-primeiro">
+                    <label>
+                        Descrição (máximo de 250 caracteres):
+                        <br>
+                        <textarea class="TextoAreaE" id="textarea_descricao" maxlength="250" rows="13"></textarea>
+                    </label>
+                    <img src="./img/Line1cadastro.png" alt="">
+                        
+                    <div class="Editar-func-botao-delete">
+                        <button style="background-color: #442BB3;" class="cad-func" onclick="editar()">Confirmar Edição</button>
+                        <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cad-func">Cancelar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+</body>
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     b_usuario.innerHTML = sessionStorage.EMPRESA_USUARIO;
-    b_usuario.innerHTML = sessionStorage.TIPO_USUARIO;
+    var tipoPerfilUsuario = b_usuario.innerHTML = sessionStorage.TIPO_USUARIO;
 
-    function cadastrar_maquina() {
-        document.querySelector('.maingerenpage').style.filter = "blur(5px)";
-        document.querySelector('.Cadastrargeren').style.display = "block";
-        
+    function relatorio_IA(){
+
+       window.location = href = "http://localhost:3000" 
+
     }
 
+    function verifica_User(){
 
-    function limparFormulario() {
-        document.getElementById("form_postagem").reset();
+        if(tipoPerfilUsuario != "ADMINISTRADOR"){
+
+            document.querySelector('.botaoI.A').style.display = "none";
+
+        }
+
+    }
+
+    function escrever_relatorio() {
+        document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
+        document.querySelector('.publicar-relatorio').style.display = "block";
+
+    }
+
+    function cancelar_relatorio() {
+        document.querySelector('.main-relatorios-page').style.filter = "none";
+        document.querySelector('.publicar-relatorio').style.display = "none";
+
+    }
+
+    function cancelar_edicao() {
+        document.querySelector('.main-relatorios-page').style.filter = "none";
+        document.querySelector('.editar-relatorio').style.display = "none";
+
     }
 
     function publicar() {
 
         var idUsuario = sessionStorage.ID_USUARIO;
+        var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
 
         var corpo = {
             titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value
+            descricao: form_postagem.descricao.value,
+            status: form_postagem.select_status.value
         }
 
         fetch(`/relatorio/publicar/${idUsuario}`, {
@@ -89,7 +167,7 @@
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
+                window.location = "/dashboard/relatorios.html";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
@@ -106,14 +184,37 @@
 
     }
 
-    function editar(idrelatorio) {
+    function editar_relatorio(idrelatorio) {
         sessionStorage.ID_POSTAGEM_EDITANDO = idrelatorio;
-
         console.log("cliquei em editar - " + idrelatorio);
-        window.alert("Você será redirecionado à página de edição do relatorio de id número: " + idrelatorio);
-        window.location = "/dashboard/edicao-relatorio.html"
-
+        document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
+        document.querySelector('.editar-relatorio').style.display = "block";
     }
+
+    function editar() {
+        fetch(`/mensagem/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descricao: textarea_descricao.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "/dashboard/relatorios.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
 
     function deletar(idrelatorio) {
         console.log("Criar função de apagar post escolhido - ID" + idrelatorio);
@@ -126,7 +227,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "/dashboard/relatorios.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -190,7 +291,7 @@
 
                             btnEditar.className = "relatorio-btn-editar"
                             btnEditar.id = "btnEditar" + relatorio.idrelatorio;
-                            btnEditar.setAttribute("onclick", `editar(${relatorio.idrelatorio})`);
+                            btnEditar.setAttribute("onclick", `editar_relatorio(${relatorio.idrelatorio})`);
 
                             btnDeletar.className = "relatorio-btn-editar"
                             btnDeletar.id = "btnDeletar" + relatorio.idrelatorio;

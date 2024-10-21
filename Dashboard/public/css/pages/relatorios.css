@@ -4,8 +4,8 @@
     margin-left: 270px;
     padding: 10px;
     width: 100%;
-    height: fit-content;
-    overflow-x: hidden;
+    height: 100%;
+    overflow: hidden;
     flex-direction: column;
 
 }
@@ -19,14 +19,13 @@
 
 .publicacao-btn-editar {
     cursor: pointer;
-    font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: 0;
     border-radius: 5px;
     font-weight: 600;
     font-size: 14px;
     padding: 5px 8px;
     color: white;
-    background-color: rebeccapurple;
+    background-color: #442BB3;
     width: 80px;
   }
   
@@ -37,7 +36,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    border: 3px solid  rebeccapurple;
+    border: 3px solid  #442BB3;
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 10px;
@@ -49,8 +48,8 @@
   
   .div-results {
     width: 100%;
-    height: fit-content;
-    border-color:  rebeccapurple;
+    height: 700px;
+    border-color:  #442BB3;
     border-width: 5px;
   }
   
@@ -59,10 +58,11 @@
     border-radius: 5px;
     padding-left: 20px;
     padding-top: 20px;
-    margin-bottom: 80px;
-    border-color: rebeccapurple;
+    margin-bottom: 10px;
+    border-color: #442BB3;
     padding-bottom: 20px;
-    
+    height: 400px;
+    overflow-x: hidden;
   }
   
   .div-buttons {
@@ -73,3 +73,79 @@
   .div-buttons>* {
     margin-left: 30px;
   }
+
+  .relatorio-editar{
+
+    width: 300px;
+
+  }
+
+  .publicar-relatorio{
+
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-30%, -50%); 
+    width: 30%; 
+    height: 500px;
+    background-color: #FFF;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 0px 4px 39.4px 19px rgba(0, 0, 0, 0.36);
+
+  }
+
+  .editar-relatorio{
+
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-30%, -50%); 
+    width: 50%; 
+    height: 500px;
+    background-color: #FFF;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    align-content: center;
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 0px 4px 39.4px 19px rgba(0, 0, 0, 0.36);
+
+  }
+
+  .TextoArea{
+
+    padding-left: 10px; 
+    align-content: center;
+    width: 300px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+
+  }
+
+  .TextoAreaE{
+
+    padding-left: 10px; 
+    align-content: center;
+    width: 480px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+
+  }
+
+  .cadIA {
+    width: 20%;
+    height: 35px;
+    border-radius: 20px;
+    background-color: rgba(68, 43, 179, 1);
+    color: white;
+    border: none;
+}
