@@ -61,10 +61,9 @@ function totalanalista(idEmpresaUsuario) {
 function exibirDadosEdicaoUsuario(idUsuario) {
     var instrucaoSql = `SELECT *  FROM usuario WHERE idUsuario = '${idUsuario}';`;
     return database.executar(instrucaoSql)
-      
-    }
+}
 
-    // --------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 function deletarusuario(idUsuario) {
     var instrucaoSql = `UPDATE usuario SET tipoPerfilUsuario = "DESATIVADO" WHERE idUsuario = '${idUsuario}';`;
@@ -72,6 +71,19 @@ function deletarusuario(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+
+function editarusuario(idUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) {
+    var instrucaoSql = `UPDATE usuario SET nomeUsuario = '${nomeUsuario}', emailUsuario = '${emailUsuario}', senhaUsuario = '${senhaUsuario}', tipoPerfilUsuario = '${tipoPerfilUsuario}' WHERE idUsuario = '${idUsuario}';`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function cadastrarnovouser(idEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) {
+    var instrucaoSql = `
+    INSERT INTO usuario VALUES ('${idEmpresaUsuario}','${nomeUsuario}','${emailUsuario}','${senhaUsuario}','${tipoPerfilUsuario}')`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     autenticar,
@@ -83,5 +95,7 @@ module.exports = {
     totalanalista,
     totaladms,
     exibirDadosEdicaoUsuario,
-    deletarusuario
+    deletarusuario,
+    editarusuario,
+    cadastrarnovouser
 };

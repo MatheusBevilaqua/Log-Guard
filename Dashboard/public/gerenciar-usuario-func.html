@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="duvidas-func">
-                    <a href="#">Duvidas? Clique aqui!</a>
+                    <a href="./relatorios.html">Duvidas? Clique aqui!</a>
                 </div>
             </div>
 
@@ -108,10 +108,11 @@
                     <img src="./img/Line1cadastro.png" alt="">
                     <div class="select-func-primeiro">
                         <select id="select_alterar_cargo">
-                            <option value="valor1" selected disabled>Selecionar cargo</option>
-                            <option value="valor2">Analista</option>
-                            <option value="valor3">Administrador</option>
-                        </select>
+                            <option value=""disabled>Selecionar cargo</option>
+                            <option value="COMUM">COMUM</option>
+                            <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                        </select>                        
+                        
                     </div>
                     <img src="./img/Line1cadastro.png" alt="">
                     <input placeholder="Senha" type="text" id="input_alterar_senha">
@@ -120,12 +121,12 @@
                 </div>
                 <div class="editar-func-titulodelet">
                 </div>
-                <!-- <div class="Editar-func-botao-editar">
-                    <button onclick="atribuicao_editar_gefunc()" class="editar-func">Editar atribuição de
-                        servidores</button>
-                </div> -->
+                <div class="Editar-func-botao-editar">
+                    <button onclick="atribuicao_maquina_gefunc()" class="editar-func">Atribuição de Máquinas</button>
+                </div>
                 <img src="./img/Line1cadastro.png" class="linhacad">
                 <div class="Editar-func-botao-delete">
+                    <button onclick="atribuicao_editar_gefunc()" class="editar-func">Editar Perfil</button>
                     <button onclick="excluir_editar_gefunc()" class="excluir-func">Excluir Perfil</button>
                 </div>
                 <img src="./img/Line1cadastro.png" class="linhacad2">
@@ -134,8 +135,32 @@
                 </div>
             </div>
             <!-- FIM EDITAR FUNCIONÁRIO ----------------------------------------------------------------------------------- --> 
-
-
+            <div class="Cadastrarfunc">
+                <h1>Complete os campos:</h1>
+                <div class="cadastrar-func-primeiro">
+                    <input placeholder="Nome" type="text" id="input_nome_func">
+                    <img src="./img/Line1cadastro.png" alt="">
+                    <input placeholder="E-Mail" type="text" id="input_email_func">
+                    <img src="./img/Line1cadastro.png" alt="">
+                    <div class="select-func-segundo">
+                        <select id="lista_cargo" name="select">
+                            <option value="" selected disabled>Selecionar cargo</option>
+                            <option value="COMUM">COMUM</option>
+                            <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                        </select>
+                    </div>
+                    <img src="./img/Line1cadastro.png" alt="">
+                    <input placeholder="Senha" type="text" id="input_senha_func">
+                    <img src="./img/Line1cadastro.png" alt="">
+                    <input placeholder="Repetir Senha" type="text" id="input_repetir_func">
+                    <img src="./img/Line1cadastro.png" alt="">
+                    <br>
+                </div>
+                <div class="cadastrar-func-terceiro">
+                    <button onclick="confirmar_cadastrar_gefunc()" class="confirmar-func">Confirmar</button>
+                    <button onclick="cancelar_cadastrar_gefunc()" class="cancelar-func">Cancelar</button>
+                </div>
+            </div>
 
             <div class="Editaratribuicaofunc">
                 <h1>Editar atribuição de servidores</h1>
@@ -197,6 +222,40 @@
                             <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
                             <div class="coluna-func-atribuicao">DATACENTER 5</div>
                         </div>
+                        <div class="dados-func-atribuicao">
+                            <input type="checkbox" id="input_cadastro_checkbox">
+                            <div class="coluna-func-atribuicao">102</div>
+                            <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
+                            <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                        </div>
+                        <div class="dados-func-atribuicao">
+                            <input type="checkbox" id="input_cadastro_checkbox">
+                            <div class="coluna-func-atribuicao">102</div>
+                            <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
+                            <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                        </div>
+                        <div class="dados-func-atribuicao">
+                            <input type="checkbox" id="input_cadastro_checkbox">
+                            <div class="coluna-func-atribuicao">102</div>
+                            <div class="coluna-func-atribuicao">DESKTOP-L776AUQ</div>
+                            <div class="coluna-func-atribuicao">DATACENTER 5</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cadastrar-func-a03">
+                    <div class="criacaocheck">
+                        <input type="checkbox" id="input_criacao">
+                        <label for="input_criacao">Confirmar criação</label>
+                    </div>
+                    <div class="confirmar-func">
+                        <button onclick="confirmar_check_func()" class="confirmar-func-a03">Confirmar</button>
+                    </div>
+                    <div class="confirmar-func">
+                        <button onclick="cancelar_check_func()" class="cancelar-func-a03">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
         </section>
 </body>
 
@@ -222,13 +281,17 @@
     function excluir_editar_gefunc() {
         var r = confirm("Tem certeza que deseja excluir este perfil?");
         if (r == true) {
-            deletarUsuario();
-            window.location.reload(true); //reload na página
+            if (idUsuario != sessionStorage.ID_USUARIO) {
+                deletarUsuario();
+                window.location.reload(true);
+            } else {
+                alert("Não é possivel deletar o seu usuário!")
+            }
         }
     }
 
     function confirmar_cadastrar_gefunc() {
-        //tem que colocar a lógica do check estar ativo para conseguir continuar.
+        cadastrarUsuario()
         window.location.reload(true);
     }
 
@@ -258,9 +321,19 @@
     }
 
     function atribuicao_editar_gefunc() {
-        document.querySelector('.Editarfunc').style.filter = "blur(5px)";
-        document.querySelector('.Editaratribuicaofunc').style.display = "block";
+    var r = confirm("Tem certeza que deseja alterar este perfil?");
+    if (r == true) {
+        editarusuario();
+    } else {
+        alert("Algo deu errado na alteração de perfil!");
     }
+}
+
+function atribuicao_maquina_gefunc() {
+    document.querySelector('.Editarfunc').style.filter = "blur(5px)";
+    document.querySelector('.Editaratribuicaofunc').style.display = "block";
+    }
+
 
     function cancelar_check_func() {
         document.querySelector('.Editarfunc').style.filter = "blur(0px)";
@@ -609,34 +682,38 @@ function totalanalista() {
 }
 
 function gerenciarUsuario(idUsuarioSelecionado) {
-    // Exibe o ID do usuário para confirmação
+      // Exibe o ID do usuário para confirmação
     alert("ID do usuário selecionado: " + idUsuarioSelecionado);
     idUsuario = idUsuarioSelecionado;
     fetch("/usuarios/exibirDadosEdicaoUsuario", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+        headers: { 
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify({
+        body: JSON.stringify({ 
             idUsuarioServer: idUsuarioSelecionado,
         }),
     })
     .then(function (resposta) {
         if (resposta.ok) {
             resposta.json().then(function (json) {
-                // Aqui você já tem os dados do usuário retornados pela API
                 let nomeUsuarioEdicao = json.nomeUsuario;
                 let emailUsuarioEdicao = json.emailUsuario;
                 let senhaUsuarioEdicao = json.senhaUsuario;
                 let cargoUsuarioEdicao = json.tipoPerfilUsuario;
 
-                // Preenche os inputs do modal com os dados recebidos
                 document.getElementById("input_alterar_nome").value = nomeUsuarioEdicao;
                 document.getElementById("input_alterar_email").value = emailUsuarioEdicao;
                 document.getElementById("input_alterar_senha").value = senhaUsuarioEdicao;
-                document.getElementById("select_alterar_cargo").value = cargoUsuarioEdicao;
 
-                // Agora que os dados estão prontos, exibe o modal
+                let selectCargo = document.getElementById("select_alterar_cargo");
+                for (let option of selectCargo.options) {
+                    if (option.value === cargoUsuarioEdicao) {
+                        option.selected = true;
+                        break;
+                    }
+                }
+
                 document.querySelector('.mainfuncpage').style.filter = "blur(5px)";
                 document.querySelector('.Editarfunc').style.display = "block";
             });
@@ -648,8 +725,9 @@ function gerenciarUsuario(idUsuarioSelecionado) {
         console.error("Erro ao tentar buscar os dados do usuário:", erro);
     });
 
-      return false;
+    return false;
 }
+
 
 function deletarUsuario() {
     // Exibe o ID do usuário para confirmação
@@ -680,6 +758,109 @@ function deletarUsuario() {
 
     return false;
 }
+
+
+function editarusuario() {
+    var nome = document.getElementById("input_alterar_nome").value;
+    var email = document.getElementById("input_alterar_email").value;
+    var senha = document.getElementById("input_alterar_senha").value;
+    var cargo = document.getElementById("select_alterar_cargo").value;
+
+    console.log("Dados a serem enviados:", {
+        idUsuarioServer: idUsuario,
+        nomeUsuario: nome,
+        emailUsuario: email,
+        senhaUsuario: senha,
+        tipoPerfilUsuario: cargo
+    });
+
+    fetch("/usuarios/editarusuario", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idUsuarioServer: idUsuario,
+            nomeUsuario: nome,
+            emailUsuario: email,
+            senhaUsuario: senha,
+            tipoPerfilUsuario: cargo,
+        }),
+    })
+    .then(function (resposta) {
+        console.log("Status da resposta:", resposta.status);
+        if (resposta.ok) {
+            resposta.json().then(function (json) {
+                console.log("Usuário atualizado com sucesso:", json);
+                alert("Perfil alterado com sucesso!");
+                window.location.reload(true);
+            });
+        } else {
+            resposta.text().then(function (texto) {
+                console.error("Erro na resposta:", texto);
+            });
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro ao tentar alterar os dados do usuário:", erro);
+    });
+}
+
+function cadastrarUsuario() {
+
+    var nomeUsuarioVar = input_nome_func.value;
+    var emailUsuarioVar = input_email_func.value;
+    var senhaUsuarioVar = input_senha_func.value;
+    var empresaUsuarioVar = idEmpresaUsuario;
+    var tipoUsuarioVar = lista_cargo.value;
+
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeUsuarioVar == "" ||
+      emailUsuarioVar == "" ||
+      senhaUsuarioVar == "" ||
+      senhaUsuarioVar != input_repetir_func.value
+    ) {
+      alert("Todos os campos dever ser preenchidos!")
+      return false;
+    } else {
+
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+          nomeUsuarioServer: nomeUsuarioVar,
+          emailUsuarioServer: emailUsuarioVar,
+          senhaUsuarioServer: senhaUsuarioVar,
+          empresaUsuarioServer: empresaUsuarioVar,
+          tipoUsuariosServer: tipoUsuarioVar
+
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+
+            alert("CADASTRO EXECUTADO!")
+
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+
+        });
+
+      return false;
+    }
+  }
+
 
     
 </script>

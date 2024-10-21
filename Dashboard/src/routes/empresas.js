@@ -34,10 +34,20 @@ router.post("/confirmar_cadastrar", function (req, res) {
 //   empresaController.listar(req, res);
 // });
 
+router.post("/exibirDadosEdicaoMaquina", function (req, res) {
+  empresaController.exibirDadosEdicaoMaquina(req, res);
+});
 
 router.post("/visualizarMaquinas", function (req, res) {
   empresaController.visualizarMaquinas(req, res);
 });
 
+router.delete("/deletarMaquina", function (req, res) {
+  empresaController.deletarMaquina(req, res);
+});
+
+router.post("/editarMaquina", function (req, res) {
+  empresaController.editarMaquina(req, res);
+});
 
 module.exports = router;

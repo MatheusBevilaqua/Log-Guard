@@ -103,6 +103,62 @@ function visualizarMaquinas(req, res) {
   });
 
 }
+function deletarMaquina(req, res) {
+  var idMaquina = req.body.idMaquinaServer;
+  empresaModel.deletarMaquina(idMaquina).then(function (resultado) {
+      if (resultado.affectedRows > 0) {
+          res.status(200).json({ mensagem: "Máquina deletada com sucesso" });
+      } else {
+          res.status(404).send("Nenhuma máquina encontrada");
+      }
+  }).catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao deletar o usuário: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+  });
+}
+
+function exibirDadosEdicaoMaquina(req, res) {
+  var idMaquina = req.body.idMaquinaServer;
+  empresaModel.exibirDadosEdicaoMaquina(idMaquina).then(function (resultado) {
+      if (resultado.length > 0) {
+          res.json({
+              nomeMaquina: resultado[0].nomeMaquina,
+              modeloCPU: resultado[0].modeloCPU,
+              capacidadeRAM: resultado[0].capacidadeRAM,
+              disco: resultado[0].disco,
+              localidade: resultado[0].localidade,
+          });
+      } else {
+          res.status(204).send("Nenhum resultado encontrado!");
+      }
+  }).catch(function (erro) {
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+  });
+}
+function editarMaquina(req, res) {
+
+  var idMaquina = req.body.idMaquinaServer;
+  var nomeMaquina = req.body.nomeMaquinaServer;
+  var modeloCPU = req.body.modeloCPUServer;
+  var capacidadeRAM =req.body.capacidadeRAMServer;
+  var disco = req.body.discoServer;
+  var localidade= req.body.localidadeServer;
+
+  
+
+  empresaModel.editarMaquina(idMaquina,nomeMaquina,modeloCPU,capacidadeRAM,disco,localidade).then(function (resultado) {
+      if (resultado.affectedRows > 0) {
+          res.status(200).json({ mensagem: "Máquina atualizado com sucesso" });
+      } else {
+          res.status(404).send("Nenhuma máquina encontrada");
+      }
+  }).catch(function (erro) {
+      console.log("Houve um erro ao atualizar a máquina: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+  });
+}
 
 module.exports = {
   buscarPorCnpj,
@@ -111,7 +167,10 @@ module.exports = {
   listar,
   confirmar_cadastrar,
   visualizarEmpresas,
-  visualizarMaquinas
+  visualizarMaquinas,
+  deletarMaquina,
+  exibirDadosEdicaoMaquina,
+  editarMaquina
   // confirmar_editar,
   // excluir_editar
 };
