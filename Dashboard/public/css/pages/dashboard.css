@@ -254,22 +254,7 @@ justify-content: center;
 
 }
 
-.main-dash-card-IA{
 
-    display: flex;
-    flex-direction: column;
-    width: 960px;
-    height: 200px;
-    flex: 1;
-    background-color: #442BB3;
-    padding: 20px;
-    border-radius: 12px;
-    display: flex;
-    margin-left: 250px;
-    margin-bottom: 15px;
-    margin-right: 10px;
-
-}
 
 .nav-dash-link-sair {
     color: #FF3B3B; 

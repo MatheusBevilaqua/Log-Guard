@@ -23,15 +23,11 @@ function listar() {
     return database.executar(instrucaoSql);
 }
 
-function publicar(idUsuarioEmpresa, idUsuario, titulo, descricao, status) {
-    console.log("idUsuarioEmpresa:", idUsuarioEmpresa);
-    console.log("idUsuario:", idUsuario);
-    console.log("titulo:", titulo);
-    console.log("descricao:", descricao);
-    console.log("status:", status)
+function publicar(idEmpresaUsuario, idUsuario, titulo, descricao, status) {
+
     console.log("ACESSEI O relatorio MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", titulo, descricao, idUsuario);
     var instrucaoSql = `
-        INSERT INTO relatorio (fkEmpresaRelatorio, fkusuarioRelatorio, titulo, texto, statusRelatorio) VALUES ('${idUsuarioEmpresa}','${idUsuario}','${titulo}','${descricao}','${status}');
+        INSERT INTO relatorio (fkEmpresaRelatorio, fkusuarioRelatorio, titulo, texto, statusRelatorio) VALUES ('${idEmpresaUsuario}','${idUsuario}','${titulo}','${descricao}','${status}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

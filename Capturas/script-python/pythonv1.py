@@ -68,13 +68,13 @@ def montaQueryMAC(enderecoMAC):
     return ("INSERT INTO maquina (MACAdress) VALUES ('{}')").format(enderecoMAC)
 
 def montaQueryCPU(idMaquina,porcentagemCpu, data):
-    return (" insert into captura values (null, '{}', 1, 2, '{}', '{}');").format(idMaquina,porcentagemCpu, data)
+    return (" insert into captura values (null, '{}', 1, 1, '{}', '{}');").format(idMaquina,porcentagemCpu, data)
 
 def montaQueryMEM(idMaquina,porcentagemMemoria, data):
-    return ("insert into captura values (null, '{}', 3, 4, '{}', '{}');").format(idMaquina,porcentagemMemoria, data)
+    return ("insert into captura values (null, '{}', 2, 2, '{}', '{}');").format(idMaquina,porcentagemMemoria, data)
 
 def montaQueryDISK(idMaquina,DiscoLivre, data):
-    return ("insert into captura values (null, '{}', 5, 1, '{}', '{}');").format(idMaquina,DiscoLivre, data)
+    return ("insert into captura values (null, '{}', 3, 3, '{}', '{}');").format(idMaquina,DiscoLivre, data)
 
 def buscaQueryMAC (enderecoMAC):
     return("select * from maquina where MACAdress = '{}';").format(enderecoMAC)

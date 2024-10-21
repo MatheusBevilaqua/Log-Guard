@@ -15,18 +15,12 @@ function listar(req, res) {
 }
 
 function publicar(req, res) {
-    var idUsuarioEmpresa = req.params.idUsuarioEmpresa
+    console.log(req.body)
+    var idEmpresaUsuario = req.body.idEmpresaUsuario
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
     var idUsuario = req.params.idUsuario;
     var status = req.body.status
-
-    console.log("idUsuarioEmpresa:", idUsuarioEmpresa);
-    console.log("idUsuario:", idUsuario);
-    console.log("titulo:", titulo);
-    console.log("descricao:", descricao);
-    console.log("status:", status)
-
     if (titulo == undefined) {
         res.status(400).send("O título está indefinido!");
     } else if (descricao == undefined) {
@@ -34,7 +28,7 @@ function publicar(req, res) {
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        relatorioModel.publicar(idUsuarioEmpresa, idUsuario,titulo, descricao, status, )
+        relatorioModel.publicar(idEmpresaUsuario, idUsuario, titulo, descricao, status )
             .then(
                 function (resultado) {
                     res.json(resultado);

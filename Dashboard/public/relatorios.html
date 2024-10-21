@@ -15,31 +15,37 @@
 
     <section class="page-dash">
         <aside class="nav-dash">
-            <div class="nav-dash-teste">
-                <img src="./img/logo-preta-transparent.png" alt="#Logo-LogGuard">
+            <div class="nav-dash-logo">
+                <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
             </div>
-            <nav class="nav-dash-menu">
-                <ul class="nav-dash-list">
-                    <a href="#">
-                        <li class="nav-dash-link"><img src="./svg/key-icon.svg" class="nav-dash-icon">Visão
-                            Geral</li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon">Relatórios
-                        </li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-dash-link"><img src="./img/monitor.png" class="nav-dash-icon">Máquinas</li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
-                    </a>
-                    <a href="#">
-                        <li class="nav-dash-link-sair"><img src="./img/man.png" class="nav-dash-icon">Sair</li>
-                    </a>
-                </ul>
+
+            <ul class="nav-dash-list">
+                <a href="dashboard_ADM.html">
+                    <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon"
+                            style="padding-left: 3%;">Visão
+                        Geral</li>
+                </a>
+                <a href="relatorios.html">
+                    <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon"
+                            style="padding-left: 3%;">Relatórios
+                    </li>
+                </a>
+                <a href="gerenciar-maquina.html">
+                    <li class="nav-dash-link"><img src="./img/monitor.svg" class="nav-dash-icon"
+                            style="padding-left: 3%;">Máquinas</li>
+                </a>
+                <a href="gerenciar-usuario-func.html">
+                    <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
+                </a>
+                <a href="index.html">
+                    <li class="nav-dash-link-sair"><img src="./img/sair.png" class="nav-dash-icon"
+                            style="padding-left: 3%;">Sair</li>
+                </a>
+            </ul>
+            </nav>
             </nav>
         </aside>
+
 
         <div class="main-relatorios-page">
 
@@ -61,12 +67,13 @@
             <h1>Publicar Relatório</h1>
             <input placeholder="Titulo" name="titulo" id="titulo" maxlength="100" type="text">
             <img src="./img/Line1cadastro.png" alt="">
-            <textarea placeholder="Texto" class="TextoArea" name="descricao" id="textoPublicar" maxlength="500"rows="5"></textarea>
+            <textarea placeholder="Texto" class="TextoArea" name="descricao" id="textoPublicar" maxlength="500"
+                rows="5"></textarea>
             <img src="./img/Line1cadastro.png" alt="">
             <div class="select-func-primeiro">
                 <select id="select_status">
                     <option selected value="#" disabled>Selecionar Status</option>
-                    <option value="EMERGENCIAL">EMERGENCIAL</option>
+                    <option value="EMERGÊNCIA">EMERGÊNCIA</option>
                     <option value="ALERTA">ALERTA</option>
                     <option value="NORMAL">NORMAL</option>
 
@@ -146,7 +153,7 @@
     }
 
     function publicar() {
-      
+
         var idUsuario = sessionStorage.ID_USUARIO;
         var idUsuarioEmpresa = sessionStorage.EMPRESA_USUARIO;
 
@@ -154,21 +161,18 @@
         var descricaoVar = document.getElementById('textoPublicar').value;
         var statusVar = document.getElementById('select_status').value
 
-       
-
-        
-
         var corpo = {
+            idEmpresaUsuario: idUsuarioEmpresa,
             titulo: tituloVar,
             descricao: descricaoVar,
-            status: statusVar,
-            idEmpresaUsuario: idUsuarioEmpresa
+            status: statusVar
         }
-    
+
+        console.log(corpo)
 
         if (!tituloVar || !descricaoVar || !statusVar) {
-        alert('Erro: Campos obrigatórios não preenchidos');
-        return;
+            alert('Erro: Campos obrigatórios não preenchidos');
+            return;
         }
 
         fetch(`/relatorios/publicar/${idUsuario}`, {
@@ -182,7 +186,7 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "da empresa de ID: "+ idEmpresaUsuario + "!");
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "da empresa de ID: " + idUsuarioEmpresa + "!");
                 window.location = "relatorios.html";
                 limparFormulario();
                 finalizarAguardar();
@@ -273,8 +277,17 @@
                     feed.innerHTML = "";
                     for (let i = 0; i < resposta.length; i++) {
                         var relatorio = resposta[i];
+                        var data = new Date(relatorio.data);
+                        console.log(data)
+                        var ano = data.getFullYear();
+                        console.log(ano)
+                        var mes = data.getMonth();
+                        console.log(mes)
+                        var dia = data.getDate();
+                        console.log(dia)
+                        var data = dia + "/" + mes + 1 +"/" + ano 
                         if (relatorio.fkEmpresaRelatorio == sessionStorage.EMPRESA_USUARIO) {
-                            if (relatorio.fkUsuarioRelatorio == sessionStorage.ID_USUARIO ) {
+                            if (relatorio.fkUsuarioRelatorio == sessionStorage.ID_USUARIO) {
 
 
                                 var divrelatorio = document.createElement("div");
@@ -293,7 +306,7 @@
 
                                 spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b>";
                                 spanNome.innerHTML = "Autor: <b>" + relatorio.nomeUsuario + "</b> ";
-                                spanData.innerHTML = "Data de criação: <b>"+ relatorio.data +"</b> <br><br>";
+                                spanData.innerHTML = "Data de criação: <b>" + data + "</b> <br><br>";
                                 spanSituacao.innerHTML = "Status: <b>" + relatorio.statusRelatorio + "</b> <br><br>";
                                 divDescricao.innerHTML = "Descrição: <b>" + relatorio.texto + "</b>";
                                 btnEditar.innerHTML = "Editar";
@@ -349,7 +362,7 @@
 
                                 spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b>";
                                 spanNome.innerHTML = "Autor: <b>" + relatorio.nomeUsuario + "</b> ";
-                                spanData.innerHTML = "Data de criação: <b>"+ relatorio.data +"</b> <br><br>";
+                                spanData.innerHTML = "Data de criação: <b>" + data + "</b> <br><br>";
                                 spanSituacao.innerHTML = "Status: <b>" + relatorio.statusRelatorio + "</b> <br><br>";
                                 divDescricao.innerHTML = "Descrição: <b>" + relatorio.texto + "</b>";
 
