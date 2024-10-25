@@ -18,12 +18,10 @@
         
 }
 
-
 #page-login-user{
     background: url(../../img/fundo-home.png) no-repeat center center;
     background-size: cover;
 
-    padding-top: 0;
     display: flex;
     justify-content: center;
 
@@ -142,4 +140,22 @@
         justify-content: center;
         align-items: center;
     }
+}
+
+.text-login-texto{
+    color: var(--normal-purple);
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.text-center-login {
+    width: 100%;
+}
+
+.contato-titulo-purple {
+    display: flex;
+    height: 75px;
+    width: 100%;
+    justify-content: center;
 }

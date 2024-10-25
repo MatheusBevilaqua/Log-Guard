@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Funcionario</title>
     <link rel="stylesheet" href="./css/main.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -17,19 +18,13 @@
             </div>
 
             <ul class="nav-dash-list">
-                <a href="dashboard_ADM.html">
+                <a href="dashboardFuncionario.html">
                 <li class="nav-dash-link" href=""><img src="./svg/key-icon.svg" class="nav-dash-icon" style="padding-left: 3%;">Visão
                         Geral</li>
                 </a>
                 <a href="relatorios.html">
                 <li class="nav-dash-link"><img src="./img/icon-cnpj.png" class="nav-dash-icon" style="padding-left: 3%;">Relatórios
                     </li>
-                </a>
-                <a href="gerenciar-maquina.html">
-                <li class="nav-dash-link"><img src="./img/monitor.svg" class="nav-dash-icon" style="padding-left: 3%;">Máquinas</li>
-                </a>
-                <a href="gerenciar-usuario-func.html">
-                    <li class="nav-dash-link"><img src="./img/icon-man.png" class="nav-dash-icon">Funcionários</li>
                 </a>
                 <a href="index.html">
                 <li class="nav-dash-link-sair"><img src="./img/sair.png" class="nav-dash-icon" style="padding-left: 3%;">Sair</li>
@@ -74,36 +69,34 @@
                 
                     <div class="box-consumo">
                         <div class="box-mychart">
-                        <canvas id="myChart"></canvas>
+                        <canvas id="Chart"></canvas>
                     </div>
                     </div>
                 </div>
 
                     <!-- Script para o Chart.js -->
                 <script>
-                    var consumo = document.getElementById('myChart').getContext('2d');
+                    var consumo = document.getElementById('Chart').getContext('2d');
                     var myChart = new Chart(consumo, {
                         type: 'bar',
                         data: {
-                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                            labels: ['CPU', 'RAM', 'DISCO', 'REDE'],
                             datasets: [{
                                 label: 'Alertas',
-                                data: [12, 19, 3, 5, 2, 3],
+                                data: [30, 50, 30, 50],
                                 backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
                                     'rgba(153, 102, 255, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)'
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)'
                                 ],
                                 borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(75, 192, 192, 1)',
                                     'rgba(153, 102, 255, 1)',
-                                    'rgba(255, 159, 64, 1)'
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(153, 102, 255, 1)'
                                 ],
                                 borderWidth: 1
                             }]

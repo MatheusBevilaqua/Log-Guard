@@ -281,11 +281,11 @@
                         console.log(data)
                         var ano = data.getFullYear();
                         console.log(ano)
-                        var mes = data.getMonth();
+                        var mes = data.getMonth() + 1;
                         console.log(mes)
                         var dia = data.getDate();
                         console.log(dia)
-                        var data = dia + "/" + mes + 1 +"/" + ano 
+                        var data = dia + "/" + mes  +"/" + ano 
                         if (relatorio.fkEmpresaRelatorio == sessionStorage.EMPRESA_USUARIO) {
                             if (relatorio.fkUsuarioRelatorio == sessionStorage.ID_USUARIO) {
 
