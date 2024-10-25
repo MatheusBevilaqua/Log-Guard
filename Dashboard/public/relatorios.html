@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogGuard - Dashboard</title>
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/partials/SideBar.css">
     <link rel="shortcut icon" type="images/png" href="../../public/svg/iceberg-icon.svg">
     <script src="./js/sessao.js"></script>
 
@@ -14,7 +15,93 @@
 <body style="background-color: #e3e3e3; color: black;" onload="atualizarFeed()">
 
     <section class="page-dash">
-        <aside class="nav-dash">
+        <nav id="sidebar">
+            <div id="sidebar_content">
+                <div id="user">
+                    <img src="https://i.pinimg.com/originals/6c/85/40/6c85408b15e4cd7168c2de9c34d9384d.jpg" id="user_avatar" alt="Avatar">  
+                
+                    <p id="user_infos"> 
+                        <span class="item-description"> 
+                            Nome Usuário
+                        </span>
+                        <span class="item-description"> 
+                            Lorem Ipsum
+                        </span>
+                    </p>
+    
+                </div>    
+            
+                <ul id="side_items"> 
+                    <li class="side_item active"> 
+                        <a href="dashboard_ADM.html">
+                            <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon" style="height: 40px; width: 40px;"></i>
+                            <span class="item-description"> 
+                               <b> Visão Geral </b> 
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <li class="side_item"> 
+                        <a href="relatorios.html">
+                            <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                            <span class="item-description"> 
+                               <b> Relatórios </b> 
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <li class="side_item"> 
+                        <a href="gerenciar-maquina.html">
+                            <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                            <span class="item-description"> 
+                                <b> Máquinas </b>
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <li class="side_item"> 
+                        <a href="gerenciar-usuario-func.html">
+                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                            <span class="item-description"> 
+                                <b> Funcionários </b>
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <li class="side_item"> 
+                        <a href="#">
+                            <i> <img src="./img/ajuda.png" class="nav-dash-icon"> </i>
+                            <span class="item-description"> 
+                                <b> Ajuda </b>
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <!-- <li class="side_item"> 
+                        <a href="#">
+                            <i class="fa-solid fa-gear"></i>
+                            <span class="item-description"> 
+                                <b> </b>
+                            </span>    
+                        </a>
+                    </li> -->
+                </ul>
+            
+                <button id="open_btn">
+                    <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+                </button>
+            </div>
+    
+            <div id="logout">
+                <button id="logout_btn" onclick="sair()">
+                    <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+                    <span class="item-description"> 
+                        Sair 
+                    </span>
+                </button>
+            </div>
+    </nav>
+        <!-- <aside class="nav-dash">
             <div class="nav-dash-logo">
                 <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
             </div>
@@ -44,7 +131,7 @@
             </ul>
             </nav>
             </nav>
-        </aside>
+        </aside> -->
 
 
         <div class="main-relatorios-page">
@@ -114,9 +201,18 @@
 
 </body>
 <script>
+
+document.getElementById('open_btn').addEventListener('click', function (){
+document.getElementById('sidebar').classList.toggle('open-sidebar');
+                     });
+
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
     var tipoPerfilUsuario = b_usuario.innerHTML = sessionStorage.TIPO_USUARIO;
+
+    function sair(){
+    window.location.href = "index.html";
+    }
 
     function relatorio_IA() {
 
