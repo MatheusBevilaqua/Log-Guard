@@ -7,7 +7,6 @@
     height: 100%;
     padding-top: 0;
     background-color: #e2e2e2;
-    margin-left: 30px;
     overflow-y: hidden;
     overflow-x: hidden;
 }
@@ -52,7 +51,7 @@
 .maingerenpage {
     width: 70%;
     margin-top: 40px;
-    margin-left: 16.8%;
+    margin-left: 6.8%;
 }
 
 .maingerenpage h1 {
@@ -64,9 +63,8 @@
 .select-geren {
     position:relative;
     display: flex;
-    padding-left: 72.30%;
-    width: 105%;
-    gap: 20px;
+    padding-left: 100%;
+    width: 120%;
 }
 
 .select-geren select {
@@ -91,7 +89,7 @@
 .dash-geren {
     display: flex;
     flex-direction: column;
-    width: 105%;
+    width: 120%;
     height: 65%;
     background-color: rgb(255, 255, 255);
     padding-right: 20%;
@@ -200,9 +198,9 @@
     display: none;
     position: fixed; 
     top: 50%; 
-    left: 50%; 
+    left: 45%; 
     transform: translate(-30%, -50%); 
-    width: 30%; 
+    width: 60%; 
     height: 600px;
     background-color: #FFF;
     flex-direction: column;
@@ -297,12 +295,21 @@ font-size: 10px;
 }
 
 .Editar-geren-segundo .cancelar-geren {
-    border-radius: 40px;
-    background: white;
-    color: black;
-    width: 120px;
-    height: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #442BB3;
     border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .Editar-geren-botao-delete {
@@ -439,7 +446,7 @@ margin: 0;
 }
 
 .linha-geren img{
-    width: 123.58%;
+    width: 120%;
 }
 
 .confirmar-geren{
@@ -459,3 +466,18 @@ select option:hover{
     color: white;
 }
 
+.titulos-maquina-atribuicao {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+}
+
+.titulos-maquina-atribuicao p {
+    color: black;
+    
+}
+
+.configuracoes-servidores {
+    width: 100%;
+}

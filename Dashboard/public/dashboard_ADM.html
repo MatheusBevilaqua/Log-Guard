@@ -11,18 +11,17 @@
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarCargo();validarSessao()">
     <section class="page-dash">
         <nav id="sidebar">
             <div id="sidebar_content">
                 <div id="user">
-                    <img src="https://i.pinimg.com/originals/6c/85/40/6c85408b15e4cd7168c2de9c34d9384d.jpg" id="user_avatar" alt="Avatar">  
+                    <img src="https://static.wixstatic.com/media/3ce70f_1df652620b624e218f6ae076dd7b0aae~mv2.jpeg/v1/fill/w_163,h_245,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/3ce70f_1df652620b624e218f6ae076dd7b0aae~mv2.jpeg" id="user_avatar" alt="Avatar">  
                 
                     <p id="user_infos"> 
-                        <span class="item-description"> 
-                            Nome Usuário
+                        <span class="item-description" id="b_usuario"> 
                         </span>
-                        <span class="item-description"> 
+                        <span class="item-description "id="cargo_usuario" style="color: #442BB3;"> 
                             Lorem Ipsum
                         </span>
                     </p>
@@ -31,8 +30,17 @@
             
                 <ul id="side_items"> 
                     <li class="side_item active"> 
-                        <a href="dashboard_ADM.html">
+                        <a style="cursor: auto;">
                             <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon" style="height: 40px; width: 40px;"></i>
+                            <span class="item-description"> 
+                                <b style="color: white;"> LOG GUARD </b> 
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <li class="side_item"> 
+                        <a href="dashboard_ADM.html">
+                            <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
                             <span class="item-description"> 
                                <b> Visão Geral </b> 
                             </span>    
@@ -68,7 +76,7 @@
             
                     <li class="side_item"> 
                         <a href="#">
-                            <i> <img src="./img/ajuda.png" class="nav-dash-icon"> </i>
+                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
                             <span class="item-description"> 
                                 <b> Ajuda </b>
                             </span>    
@@ -131,10 +139,6 @@
 
         <!-- Main Content -->
         <main class="main-dash-page">
-            <!-- Saudações -->
-            <div class="main-dash-greet">
-                <h1>Olá de volta, <span class="b_usuario" id="b_usuario"></span></h1>
-            </div>
 
             <!-- Indicadores de Status -->
             <div class="indicadores-ADM">

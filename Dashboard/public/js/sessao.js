@@ -13,6 +13,19 @@ function validarSessao() {
     }
 }
 
+function validarCargo() {
+    var email = sessionStorage.EMAIL_USUARIO;
+    var nome = sessionStorage.NOME_USUARIO;
+    var empresa = sessionStorage.EMPRESA_USUARIO;
+    var tipoUser = sessionStorage.TIPO_USUARIO;
+
+    var cargo_usuario = document.getElementById("cargo_usuario");
+
+    if (email != null && nome != null) {
+        cargo_usuario.innerHTML = tipoUser;
+    }
+}
+
 function limparSessao() {
     sessionStorage.clear();
     window.location = "../login.html";

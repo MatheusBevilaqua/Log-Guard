@@ -7,21 +7,21 @@
     <title>LogGuard - Dashboard</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="css/partials/SideBar.css">
+    <script src="js/sessao.js"></script>   
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body onload="visualizarMaquinas()">
+<body onload="validarCargo();validarSessao();visualizarMaquinas()">
     <section class="page-dash">
         <nav id="sidebar">
             <div id="sidebar_content">
                 <div id="user">
-                    <img src="https://i.pinimg.com/originals/6c/85/40/6c85408b15e4cd7168c2de9c34d9384d.jpg" id="user_avatar" alt="Avatar">  
+                    <img src="https://static.wixstatic.com/media/3ce70f_1df652620b624e218f6ae076dd7b0aae~mv2.jpeg/v1/fill/w_163,h_245,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/3ce70f_1df652620b624e218f6ae076dd7b0aae~mv2.jpeg" id="user_avatar" alt="Avatar">  
                 
                     <p id="user_infos"> 
-                        <span class="item-description"> 
-                            Nome Usuário
+                        <span class="item-description" id="b_usuario"> 
                         </span>
-                        <span class="item-description"> 
+                        <span class="item-description "id="cargo_usuario" style="color: #442BB3;"> 
                             Lorem Ipsum
                         </span>
                     </p>
@@ -30,8 +30,17 @@
             
                 <ul id="side_items"> 
                     <li class="side_item active"> 
-                        <a href="dashboard_ADM.html">
+                        <a style="cursor: auto;">
                             <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon" style="height: 40px; width: 40px;"></i>
+                            <span class="item-description"> 
+                                <b style="color: white;"> LOG GUARD </b> 
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <li class="side_item"> 
+                        <a href="dashboard_ADM.html">
+                            <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
                             <span class="item-description"> 
                                <b> Visão Geral </b> 
                             </span>    
@@ -67,7 +76,7 @@
             
                     <li class="side_item"> 
                         <a href="#">
-                            <i> <img src="./img/ajuda.png" class="nav-dash-icon"> </i>
+                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
                             <span class="item-description"> 
                                 <b> Ajuda </b>
                             </span>    
@@ -132,19 +141,9 @@
             <div class="select-geren">
                 <select name="select">
                     <div class="select-items-geren">
-                        <option value="valor1" selected disabled>Filtro</option>
+                        <option value="valor1" selected disabled>Filtrar por</option>
                         <option value="valor2">Crescente</option>
                         <option value="valor3">Decrescente</option>
-                    </div>
-                </select>
-                <select name="select">
-                    <div class="select-items-geren">
-                        <option value="valor1" selected disabled>Componente</option>
-                        <option value="valor2">CPU</option>
-                        <option value="valor3">Memória</option>
-                        <option value="valor3">Disco</option>
-                        <option value="valor3">Localidade</option>
-                        <option value="valor3">Endereço MAC</option>
                     </div>
                 </select>
             </div>
@@ -169,26 +168,39 @@
                 <!-- <button onclick="editar_maquina()" class="edit-geren">Editar</button> -->
                 <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar</button>
             </div>
-    
-            <div class="duvidas-func">
-                <a href="#">Duvidas? Clique aqui!</a>
-            </div>
         </div>
     
         <div class="Editargeren">
             <div class="Editar-geren-primeiro">
                 <h1>Alterar as configurações do servidor:</h1>
-                <input placeholder="Nome da máquina" type="text" id="input_alterar_nome">
+                <div class="configuracoes-servidores">
+                <div class="titulos-maquina-atribuicao">
+                <p>Nome da máquina</p>
+                </div>
+                <input placeholder="Ex: HLE-STEP2" type="text" id="input_alterar_nome">
                 <img src="./img/Line1cadastro.png" alt="">
-                <input placeholder="Modelo da CPU" type="text" id="input_alterar_modeloCPU">
+                <div class="titulos-maquina-atribuicao">
+                <p>Modelo da CPU</p>
+            </div>
+                <input placeholder="Ex: Ryzen 5 1600AF" type="text" id="input_alterar_modeloCPU">
                 <img src="./img/Line1cadastro.png" alt="">
-                <input placeholder="RAM(Gb)" type="text" id="input_alterar_capacidadeRAM">
+                <div class="titulos-maquina-atribuicao">
+                <p>RAM(Gb)</p>
+            </div>
+                <input placeholder="Ex: 500" type="text" id="input_alterar_capacidadeRAM">
                 <img src="./img/Line1cadastro.png" alt="">
-                <input placeholder="Disco(TB)" type="text" id="input_alterar_disco">
+                <div class="titulos-maquina-atribuicao">
+                <p>Disco(TB)</p>
+            </div>
+                <input placeholder="Ex: 20" type="text" id="input_alterar_disco">
                 <img src="./img/Line1cadastro.png" alt="">
-                <input placeholder="Localidade" type="text" id="input_alterar_localidade">
+                <div class="titulos-maquina-atribuicao">
+                <p>Localidade</p>
+            </div>
+                <input placeholder="Ex: Datacenter 5" type="text" id="input_alterar_localidade">
                 <img src="./img/Line1cadastro.png" alt="">
             </div>
+        </div>
            
     
             <div class="Editar-geren-segundo">
@@ -201,7 +213,7 @@
 
                 <div class="Editar-geren-botoes">
                     <button onclick="confirmar_editar()" class="confirmar-geren">Confirmar</button>
-                    <button onclick="cancelar_editar()" class="cancelar-geren">Cancelar</button>
+                    <button onclick="cancelar_editar()" class="cancelar-geren">X</button>
                 </div>
             </div>
             <img src="./img/Line1cadastro.png" class="line1-geren" alt="">

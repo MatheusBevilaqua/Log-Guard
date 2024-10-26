@@ -72,7 +72,7 @@ main{
 }
 
 .side_item.active {
-    background-color: blueviolet;
+    background-color: #442BB3;
 }
 
 .side_item:hover:not(.active){
