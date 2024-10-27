@@ -2,7 +2,7 @@
 .page-dash {
     display: flex;
     width: 100%;
-    background-color: #f5f5f5;
+    background-color: #e2e2e2;
     overflow: hidden;
 }
 
@@ -50,7 +50,7 @@
 .main-dash-greet h1 {
     font-size: 26px;
     color: #333;
-     margin-left: 220px;
+    margin-left: 10%;
 }
 
 .indicadores-ADM {
@@ -322,7 +322,7 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    background-color: #f5f5f5;
+    background-color: #e2e2e2;
     margin-left: 30px;
 }
 

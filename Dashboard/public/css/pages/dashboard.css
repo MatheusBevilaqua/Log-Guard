@@ -9,6 +9,21 @@
 
 /* Barra lateral */
 .nav-dash {
+    display: none;
+    background-color: #ffffff;
+    color: white;
+    width: 220px;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    margin-right: 30px;
+}
+
+.nav-dash-func {
+    display: block;
     background-color: #ffffff;
     color: white;
     width: 220px;

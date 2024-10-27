@@ -65,8 +65,6 @@ read get #variável que guarda resposta do usuário
                 
                 sudo systemctl start docker -y # inicia o controlador de serviços do docker 
                 sudo systemctl enable docker -y
-                sudo docker pull eduardomiyasaki/site:v1
-                sudo docker run -d --name Aquatech -p 3333:3333 eduardomiyasaki/site:v1
                 sudo docker pull mysql -y
                 sudo docker run -d -p 3306:3306 --name DockerBanco  -e "MYSQL_DATABASE= BANCOdocker" -e "MYSQL_ROOT_PASSWORD= LogGuard" mysql
                 sudo docker exec -it DockerBanco

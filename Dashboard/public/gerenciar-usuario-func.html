@@ -6,12 +6,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogGuard - Dashboard</title>
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/partials/SideBar.css">
+    <script src="js/sessao.js"></script>   
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body onload="verUsuarios(); totalfunc(); totaladms(); totalanalista(); verMaquinas()">
+<body onload="validarCargo();validarSessao();verUsuarios(); totalfunc(); totaladms(); totalanalista(); verMaquinas()">
     <section class="page-dash">
-        <aside class="nav-dash">
+        <nav id="sidebar">
+            <div id="sidebar_content">
+                <div id="user">
+                    <img src="https://static.wixstatic.com/media/3ce70f_1df652620b624e218f6ae076dd7b0aae~mv2.jpeg/v1/fill/w_163,h_245,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/3ce70f_1df652620b624e218f6ae076dd7b0aae~mv2.jpeg" id="user_avatar" alt="Avatar">  
+                
+                    <p id="user_infos"> 
+                        <span class="item-description" id="b_usuario"> 
+                        </span>
+                        <span class="item-description "id="cargo_usuario" style="color: #442BB3;"> 
+                            Lorem Ipsum
+                        </span>
+                    </p>
+    
+                </div>    
+            
+                <ul id="side_items"> 
+                    <li class="side_item active"> 
+                        <a style="cursor: auto;">
+                            <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon" style="height: 40px; width: 40px;"></i>
+                            <span class="item-description"> 
+                                <b style="color: white;"> LOG GUARD </b> 
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <li class="side_item"> 
+                        <a href="dashboard_ADM.html">
+                            <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description"> 
+                               <b> Visão Geral </b> 
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <li class="side_item"> 
+                        <a href="relatorios.html">
+                            <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                            <span class="item-description"> 
+                               <b> Relatórios </b> 
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <li class="side_item"> 
+                        <a href="gerenciar-maquina.html">
+                            <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                            <span class="item-description"> 
+                                <b> Máquinas </b>
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <li class="side_item"> 
+                        <a href="gerenciar-usuario-func.html">
+                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                            <span class="item-description"> 
+                                <b> Funcionários </b>
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <li class="side_item"> 
+                        <a href="#">
+                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description"> 
+                                <b> Ajuda </b>
+                            </span>    
+                        </a>
+                    </li>
+            
+                    <!-- <li class="side_item"> 
+                        <a href="#">
+                            <i class="fa-solid fa-gear"></i>
+                            <span class="item-description"> 
+                                <b> </b>
+                            </span>    
+                        </a>
+                    </li> -->
+                </ul>
+            
+                <button id="open_btn">
+                    <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+                </button>
+            </div>
+    
+            <div id="logout">
+                <button id="logout_btn" onclick="sair()">
+                    <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+                    <span class="item-description"> 
+                        Sair 
+                    </span>
+                </button>
+            </div>
+    </nav>
+        <!-- <aside class="nav-dash">
             <div class="nav-dash-logo">
                 <img src="./svg/iceberg-preto-com-texto.svg" class="nav-dash-logo" alt="Logo LogGuard">
             </div>
@@ -36,7 +132,7 @@
             </ul>
             </nav>
             </nav>
-        </aside>
+        </aside> -->
         <section class="page-dash-func">
 
             <div class="mainfuncpage">
@@ -91,9 +187,7 @@
                     <button onclick="cadastrar_gefunc()" class="cad-func">Cadastrar</button>
                 </div>
 
-                <div class="duvidas-func">
-                    <a href="./relatorios.html">Duvidas? Clique aqui!</a>
-                </div>
+
             </div>
 
 
@@ -195,9 +289,17 @@
 </html>
 
 <script>
+    
+    document.getElementById('open_btn').addEventListener('click', function (){
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
+    });
 
     var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
     var idUsuario = "";
+
+    function sair(){
+        window.location.href = "index.html";
+    }
 
     function confirmar_editar_gefunc() {
         // temporario

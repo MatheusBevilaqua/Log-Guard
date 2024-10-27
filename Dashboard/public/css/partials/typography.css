@@ -213,6 +213,10 @@
     color: var(--normal-purple);
     font-size: 14px;
 }
+.text-purple-titulo{
+    color: var(--normal-purple);
+    font-size: 30px;
+}
 
 .link-text{
     color: var(--normal-purple);
