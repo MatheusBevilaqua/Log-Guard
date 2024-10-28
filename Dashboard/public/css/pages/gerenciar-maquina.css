@@ -133,7 +133,7 @@
 
 /* classe pai dos botões */
 .botoes-geren {
-    padding-top: 3%;
+    padding-top: 1%;
     display: flex;
     gap: 20px;
 }
@@ -224,8 +224,8 @@
 
 .Editar-geren-primeiro h1{
     color: black;
-    font-size: 20px;
-    padding-bottom: 20px;
+    font-size: 30px;
+    padding-bottom: 50px;
 }
 
 .Editar-geren-primeiro input {
