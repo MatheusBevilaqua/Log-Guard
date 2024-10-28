@@ -257,8 +257,8 @@
 }
 
 .Editar-geren-confirmudanca label {
-color: black;
-font-size: 10px;
+    color: black;
+    font-size: 10px;
 }
 
 .Editar-geren-confirmudanca {
@@ -369,16 +369,16 @@ font-size: 10px;
 
 .Cadastrargeren {
     display: none;
-    position: fixed; 
-    top: 50%; 
+    position: fixed;
+    top: 50%;
     left: 45%;
-    transform: translate(-30%, -50%); 
+    transform: translate(-30%, -50%);
     width: 60%;
     height: 600px;
     background-color: #FFF;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     padding: 20px;
     border-radius: 20px;
     color: black;
@@ -410,8 +410,8 @@ font-size: 10px;
 }
 
 .cadastrar-geren-primeiro img {
-width: 80%;
-margin: 0;
+    width: 80%;
+    margin: 0;
 }
 
 
