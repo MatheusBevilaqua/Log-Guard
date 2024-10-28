@@ -355,9 +355,11 @@ document.getElementById('sidebar').classList.toggle('open-sidebar');
                         var ano = data.getFullYear();
                         console.log(ano)
                         var mes = data.getMonth() + 1;
+                        var mes = data.getMonth() + 1;
                         console.log(mes)
                         var dia = data.getDate();
                         console.log(dia)
+                        var data = dia + "/" + mes +"/" + ano 
                         var data = dia + "/" + mes  +"/" + ano 
                         if (relatorio.fkEmpresaRelatorio == sessionStorage.EMPRESA_USUARIO) {
                             if (relatorio.fkUsuarioRelatorio == sessionStorage.ID_USUARIO) {
