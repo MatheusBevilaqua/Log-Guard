@@ -89,14 +89,13 @@
   }
 
   .publicar-relatorio{
-
     display: none;
     position: fixed; 
     top: 50%; 
-    left: 50%; 
+    left: 45%;
     transform: translate(-30%, -50%); 
-    width: 30%; 
-    height: 500px;
+    width: 60%;
+    height: 600px;
     background-color: #FFF;
     flex-direction: column;
     align-items: center;
@@ -105,7 +104,6 @@
     border-radius: 20px;
     color: black;
     box-shadow: 0px 4px 39.4px 19px rgba(0, 0, 0, 0.36);
-
   }
 
   .editar-relatorio{
@@ -158,6 +156,7 @@
     background-color: rgba(68, 43, 179, 1);
     color: white;
     border: none;
+    cursor: pointer;
 }
 
 .relatorio-nome{
@@ -182,9 +181,7 @@
 }
 
 .relatorio-descricao{
-
   color: #000000;
-
 }
 
 .relatorio-btn-editar{
@@ -195,16 +192,45 @@
   background-color: rgba(68, 43, 179, 1);
   color: white;
   border: none;
-
+  cursor: pointer;
 }
 
 .relatorio-btn-deletar{
-
-
+cursor: pointer;
   width: 20%;
   height: 35px;
   border-radius: 20px;
   background-color: red;
   color: white;
   border: none;
+}
+
+
+.cancelar-relatorio {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #442BB3;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Editar-func-primeiro-relatorio {
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  align-items: center; 
+  justify-content: center; 
+  margin: 10px 0;
+  padding-top: 10px;
+  margin-left: 45px;
 }

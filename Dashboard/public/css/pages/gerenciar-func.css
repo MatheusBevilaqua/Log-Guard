@@ -8,42 +8,49 @@
     height: 100%;
     padding-top: 0;
     background-color: #e2e2e2;
-    margin-left: 30px;
     padding-bottom: 90px;
 }
 
 .mainfuncpage {
     width: 100%;
     margin-top: 40px;
-    margin-left: 16.8%;
+    margin-left: 6.8%;
 }
 
-.mainfuncpage h1 {
+
+.titulo-funcionarios-gerenc {
+    display: flex;
+    width: 100%;
+    padding-right: 23.5%;
+}
+
+.titulo-funcionarios-gerenc h1 {
     color: black;
     font-family:Arial, Helvetica, sans-serif;
     padding-top: 10px;
+    width: 80%;
 }
 
 .select-func {
     position:relative;
     display: flex;
-    padding-left: 63.50%;
-    width: 89%;
-    gap: 20px;
+    justify-content: flex-end; 
+    width: 20%;
+    align-items: flex-end;
+
 }
 
 .select-func select {
+    position: absolute;
+    right: 0; 
     border-radius: 10px 10px 0 0;
     border-color: #ffffff;
     color: black;
-    width: 46.50%;
+    width: 170px; 
     height: 40px;
-    display: flex;
-    z-index: auto;
     background-color: rgb(255, 255, 255);
     font-size: 15px;
     outline: none;
-    position: relative;
 }
 
 .select-func option {
@@ -55,7 +62,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: 109%;
     background-color: rgb(255, 255, 255);
     /* padding-right: 20%; */
     padding-top: 2%;
@@ -175,9 +182,9 @@
     display: none;
     position: fixed; 
     top: 50%; 
-    left: 50%; 
+    left: 45%;
     transform: translate(-30%, -50%); 
-    width: 30%; 
+    width: 60%;
     height: 600px;
     background-color: #FFF;
     flex-direction: column;
@@ -191,25 +198,34 @@
 
 .Editar-func-primeiro {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%; 
     align-items: center; 
     justify-content: center; 
     margin: 10px 0;
     padding-top: 10px;
+    margin-left: 45px;
 }
 
-.Editar-func-primeiro h1{
+.Editar-func-primeiro p{
     color: black;
-    font-size: 20px;
-    padding-bottom: 20px;
+}
+
+.Editarfunc h1{
+    color: black;
+    font-size: 30px;
+    padding-bottom: 50px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
 }
 
 .Editar-func-primeiro input {
     margin-bottom: 15px;
     width: 80%;
     height: 45px;
-    border: none;
+    border-radius: 5px;
     color: black;
     margin-top: 5px;
 }
@@ -289,6 +305,11 @@ font-size: 10px;
     justify-content: center;
     padding-top: 30px;
     padding-bottom: 20px;
+    gap: 70px;
+}
+
+.Editar-func-botao-delete .editar-func{
+background-color: #442BB3;
 }
 
 .Editar-func-botao-editar{
@@ -337,10 +358,10 @@ font-size: 10px;
     display: none;
     position: fixed; 
     top: 50%; 
-    left: 50%; 
+    left: 45%;
     transform: translate(-30%, -50%); 
-    width: 30%; 
-    height: 500px;
+    width: 60%;
+    height: 600px;
     background-color: #FFF;
     flex-direction: column;
     align-items: center;
@@ -353,19 +374,21 @@ font-size: 10px;
 
 .cadastrar-func-primeiro {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%; 
     align-items: center; 
     justify-content: center; 
     margin: 10px 0;
     padding-top: 10px;
+    padding-left: 40px;
+    padding-bottom: 30px;
 }
 
 .cadastrar-func-primeiro input {
     margin-bottom: 15px;
     width: 80%;
     height: 30px;
-    border: none;
+    border-radius: 5px;
     color: black;
     margin-top: 15px;
 }
@@ -379,8 +402,12 @@ margin: 0;
 .Cadastrarfunc h1 {
     margin-left: 20px;
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 30px;
     color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 70px;
 }
 
 .cadastrar-func-segundo {
@@ -420,12 +447,21 @@ margin: 0;
 }
 
 .cadastrar-func-terceiro .cancelar-func {
-    border-radius: 40px;
-    background: white;
-    color: black;
-    width: 120px;
-    height: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #442BB3;
     border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .Editarfunc {
@@ -511,7 +547,6 @@ select option:hover{
     z-index: 15;
     padding-top: 20px;
     padding-bottom: 80px; 
-    margin-top: 15px;
 }
 
 .tre-func {
@@ -525,15 +560,13 @@ select option:hover{
 
 .select-func-primeiro {
     width: 100%;
-    padding-left: 40px;
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     color: black;
 }
 
 .select-func-segundo {
     width: 100%;
-    padding-left: 40px;
     padding-top: 10px;
     padding-bottom: 10px;
     color: black;
@@ -541,16 +574,18 @@ select option:hover{
 
 .select-func-primeiro select{
     color: black;
-    width: 90%;
-    border: none;
+    width: 80%;
+    border-radius: 5px;
     height: 45px;
+    border: 2px solid #000;
 }
 
 .select-func-segundo select{
     color: black;
-    width: 90%;
-    border: none;
+    width: 80%;
+    border-radius: 5px;
     height: 40px;
+    border: 2px solid #000;
 }
 
 select option {
@@ -574,12 +609,21 @@ select option:hover{
 }
 
 .Editar-func-botao-fechar .fechar-func {
-    border-radius: 40px;
-    background: #442BB3;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #442BB3;
+        border: none;
     color: white;
-    width: 240px;
-    height: 40px;
+        padding: 5px 10px;
     cursor: pointer;
+        font-size: 18px;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 }
 
 .linhacad{

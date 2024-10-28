@@ -111,7 +111,9 @@
         <section class="page-dash-func">
 
             <div class="mainfuncpage">
+                <div class="titulo-funcionarios-gerenc">
                 <h1>Gerenciar Funcionários:</h1>
+            
                 <div class="select-func">
                     <select id="selectgerenciarusuario" name="select">
                         <div class="select-items-func">
@@ -120,6 +122,7 @@
                             <option value="valor3">Analista</option>
                         </div>
                     </select>
+                </div>
                 </div>
                 <div class="metricas-func">
                     <div class="dash-func">
@@ -159,21 +162,24 @@
                 </div>
                 <div class="botoes-func">
                     <!-- <button onclick="editar_gefunc()" class="edit-func">Editar</button> -->
-                    <button onclick="cadastrar_gefunc()" class="cad-func">Cadastrar</button>
+                    <button onclick="cadastrar_gefunc()" class="cad-func">Cadastrar Funcionário</button>
                 </div>
-
-
             </div>
 
 
             <!-- EDITAR FUNCIONÁRIO ----------------------------------------------------------------------------------- -->
             <div class="Editarfunc">
-                <div class="Editar-func-primeiro">
                     <h1>Alterar as configurações do perfil:</h1>
-                    <input placeholder="Nome Completo" type="text" id="input_alterar_nome">
-                    <img src="./img/Line1cadastro.png" alt="">
-                    <input placeholder="E-Mail" type="text" id="input_alterar_email">
-                    <img src="./img/Line1cadastro.png" alt="">
+                <div class="Editar-func-primeiro">
+                    <div class="divisorias-maquinas-1">
+                        <p>Nome Completo</p>
+                    <input placeholder="Ex: John Doe" type="text" id="input_alterar_nome">
+                        <p>E-Mail</p>
+                    <input placeholder="Ex: johndoe@dominio.com" type="text" id="input_alterar_email">
+                </div>
+                        
+                <div class="divisorias-maquinas-2">
+                    <p>Selecione o cargo do perfil</p>
                     <div class="select-func-primeiro">
                         <select id="select_alterar_cargo">
                             <option value="" disabled>Selecionar cargo</option>
@@ -182,34 +188,43 @@
                         </select>
 
                     </div>
-                    <img src="./img/Line1cadastro.png" alt="">
-                    <input placeholder="Senha" type="text" id="input_alterar_senha">
-                    <img src="./img/Line1cadastro.png" alt="">
+                    <p>Senha</p>
+                    <input placeholder="Ex: ******" type="text" id="input_alterar_senha">
+                </div>
 
                 </div>
                 <div class="editar-func-titulodelet">
                 </div>
                 <div class="Editar-func-botao-editar">
-                    <button onclick="atribuicao_maquina_gefunc()" class="editar-func">Atribuição de Máquinas</button>
+                    <!-- <button onclick="atribuicao_maquina_gefunc()" class="editar-func">Atribuição de Máquinas</button> -->
                 </div>
-                <img src="./img/Line1cadastro.png" class="linhacad">
+                <!-- <img src="./img/Line1cadastro.png" class="linhacad"> -->
                 <div class="Editar-func-botao-delete">
                     <button onclick="atribuicao_editar_gefunc()" class="editar-func">Editar Perfil</button>
                     <button onclick="excluir_editar_gefunc()" class="excluir-func">Excluir Perfil</button>
                 </div>
-                <img src="./img/Line1cadastro.png" class="linhacad2">
                 <div class="Editar-func-botao-fechar">
-                    <button onclick="fechar_gefunc()" class="fechar-func">Fechar</button>
-                </div>
+                    <button onclick="fechar_gefunc()" class="fechar-func">X</button>
+            </div>
             </div>
             <!-- FIM EDITAR FUNCIONÁRIO ----------------------------------------------------------------------------------- -->
             <div class="Cadastrarfunc">
                 <h1>Complete os campos:</h1>
+
                 <div class="cadastrar-func-primeiro">
-                    <input placeholder="Nome" type="text" id="input_nome_func">
-                    <img src="./img/Line1cadastro.png" alt="">
-                    <input placeholder="E-Mail" type="text" id="input_email_func">
-                    <img src="./img/Line1cadastro.png" alt="">
+                <div class="divisorias-titulos-maquinas-1">
+
+                    <div class="titulos-maquina-atribuicao">
+                        <p>Nome funcionário</p>
+                    </div>
+                    <input placeholder="Ex: John Doe" type="text" id="input_nome_func">
+                    <div class="titulos-maquina-atribuicao">
+                       <p> Email funcionário</p>
+                    </div>
+                    <input placeholder="Ex: johndoe@dominio.com" type="text" id="input_email_func">
+                    <div class="titulos-maquina-atribuicao">
+                        <p>Cargo funcionário</p>
+                    </div>
                     <div class="select-func-segundo">
                         <select id="lista_cargo" name="select">
                             <option value="" selected disabled>Selecionar cargo</option>
@@ -217,18 +232,27 @@
                             <option value="ADMINISTRADOR">ADMINISTRADOR</option>
                         </select>
                     </div>
-                    <img src="./img/Line1cadastro.png" alt="">
-                    <input placeholder="Senha" type="text" id="input_senha_func">
-                    <img src="./img/Line1cadastro.png" alt="">
-                    <input placeholder="Repetir Senha" type="text" id="input_repetir_func">
-                    <img src="./img/Line1cadastro.png" alt="">
+
+                </div>
+
+                <div class="divisorias-titulos-maquinas-2">
+                    <div class="titulos-maquina-atribuicao">
+                        <p>Senha funcionário</p>
+                    </div>
+                    <input placeholder="Ex: ******" type="text" id="input_senha_func">
+                    <div class="titulos-maquina-atribuicao">
+                        <p>Confirmar senha</p>
+                    </div>
+                    <input placeholder="Ex: ******" type="text" id="input_repetir_func">
                     <br>
+
+                </div>
                 </div>
                 <div class="cadastrar-func-terceiro">
                     <button onclick="confirmar_cadastrar_gefunc()" class="confirmar-func">Confirmar</button>
-                    <button onclick="cancelar_cadastrar_gefunc()" class="cancelar-func">Cancelar</button>
-                </div>
+                    <button onclick="cancelar_cadastrar_gefunc()" class="cancelar-func">X</button>
             </div>
+
 
             <div class="Editaratribuicaofunc">
                 <h1>Editar atribuição de servidores</h1>
