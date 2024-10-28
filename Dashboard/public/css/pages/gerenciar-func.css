@@ -18,13 +18,16 @@
 }
 
 
-.titulo-funcionarios-gerenc {
+.head-funcionarios-gerenc {
     display: flex;
+    flex-direction: column;
     width: 100%;
     padding-right: 23.5%;
+    margin-bottom: 10px;
+    gap: 30px;
 }
 
-.titulo-funcionarios-gerenc h1 {
+.head-funcionarios-gerenc h1 {
     color: black;
     font-family:Arial, Helvetica, sans-serif;
     padding-top: 10px;
@@ -37,6 +40,7 @@
     justify-content: flex-end; 
     width: 20%;
     align-items: flex-end;
+    margin-left: 752px;
 
 }
 
@@ -66,7 +70,7 @@
     background-color: rgb(255, 255, 255);
     /* padding-right: 20%; */
     padding-top: 2%;
-    border-radius: 20px 0 20px 20px ;
+    border-radius: 20px ;
     color: black;
     overflow-x:hidden;
 }
@@ -112,7 +116,7 @@
 
 /* classe pai dos botões */
 .botoes-func {
-    padding-top: 3%;
+    padding-top: 35px;
     display: flex;
     gap: 20px;
 }
@@ -442,7 +446,7 @@ margin: 0;
     border-radius: 40px;
     background: #442BB3;
     color: white;
-    width: 120px;
+    width: 220px;
     height: 40px;
 }
 
@@ -790,4 +794,14 @@ select option:hover{
 
 .totalfuncs {
     font-size: 20px;
+}
+
+.botao-filtro{
+    height: 40px;
+    width: 160px;
+    text-align: center;
+    background-color: #442BB3;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
 }

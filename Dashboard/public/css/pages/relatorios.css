@@ -149,6 +149,17 @@
 
   }
 
+  .TextoAreaa{
+
+    padding-left: 10px; 
+    align-content: center;
+    width: 70%;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    color: black;
+
+  }
+
   .cadIA {
     width: 20%;
     height: 35px;
@@ -217,7 +228,7 @@ cursor: pointer;
   cursor: pointer;
   font-size: 18px;
   border-radius: 50%;
-  width: 30px;
+  
   height: 30px;
   display: flex;
   align-items: center;
@@ -232,5 +243,44 @@ cursor: pointer;
   justify-content: center; 
   margin: 10px 0;
   padding-top: 10px;
-  margin-left: 45px;
+}
+
+.Editar-func-primeiro-relatorio h1, label {
+  color: black;
+}
+
+.ttt-relatorios h5{
+  color: black;
+}
+
+.Editar-func-primeiro-relatorio p {
+  margin-top: 10px;
+}
+
+.Editar-func-primeiro-relatorio input {
+  width: 70%;
+  height: 30px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.Editar-func-primeiro-relatorio input::placeholder {
+  color: #5e5e5e;
+  font-size: 13px;
+}
+
+.select-func-relatorio {
+  color: black;
+    width: 80%;
+    height: 45px;
+    padding-left: 120px;
+    padding-top: 20px;
+}
+
+.select-func-relatorio select{
+  color: black;
+  width: 80%;
+  border-radius: 5px;
+  height: 45px;
+  border: 2px solid #000;
 }

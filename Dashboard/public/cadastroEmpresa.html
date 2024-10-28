@@ -433,7 +433,6 @@
 
 
   function cadastrarEmpresa() {
-    alert("OI")
 
     var nomeVar = nomeEmpresa_Input.value;
     var cnpjVar = cnpj_Input.value;
@@ -441,10 +440,7 @@
     var emailRespVar = emailRes_Input.value;
     var emailInstVar = emailInst_Input.value;
 
-    alert(nomeVar)
-    alert(cnpjVar)
-    alert(cepVar)
-    alert(emailInstVar)
+
 
 
     // Verificando se há algum campo em branco
@@ -480,6 +476,7 @@
           if (resposta.ok) {
 
             alert("CADASTRO EXECUTADO!")
+            location.reload()
 
           } else {
             throw "Houve um erro ao tentar realizar o cadastro!";
@@ -511,20 +508,12 @@
   }
 
   function cadastrarUsuario() {
-    alert("OI")
 
     var nomeUsuarioVar = input_nomeUsuario.value;
     var emailUsuarioVar = input_emailUsuario.value;
     var senhaUsuarioVar = input_senhaUsuario.value;
     var empresaUsuarioVar = lista_select.value;
     var tipoUsuarioVar = "ADMINISTRADOR";
-
-
-    alert(nomeUsuarioVar)
-    alert(emailUsuarioVar)
-    alert(senhaUsuarioVar)
-    alert(empresaUsuarioVar)
-
 
 
     // Verificando se há algum campo em branco

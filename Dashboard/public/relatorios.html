@@ -129,12 +129,17 @@
     <div class="publicar-relatorio">
         <div id="form_postagem" class="Editar-func-primeiro-relatorio">
             <h1>Publicar Relatório</h1>
-            <input placeholder="Titulo" name="titulo" id="titulo" maxlength="100" type="text">
-            <img src="./img/Line1cadastro.png" alt="">
-            <textarea placeholder="Texto" class="TextoArea" name="descricao" id="textoPublicar" maxlength="500"
-                rows="5"></textarea>
-            <img src="./img/Line1cadastro.png" alt="">
-            <div class="select-func-primeiro">
+            <br>
+            <div class="ttt-relatorios">
+            <h5>Título do relatório</h5>
+        </div>
+            <input placeholder="Ex: Diversos erros em um curto período de tempo." name="titulo" id="titulo" maxlength="100" type="text">
+            <div class="ttt-relatorios">
+            <h5>Descrição do relatório</h5>
+        </div>
+            <textarea class="TextoAreaa" id="textarea_descricao" maxlength="250" rows="13"></textarea>
+            
+            <div class="select-func-relatorio">
                 <select id="select_status">
                     <option selected value="#" disabled>Selecionar Status</option>
                     <option value="EMERGÊNCIA">EMERGÊNCIA</option>
@@ -149,7 +154,7 @@
         </div>
 
         <!-- <img src="./img/Line1cadastro.png" class="linhacad"> -->
-        <div class="Editar-func-botao-delete">
+        <div class="cadastrar-func-terceiro">
             <button onclick="publicar()" class="cad-func" style="background-color: #442BB3;">Publicar</button>
             <button onclick="cancelar_relatorio()" style="margin-left: 10px;" class="cancelar-relatorio">X</button>
         </div>
@@ -164,12 +169,12 @@
                     <br>
                     <textarea class="TextoAreaE" id="textarea_descricao" maxlength="250" rows="13"></textarea>
                 </label>
-                <img src="./img/Line1cadastro.png" alt="">
+                
 
-                <div class="Editar-func-botao-delete">
+                <div class="cadastrar-func-terceiro">
                     <button style="background-color: #442BB3;" class="cad-func" onclick="editar()">Confirmar
                         Edição</button>
-                    <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cad-func">Cancelar</button>
+                    <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cancelar-relatorio">X</button>
                 </div>
             </div>
 

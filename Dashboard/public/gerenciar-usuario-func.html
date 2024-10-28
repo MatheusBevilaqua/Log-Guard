@@ -7,7 +7,7 @@
     <title>LogGuard - Dashboard</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="css/partials/SideBar.css">
-    <script src="js/sessao.js"></script>   
+    <script src="js/sessao.js"></script>
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
@@ -16,73 +16,75 @@
         <nav id="sidebar">
             <div id="sidebar_content">
                 <div id="user">
-                    <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg" id="user_avatar" alt="Avatar">  
-                
-                    <p id="user_infos"> 
-                        <span class="item-description" id="b_usuario"> 
+                    <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg"
+                        id="user_avatar" alt="Avatar">
+
+                    <p id="user_infos">
+                        <span class="item-description" id="b_usuario">
                         </span>
-                        <span class="item-description "id="cargo_usuario" style="color: #442BB3;"> 
+                        <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
                             Lorem Ipsum
                         </span>
                     </p>
-    
-                </div>    
-            
-                <ul id="side_items"> 
-                    <li class="side_item active"> 
+
+                </div>
+
+                <ul id="side_items">
+                    <li class="side_item active">
                         <a style="cursor: auto;">
-                            <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon" style="height: 40px; width: 40px;"></i>
-                            <span class="item-description"> 
-                                <b style="color: white;"> LOG GUARD </b> 
-                            </span>    
+                            <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon"
+                                    style="height: 40px; width: 40px;"></i>
+                            <span class="item-description">
+                                <b style="color: white;"> LOG GUARD </b>
+                            </span>
                         </a>
                     </li>
-            
-                    <li class="side_item"> 
+
+                    <li class="side_item">
                         <a href="dashboard_ADM.html">
                             <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                            <span class="item-description"> 
-                               <b> Visão Geral </b> 
-                            </span>    
+                            <span class="item-description">
+                                <b> Visão Geral </b>
+                            </span>
                         </a>
                     </li>
-            
-                    <li class="side_item"> 
+
+                    <li class="side_item">
                         <a href="relatorios.html">
                             <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
-                            <span class="item-description"> 
-                               <b> Relatórios </b> 
-                            </span>    
+                            <span class="item-description">
+                                <b> Relatórios </b>
+                            </span>
                         </a>
                     </li>
-            
-                    <li class="side_item"> 
+
+                    <li class="side_item">
                         <a href="gerenciar-maquina.html">
                             <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
-                            <span class="item-description"> 
+                            <span class="item-description">
                                 <b> Máquinas </b>
-                            </span>    
+                            </span>
                         </a>
                     </li>
-            
-                    <li class="side_item"> 
+
+                    <li class="side_item">
                         <a href="gerenciar-usuario-func.html">
                             <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-                            <span class="item-description"> 
+                            <span class="item-description">
                                 <b> Funcionários </b>
-                            </span>    
+                            </span>
                         </a>
                     </li>
-            
-                    <li class="side_item"> 
+
+                    <li class="side_item">
                         <a href="#">
                             <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                            <span class="item-description"> 
+                            <span class="item-description">
                                 <b> Ajuda </b>
-                            </span>    
+                            </span>
                         </a>
                     </li>
-            
+
                     <!-- <li class="side_item"> 
                         <a href="#">
                             <i class="fa-solid fa-gear"></i>
@@ -92,40 +94,39 @@
                         </a>
                     </li> -->
                 </ul>
-            
+
                 <button id="open_btn">
                     <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
                 </button>
             </div>
-    
+
             <div id="logout">
                 <button id="logout_btn" onclick="sair()">
                     <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
-                    <span class="item-description"> 
-                        Sair 
+                    <span class="item-description">
+                        Sair
                     </span>
                 </button>
             </div>
-    </nav>
-    
+        </nav>
+
         <section class="page-dash-func">
 
             <div class="mainfuncpage">
-                <div class="titulo-funcionarios-gerenc">
-                <h1>Gerenciar Funcionários:</h1>
-            
-                <div class="select-func">
-                    <select id="selectgerenciarusuario" name="select">
-                        <div class="select-items-func">
-                            <option value="valor1" selected>Mostrar todos</option>
-                            <option value="valor2">ADM</option>
-                            <option value="valor3">Analista</option>
-                        </div>
-                    </select>
+                <div class="head-funcionarios-gerenc">
+                    
+                    <h1>Gerenciar Funcionários:</h1>
+
+                    <button onclick="" class="botao-filtro">Filtrar </button>
+
                 </div>
-            </div>
+
+             
                 <div class="metricas-func">
+
+
                     <div class="dash-func">
+
                         <div class="titulos-func">
                             <div class="coluna-func">ID</div>
                             <div class="coluna-func">Nome</div>
@@ -135,8 +136,6 @@
                         <div class="linha-func">
                             <img src="./img/Line1cadastro.png" alt="">
                         </div>
-
-
                         <div class="dash-func">
                             <div id="dash-func"></div>
                         </div>
@@ -173,24 +172,24 @@
                 <div class="Editar-func-primeiro">
                     <div class="divisorias-maquinas-1">
                         <p>Nome Completo</p>
-                    <input placeholder="Ex: John Doe" type="text" id="input_alterar_nome">
+                        <input placeholder="Ex: John Doe" type="text" id="input_alterar_nome">
                         <p>E-Mail</p>
-                    <input placeholder="Ex: johndoe@dominio.com" type="text" id="input_alterar_email">
-                </div>
-                        
-                <div class="divisorias-maquinas-2">
-                    <p>Selecione o cargo do perfil</p>
-                    <div class="select-func-primeiro">
-                        <select id="select_alterar_cargo">
-                            <option value="" disabled>Selecionar cargo</option>
-                            <option value="COMUM">COMUM</option>
-                            <option value="ADMINISTRADOR">ADMINISTRADOR</option>
-                        </select>
-
+                        <input placeholder="Ex: johndoe@dominio.com" type="text" id="input_alterar_email">
                     </div>
-                    <p>Senha</p>
-                    <input placeholder="Ex: ******" type="text" id="input_alterar_senha">
-                </div>
+
+                    <div class="divisorias-maquinas-2">
+                        <p>Selecione o cargo do perfil</p>
+                        <div class="select-func-primeiro">
+                            <select id="select_alterar_cargo">
+                                <option value="" disabled>Selecionar cargo</option>
+                                <option value="COMUM">COMUM</option>
+                                <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                            </select>
+
+                        </div>
+                        <p>Senha</p>
+                        <input placeholder="Ex: ******" type="text" id="input_alterar_senha">
+                    </div>
 
                 </div>
                 <div class="editar-func-titulodelet">
@@ -212,75 +211,75 @@
                 <h1>Complete os campos:</h1>
 
                 <div class="cadastrar-func-primeiro">
-                <div class="divisorias-titulos-maquinas-1">
+                    <div class="divisorias-titulos-maquinas-1">
 
-                    <div class="titulos-maquina-atribuicao">
-                        <p>Nome funcionário</p>
-                    </div>
-                    <input placeholder="Ex: John Doe" type="text" id="input_nome_func">
-                    <div class="titulos-maquina-atribuicao">
-                       <p> Email funcionário</p>
-                    </div>
-                    <input placeholder="Ex: johndoe@dominio.com" type="text" id="input_email_func">
-                    <div class="titulos-maquina-atribuicao">
-                        <p>Cargo funcionário</p>
-                    </div>
-                    <div class="select-func-segundo">
-                        <select id="lista_cargo" name="select">
-                            <option value="" selected disabled>Selecionar cargo</option>
-                            <option value="COMUM">COMUM</option>
-                            <option value="ADMINISTRADOR">ADMINISTRADOR</option>
-                        </select>
+                        <div class="titulos-maquina-atribuicao">
+                            <p>Nome funcionário</p>
+                        </div>
+                        <input placeholder="Ex: John Doe" type="text" id="input_nome_func">
+                        <div class="titulos-maquina-atribuicao">
+                            <p> Email funcionário</p>
+                        </div>
+                        <input placeholder="Ex: johndoe@dominio.com" type="text" id="input_email_func">
+                        <div class="titulos-maquina-atribuicao">
+                            <p>Cargo funcionário</p>
+                        </div>
+                        <div class="select-func-segundo">
+                            <select id="lista_cargo" name="select">
+                                <option value="" selected disabled>Selecionar cargo</option>
+                                <option value="COMUM">COMUM</option>
+                                <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                            </select>
+                        </div>
+
                     </div>
 
+                    <div class="divisorias-titulos-maquinas-2">
+                        <div class="titulos-maquina-atribuicao">
+                            <p>Senha funcionário</p>
+                        </div>
+                        <input placeholder="Ex: ******" type="text" id="input_senha_func">
+                        <div class="titulos-maquina-atribuicao">
+                            <p>Confirmar senha</p>
+                        </div>
+                        <input placeholder="Ex: ******" type="text" id="input_repetir_func">
+                        <br>
+
+                    </div>
                 </div>
-
-                <div class="divisorias-titulos-maquinas-2">
-                    <div class="titulos-maquina-atribuicao">
-                        <p>Senha funcionário</p>
-                    </div>
-                    <input placeholder="Ex: ******" type="text" id="input_senha_func">
-                    <div class="titulos-maquina-atribuicao">
-                        <p>Confirmar senha</p>
-                    </div>
-                    <input placeholder="Ex: ******" type="text" id="input_repetir_func">
-                    <br>
-
-                </div>
-            </div>
                 <div class="cadastrar-func-terceiro">
-                    <button onclick="confirmar_cadastrar_gefunc()" class="confirmar-func">Confirmar</button>
+                    <button onclick="confirmar_cadastrar_gefunc()" class="confirmar-func">Confirmar cadastro</button>
                     <button onclick="cancelar_cadastrar_gefunc()" class="cancelar-func">X</button>
                 </div>
-            
 
-            <div class="Editaratribuicaofunc">
-                <h1>Editar atribuição de servidores</h1>
-                <div class="dash-func-atribuicao">
-                    <div class="titulos-func-atribuicao">
-                        <div class="coluna-func">ID</div>
-                        <div class="coluna-func">Máquina</div>
-                        <div class="coluna-func">Localidade</div>
+
+                <div class="Editaratribuicaofunc">
+                    <h1>Editar atribuição de servidores</h1>
+                    <div class="dash-func-atribuicao">
+                        <div class="titulos-func-atribuicao">
+                            <div class="coluna-func">ID</div>
+                            <div class="coluna-func">Máquina</div>
+                            <div class="coluna-func">Localidade</div>
+                        </div>
+                        <div class="linha-func">
+                            <img src="./img/Line1cadastro.png" alt="">
+                        </div>
+                        <div id="func-dados-atribuicao" class="func-dados-atribuicao">
+                        </div>
                     </div>
-                    <div class="linha-func">
-                        <img src="./img/Line1cadastro.png" alt="">
-                    </div>
-                    <div id="func-dados-atribuicao" class="func-dados-atribuicao">
+                    <div class="cadastrar-func-a03">
+                        <div class="criacaocheck">
+                            <input type="checkbox" id="input_criacao">
+                            <label for="input_criacao">Confirmar criação</label>
+                        </div>
+                        <div class="confirmar-func">
+                            <button onclick="confirmar_check_func()" class="confirmar-func-a03">Confirmar</button>
+                        </div>
+                        <div class="confirmar-func">
+                            <button onclick="cancelar_check_func()" class="cancelar-func-a03">Cancelar</button>
+                        </div>
                     </div>
                 </div>
-                <div class="cadastrar-func-a03">
-                    <div class="criacaocheck">
-                        <input type="checkbox" id="input_criacao">
-                        <label for="input_criacao">Confirmar criação</label>
-                    </div>
-                    <div class="confirmar-func">
-                        <button onclick="confirmar_check_func()" class="confirmar-func-a03">Confirmar</button>
-                    </div>
-                    <div class="confirmar-func">
-                        <button onclick="cancelar_check_func()" class="cancelar-func-a03">Cancelar</button>
-                    </div>
-                </div>
-            </div>
 
         </section>
 </body>
@@ -288,15 +287,15 @@
 </html>
 
 <script>
-    
-    document.getElementById('open_btn').addEventListener('click', function (){
+
+    document.getElementById('open_btn').addEventListener('click', function () {
         document.getElementById('sidebar').classList.toggle('open-sidebar');
     });
 
     var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
     var idUsuario = "";
 
-    function sair(){
+    function sair() {
         window.location.href = "index.html";
     }
 
@@ -510,7 +509,7 @@
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhuma máquina encontrada.";
 
-                        
+
 
                         lista.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!!";
@@ -877,29 +876,29 @@
         var senha = document.getElementById("input_alterar_senha").value;
         var cargo = document.getElementById("select_alterar_cargo").value;
 
-if (
-     nome == "" ||
-     email == "" ||
-     senha == "" 
-    ) {
-     alert("Todos os campos dever ser preenchidos!")
-     return false;
-}
+        if (
+            nome == "" ||
+            email == "" ||
+            senha == ""
+        ) {
+            alert("Todos os campos dever ser preenchidos!")
+            return false;
+        }
 
-if ( nome == "" ) {
-	alert("Preencha o campo do nome!")
-        return false;
-}
+        if (nome == "") {
+            alert("Preencha o campo do nome!")
+            return false;
+        }
 
-if ( email == "" ) {
-	alert("Preencha o campo do email!")
-        return false;
-}
+        if (email == "") {
+            alert("Preencha o campo do email!")
+            return false;
+        }
 
-if ( senha == "" ) {
-	alert("Preencha o campo da senha!")
-        return false;
-}
+        if (senha == "") {
+            alert("Preencha o campo da senha!")
+            return false;
+        }
 
         console.log("Dados a serem enviados:", {
             idUsuarioServer: idUsuario,
@@ -952,35 +951,35 @@ if ( senha == "" ) {
 
         // Verificando se há algum campo em branco
 
-if (
-     nomeUsuarioVar == "" ||
-     emailUsuarioVar == "" ||
-     senhaUsuarioVar == "" 
-    ) {
-     alert("Todos os campos dever ser preenchidos!")
-     return false;
-}
+        if (
+            nomeUsuarioVar == "" ||
+            emailUsuarioVar == "" ||
+            senhaUsuarioVar == ""
+        ) {
+            alert("Todos os campos dever ser preenchidos!")
+            return false;
+        }
 
-if ( nomeUsuarioVar == "" ) {
-	alert("Preencha o campo do nome!")
-        return false;
-}
+        if (nomeUsuarioVar == "") {
+            alert("Preencha o campo do nome!")
+            return false;
+        }
 
-if ( emailUsuarioVar == "" ) {
-	alert("Preencha o campo do email!")
-        return false;
-}
+        if (emailUsuarioVar == "") {
+            alert("Preencha o campo do email!")
+            return false;
+        }
 
-if ( senhaUsuarioVar == "" ) {
-	alert("Preencha o campo da senha!")
-        return false;
-}
+        if (senhaUsuarioVar == "") {
+            alert("Preencha o campo da senha!")
+            return false;
+        }
 
 
 
-if ( senhaUsuarioVar != input_repetir_func.value ) {
-     alert("As senhas não coincidem")
-} else {
+        if (senhaUsuarioVar != input_repetir_func.value) {
+            alert("As senhas não coincidem")
+        } else {
 
             fetch("/usuarios/cadastrar", {
                 method: "POST",
