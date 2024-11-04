@@ -151,6 +151,14 @@
     height: 100%;
     overflow: auto;
   }
+
+  .olho {
+  cursor: pointer;
+  left: 380px;
+  position: absolute;
+  width: 20px;
+}
+
 </style>
 
 <body >
@@ -220,20 +228,31 @@
                   id="nomeEmpresa_Input" />
               </label>
 
-              <label class="login-form-box">
+              <!-- <label class="login-form-box">
+                <span class="icon">
+                  <img src="./svg/icon-building.svg" alt="">
+                </span>
+                <input type="text" class="login-form-input black-text" placeholder="CNPJ" autocomplete="off"
+                  id="cnpj_Input" />
+              </label> -->
+
+              <label class="login-form-box" id="cnpjForm" for="cnpj">
                 <span class="icon">
                   <img src="./svg/icon-building.svg" alt="">
                 </span>
                 <input type="text" class="login-form-input black-text" placeholder="CNPJ" autocomplete="off"
                   id="cnpj_Input" />
               </label>
+          
+              
+
 
               <label class="login-form-box">
                 <span class="icon">
                   <img src="./svg/icon-building.svg" alt="">
                 </span>
                 <input type="text" class="login-form-input black-text" placeholder="CEP" autocomplete="off"
-                  id="cep_Input" />
+                  id="cep_Input"/>
               </label>
 
               <label class="login-form-box">
@@ -314,6 +333,7 @@
                 </span>
                 <input type="password" class="login-form-input black-text" placeholder="Senha" autocomplete="off"
                   id="input_senhaUsuario" />
+                  <img src="https://cdn0.iconfinder.com/data/icons/ui-icons-pack/100/ui-icon-pack-14-512.png" id="olho" class="olho">
               </label>
 
               <label class="login-form-box">
@@ -322,6 +342,8 @@
                 </span>
                 <input type="password" class="login-form-input black-text" placeholder="Confirme a senha"
                   autocomplete="off" id="input_confirmarSenha" />
+                  <img src="https://cdn0.iconfinder.com/data/icons/ui-icons-pack/100/ui-icon-pack-14-512.png" id="olho2" class="olho">
+
               </label>
 
 
@@ -637,7 +659,57 @@
       console.error(resposta);
     });
   }
+</script>
+
+<script> 
+  document.getElementById('olho').addEventListener('mousedown', function() {
+  document.getElementById('input_senhaUsuario').type = 'text';
+});
+
+document.getElementById('olho').addEventListener('mouseup', function() {
+  document.getElementById('input_senhaUsuario').type = 'password';
+});
+
+// Para que o password não fique exposto apos mover a imagem.
+document.getElementById('olho').addEventListener('mousemove', function() {
+  document.getElementById('input_senhaUsuario').type = 'password';
+});
 
 
 
+document.getElementById('olho2').addEventListener('mousedown', function() {
+  document.getElementById('input_confirmarSenha').type = 'text';
+});
+
+document.getElementById('olho2').addEventListener('mouseup', function() {
+  document.getElementById('input_confirmarSenha').type = 'password';
+});
+
+// Para que o password não fique exposto apos mover a imagem.
+document.getElementById('olho2').addEventListener('mousemove', function() {
+  document.getElementById('input_confirmarSenha').type = 'password';
+});
+</script>
+
+<script> 
+  document.getElementById('cnpj_Input').addEventListener('input', function(e) {
+	var value = e.target.value;
+	var rawValue = value.replace(/\D/g, ''); // Remove tudo que não é número
+
+	// Verifica se o CNPJ tem 15 dígitos e se o primeiro dígito é '0'
+	if (rawValue.length === 15 && rawValue.startsWith('0')) {
+		// Verifica se, ao remover o '0', o restante é um CNPJ válido
+		var potentialCNPJ = rawValue.substring(1);
+		// Atualiza rawValue para o CNPJ sem o '0' inicial
+		if (validaCNPJ(potentialCNPJ)) rawValue = potentialCNPJ;
+	}
+
+	var cnpjPattern = rawValue
+					.replace(/^(\d{2})(\d)/, '$1.$2') // Adiciona ponto após o segundo dígito
+					.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3') // Adiciona ponto após o quinto dígito
+					.replace(/\.(\d{3})(\d)/, '.$1/$2') // Adiciona barra após o oitavo dígito
+					.replace(/(\d{4})(\d)/, '$1-$2') // Adiciona traço após o décimo segundo dígito
+					.replace(/(-\d{2})\d+?$/, '$1'); // Impede a entrada de mais de 14 dígitos
+	e.target.value = cnpjPattern;
+});
 </script>
