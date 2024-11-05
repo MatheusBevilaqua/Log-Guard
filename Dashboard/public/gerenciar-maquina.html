@@ -12,6 +12,8 @@
 </head>
 
 <body onload="validarCargo();validarSessao();visualizarMaquinas()">
+   
+    </div>
     <section class="page-dash">
         <nav id="sidebar">
             <div id="sidebar_content">
@@ -110,10 +112,15 @@
     
     <section class="page-dash-geren" onload="validarSessao()">
     
+        
         <div class="maingerenpage">
             <div class="head-funcionarios-gerenc">
             <h1>Gerenciar Servidores:</h1>
-            <button onclick="" class="botao-filtro">Filtrar </button>
+            <div class="filtro-no-gerenciar-maquina">
+            <button onclick="filtrarpormaquina()" class="botao-filtro">Filtrar </button>
+            <p>Pesquisar Máquina:</p>
+            <input placeholder="Ex: DT3-11G" type="text">
+            </div>
             </div>
             <div class="dash-geren">
                 <div class="titulos-geren">
@@ -179,9 +186,7 @@
                     </div>
             </div>
         </div>
-           
-    
-            
+        
             <img src="./img/Line1cadastro.png" class="line1-geren" alt="">
             <div class="editar-geren-titulodelet">
                 <h1>Gerenciar Servidor:</h1>
@@ -219,12 +224,101 @@
             </div>
         </div>
         </div>
+            <dialog class="dialogodefiltromaquina">
+                <div class="dialogodefiltromaquinatitulo">
+                    <h2>Filtrar por</h2>
+                    <div class="Editarbotaofechar">
+                        <button onclick="cancelar_filtro()" class="cancelarfiltro">X</button>
+                    </div>
+                </div>
+                <div class="regiaocentrofiltros">
+                    <div class="regiaocentrofiltros-particao1">
+
+                        <div class="particao1-inputselect">
+                        <p>Localidade</p>
+                        <select name="select1">
+                            <option value="valor0" disabled selected>Selecione</option>
+                            <option value="valor1" >Datacenter 1</option>
+                            <option value="valor2" >Datacenter 2</option>
+                          </select>
+                        </div>
+
+                        <div class="particao1-inputselect">
+                          <p>Tipo de CPU</p>
+                          <select name="select2">
+                            <option value="valor0" disabled selected>Selecione</option>
+                            <option value="valor1" >T2 MEDIUM</option>
+                            <option value="valor2" >T2 LARGE</option>
+                          </select>
+                        </div>
+
+                    </div>
+                    <div class="regiaocentrofiltros-particao2">
+                        <div class="particao-maquinafiltro">
+                        <div class="particao2-inputitulo">
+                            <p>ID Máquina</p>
+                        </div>
+                        <div class="particao2-inputcheckbox">
+                            <input id="check1" type="checkbox">
+                            <p id="check1">Crescente</p>
+                        </div>
+                        <div class="particao2-inputcheckbox">
+                            <input id="check2" type="checkbox">
+                            <p id="check2">Decrescente</p>
+                        </div>
+                    </div>
+                    <div class="particao-maquinafiltro">
+                        <div class="particao2-inputitulo">
+                            <p>Nome da máquina</p>
+                        </div>
+                        <div class="particao2-inputcheckbox">
+                            <input type="checkbox">
+                            <p>Crescente</p>
+                        </div>
+                        <div class="particao2-inputcheckbox">
+                            <input type="checkbox">
+                            <p>Decrescente</p>
+                        </div>
+                    </div>
+
+                    <div class="particao-maquinafiltro">
+                        <div class="particao2-inputitulo">
+                            <p>Quantidade de alertas</p>
+                        </div>
+                        <div class="particao2-inputcheckbox">
+                            <input type="checkbox">
+                            <p>Crescente</p>
+                        </div>
+                        <div class="particao2-inputcheckbox">
+                            <input type="checkbox">
+                            <p>Decrescente</p>
+                        </div>
+                    </div>
+
+                    <div class="filtro-botao-confirmar">
+                        <button onclick="confirmar_filtrar()" class="confirmarfiltro">Filtrar</button>
+                    </div>
+
+                    </div>
+                    
+                </div>
+                
+                
+            </dialog>
     </section>
+
+    
+
 </body>
 
 </html>
 
 <script>
+
+    function filtrarpormaquina() {
+        document.querySelector('.maingerenpage').style.filter = "blur(5px)";
+        document.querySelector('.dialogodefiltromaquina').style.display = "block";
+    }
 
 document.getElementById('open_btn').addEventListener('click', function (){
 document.getElementById('sidebar').classList.toggle('open-sidebar');
@@ -256,6 +350,11 @@ document.getElementById('sidebar').classList.toggle('open-sidebar');
     function cancelar_editar() {
         document.querySelector('.maingerenpage').style.filter = "blur(0px)";
         document.querySelector('.Editargeren').style.display = "none";
+    }
+
+    function cancelar_filtro() {
+        document.querySelector('.maingerenpage').style.filter = "blur(0px)";
+        document.querySelector('.dialogodefiltromaquina').style.display = "none";
     }
 
     function excluir_editar() {
