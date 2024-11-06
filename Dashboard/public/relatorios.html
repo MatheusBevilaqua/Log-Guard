@@ -12,79 +12,66 @@
 
 </head>
 
-<body style="background-color: #e3e3e3; color: black;" onload="atualizarFeed();validarCargo();validarSessao()">
+<body style="background-color: #e3e3e3; color: black;"
+    onload="atualizarFeed();validarCargo();validarSessao(), verifica_User()">
 
     <section class="page-dash">
+
         <nav id="sidebar">
-            <div id="sidebar_content">
+            
+            <div id="sidebar_contentComum">
                 <div id="user">
-                    <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg" id="user_avatar" alt="Avatar">  
-                
-                    <p id="user_infos"> 
-                        <span class="item-description" id="b_usuario"> 
+                    <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg"
+                        id="user_avatar" alt="Avatar">
+
+                    <p id="user_infos">
+                        <span class="item-description" id="b_usuario">
                         </span>
-                        <span class="item-description "id="cargo_usuario" style="color: #442BB3;"> 
+                        <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
                             Lorem Ipsum
                         </span>
                     </p>
-    
-                </div>    
-            
-                <ul id="side_items"> 
-                    <li class="side_item active"> 
+
+                </div>
+
+                <ul id="side_items">
+                    <li class="side_item active">
                         <a style="cursor: auto;">
-                            <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon" style="height: 40px; width: 40px;"></i>
-                            <span class="item-description"> 
-                                <b style="color: white;"> LOG GUARD </b> 
-                            </span>    
-                        </a>
-                    </li>
-            
-                    <li class="side_item"> 
-                        <a href="dashboard_ADM.html">
-                            <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                            <span class="item-description"> 
-                               <b> Visão Geral </b> 
-                            </span>    
+                            <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon"
+                                    style="height: 40px; width: 40px;"></i>
+                            <span class="item-description">
+                                <b style="color: white;"> LOG GUARD </b>
+                            </span>
                         </a>
                     </li>
 
-                    <li class="side_item"> 
+                    <li class="side_item">
+                        <a href="dashboard_ADM.html">
+                            <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description">
+                                <b> Visão Geral </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
                         <a href="relatorios.html">
                             <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
-                            <span class="item-description"> 
-                               <b> Relatórios </b> 
-                            </span>    
+                            <span class="item-description">
+                                <b> Relatórios </b>
+                            </span>
                         </a>
                     </li>
-            
-                    <li class="side_item"> 
-                        <a href="gerenciar-maquina.html">
-                            <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
-                            <span class="item-description"> 
-                                <b> Máquinas </b>
-                            </span>    
-                        </a>
-                    </li>
-            
-                    <li class="side_item"> 
-                        <a href="gerenciar-usuario-func.html">
-                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-                            <span class="item-description"> 
-                                <b> Funcionários </b>
-                            </span>    
-                        </a>
-                    </li>
-            
-                    <li class="side_item"> 
+
+                    <li class="side_item">
                         <a href="#">
                             <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                            <span class="item-description"> 
+                            <span class="item-description">
                                 <b> Ajuda </b>
-                            </span>    
+                            </span>
                         </a>
                     </li>
-            
+
                     <!-- <li class="side_item"> 
                         <a href="#">
                             <i class="fa-solid fa-gear"></i>
@@ -94,22 +81,111 @@
                         </a>
                     </li> -->
                 </ul>
+
+                
+                <button id="open_btnComum">
+                    <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+                </button>
+
+            </div>
+
             
+
+            <div id="sidebar_content">
+                <div id="user">
+                    <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg"
+                        id="user_avatar" alt="Avatar">
+
+                    <p id="user_infos">
+                        <span class="item-description" id="b_usuario">
+                        </span>
+                        <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+                            Lorem Ipsum
+                        </span>
+                    </p>
+
+                </div>
+
+                <ul id="side_items">
+                    <li class="side_item active">
+                        <a style="cursor: auto;">
+                            <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon"
+                                    style="height: 40px; width: 40px;"></i>
+                            <span class="item-description">
+                                <b style="color: white;"> LOG GUARD </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="dashboard_ADM.html">
+                            <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description">
+                                <b> Visão Geral </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="relatorios.html">
+                            <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Relatórios </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="gerenciar-maquina.html">
+                            <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Máquinas </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="gerenciar-usuario-func.html">
+                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Funcionários </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="#">
+                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description">
+                                <b> Ajuda </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <!-- <li class="side_item"> 
+                        <a href="#">
+                            <i class="fa-solid fa-gear"></i>
+                            <span class="item-description"> 
+                                <b> </b>
+                            </span>    
+                        </a>
+                    </li> -->
+                </ul>
+
                 <button id="open_btn">
                     <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
                 </button>
             </div>
-    
+
             <div id="logout">
                 <button id="logout_btn" onclick="sair()">
                     <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
-                    <span class="item-description"> 
-                        Sair 
+                    <span class="item-description">
+                        Sair
                     </span>
                 </button>
             </div>
-    </nav>
-
+        </nav>
 
         <div class="main-relatorios-page">
 
@@ -122,8 +198,7 @@
                 <button onclick='relatorio_IA()' class="cadIA">Relatório IA</button>
 
             </div>
-
-
+        </div>
 
     </section>
     <div class="publicar-relatorio">
@@ -131,14 +206,15 @@
             <h1>Publicar Relatório</h1>
             <br>
             <div class="ttt-relatorios">
-            <h5>Título do relatório</h5>
-        </div>
-            <input placeholder="Ex: Diversos erros em um curto período de tempo." name="titulo" id="titulo" maxlength="100" type="text">
+                <h5>Título do relatório</h5>
+            </div>
+            <input placeholder="Ex: Diversos erros em um curto período de tempo." name="titulo" id="titulo"
+                maxlength="100" type="text">
             <div class="ttt-relatorios">
-            <h5>Descrição do relatório</h5>
-        </div>
+                <h5>Descrição (máximo de 250 caracteres)</h5>
+            </div>
             <textarea class="TextoAreaa" id="textarea_descricao" maxlength="250" rows="13"></textarea>
-            
+
             <div class="select-func-relatorio">
                 <select id="select_status">
                     <option selected value="#" disabled>Selecionar Status</option>
@@ -167,9 +243,9 @@
                 <label>
                     Descrição (máximo de 250 caracteres):
                     <br>
-                    <textarea class="TextoAreaE" id="textarea_descricao" maxlength="250" rows="13"></textarea>
+                    <textarea class="TextoAreaE" id="textoPublicar" maxlength="250" rows="13"></textarea>
                 </label>
-                
+
 
                 <div class="cadastrar-func-terceiro">
                     <button style="background-color: #442BB3;" class="cad-func" onclick="editar()">Confirmar
@@ -181,19 +257,38 @@
         </div>
     </div>
 
+    <div class="deletar-relatorio">
+        <div class="Editar-func-primeiro-relatorio">
+            <h1>Deletar Relatorio</h1>
+            <div class="Editar-func-primeiro-relatorio">
+
+                <div class="cadastrar-func-terceiro">
+                    <button style="background-color: #442BB3;" class="relatorio-btn onclick=" onclick="confirmar_deletar()">Confirmar
+                        Deleção</button>
+                    <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cancelar-relatorio">X</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 <script>
 
-document.getElementById('open_btn').addEventListener('click', function (){
-document.getElementById('sidebar').classList.toggle('open-sidebar');
-                     });
+    document.getElementById('open_btn').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
+    });
+
+     document.getElementById('open_btnComum').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
+    });
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
     var tipoPerfilUsuario = b_usuario.innerHTML = sessionStorage.TIPO_USUARIO;
 
-    function sair(){
-    window.location.href = "index.html";
+    function sair() {
+        window.location.href = "index.html";
     }
 
     function relatorio_IA() {
@@ -206,7 +301,14 @@ document.getElementById('sidebar').classList.toggle('open-sidebar');
 
         if (tipoPerfilUsuario != "ADMINISTRADOR") {
 
-            document.querySelector('.botaoI.A').style.display = "none";
+            document.querySelector('.cadIA').style.display = "none";
+            document.getElementById('sidebar_contentComum').style.display = "block";
+            document.getElementById('sidebar_content').style.display = "none";
+
+        }else{
+
+            document.getElementById('sidebar_contentComum').style.display = "none";
+
 
         }
 
@@ -227,6 +329,7 @@ document.getElementById('sidebar').classList.toggle('open-sidebar');
     function cancelar_edicao() {
         document.querySelector('.main-relatorios-page').style.filter = "none";
         document.querySelector('.editar-relatorio').style.display = "none";
+        document.querySelector('.deletar-relatorio').style.display = "none";
 
     }
 
@@ -236,7 +339,7 @@ document.getElementById('sidebar').classList.toggle('open-sidebar');
         var idUsuarioEmpresa = sessionStorage.EMPRESA_USUARIO;
 
         var tituloVar = document.getElementById('titulo').value;
-        var descricaoVar = document.getElementById('textoPublicar').value;
+        var descricaoVar = document.getElementById('textarea_descricao').value;
         var statusVar = document.getElementById('select_status').value
 
         var corpo = {
@@ -248,7 +351,7 @@ document.getElementById('sidebar').classList.toggle('open-sidebar');
 
         console.log(corpo)
 
-        if (!tituloVar || !descricaoVar || !statusVar) {
+        if (tituloVar == null || descricaoVar == null || statusVar == 'Selecionar Status') {
             alert('Erro: Campos obrigatórios não preenchidos');
             return;
         }
@@ -289,14 +392,26 @@ document.getElementById('sidebar').classList.toggle('open-sidebar');
         document.querySelector('.editar-relatorio').style.display = "block";
     }
 
+    function deletar(idrelatorio) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idrelatorio;
+        console.log("cliquei em deletar - " + idrelatorio);
+        document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
+        document.querySelector('.deletar-relatorio').style.display = "block";
+    }
+
     function editar() {
+        var desc = textoPublicar.value
+        if (desc == '') {
+            alert('Erro: Campo obrigatório não preenchidos');
+            return;
+        }
         fetch(`/relatorios/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                descricao: textarea_descricao.value
+                descricao: textoPublicar.value
             })
         }).then(function (resposta) {
 
@@ -314,9 +429,8 @@ document.getElementById('sidebar').classList.toggle('open-sidebar');
     }
 
 
-    function deletar(idrelatorio) {
-        console.log("Criar função de apagar post escolhido - ID" + idrelatorio);
-        fetch(`/relatorios/deletar/${idrelatorio}`, {
+    function confirmar_deletar() {
+        fetch(`/relatorios/deletar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -364,8 +478,8 @@ document.getElementById('sidebar').classList.toggle('open-sidebar');
                         console.log(mes)
                         var dia = data.getDate();
                         console.log(dia)
-                        var data = dia + "/" + mes +"/" + ano 
-                        var data = dia + "/" + mes  +"/" + ano 
+                        var data = dia + "/" + mes + "/" + ano
+                        var data = dia + "/" + mes + "/" + ano
                         if (relatorio.fkEmpresaRelatorio == sessionStorage.EMPRESA_USUARIO) {
                             if (relatorio.fkUsuarioRelatorio == sessionStorage.ID_USUARIO) {
 
