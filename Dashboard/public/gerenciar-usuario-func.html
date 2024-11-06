@@ -7,6 +7,7 @@
     <title>LogGuard - Dashboard</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="css/partials/SideBar.css">
+    <link rel="stylesheet" href="css/partials/dialog.css">
     <script src="js/sessao.js"></script>
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
@@ -112,12 +113,102 @@
 
         <section class="page-dash-func">
 
+            <dialog class="dialogodefiltromaquina">
+                <div class="dialogodefiltromaquinatitulo">
+                    <h2>Filtrar por</h2>
+                    <div class="Editarbotaofechar">
+                        <button onclick="cancelar_filtro()" class="cancelarfiltro">X</button>
+                    </div>
+                </div>
+                <div class="regiaocentrofiltros">
+                    <div class="regiaocentrofiltros-particao1">
+
+                        <div class="particao1-inputselect">
+                            <p>Funcionários com o cargo:</p>
+                            <select name="select1">
+                                <option value="valor0" disabled selected>Selecione o cargo</option>
+                                <option value="valor1">Analista</option>
+                                <option value="valor2">Administrador</option>
+                            </select>
+                        </div>
+
+                        <div class="particao1-inputselect">
+                            <p>Funcionários atribuidos a maquina:</p>
+                            <select name="select2">
+                                <option value="valor0" disabled selected>Selecione a máquina</option>
+                                <option value="valor1">HGL-02</option>
+                                <option value="valor2">Amazon ec2-pp02</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+                    <div class="regiaocentrofiltros-particao2">
+                        <div class="particao1-inputselect">
+                            <p>Selecione a opção de filtro</p> <select id="select2" onchange="selectFiltro()">
+                                <option id="valor0" value="valor0" disabled selected>Selecione o filtro</option>
+                                <option id="valor1" value="valor1">ID funcionário</option>
+                                <option id="valor2" value="valor2">Nome do funcionário</option>
+                                <option id="valor3" value="valor3">Tempo de registro</option>
+                            </select>
+                        </div>
+                        <div class="particao-maquinafiltro-1" style="display: none;">
+                            <div class="particao2-inputitulo">
+                                <p>ID funcionário</p>
+                            </div>
+                            <div class="particao2-grupocheckbox">
+                                <div class="particao2-inputcheckbox"> <input id="check1" type="checkbox">
+                                    <p id="check1-label">Crescente</p>
+                                </div>
+                                <div class="particao2-inputcheckbox"> <input id="check2" type="checkbox">
+                                    <p id="check2-label">Decrescente</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="particao-maquinafiltro-2" style="display: none;">
+                            <div class="particao2-inputitulo">
+                                <p>Nome do funcionário</p>
+                            </div>
+                            <div class="particao2-grupocheckbox">
+                                <div class="particao2-inputcheckbox"> <input id="check3" type="checkbox">
+                                    <p id="check3-label">de A até Z</p>
+                                </div>
+                                <div class="particao2-inputcheckbox"> <input id="check4" type="checkbox">
+                                    <p id="check4-label">de Z até A</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="particao-maquinafiltro-3" style="display: none;">
+                            <div class="particao2-inputitulo">
+                                <p>Tempo de registro</p>
+                            </div>
+                            <div class="particao2-grupocheckbox">
+                                <div class="particao2-inputcheckbox"> <input id="check5" type="checkbox">
+                                    <p id="check5-label">Maior tempo</p>
+                                </div>
+                                <div class="particao2-inputcheckbox"> <input id="check6" type="checkbox">
+                                    <p id="check6-label">Menor tempo</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filtro-botao-confirmar">
+                            <button onclick="confirmar_filtrar()" class="confirmarfiltro">Filtrar</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </dialog>
+
             <div class="mainfuncpage">
                 <div class="head-funcionarios-gerenc">
                     
                     <h1>Gerenciar Funcionários:</h1>
 
-                    <button onclick="" class="botao-filtro">Filtrar </button>
+                    <button onclick="filtrarporfunc()" class="botao-filtro">Filtrar </button>
 
                 </div>
 
@@ -214,7 +305,7 @@
                     <div class="divisorias-titulos-maquinas-1">
 
                         <div class="titulos-maquina-atribuicao">
-                            <p>Nome funcionário</p>
+                            <p>Nome completo do funcionário</p>
                         </div>
                         <input placeholder="Ex: John Doe" type="text" id="input_nome_func">
                         <div class="titulos-maquina-atribuicao">
@@ -252,6 +343,8 @@
                     <button onclick="cancelar_cadastrar_gefunc()" class="cancelar-func">X</button>
                 </div>
 
+                
+
 
 <div class="Editaratribuicaofunc">
     <h1>Editar atribuição de servidores</h1>
@@ -278,7 +371,9 @@
             <button onclick="cancelar_check_func()" class="cancelar-func-a03">Cancelar</button>
         </div>
     </div>
+    
 </div>
+
 
         </section>
 </body>
@@ -286,6 +381,29 @@
 </html>
 
 <script>
+
+function cancelar_filtro() {
+        document.querySelector('.maingerenpage').style.filter = "blur(0px)";
+        document.querySelector('.dialogodefiltromaquina').style.display = "none";
+    }
+
+function selectFiltro() {
+    var select = document.getElementById('select2');
+    var valor = select.value;
+
+
+    document.querySelector('.particao-maquinafiltro-1').style.display = "none";
+    document.querySelector('.particao-maquinafiltro-2').style.display = "none";
+    document.querySelector('.particao-maquinafiltro-3').style.display = "none";
+
+    if (valor === "valor1") {
+        document.querySelector('.particao-maquinafiltro-1').style.display = "block";
+    } else if (valor === "valor2") {
+        document.querySelector('.particao-maquinafiltro-2').style.display = "block";
+    } else if (valor === "valor3") {
+        document.querySelector('.particao-maquinafiltro-3').style.display = "block";
+    }
+}
 
     document.getElementById('open_btn').addEventListener('click', function () {
         document.getElementById('sidebar').classList.toggle('open-sidebar');
@@ -296,6 +414,11 @@
 
     function sair() {
         window.location.href = "index.html";
+    }
+
+    function filtrarporfunc() {
+        document.querySelector('.mainfuncpage').style.filter = "blur(5px)";
+        document.querySelector('.dialogodefiltromaquina').style.display = "block";
     }
 
     function confirmar_editar_gefunc() {
