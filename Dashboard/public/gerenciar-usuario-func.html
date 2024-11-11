@@ -12,7 +12,8 @@
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body onload="validarCargo();validarSessao();verUsuarios(); totalfunc(); totaladms(); totalanalista(); verMaquinas()">
+<body
+    onload="validarCargo();validarSessao();verUsuarios(); totalfunc(); totaladms(); totalanalista(); verMaquinas(), filtrarCargo">
     <section class="page-dash">
         <nav id="sidebar">
             <div id="sidebar_content">
@@ -140,12 +141,11 @@
                                 <option value="valor2">Amazon ec2-pp02</option>
                             </select>
                         </div>
-
-
                     </div>
                     <div class="regiaocentrofiltros-particao2">
                         <div class="particao1-inputselect">
-                            <p>Selecione a opção de filtro</p> <select id="select2" onchange="selectFiltro()">
+                            <p>Selecione a opção de filtro</p>
+                            <select id="select2" onchange="selectFiltro()">
                                 <option id="valor0" value="valor0" disabled selected>Selecione o filtro</option>
                                 <option id="valor1" value="valor1">ID funcionário</option>
                                 <option id="valor2" value="valor2">Nome do funcionário</option>
@@ -157,11 +157,13 @@
                                 <p>ID funcionário</p>
                             </div>
                             <div class="particao2-grupocheckbox">
-                                <div class="particao2-inputcheckbox"> <input id="check1" type="checkbox">
-                                    <p id="check1-label">Crescente</p>
+                                <div class="particao2-inputcheckbox">
+                                    <input id="check1" type="checkbox" onclick="toggleCheckbox(this)">
+                                    <p>Crescente</p>
                                 </div>
-                                <div class="particao2-inputcheckbox"> <input id="check2" type="checkbox">
-                                    <p id="check2-label">Decrescente</p>
+                                <div class="particao2-inputcheckbox">
+                                    <input id="check2" type="checkbox" onclick="toggleCheckbox(this)">
+                                    <p>Decrescente</p>
                                 </div>
                             </div>
                         </div>
@@ -170,11 +172,13 @@
                                 <p>Nome do funcionário</p>
                             </div>
                             <div class="particao2-grupocheckbox">
-                                <div class="particao2-inputcheckbox"> <input id="check3" type="checkbox">
-                                    <p id="check3-label">de A até Z</p>
+                                <div class="particao2-inputcheckbox">
+                                    <input id="check3" type="checkbox" onclick="toggleCheckbox(this)">
+                                    <p>de A até Z</p>
                                 </div>
-                                <div class="particao2-inputcheckbox"> <input id="check4" type="checkbox">
-                                    <p id="check4-label">de Z até A</p>
+                                <div class="particao2-inputcheckbox">
+                                    <input id="check4" type="checkbox" onclick="toggleCheckbox(this)">
+                                    <p>de Z até A</p>
                                 </div>
                             </div>
                         </div>
@@ -183,36 +187,34 @@
                                 <p>Tempo de registro</p>
                             </div>
                             <div class="particao2-grupocheckbox">
-                                <div class="particao2-inputcheckbox"> <input id="check5" type="checkbox">
-                                    <p id="check5-label">Maior tempo</p>
+                                <div class="particao2-inputcheckbox">
+                                    <input id="check5" type="checkbox" onclick="toggleCheckbox(this)">
+                                    <p>Maior tempo</p>
                                 </div>
-                                <div class="particao2-inputcheckbox"> <input id="check6" type="checkbox">
-                                    <p id="check6-label">Menor tempo</p>
+                                <div class="particao2-inputcheckbox">
+                                    <input id="check6" type="checkbox" onclick="toggleCheckbox(this)">
+                                    <p>Menor tempo</p>
                                 </div>
                             </div>
                         </div>
-
                         <div class="filtro-botao-confirmar">
                             <button onclick="confirmar_filtrar()" class="confirmarfiltro">Filtrar</button>
                         </div>
-
                     </div>
-
                 </div>
-
-
             </dialog>
+
 
             <div class="mainfuncpage">
                 <div class="head-funcionarios-gerenc">
-                    
+
                     <h1>Gerenciar Funcionários:</h1>
 
                     <button onclick="filtrarporfunc()" class="botao-filtro">Filtrar </button>
 
                 </div>
 
-             
+
                 <div class="metricas-func">
 
 
@@ -344,9 +346,36 @@
                 </div>
             </div>
 
-                
 
 
+
+                <div class="Editaratribuicaofunc">
+                    <h1>Editar atribuição de servidores</h1>
+                    <div class="dash-func-atribuicao">
+                        <div class="titulos-func-atribuicao">
+                            <div class="coluna-func">ID</div>
+                            <div class="coluna-func">Máquina</div>
+                            <div class="coluna-func">Localidade</div>
+                        </div>
+                        <div class="linha-func">
+                            <img src="./img/Line1cadastro.png" alt="">
+                        </div>
+                        <div id="func-dados-atribuicao" class="func-dados-atribuicao"></div>
+                    </div>
+                    <div class="cadastrar-func-a03">
+                        <div class="criacaocheck">
+                            <input type="checkbox" id="input_criacao">
+                            <label for="input_criacao">Confirmar criação</label>
+                        </div>
+                        <div class="confirmar-func">
+                            <button onclick="confirmar_check_func()" class="confirmar-func-a03">Confirmar</button>
+                        </div>
+                        <div class="confirmar-func">
+                            <button onclick="cancelar_check_func()" class="cancelar-func-a03">Cancelar</button>
+                        </div>
+                    </div>
+
+                </div>
 <div class="Editaratribuicaofunc">
     <h1>Editar atribuição de servidores</h1>
     <div class="dash-func-atribuicao">
@@ -382,33 +411,33 @@
 
 <script>
 
-function cancelar_filtro() {
-        document.querySelector('.maingerenpage').style.filter = "blur(0px)";
+    function cancelar_filtro() {
+        document.querySelector('.mainfuncpage').style.filter = "blur(0px)";
         document.querySelector('.dialogodefiltromaquina').style.display = "none";
     }
 
-function selectFiltro() {
-    var select = document.getElementById('select2');
-    var valor = select.value;
+    function selectFiltro() {
+        var select = document.getElementById('select2');
+        var valor = select.value;
 
 
-    document.querySelector('.particao-maquinafiltro-1').style.display = "none";
-    document.querySelector('.particao-maquinafiltro-2').style.display = "none";
-    document.querySelector('.particao-maquinafiltro-3').style.display = "none";
+        document.querySelector('.particao-maquinafiltro-1').style.display = "none";
+        document.querySelector('.particao-maquinafiltro-2').style.display = "none";
+        document.querySelector('.particao-maquinafiltro-3').style.display = "none";
 
-    if (valor === "valor1") {
-        document.querySelector('.particao-maquinafiltro-1').style.display = "block";
-    } else if (valor === "valor2") {
-        document.querySelector('.particao-maquinafiltro-2').style.display = "block";
-    } else if (valor === "valor3") {
-        document.querySelector('.particao-maquinafiltro-3').style.display = "block";
+        if (valor === "valor1") {
+            document.querySelector('.particao-maquinafiltro-1').style.display = "block";
+        } else if (valor === "valor2") {
+            document.querySelector('.particao-maquinafiltro-2').style.display = "block";
+        } else if (valor === "valor3") {
+            document.querySelector('.particao-maquinafiltro-3').style.display = "block";
+        }
     }
-}
 
     document.getElementById('open_btn').addEventListener('click', function () {
         document.getElementById('sidebar').classList.toggle('open-sidebar');
     });
-
+    var tipoUser = sessionStorage.TIPO_USUARIO;
     var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
     var idUsuario = "";
 
@@ -517,21 +546,6 @@ function selectFiltro() {
         var lista = document.getElementById("dash-func");
         lista.innerHTML = '';
     }
-
-
-    var selectgerenciarusuario = document.getElementById('selectgerenciarusuario');
-
-    selectgerenciarusuario.addEventListener('change', function () {
-        limparListaUsuarios();
-        if (this.value === 'valor2') {
-            filtrarADM()
-        } else if (this.value === 'valor3') {
-            filtrarComum()
-        } else {
-            verUsuarios()
-        }
-    });
-
 
     function verUsuarios() {
         fetch("/usuarios/visualizarUsuarios", {
@@ -684,6 +698,71 @@ function selectFiltro() {
                     throw ('Houve um erro na API!');
                 }
             }).catch(function (resposta) {
+                console.error(resposta);
+            });
+    }
+
+    function selectFiltro() {
+        var select = document.getElementById('select2');
+        var valor = select.value;
+
+        document.querySelector('.particao-maquinafiltro-1').style.display = "none";
+        document.querySelector('.particao-maquinafiltro-2').style.display = "none";
+        document.querySelector('.particao-maquinafiltro-3').style.display = "none";
+
+        if (valor === "valor1") {
+            document.querySelector('.particao-maquinafiltro-1').style.display = "block";
+        } else if (valor === "valor2") {
+            document.querySelector('.particao-maquinafiltro-2').style.display = "block";
+        } else if (valor === "valor3") {
+            document.querySelector('.particao-maquinafiltro-3').style.display = "block";
+        }
+    }
+
+    function toggleCheckbox(currentCheckbox) {
+        var checkboxes = document.querySelectorAll('.particao2-inputcheckbox input[type="checkbox"]');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
+        currentCheckbox.checked = true;
+    }
+
+    function confirmar_filtrar() {
+        var cargo = document.querySelector('select[name="select1"]').value;
+        var maquina = document.querySelector('select[name="select2"]').value;
+        var filtro = document.getElementById('select2').value;
+
+
+        cancelar_filtro();
+    }
+
+    function filtrarCargo() {
+        fetch("/filtro/filtrarUsuarioCargo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idEmpresaUsuarioServer: idEmpresaUsuario,
+                cargoUsuarioServer: tipoUser
+
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    if (resposta.status == 204) {
+
+
+
+
+                    } else {
+                        throw ('Houve um erro na API!');
+                    }
+                }
+            })
+            .catch(function (resposta) {
                 console.error(resposta);
             });
     }
