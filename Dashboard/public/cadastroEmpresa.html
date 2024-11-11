@@ -243,8 +243,6 @@
                 <input type="text" class="login-form-input black-text" placeholder="CNPJ" autocomplete="off"
                   id="cnpj_Input" />
               </label>
-          
-              
 
 
               <label class="login-form-box">
@@ -254,6 +252,7 @@
                 <input type="text" class="login-form-input black-text" placeholder="CEP" autocomplete="off"
                   id="cep_Input"/>
               </label>
+        
 
               <label class="login-form-box">
                 <span class="icon">
@@ -712,4 +711,22 @@ document.getElementById('olho2').addEventListener('mousemove', function() {
 					.replace(/(-\d{2})\d+?$/, '$1'); // Impede a entrada de mais de 14 dígitos
 	e.target.value = cnpjPattern;
 });
+</script>
+<script>
+document.getElementById("cep_Input").addEventListener("input", function (e) {
+            let cep = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+
+            // Limita o número de dígitos a 8
+            if (cep.length > 8) {
+                cep = cep.slice(0, 8);
+            }
+
+            // Adiciona o traço depois dos cinco primeiros dígitos
+            if (cep.length > 5) {
+                cep = cep.slice(0, 5) + "-" + cep.slice(5);
+            }
+
+            // Atualiza o valor do campo com a máscara aplicada
+            e.target.value = cep;
+        });
 </script>

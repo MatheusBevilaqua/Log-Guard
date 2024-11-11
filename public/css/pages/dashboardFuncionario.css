@@ -1,0 +1,133 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: #000;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.sidebar a.active {
+    color: #fff;
+    background-color: #6a0dad;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar a i {
+    margin-right: 10px;
+}
+
+.sidebar .logout {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.sidebar .logout a {
+    color: #000;
+    text-decoration: none;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.content .stats,
+.content .logs,
+.content .machines {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.content .stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content .stats div {
+    flex: 1;
+    text-align: center;
+    margin: 0 10px;
+}
+
+.content .stats div h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.content .stats div p {
+    font-size: 36px;
+    margin: 0;
+}
+
+.content .stats div p.red {
+    color: red;
+}
+
+.content .stats div p.green {
+    color: green;
+}
+
+.content .stats div p.purple {
+    color: purple;
+}
+
+.content .logs table,
+.content .machines table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content .logs table th,
+.content .logs table td,
+.content .machines table th,
+.content .machines table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.content .logs table th,
+.content .machines table th {
+    background-color: #f9f9f9;
+}
+
+.content .logs table td.red,
+.content .machines table td.red {
+    color: red;
+}
+
+.content .machines table td {
+    text-align: center;
+}

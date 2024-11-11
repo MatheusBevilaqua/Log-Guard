@@ -87,14 +87,7 @@
                         </a>
                     </li>
 
-                    <!-- <li class="side_item"> 
-                        <a href="#">
-                            <i class="fa-solid fa-gear"></i>
-                            <span class="item-description"> 
-                                <b> </b>
-                            </span>    
-                        </a>
-                    </li> -->
+
                 </ul>
 
                 <button id="open_btn">
@@ -216,7 +209,7 @@
                         <p>Localidade</p>
                         <input placeholder="Ex: Datacenter 5" type="text" id="localidade_input">
                         <p>Endereço MAC</p>
-                        <input placeholder="Ex: 00:19:B9:FB:E2:58" type="text" id="MACAdress_input">
+                        <input placeholder="Ex: 00:19:B9:FB:E2:58" type="text" id="MACAdress_input" oninput="mascaraMAC(this)">
                     </div>
 
                 </div>
@@ -707,6 +700,18 @@ function selectFiltro() {
         }
     }
 
-
+    function mascaraMAC(element) {
+        // Remove caracteres que não sejam dígitos ou letras
+        let value = element.value.replace(/[^A-Fa-f0-9]/g, '');
+        
+        // Aplica a máscara ao valor
+        let formatted = '';
+        for (let i = 0; i < value.length && i < 12; i += 2) {
+            formatted += value.substring(i, i + 2) + (i < 10 ? ':' : '');
+        }
+        
+        // Atualiza o valor no campo de entrada
+        element.value = formatted;
+    }
 
 </script>

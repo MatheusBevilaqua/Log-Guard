@@ -1,0 +1,744 @@
+/* Estilos para a página dashboard */
+
+body{
+    overflow: hidden;
+}
+
+.page-dash-func {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-top: 0;
+    background-color: #E3E3E3;
+    overflow: hidden;
+}
+
+.mainfuncpage {
+    width: 100%;
+    margin-top: 40px;
+    margin-left: 16.8%;
+}
+
+.mainfuncpage h1 {
+    color: black;
+    font-family:Arial, Helvetica, sans-serif;
+    padding-top: 10px;
+}
+
+.select-func {
+    position:relative;
+    display: flex;
+    padding-left: 60.30%;
+    width: 59%;
+    gap: 20px;
+}
+
+.select-func select {
+    border-radius: 10px 10px 0 0;
+    border-color: #ffffff;
+    color: black;
+    width: 46.50%;
+    height: 40px;
+    display: flex;
+    z-index: auto;
+    background-color: rgb(255, 255, 255);
+    font-size: 15px;
+    outline: none;
+    position: relative;
+}
+
+.select-func option {
+    color: black;
+    font-size: 15px;
+}
+
+.dash-func {
+    display: flex;
+    flex-direction: column;
+    width: 89%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    /* padding-right: 20%; */
+    padding-top: 2%;
+    border-radius: 20px 0 20px 20px ;
+    color: black;
+}
+
+.titulos-func {
+    color: black;
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: 6% 28% 29% 30%;
+    flex-direction: row;
+    width: 122%;
+    padding-right: 13%;
+    justify-content: space-between;
+    height: 10%;
+}
+
+.dados-func {
+    padding-right: 10%;
+    flex-direction: row;
+    width: 100%;
+    align-items: baseline;
+    color: black;
+    display: grid;
+    grid-template-columns: 6% 33% 35% 13%;
+    justify-content:space-between;
+    align-items: center;
+    height: 65px;
+    padding-top: 0px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
+
+.coluna-func{
+    display: flex;
+    color: black;
+    width: 60px;
+    height: 10px;
+    margin-left: 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* classe pai dos botões */
+.botoes-func {
+    padding-top: 3%;
+    display: flex;
+    gap: 20px;
+}
+
+/* botão editar */
+.edit-func {
+    width: 20%;
+    height: 35px;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    border: none;
+}
+
+/* botão cadastro */
+.cad-func {
+    width: 20%;
+    height: 35px;
+    border-radius: 20px;
+    background-color: rgba(68, 43, 179, 1);
+    color: white;
+    border: none;
+}
+
+.duvidas-func {
+    width: 250%;
+    display: flex;
+    padding-left: 102%;
+}
+
+.duvidas-func a {
+    font-size: 15px;
+    color: rgba(68, 43, 179, 1);
+}
+
+.tupla1-func{
+    display: flex;
+    color: black;
+    width: 60px;
+}
+
+.dados-func:hover{
+    background-color: #E3E3E3;
+    color: white;
+}
+
+.dados-func-atribuicao:hover{
+    background-color: #E3E3E3;
+    color: white;
+}
+
+.func-dados {
+    flex-direction: column;
+    width: 99%;
+    height: 100%;
+    overflow: auto;
+}
+
+.edit-func, .cad-func {
+    cursor: pointer;
+}
+
+.Editarfunc {
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-30%, -50%); 
+    width: 30%; 
+    height: 40%;
+    background-color: #FFF;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 0px 4px 39.4px 19px rgba(0, 0, 0, 0.36);
+    justify-content: center;
+    align-items: center;
+}
+
+.Editar-func-primeiro {
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 10px 0;
+    padding-top: 10px;
+}
+
+.Editar-func-primeiro h1{
+    color: black;
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+
+.Editar-func-primeiro input {
+    margin-bottom: 15px;
+    width: 80%;
+    height: 45px;
+    border: none;
+    color: black;
+    margin-top: 5px;
+}
+
+.Editar-func-primeiro img {
+    width: 80%;
+    margin: 0;
+}
+
+.Editar-func-segundo {
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    height: 5%;
+    color: black;
+    margin-top: 5%;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 5%;
+}
+
+.Editar-func-confirmudanca, .Editar-func-botoes {
+    flex: 1; 
+    padding: 10px;
+}
+
+.Editar-func-confirmudanca label {
+color: black;
+font-size: 10px;
+}
+
+.Editar-func-confirmudanca {
+    color: black;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+}
+    
+
+.line1-func {
+    width: 100%;
+}
+
+.Editar-func-botoes {
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    height: 5%;
+}
+
+.Editar-func-segundo .confirmar-func {
+    border-radius: 40px;
+    background: #442BB3;
+    color: white;
+    width: 120px;
+    height: 40px;
+}
+
+.Editar-func-segundo .cancelar-func {
+    border-radius: 40px;
+    background: white;
+    color: black;
+    width: 120px;
+    height: 40px;
+    border: none;
+}
+
+.Editar-func-botao-delete {
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+    /* padding-top: 30px; */
+    padding-bottom: 20px;
+}
+
+.Editar-func-botao-editar{
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.Editar-func-botao-editar .editar-func {
+    border-radius: 40px;
+    background: #442BB3;
+    color: white;
+    width: 240px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.editar-func-titulodelet {
+    flex-direction:column;
+    align-items:flex-start;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.editar-func-titulodelet h1 {
+    font-size: 20px;
+    color: black;
+}
+
+
+.Editar-func-botao-delete button{
+    border-radius: 40px;
+    background: #F00;
+    color: white;
+    width: 240px;
+    height: 40px;
+    cursor: pointer;
+}
+
+
+
+.Cadastrarfunc {
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-30%, -50%); 
+    width: 30%; 
+    height: 570px;
+    background-color: #FFF;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 0px 4px 39.4px 19px rgba(0, 0, 0, 0.36);
+}
+
+.cadastrar-func-primeiro {
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 10px 0;
+    padding-top: 10px;
+}
+
+.cadastrar-func-primeiro input {
+    margin-bottom: 15px;
+    width: 80%;
+    height: 30px;
+    border: none;
+    color: black;
+    margin-top: 15px;
+}
+
+.cadastrar-func-primeiro img {
+width: 80%;
+margin: 0;
+}
+
+
+.Cadastrarfunc h1 {
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 20px;
+    color: black;
+}
+
+.cadastrar-func-segundo {
+    display: flex;
+    flex-direction: row;
+    width: 100%; 
+    justify-content: center; 
+    margin: 10px 0;
+    color: black;
+    gap: 10px;
+    padding-right: 40%;
+}
+
+.cadastrar-func-segundo label {
+    color: black;
+    
+}
+
+.cadastrar-func-terceiro {
+    display: flex;
+    flex-direction: row;
+    width: 100%; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 10px 0;
+    display: flex;
+    gap: 15px;
+    margin-top: 5%;
+}
+
+.cadastrar-func-terceiro .confirmar-func {
+    border-radius: 40px;
+    background: #442BB3;
+    color: white;
+    width: 120px;
+    height: 40px;
+}
+
+.cadastrar-func-terceiro .cancelar-func {
+    border-radius: 40px;
+    background: white;
+    color: black;
+    width: 120px;
+    height: 40px;
+    border: none;
+}
+
+.Editarfunc {
+    position: absolute;
+    z-index: auto;
+    display: none;
+}
+
+.linha-func img{
+    width: 100%;
+}
+
+.confirmar-func{
+    cursor: pointer;
+}
+
+.cancelar-func{
+    cursor: pointer;
+}
+
+select option {
+    background-color: white;
+}
+
+select option:hover{
+    background-color: black;
+    color: white;
+}
+
+.metricas-func {
+    flex-direction:row;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 50%;
+    padding-top: 0;
+    background-color: #E3E3E3;
+    overflow-x: hidden;
+}
+
+.me1-func {
+    display: flex;
+    width: 260px;;
+    height: 463px;
+    background-color: #442BB3;
+    border-radius: 20px;
+    color: white;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    top: 100px;
+    z-index: 1;
+    padding-top: 20px; 
+}
+
+.me2-func {
+    display: flex;
+    width: 260px;;
+    height: 230px;
+    background-color: #1C0E5B;
+    border-radius: 20px  ;
+    color: white;
+    top: 270px; 
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: -10;
+    padding-top: 20px; 
+    margin-top: 5px;
+
+}
+
+.me3-func {
+    display: flex;
+    width: 260px;
+    height: 350px;
+    background-color: #0A0329;
+    border-radius: 20px  ;
+    color: white;
+    top: 400px; 
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 15;
+    padding-top: 20px;
+    padding-bottom: 70px; 
+    margin-top: 15px;
+}
+
+.tre-func {
+    width: 383px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.select-func-primeiro {
+    width: 100%;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+}
+
+.select-func-segundo {
+    width: 100%;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+}
+
+.select-func-primeiro select{
+    color: black;
+    width: 90%;
+    border: none;
+    height: 45px;
+}
+
+.select-func-segundo select{
+    color: black;
+    width: 90%;
+    border: none;
+    height: 40px;
+}
+
+select option {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+select option:hover{
+    background-color: black;
+    color: rgb(0, 0, 0);
+}
+
+.Editar-func-botao-fechar {
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.Editar-func-botao-fechar .fechar-func {
+    border-radius: 40px;
+    background: #442BB3;
+    color: white;
+    width: 240px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.linhacad{
+    width: 100%;
+    height: 1px;
+}
+
+.linhacad2{
+    width: 100%;
+    height: 0.5px;
+}
+
+::-webkit-input-placeholder {
+    color: black;
+ }
+
+.Editaratribuicaofunc {
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left:45%; 
+    transform: translate(-30%, -50%); 
+    width: 60%; 
+    height: 570px;
+    background-color: #FFF;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 0px 4px 39.4px 19px rgba(0, 0, 0, 0.36);
+
+}
+
+.Editaratribuicaofunc h1 {
+    color: black;
+    font-size: 30px;
+    padding-left: 5%;
+    padding-top: 20px;
+}
+
+.dash-func-atribuicao {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    background-color: rgb(255, 255, 255);
+    /* padding-right: 20%; */
+    padding-top: 7%;
+    padding-bottom: 2%;
+    border-radius: 20px 0 20px 20px ;
+    color: black;
+    padding-left: 5%;
+    padding-right: 5%;
+
+}
+
+.func-dados-atribuicao {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.dados-func-atribuicao {
+    padding-right: 10%;
+    flex-direction: row;
+    width: 100%;
+    align-items: baseline;
+    color: black;
+    display: grid;
+    grid-template-columns: 6% 20% 35% 35%;
+    justify-content:space-between;
+    align-items: center;
+    height: 65px;
+    padding-top: 0px;
+    padding-bottom: 15px;
+    cursor: pointer;  
+}
+
+.coluna-func-atribuicao {
+    display: flex;
+    color: black;
+    width: 60px;
+    height: 10px;
+    margin-left: 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cadastrar-func-a03 {
+    display: grid;
+    grid-template-columns: 68% 15% 15%;
+    flex-direction: row;
+    width: 100%; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 10px 0;
+}
+
+.cadastrar-func-a03 .confirmar-func-a03 {
+    border-radius: 40px;
+    background: #442BB3;
+    color: white;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.cadastrar-func-a03 .cancelar-func-a03 {
+    border-radius: 40px;
+    background: white;
+    color: black;
+    width: 120px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.criacaocheck label {
+    color: black;
+}
+
+.input_criacao label {
+    color: black;
+}
+
+.titulos-func-atribuicao {
+    color: black;
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: 10% 25% 45%;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10%;
+    padding-left: 55px;
+}
+
+.nav-dash-icon-geren-1 {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+}
+
+.nav-dash-icon-geren-2 {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+}
+
+.nav-dash-icon-geren-3 {
+    width: 20px;
+    height: 14px;
+    padding-right: 5px;
+}
+
+.nav-dash-icon-geren-4 {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+}
