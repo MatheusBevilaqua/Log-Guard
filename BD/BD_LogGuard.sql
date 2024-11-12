@@ -5,7 +5,7 @@ idEmpresa INT PRIMARY KEY auto_increment,
 nomeEmpresa VARCHAR(225),
 emailInstitucional VARCHAR(225),
 emailResponsavel VARCHAR(225),
-cnpj CHAR(14),
+cnpj CHAR(18),
 cep CHAR(9)
 );
 

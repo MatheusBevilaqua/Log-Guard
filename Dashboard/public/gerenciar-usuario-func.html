@@ -984,7 +984,6 @@
 
     function gerenciarUsuario(idUsuarioSelecionado) {
         // Exibe o ID do usuário para confirmação
-        alert("ID do usuário selecionado: " + idUsuarioSelecionado);
         idUsuario = idUsuarioSelecionado;
         fetch("/usuarios/exibirDadosEdicaoUsuario", {
             method: "POST",
@@ -1032,7 +1031,6 @@
 
     function deletarUsuario() {
         // Exibe o ID do usuário para confirmação
-        alert("ID do usuário selecionado: " + idUsuario);
 
         fetch("/usuarios/deletarusuario", {
             method: "POST",

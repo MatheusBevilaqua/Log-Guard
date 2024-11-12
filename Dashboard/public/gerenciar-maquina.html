@@ -364,7 +364,6 @@ function selectFiltro() {
         // temporario
         document.querySelector('.maingerenpage').style.filter = "blur(0px)";
         document.querySelector('.Editargeren').style.display = "none";
-        window.location.reload(true); //reload na página
         {
             var r = confirm("Tem certeza que deseja alterar este perfil?");
             if (r == true) {
@@ -441,7 +440,7 @@ function selectFiltro() {
                     if (resposta.ok) {
 
                         alert("CADASTRO EXECUTADO!")
-
+                        window.location.reload(true); //reload na página
                     } else {
                         throw "Houve um erro ao tentar realizar o cadastro!";
                     }
@@ -610,7 +609,7 @@ function selectFiltro() {
     }
 
     function deletarMaquina() {
-        alert("ID da selecionado: " + idMaquina);
+        alert("Máquina deletada com sucesso!");
 
         fetch("/empresas/deletarMaquina", {
             method: "DELETE",
@@ -681,7 +680,6 @@ function selectFiltro() {
                 .then(function (resposta) {
                     console.log("Status da resposta:", resposta.status);
                     if (resposta.ok) {
-                        alert("teste 02")
 
                         resposta.json().then(function (json) {
                             console.log("Máquina atualizada com sucesso:", json);

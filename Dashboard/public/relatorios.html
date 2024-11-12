@@ -367,7 +367,7 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "da empresa de ID: " + idUsuarioEmpresa + "!");
+                window.alert("Post realizado com sucesso!");
                 window.location = "relatorios.html";
                 limparFormulario();
                 finalizarAguardar();
@@ -416,7 +416,7 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.alert("Post atualizado com sucesso!");
                 window.location = "relatorios.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
@@ -438,7 +438,7 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.alert("Post deletado com sucesso!");
                 window.location = "relatorios.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
