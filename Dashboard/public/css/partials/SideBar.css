@@ -34,6 +34,14 @@ main{
     padding: 12px;
 }
 
+#user_infos{
+
+    padding-left: 10px;
+    margin-top: 20px;
+    font-size: larger;
+
+}
+
 #user{
     display: flex;
     align-items: center;
@@ -73,6 +81,19 @@ main{
 
 .side_item.active {
     background-color: #442BB3;
+    color: white;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+}
+
+.side_itemLog {
+    background-color: #442BB3;
+    border-radius: 8px;
+    padding: 10px;
+    padding-left: 15px;
 }
 
 .side_item:hover:not(.active){
@@ -119,7 +140,7 @@ main{
 
 #open_btn{
     position: absolute;
-    top: 30px;
+    top: 6px;
     right: -10px;
     background-color: white;
     color: #e3e9f7;
@@ -127,6 +148,7 @@ main{
     width: 40px;
     height: 40px;
     border: none;
+    border: 2px solid#442BB3;
     cursor: pointer;
 }
 
@@ -139,16 +161,19 @@ main{
     border-radius: 100%;
     width: 40px;
     height: 40px;
-    border: none;
     cursor: pointer;
 }
 
-#open_btn_icon{
-    transition: transform .3s ease;
+
+#open_btn.rodar {
+    animation-name: roda;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
-#open-sidebar #open_btn_icon{
-    transform: rotate(180deg);
+@keyframes roda {
+    from{transform: rotate(0deg);}
+    to{transform: rotate(180deg);}
 }
 
 .item-description {
@@ -162,17 +187,32 @@ main{
     color: #0a0a0a;
 }
 
+.item-descriptionAtivo{
+    width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    transition: width .6s;
+    height: 0px;
+    color: #ffffff;
+}
+
 #sidebar.open-sidebar{
     min-width: 15%;
 }
 
+#sidebar.open-sidebar .item-descriptionAtivo{
+    width: 100px;
+    height: auto;
+}
+
 #sidebar.open-sidebar .item-description{
-    width: 150px;
+    width: 100px;
     height: auto;
 }
 
 #sidebar.open-sidebar .side_item a{
     justify-content: flex-start;
-    gap: 14px;
-
+    gap: 10px;
 }
