@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogGuard - Dashboard</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/partials/SideBar.css">
+    <script src="js/sessao.js"></script>
+    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+</head>
+
+<body>
+    <section class="page-dash">
+        <nav id="sidebar">
+            <div id="sidebar_content">
+                <div class="side_item active">
+                    <a>
+                        <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon"
+                                style="height: 40px; width: 40px;"></i>
+                        <span class="item-descriptionAtivo" id="nomeLog">
+                            <b style="color: white; padding-left: 10px;"> LOGGUARD </b>
+                        </span>
+                    </a>
+                </div>
+                <div id="user">
+                    <p id="user_infos">
+                        <span style="color: black;" class="item-descriptionAtivo"> Olá,
+                            <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                                Jon Doe
+                            </span>
+                        </span>
+                        <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+                            Lorem Ipsum
+                        </span>
+                    </p>
+
+                </div>
+
+                <ul id="side_items">
+
+
+                    <li class="side_item active">
+                        <a href="dashboard_ADM.html">
+                            <i> <img src="./img/olhoBranco.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-descriptionAtivo">
+                                <b style="color: aliceblue;"> Visão Geral </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="relatorios.html">
+                            <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Relatórios </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="gerenciar-maquina.html">
+                            <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Empresas </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="gerenciar-usuario-func.html">
+                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Usuários </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="gerenciar-usuario-func.html">
+                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> FeedBacks </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="#">
+                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description">
+                                <b> Ajuda </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <!-- <li class="side_item"> 
+                        <a href="#">
+                            <i class="fa-solid fa-gear"></i>
+                            <span class="item-description"> 
+                                <b> </b>
+                            </span>    
+                        </a>
+                    </li> -->
+                </ul>
+
+                <button id="open_btn">
+                    <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+                </button>
+            </div>
+
+            <div id="logout">
+                <button id="logout_btn" onclick="sair()">
+                    <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                        Sair
+                    </span>
+                </button>
+            </div>
+        </nav>
+    </section>
+</body>
+
+</html>
+
+<script>
+
+    var teste = 0
+
+    document.getElementById('open_btn').addEventListener('click', function () {
+
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
+        this.classList.toggle('rodar');
+
+        if (teste == 0) {
+            document.getElementById('nomeLog').style.display = "block";
+            teste = 1
+        } else {
+            document.getElementById('nomeLog').style.display = "none";
+            teste = 0
+        }
+
+    });
+
+    function sair() {
+        window.location.href = "index.html";
+    }
+</script>

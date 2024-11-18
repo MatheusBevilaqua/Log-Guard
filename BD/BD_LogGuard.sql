@@ -113,7 +113,6 @@ VALUES
 (4, 'Funcionario 9C', 'funcionario9c@empresac.com', 'senha123', 'ADMINISTRADOR'),
 (4, 'Funcionario 10C', 'funcionario10c@empresac.com', 'senha123', 'COMUM');
 
-
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
 fkEmpresaMaquina INT,
@@ -128,7 +127,28 @@ localidade VARCHAR(45),
 MACAdress VARCHAR(45)
 ); 
 
--- insert into maquina (MACAdress) values ('00:e2:69:6b:fc:0f');
+CREATE TABLE atribuicaoMaquina(
+idMaquinaUsuario INT auto_increment,
+fkUsuarioAtribuicao INT,
+FOREIGN KEY (fkUsuarioAtribuicao) REFERENCES usuario(idUsuario),
+fkMaquinAtribuicao INT,
+FOREIGN KEY (fkMaquinAtribuicao) REFERENCES maquina(idMaquina),
+primary key(idMaquinaUsuario,fkUsuarioAtribuicao,fkMaquinAtribuicao)
+);
+
+
+INSERT INTO maquina (fkEmpresaMaquina, fkUsuarioMaquina, nomeMaquina, modeloCPU, capacidadeRAM, disco, localidade, MACAdress) VALUES
+(3, 47, 'Servidor Central', 'Intel Xeon E5', 64.000, 2000, 'Data Center', '00:1A:2B:3C:4D:5E'),
+(3, 48, 'Estação Trabalho 01', 'Intel i7 8700', 16.000, 500, 'Escritório 1', '00:1A:2B:3C:4D:5F'),
+(3, 49, 'Estação Trabalho 02', 'AMD Ryzen 5 3600', 16.000, 500, 'Escritório 1', '00:1A:2B:3C:4D:60'),
+(3, 50, 'Servidor Backup', 'Intel Xeon E5', 32.000, 1000, 'Data Center', '00:1A:2B:3C:4D:61'),
+(3, 51, 'Estação Design', 'Intel i9 9900K', 32.000, 1000, 'Escritório 2', '00:1A:2B:3C:4D:62'),
+(3, 52, 'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512, 'Escritório 3', '00:1A:2B:3C:4D:63'),
+(3, 53, 'Estação Vendas', 'Intel i5 10400', 8.000, 256, 'Escritório 4', '00:1A:2B:3C:4D:64'),
+(3, 54, 'Estação Financeiro', 'Intel i5 9400', 8.000, 256, 'Escritório 5', '00:1A:2B:3C:4D:65'),
+(3, 55, 'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256, 'Escritório 6', '00:1A:2B:3C:4D:66'),
+(3, 56, 'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, 'Sede', '00:1A:2B:3C:4D:67');
+
 
 CREATE TABLE relatorio(
 idRelatorio INT PRIMARY KEY auto_increment,
@@ -158,7 +178,8 @@ fkrecurso INT,
 FOREIGN KEY (fkrecurso) REFERENCES recurso(idRecurso),
 parametro DECIMAL (8,5)
 );
--- METRICAS BASEADAS EM PESQUISA (SOMENTE PARA DEMONSTRAÇÃO NA SPRINT 2)
+
+
 INSERT INTO maquinaRecurso VALUES(default, 1, 65.0);
 INSERT INTO maquinaRecurso VALUES(default, 2, 70.0);
 INSERT INTO maquinaRecurso VALUES(default, 3, 80.0);
@@ -175,8 +196,8 @@ FOREIGN KEY (fkRecursoCaptura) REFERENCES recurso(idRecurso),
 fkMaquinaRecursoCaptura INT,
 FOREIGN KEY (fkMaquinaRecursoCaptura) REFERENCES maquinaRecurso(idMaquinaRecurso),
 registro DECIMAL (6,3),
+tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
 
--- Adicionar coluna tem_problema boolean aqui
-select * from captura;
+
