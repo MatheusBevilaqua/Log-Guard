@@ -16,7 +16,7 @@ fun main() {
         capturaBandaLarga()
 //        verificaLog()
         capturaRepo.inserirCaptura(captura)
-        println("capturei")
+//        println("capturei")
         Thread.sleep(5000)
     }
 
@@ -36,12 +36,13 @@ fun capturaBandaLarga(){
 
     val byteRecebidos = dadosCaptura.bytesRecebidos
     val byteEnviados = dadosCaptura.bytesEnviados
-
-
     val usoBandaLarga = (((byteRecebidos + byteEnviados) / 60) * 8) / 1000000
 
+    println(byteRecebidos)
+    println(byteEnviados)
 
-//    println("Taxa de uso de banda larga:${usoBandaLarga.toDouble()} Mpbs")
+
+    println("Taxa de uso de banda larga:${usoBandaLarga.toDouble()} Mpbs")
 
     captura.setDataHoraCaptura(pegaDataHoraCaptura())
     captura.setRegistro(usoBandaLarga.toDouble())

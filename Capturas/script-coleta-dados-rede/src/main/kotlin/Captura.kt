@@ -22,14 +22,14 @@ class Captura {
 
 
 
-//    fun setTemProblema (paramtro:Int){
-//
-//        if (captura.registro < paramtro){
-//            tem_problema = true
-//        } else{
-//            tem_problema = false
-//        }
-//    }
+    fun setTemProblema (parametro:Int){
+
+        if (captura.registro < parametro){
+            tem_problema = true
+        } else{
+            tem_problema = false
+        }
+    }
 
     fun setDataHoraCaptura (data:String){
         dtCriacaoCaptura = data
