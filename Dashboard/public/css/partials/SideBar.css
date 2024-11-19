@@ -79,6 +79,7 @@ main{
     cursor: pointer;
 }
 
+
 .side_item.active {
     background-color: #442BB3;
     color: white;

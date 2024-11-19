@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogGuard - Dashboard</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="css/partials/SideBar.css">
+  <link rel="stylesheet" href="css/pages/dash_Gerenciamento_Operacao.css">
+  <script src="js/sessao.js"></script>
+  <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+</head>
+
+<body>
+  <section class="page-dash">
+    <nav id="sidebar">
+      <div id="sidebar_content">
+        
+        <li class="side_item" style="cursor: none;">
+          <a>
+            <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+            <span class="item-description">
+              <b style="color: #442BB3; margin-left: 15px;"> Log Guard </b>
+            </span>
+          </a>
+        </li>
+
+
+        <div id="user">
+          <p id="user_infos">
+            <span style="color: black;" class="item-descriptionAtivo"> Olá,
+              <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                Jon Doe
+              </span>
+            </span>
+            <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+              Lorem Ipsum
+            </span>
+          </p>
+        </div>
+
+        <ul id="side_items">
+
+
+          <li class="side_item ">
+            <a href="dashboard_ADM.html">
+              <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+              <span class="item-description">
+                <b> Visão Geral </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="relatorios.html">
+              <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Relatórios </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="gerenciar-maquina.html">
+              <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Empresas </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="gerenciar-usuario-func.html">
+              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Usuários </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="gerenciar-usuario-func.html">
+              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> FeedBacks </b>
+              </span>
+            </a>
+          </li>
+
+
+          <li class="side_item active">
+            <a href="dash_Gerenciamento_Operacao.html">
+              <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
+              <span class="item-descriptionAtivo">
+                <b style="color: aliceblue;"> Operações </b>
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <div class="counter"><span id="counter" style="color: black;">00:00:00</span></div>
+          </li>
+
+
+
+          <li class="side_item">
+            <a href="#">
+              <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+              <span class="item-description">
+                <b> Ajuda </b>
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <button id="open_btn">
+          <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+        </button>
+      </div>
+
+      <div id="logout">
+        <button id="logout_btn" onclick="sair()">
+          <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+          <span class="item-description">
+            Sair
+          </span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1> Tarefas do dia</h1>
+
+      <div class="add-task-form">
+        <input type="text" id="newTaskInput" placeholder="Digite a nova tarefa">
+        <select id="taskPriority">
+          <option value="#" disabled selected> Importância </option>
+          <option value="essencial">Essencial</option>
+          <option value="importante">Importante</option>
+          <option value="desejavel">Desejável</option>
+        </select>
+        <button onclick="addTask()" class="botao_trello">Adicionar Tarefa</button>
+      </div>
+
+
+
+      <div class="board">
+        <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h2>A Fazer</h2>
+        </div>
+        <div class="column" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h2>Andamento</h2>
+        </div>
+        <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h2>Concluído</h2>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="container">
+      <h1> Tempo de Expediente</h1>
+      <canvas id="lineChart" class="chart-container"></canvas>
+      <h1> Gerenciamento de Tarefas</h1>
+      <canvas id="taskChart" class="chart-container"></canvas>
+    </div>
+    </div>
+
+  </section>
+</body>
+
+</html>
+
+<script>
+
+  var teste = 0
+
+  document.getElementById('open_btn').addEventListener('click', function () {
+
+    document.getElementById('sidebar').classList.toggle('open-sidebar');
+    this.classList.toggle('rodar');
+
+    if (teste == 0) {
+      document.getElementById('nomeLog').style.display = "block";
+      teste = 1
+    } else {
+      document.getElementById('nomeLog').style.display = "none";
+      teste = 0
+    }
+
+  });
+
+  function sair() {
+    window.location.href = "index.html";
+  }
+</script>
+
+<!-- PARTE DO TIMER -------------------------------------------------------------------------------------------------------------- -->
+<script>
+  function allowDrop(event) {
+    event.preventDefault();
+  }
+
+  function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+
+  function drop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData("text");
+    const task = document.getElementById(data);
+    event.target.appendChild(task);
+  }
+
+  function allowDrop(event) {
+    event.preventDefault();
+  }
+
+  function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+
+  function drop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData("text");
+    const task = document.getElementById(data);
+    event.target.appendChild(task);
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // Adiciona o evento de atualização do gráfico de tarefas nas colunas
+  document.querySelectorAll('.column').forEach(column => {
+    column.addEventListener('drop', updateTaskChart);
+  });
+
+  // Inicia a contagem de tempo para o gráfico de linha
+  setInterval(updateCounter, 1000);
+</script>
+<script>
+  // Variáveis para rastrear o tempo e o gráfico
+  let seconds = 0, minutes = 0, hours = 0, minuteCounter = 0;
+  let timerInterval;
+
+  // Configuração do gráfico de linha
+  const lineCtx = document.getElementById('lineChart').getContext('2d');
+  const lineChart = new Chart(lineCtx, {
+    type: 'line',
+    data: {
+      labels: [], // Armazena os minutos passados no eixo X
+      datasets: [{
+        label: 'Minutos Decorridos',
+        data: [], // Armazena os dados do eixo Y (por exemplo, quantidade de minutos)
+        borderColor: 'rgb(68, 43, 179)',
+        borderWidth: 2,
+        fill: false
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          title: { display: true, text: 'Tempo (em minutos)' }
+        },
+        y: {
+          title: { display: true, text: 'Minutos' }
+        }
+      }
+    }
+  });
+
+  // Função para carregar o tempo e o progresso do gráfico do localStorage
+  function loadTimeAndGraph() {
+    const savedTime = localStorage.getItem('timerTime');
+    const savedMinutes = localStorage.getItem('minuteCounter');
+    const savedGraphData = localStorage.getItem('graphData');
+
+    // Carrega o tempo salvo
+    if (savedTime) {
+      const [savedHours, savedMinutes, savedSeconds] = savedTime.split(':').map(Number);
+      hours = savedHours;
+      minutes = savedMinutes;
+      seconds = savedSeconds;
+    } else {
+      hours = 0;
+      minutes = 0;
+      seconds = 0;
+    }
+
+    // Carrega o contador de minutos para o gráfico
+    minuteCounter = savedMinutes ? Number(savedMinutes) : 0;
+
+    // Carrega os dados do gráfico do localStorage, se houver
+    if (savedGraphData) {
+      const graphData = JSON.parse(savedGraphData);
+      lineChart.data.labels = graphData.labels;
+      lineChart.data.datasets[0].data = graphData.data;
+      lineChart.update();
+    }
+    updateDisplay();
+  }
+
+  // Função para iniciar o temporizador e atualizar o gráfico
+  function startTimer() {
+    loadTimeAndGraph(); // Carrega o progresso salvo
+    if (!timerInterval) {
+      timerInterval = setInterval(updateCounter, 1000); // Atualiza a cada segundo
+    }
+  }
+
+  // Função para atualizar o contador e o gráfico a cada segundo
+  function updateCounter() {
+    seconds++;
+    if (seconds === 60) {
+      seconds = 0;
+      minutes++;
+      minuteCounter++;
+
+      // Adiciona um novo ponto ao gráfico a cada minuto completo
+      lineChart.data.labels.push(minuteCounter); // Adiciona o minuto passado ao eixo X
+      lineChart.data.datasets[0].data.push(minuteCounter); // Adiciona o valor no eixo Y
+      lineChart.update(); // Atualiza o gráfico
+
+      // Salva o progresso do gráfico e o contador de minutos
+      localStorage.setItem('minuteCounter', minuteCounter);
+      localStorage.setItem('graphData', JSON.stringify({
+        labels: lineChart.data.labels,
+        data: lineChart.data.datasets[0].data
+      }));
+    }
+    if (minutes === 60) {
+      minutes = 0;
+      hours++;
+    }
+    updateDisplay();
+    localStorage.setItem('timerTime', `${hours}:${minutes}:${seconds}`); // Salva o tempo atualizado
+  }
+
+  // Atualiza o display do tempo
+  function updateDisplay() {
+    const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    document.getElementById("counter").textContent = formattedTime;
+  }
+
+  // Chama startTimer ao carregar a página
+  window.onload = startTimer;
+
+
+</script>
+
+
+
+<!-- PARTE DO TRELLO -------------------------------------------------------------------------------------------------------------- -->
+<script>
+
+function addTask() {
+  const taskText = document.getElementById("newTaskInput").value;
+  const taskPriority = document.getElementById("taskPriority").value;
+
+  if (taskText.trim() === "") {
+    alert("Por favor, insira uma descrição para a tarefa.");
+    return;
+  }
+
+  if (taskPriority.trim() === "#") {
+    alert("Por favor, escolha uma opção válida.");
+    return;
+  }
+
+  // Cria um novo card de tarefa
+  const task = document.createElement("div");
+  task.className = "task";
+  task.draggable = true;
+  task.ondragstart = drag;
+  task.id = "task" + Date.now();
+
+  // Cria um container interno para o conteúdo da tarefa
+  const taskContent = document.createElement("div");
+  taskContent.className = "task-content";
+
+  // Adiciona o texto da tarefa
+  const taskTextElement = document.createElement("span");
+  taskTextElement.textContent = taskText;
+  taskTextElement.className = "task-text";
+
+  // Adiciona a prioridade com funcionalidade de alteração
+  const taskPriorityElement = document.createElement("span");
+  taskPriorityElement.textContent = `${taskPriority}`;
+  taskPriorityElement.className = `task-priority ${taskPriority}`;
+  taskPriorityElement.onclick = () => editPriority(taskPriorityElement);
+
+  // Cria o botão de exclusão
+  const deleteButton = document.createElement("button");
+  deleteButton.className = "delete-button";
+  deleteButton.textContent = "X";
+  deleteButton.onclick = function () {
+    deleteTask(task.id);
+  };
+
+  // Adiciona os elementos ao container
+  taskContent.appendChild(taskTextElement);
+  taskContent.appendChild(deleteButton);
+  taskContent.appendChild(taskPriorityElement);
+  task.appendChild(taskContent);
+
+  // Adiciona o card à coluna "A Fazer"
+  document.getElementById("todo").appendChild(task);
+
+  // Limpa o campo de input e reseta a prioridade
+  document.getElementById("newTaskInput").value = "";
+  document.getElementById("taskPriority").value = "essencial";
+
+  // Atualiza o gráfico e aplica animação
+  updateTaskChart();
+  animateTaskChart();
+}
+
+function animateTaskChart() {
+  const chartContainer = document.querySelector('.chart-container');
+  chartContainer.style.transform = 'translateX(10px)';
+  chartContainer.style.transition = 'transform 0.3s ease-in-out';
+
+  // Volta à posição original após a animação
+  setTimeout(() => {
+    chartContainer.style.transform = 'translateX(0)';
+  }, 300);
+}
+
+
+
+  // Função para editar a prioridade
+  function editPriority(priorityElement) {
+    // Cria um dropdown para selecionar a nova prioridade
+    const select = document.createElement("select");
+    select.className = "priority-edit-dropdown";
+
+    // Opções de prioridade
+    const options = ["essencial", "importante", "desejavel"];
+    options.forEach(option => {
+      const opt = document.createElement("option");
+      opt.value = option;
+      opt.textContent = option.charAt(0).toUpperCase() + option.slice(1); // Capitaliza
+      if (priorityElement.textContent.includes(option)) {
+        opt.selected = true; // Marca a prioridade atual como selecionada
+      }
+      select.appendChild(opt);
+    });
+
+    // Substitui o texto atual pelo dropdown
+    priorityElement.replaceWith(select);
+
+    // Atualiza o texto da prioridade ao alterar o dropdown
+    select.onchange = () => {
+      const newPriority = select.value;
+
+      // Cria novamente o elemento de prioridade com o novo valor
+      const newPriorityElement = document.createElement("span");
+      newPriorityElement.textContent = `${newPriority}`;
+      newPriorityElement.className = `task-priority ${newPriority}`;
+      newPriorityElement.onclick = () => editPriority(newPriorityElement); // Reatribui a função
+      select.replaceWith(newPriorityElement);
+
+    }
+
+
+
+    // Adiciona o texto e o botão ao card de tarefa
+    task.appendChild(taskContent);
+    task.appendChild(deleteButton);
+
+    // Adiciona o card de tarefa à coluna "A Fazer"
+    document.getElementById("todo").appendChild(task);
+
+    // Limpa o campo de input
+    document.getElementById("newTaskInput").value = "";
+
+    updateTaskChart();
+
+  }
+
+  function deleteTask(taskId) {
+    const task = document.getElementById(taskId);
+    if (task) {
+      task.remove();
+      updateTaskChart();  // Atualiza o gráfico após a exclusão
+    }
+  }
+
+  function updateTaskChart() {
+    const todoCount = document.getElementById("todo").getElementsByClassName("task").length;
+    const inProgressCount = document.getElementById("inprogress").getElementsByClassName("task").length;
+    const doneCount = document.getElementById("done").getElementsByClassName("task").length;
+
+    taskChart.data.datasets[0].data = [todoCount, inProgressCount, doneCount];
+    taskChart.update();
+  }
+
+  // Configuração do gráfico de tarefas
+  const taskCtx = document.getElementById('taskChart').getContext('2d');
+  const taskChart = new Chart(taskCtx, {
+    type: 'bar',
+    data: {
+      labels: ['A Fazer', 'Andamento', 'Concluído'],
+      datasets: [{
+        label: 'Quantidade de Tarefas',
+        data: [0, 0, 0],
+        backgroundColor: ['rgb(106, 90, 205)', 'rgb(79, 29, 126)', 'rgb(138, 43, 226)']
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: 'Quantidade de Tarefas' }
+        }
+      }
+    }
+  });
+
+  // Adiciona o evento de atualização do gráfico de tarefas nas colunas
+  document.querySelectorAll('.column').forEach(column => {
+    column.addEventListener('drop', updateTaskChart);
+  });
+  function sortTasks(columnId) {
+    const column = document.getElementById(columnId);
+    const tasks = Array.from(column.getElementsByClassName("task"));
+
+    // Ordena as tarefas pelo texto (alfabética)
+    tasks.sort((a, b) => a.textContent.trim().localeCompare(b.textContent.trim()));
+
+    // Remove as tarefas da coluna e as reinsere na ordem correta
+    tasks.forEach(task => column.appendChild(task));
+  }
+
+
+
+
+  // Função para ordenar as tarefas
+  function sortTasks(columnId) {
+    const column = document.getElementById(columnId);
+    const tasks = Array.from(column.getElementsByClassName("task"));
+
+    tasks.sort((a, b) => a.textContent.trim().localeCompare(b.textContent.trim()));
+
+    tasks.forEach(task => column.appendChild(task));
+  }
+
+  // Organiza tarefas após movimentação
+  document.querySelectorAll('.column').forEach(column => {
+    column.addEventListener('drop', () => {
+      sortTasks(column.id);
+      updateTaskChart();
+    });
+  });
+
+
+</script>
+
+<!-- BOTÃO DE SAIR -------------------------------------------------------------------------------------------------------------- -->
+<script>
+  function sair() {
+    localStorage.removeItem('timerTime'); // Limpa o tempo armazenado
+    // Ação de logout
+  }
+</script>
