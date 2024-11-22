@@ -79,6 +79,11 @@ main{
     cursor: pointer;
 }
 
+.side_itemLog {
+    border-radius: 8px;
+    padding: 14px;
+    cursor: none;
+}
 
 .side_item.active {
     background-color: #442BB3;
@@ -90,16 +95,42 @@ main{
     list-style: none;
 }
 
-.side_itemLog {
-    background-color: #442BB3;
+.side_itemLog.active {
+    background-color: #ffffff;
     border-radius: 8px;
-    padding: 10px;
+    padding: 20px;
     padding-left: 15px;
+    pointer-events: none;
 }
 
 .side_item:hover:not(.active){
     background-color: #e3e9f7;
 }
+
+.side_itemLog:hover:not(.active){
+    background-color: #e3e9f7;
+}
+
+.side_itemLog a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #0a0a0a;
+    justify-content: center;
+}
+
+.side_itemLog.active a{
+    color: #e3e9f7;
+}
+
+.side_itemLog a i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+/* separador logitems */
 
 .side_item a{
     text-decoration: none;

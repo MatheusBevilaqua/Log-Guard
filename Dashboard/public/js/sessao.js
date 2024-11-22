@@ -3,6 +3,7 @@ function validarSessao() {
     var nome = sessionStorage.NOME_USUARIO;
     var empresa = sessionStorage.EMPRESA_USUARIO;
     var tipoUser = sessionStorage.TIPO_USUARIO;
+    var idUser = sessionStorage.ID_USUARIO;
 
     var b_usuario = document.getElementById("b_usuario");
 

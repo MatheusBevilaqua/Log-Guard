@@ -25,11 +25,11 @@
                         <p class="black-text">Insira os dados para acessar a dashboard...</p>
                     </div>
 
-<!-- EMAIL PARA LOGIN ---------------------------------------------------------------------------------------------------- -->         
-                <div class="text-login-texto">
-                    <p class="text-purple">E-mail: </p>
-                </div>
-                        <label class="login-form-box">
+                    <!-- EMAIL PARA LOGIN ---------------------------------------------------------------------------------------------------- -->
+                    <div class="text-login-texto">
+                        <p class="text-purple">E-mail: </p>
+                    </div>
+                    <label class="login-form-box">
                         <span class="icon">
                             <img src="./svg/gmail-icon.svg" alt="">
                         </span>
@@ -37,10 +37,10 @@
                             placeholder="Digite seu e-mail" autocomplete="off" />
                     </label>
 
-<!-- SENHA PARA LOGIN ---------------------------------------------------------------------------------------------------- -->
-                <div class="text-login-texto">
-                    <p class="text-purple" type="password">Senha: </p>
-                </div>
+                    <!-- SENHA PARA LOGIN ---------------------------------------------------------------------------------------------------- -->
+                    <div class="text-login-texto">
+                        <p class="text-purple" type="password">Senha: </p>
+                    </div>
                     <label class="login-form-box">
                         <span class="icon">
                             <img src="./svg/key-icon.svg" alt="">
@@ -49,8 +49,8 @@
                             placeholder="Digite sua senha" autocomplete="off" />
                     </label>
 
-                    
-<!-- BOTÃO PARA LOGIN ---------------------------------------------------------------------------------------------------- -->
+
+                    <!-- BOTÃO PARA LOGIN ---------------------------------------------------------------------------------------------------- -->
                     <div class="login-form-btn">
                         <button class="login-btn boal" onclick="entrar()">Login</button>
                     </div>
@@ -72,7 +72,7 @@
                         <img class="content-logo" src="./img/logo_vetorizada5.png" alt="">
                     </div>
                     <div class="text-center-login">
-                    <h1 class="text-center">Reduzindo riscos, aumentando a confiança.</h1>
+                        <h1 class="text-center">Reduzindo riscos, aumentando a confiança.</h1>
                     </div>
                 </div>
             </div>
@@ -83,12 +83,12 @@
 </html>
 <script>
 
-// document.addEventListener("keypress",function(e) {
-// 	if(e.key === "Enter") {
-// 	const btn = document.querySelector("#send");
-// 	btn.click();
-// }
-// });
+    // document.addEventListener("keypress",function(e) {
+    // 	if(e.key === "Enter") {
+    // 	const btn = document.querySelector("#send");
+    // 	btn.click();
+    // }
+    // });
 
     function entrar() {
         var emailVar = input_email.value;
@@ -127,11 +127,6 @@
                         sessionStorage.TIPO_USUARIO = json.tipoPerfilUsuario;
 
                         setTimeout(function () {
-
-                            
-
-
-
                             if (sessionStorage.TIPO_USUARIO == "DESATIVADO") {
                                 alert("Você não possui mais cadastro nessa empresa!")
                             } else {

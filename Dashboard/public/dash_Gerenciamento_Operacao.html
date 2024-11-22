@@ -16,8 +16,8 @@
   <section class="page-dash">
     <nav id="sidebar">
       <div id="sidebar_content">
-        
-        <li class="side_item" style="cursor: none;">
+
+        <li class="side_itemLog active" style="cursor: none;">
           <a>
             <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
             <span class="item-description">
@@ -141,6 +141,7 @@
           <option value="desejavel">Desejável</option>
         </select>
         <button onclick="addTask()" class="botao_trello">Adicionar Tarefa</button>
+        <button onclick="contabilizaTarefas()" class="botao_trello">Contabilizar Tarefas</button>
       </div>
 
 
@@ -150,7 +151,7 @@
           <h2>A Fazer</h2>
         </div>
         <div class="column" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <h2>Andamento</h2>
+        <h2>Andamento</h2>
         </div>
         <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
           <h2>Concluído</h2>
@@ -158,6 +159,7 @@
       </div>
     </div>
 
+  
 
 
     <div class="container">
@@ -192,9 +194,6 @@
 
   });
 
-  function sair() {
-    window.location.href = "index.html";
-  }
 </script>
 
 <!-- PARTE DO TIMER -------------------------------------------------------------------------------------------------------------- -->
@@ -357,78 +356,78 @@
 <!-- PARTE DO TRELLO -------------------------------------------------------------------------------------------------------------- -->
 <script>
 
-function addTask() {
-  const taskText = document.getElementById("newTaskInput").value;
-  const taskPriority = document.getElementById("taskPriority").value;
+  function addTask() {
+    const taskText = document.getElementById("newTaskInput").value;
+    const taskPriority = document.getElementById("taskPriority").value;
 
-  if (taskText.trim() === "") {
-    alert("Por favor, insira uma descrição para a tarefa.");
-    return;
+    if (taskText.trim() === "") {
+      alert("Por favor, insira uma descrição para a tarefa.");
+      return;
+    }
+
+    if (taskPriority.trim() === "#") {
+      alert("Por favor, escolha uma opção válida.");
+      return;
+    }
+
+    // Cria um novo card de tarefa
+    const task = document.createElement("div");
+    task.className = "task";
+    task.draggable = true;
+    task.ondragstart = drag;
+    task.id = "task" + Date.now();
+
+    // Cria um container interno para o conteúdo da tarefa
+    const taskContent = document.createElement("div");
+    taskContent.className = "task-content";
+
+    // Adiciona o texto da tarefa
+    const taskTextElement = document.createElement("span");
+    taskTextElement.textContent = taskText;
+    taskTextElement.className = "task-text";
+
+    // Adiciona a prioridade com funcionalidade de alteração
+    const taskPriorityElement = document.createElement("span");
+    taskPriorityElement.textContent = `${taskPriority}`;
+    taskPriorityElement.className = `task-priority ${taskPriority}`;
+    taskPriorityElement.onclick = () => editPriority(taskPriorityElement);
+
+    // Cria o botão de exclusão
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "delete-button";
+    deleteButton.textContent = "X";
+    deleteButton.onclick = function () {
+      deleteTask(task.id);
+    };
+
+    // Adiciona os elementos ao container
+    taskContent.appendChild(taskTextElement);
+    taskContent.appendChild(deleteButton);
+    taskContent.appendChild(taskPriorityElement);
+    task.appendChild(taskContent);
+
+    // Adiciona o card à coluna "A Fazer"
+    document.getElementById("todo").appendChild(task);
+
+    // Limpa o campo de input e reseta a prioridade
+    document.getElementById("newTaskInput").value = "";
+    document.getElementById("taskPriority").value = "essencial";
+
+    // Atualiza o gráfico e aplica animação
+    updateTaskChart();
+    animateTaskChart();
   }
 
-  if (taskPriority.trim() === "#") {
-    alert("Por favor, escolha uma opção válida.");
-    return;
+  function animateTaskChart() {
+    const chartContainer = document.querySelector('.chart-container');
+    chartContainer.style.transform = 'translateX(10px)';
+    chartContainer.style.transition = 'transform 0.3s ease-in-out';
+
+    // Volta à posição original após a animação
+    setTimeout(() => {
+      chartContainer.style.transform = 'translateX(0)';
+    }, 300);
   }
-
-  // Cria um novo card de tarefa
-  const task = document.createElement("div");
-  task.className = "task";
-  task.draggable = true;
-  task.ondragstart = drag;
-  task.id = "task" + Date.now();
-
-  // Cria um container interno para o conteúdo da tarefa
-  const taskContent = document.createElement("div");
-  taskContent.className = "task-content";
-
-  // Adiciona o texto da tarefa
-  const taskTextElement = document.createElement("span");
-  taskTextElement.textContent = taskText;
-  taskTextElement.className = "task-text";
-
-  // Adiciona a prioridade com funcionalidade de alteração
-  const taskPriorityElement = document.createElement("span");
-  taskPriorityElement.textContent = `${taskPriority}`;
-  taskPriorityElement.className = `task-priority ${taskPriority}`;
-  taskPriorityElement.onclick = () => editPriority(taskPriorityElement);
-
-  // Cria o botão de exclusão
-  const deleteButton = document.createElement("button");
-  deleteButton.className = "delete-button";
-  deleteButton.textContent = "X";
-  deleteButton.onclick = function () {
-    deleteTask(task.id);
-  };
-
-  // Adiciona os elementos ao container
-  taskContent.appendChild(taskTextElement);
-  taskContent.appendChild(deleteButton);
-  taskContent.appendChild(taskPriorityElement);
-  task.appendChild(taskContent);
-
-  // Adiciona o card à coluna "A Fazer"
-  document.getElementById("todo").appendChild(task);
-
-  // Limpa o campo de input e reseta a prioridade
-  document.getElementById("newTaskInput").value = "";
-  document.getElementById("taskPriority").value = "essencial";
-
-  // Atualiza o gráfico e aplica animação
-  updateTaskChart();
-  animateTaskChart();
-}
-
-function animateTaskChart() {
-  const chartContainer = document.querySelector('.chart-container');
-  chartContainer.style.transform = 'translateX(10px)';
-  chartContainer.style.transition = 'transform 0.3s ease-in-out';
-
-  // Volta à posição original após a animação
-  setTimeout(() => {
-    chartContainer.style.transform = 'translateX(0)';
-  }, 300);
-}
 
 
 
@@ -490,10 +489,11 @@ function animateTaskChart() {
     }
   }
 
+  const todoCount = document.getElementById("todo").getElementsByClassName("task").length;
+  const inProgressCount = document.getElementById("inprogress").getElementsByClassName("task").length;
+  const doneCount = document.getElementById("done").getElementsByClassName("task").length;
+
   function updateTaskChart() {
-    const todoCount = document.getElementById("todo").getElementsByClassName("task").length;
-    const inProgressCount = document.getElementById("inprogress").getElementsByClassName("task").length;
-    const doneCount = document.getElementById("done").getElementsByClassName("task").length;
 
     taskChart.data.datasets[0].data = [todoCount, inProgressCount, doneCount];
     taskChart.update();
@@ -559,6 +559,69 @@ function animateTaskChart() {
   });
 
 
+
+  function contabilizaTarefas() {
+
+    let qtdTarefasImportantes = 0;
+    let qtdTarefasDesejaveis = 0;
+    let qtdTarefasEssenciais = 0;
+
+    // Obtém todas as tarefas concluídas
+    const tarefasConcluidas = document.getElementById("done").getElementsByClassName("task");
+
+    // Itera sobre as tarefas concluídas para contar as prioridades
+    for (let tarefa of tarefasConcluidas) {
+      const prioridade = tarefa.querySelector('.task-priority').textContent;
+
+      if (prioridade === "importante") {
+        qtdTarefasImportantes++;
+      } else if (prioridade === "desejavel") {
+        qtdTarefasDesejaveis++;
+      } else if (prioridade === "essencial") {
+        qtdTarefasEssenciais++;
+      }
+    }
+
+    // Exibe os valores no console (ou use como necessário)
+    console.log("Importantes concluídas:", qtdTarefasImportantes);
+    console.log("Desejáveis concluídas:", qtdTarefasDesejaveis);
+    console.log("Essenciais concluídas:", qtdTarefasEssenciais);
+
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch("/tarefas/contabilizaTarefas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+
+        qtdTarefasDesejaveisServer: qtdTarefasDesejaveis,
+        qtdTarefasImportantesServer: qtdTarefasImportantes,
+        qtdTarefasEssenciaisServer: qtdTarefasEssenciais,
+        empresaUsuarioServer: idUsuario,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+
+          alert("CADASTRO EXECUTADO!")
+
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+
+      });
+
+    return false;
+  }
+
+
 </script>
 
 <!-- BOTÃO DE SAIR -------------------------------------------------------------------------------------------------------------- -->
@@ -566,5 +629,11 @@ function animateTaskChart() {
   function sair() {
     localStorage.removeItem('timerTime'); // Limpa o tempo armazenado
     // Ação de logout
-  }
+
+
+    var url = "index.html";
+    window.open(url, "_self")
+
+  } 
 </script>
+<!-- CONTABILIZADOR DE TAREFAS -------------------------------------------------------------------------------------------------------------- -->
