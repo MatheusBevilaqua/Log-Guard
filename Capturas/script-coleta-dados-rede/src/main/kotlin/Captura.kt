@@ -1,8 +1,6 @@
 import java.util.Date
 
 class Captura {
-
-
     var fkMaquinaCaptura:Int = 0
         private set
     var registro: Double = 0.0
@@ -16,29 +14,19 @@ class Captura {
         fkMaquinaCaptura = fkMaquina
     }
 
-    fun setRegistro (registroRede:Double){
+    fun setRegistro (registroRede: Double){
         registro = registroRede
     }
 
-
-
-    fun setTemProblema (parametro:Int){
-
-        if (captura.registro < parametro){
+    fun setTemProblema (parametro: Int){
+        if (registro < parametro){
             tem_problema = true
         } else{
             tem_problema = false
         }
     }
 
-    fun setDataHoraCaptura (data:String){
+    fun setDataHoraCaptura (data: String){
         dtCriacaoCaptura = data
     }
-
-
-
-
-
-
-
 }
