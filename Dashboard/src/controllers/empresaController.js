@@ -88,9 +88,9 @@ function visualizarEmpresas(req, res) {
 
 function visualizarMaquinas(req, res) {
 
-  var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
+  var instrucaoSql = req.body.instrucaoServer;
 
-  empresaModel.visualizarMaquinas(idEmpresaMaquina).then(function (resultado) {
+  empresaModel.visualizarMaquinas(instrucaoSql).then(function (resultado) {
       if (resultado.length > 0) {
           res.status(200).json(resultado);
       } else {

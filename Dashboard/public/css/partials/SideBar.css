@@ -76,7 +76,7 @@ main{
 .side_item {
     border-radius: 8px;
     padding: 14px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .side_item.active {
@@ -84,9 +84,9 @@ main{
     color: white;
     pointer-events: none;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 8px;
-    list-style: none;
+    /* list-style: none; */
 }
 
 .side_itemLog {
