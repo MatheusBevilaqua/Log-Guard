@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogGuard - Dashboard</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/partials/SideBar.css">
+    <link rel="stylesheet" href="css/pages/dash_Operacao_Adm.css">
+    <script src="js/sessao.js"></script>
+    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+</head>
+
+<body onload="verUsuarios()">
+    <section class="page-dash">
+        <nav id="sidebar">
+            <div id="sidebar_content">
+              
+              <li class="side_itemLog active" style="cursor: none;">
+                <a>
+                  <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+                  <span class="item-description">
+                    <b style="color: #442BB3; margin-left: 15px;"> Log Guard </b>
+                  </span>
+                </a>
+              </li>
+      
+      
+              <div id="user">
+                <p id="user_infos">
+                  <span style="color: black;" class="item-descriptionAtivo"> Olá,
+                    <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                      Jon Doe
+                    </span>
+                  </span>
+                  <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+                    Lorem Ipsum
+                  </span>
+                </p>
+              </div>
+      
+              <ul id="side_items">
+      
+      
+                <li class="side_item ">
+                  <a href="dashboard_ADM.html">
+                    <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                    <span class="item-description">
+                      <b> Visão Geral </b>
+                    </span>
+                  </a>
+                </li>
+      
+                <li class="side_item">
+                  <a href="relatorios.html">
+                    <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Relatórios </b>
+                    </span>
+                  </a>
+                </li>
+      
+                <li class="side_item">
+                  <a href="gerenciar-maquina.html">
+                    <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Empresas </b>
+                    </span>
+                  </a>
+                </li>
+      
+                <li class="side_item">
+                  <a href="gerenciar-usuario-func.html">
+                    <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Funcionários </b>
+                    </span>
+                  </a>
+                </li>
+      
+                <li class="side_item active">
+                  <a href="dash_Gerenciamento_Operacao.html">
+                    <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
+                    <span class="item-descriptionAtivo">
+                      <b style="color: aliceblue;"> Operações </b>
+                    </span>
+                  </a>
+                </li>  
+      
+                <li class="side_item">
+                  <a href="#">
+                    <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                    <span class="item-description">
+                      <b> Ajuda </b>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+      
+              <button id="open_btn">
+                <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+              </button>
+            </div>
+      
+            <div id="logout">
+              <button id="logout_btn" onclick="sair()">
+                <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+                <span class="item-description">
+                  Sair
+                </span>
+              </button>
+            </div>
+          </nav>
+
+        <div class="mainfuncpage">
+            <div class="head-funcionarios-gerenc">
+
+                <h1>Gerenciar Operação</h1>
+
+            </div>
+
+
+            <div class="metricas-func">
+
+
+                <div class="dash-func">
+
+                    <div class="titulos-func">
+                        <div class="coluna-func">ID</div>
+                        <div class="coluna-func">Nome</div>
+                        <div class="coluna-func">Horas trabalhadas</div>
+                        <div class="coluna-func">Tarefas Concluídas</div>
+                    </div>
+                    <div class="linha-func">
+                        <img src="./img/Line1cadastro.png" alt="">
+                    </div>
+                    <div class="dash-func">
+                        <div id="dash-func"></div>
+                    </div>
+                </div>
+                <div class="tre-func">
+                    <div class="me1-func">
+                        <h5>Melhor Desempenho:</h5>
+                        <br><br>
+                        <div class="totalfuncs" id="totalfuncionarios"></div>
+                        <div class="me2-func">
+                            <h5>Horas Trabalhadas:</h5>
+                            <br>
+                            <div class="totalfuncs" id="totaladms">0</div>
+
+                            <div class="me3-func">
+                                <h5>Tarefas Realizadas:</h5>
+                                <br><br>
+                                <div class="totalfuncs" id="totalanalista">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+</body>
+
+</html>
+<script>
+
+    var teste = 0
+  
+    document.getElementById('open_btn').addEventListener('click', function () {
+  
+      document.getElementById('sidebar').classList.toggle('open-sidebar');
+      this.classList.toggle('rodar');
+  
+      if (teste == 0) {
+        document.getElementById('nomeLog').style.display = "block";
+        teste = 1
+      } else {
+        document.getElementById('nomeLog').style.display = "none";
+        teste = 0
+      }
+  
+    });
+  
+  </script>
+
+  
+<!-- BOTÃO DE SAIR -------------------------------------------------------------------------------------------------------------- -->
+<script>
+    function sair() {  
+  
+      var url = "index.html";
+      window.open(url, "_self")
+  
+    } 
+  </script>
+
+<!-- LISTA DE FUNCIONÁRIOS -------------------------------------------------------------------------------------------------------------- -->
+<script> 
+  function verUsuarios() {
+    fetch("/usuarios/visualizarUsuarios", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idEmpresaUsuarioServer: idEmpresaUsuario, // Certifique-se de que esta variável está definida
+        }),
+    })
+        .then(function (resposta) {
+            console.log("Resposta da API: ", resposta);
+
+            if (resposta.ok) {
+                if (resposta.status === 204) {
+                    var lista = document.getElementById("dash-func");
+                    lista.innerHTML = ""; // Limpa qualquer conteúdo existente
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum dado encontrado.";
+                    lista.appendChild(mensagem);
+                    throw "Nenhum dado encontrado!";
+                }
+
+                resposta.json().then(function (dados) {
+                    console.log("Dados recebidos: ", JSON.stringify(dados));
+
+                    var lista = document.getElementById("dash-func");
+                    lista.innerHTML = ""; // Limpa a lista para evitar duplicações
+
+                    for (let i = 0; i < dados.length; i++) {
+                        let tupla = dados[i];
+
+                        // Criação dos elementos das colunas
+                        var divLista = document.createElement("div");
+                        var divId = document.createElement("div");
+                        var divNome = document.createElement("div");
+                        var divHoras = document.createElement("div");
+                        var divTarefas = document.createElement("div");
+
+                        // Adiciona classes às colunas
+                        divLista.className = "dados-func";
+                        divId.className = "coluna-func";
+                        divNome.className = "coluna-func";
+                        divHoras.className = "coluna-func";
+                        divTarefas.className = "coluna-func";
+
+                        // Preenche os dados
+                        divId.innerHTML = tupla.idUsuario || "N/A";
+                        divNome.innerHTML = tupla.nomeUsuario || "N/A";
+                        divHoras.innerHTML = tupla.horasTrabalhadas || "0"; // Exibe "0" se não houver dados
+                        divTarefas.innerHTML = tupla.tarefasConcluidas || "0"; // Exibe "0" se não houver dados
+
+                        // Monta a linha com os dados
+                        divLista.appendChild(divId);
+                        divLista.appendChild(divNome);
+                        divLista.appendChild(divHoras);
+                        divLista.appendChild(divTarefas);
+
+                        // Evento de clique para gerenciar o usuário
+                        divLista.addEventListener("click", function () {
+                            gerenciarUsuario(tupla.idUsuario);
+                        });
+
+                        // Adiciona a linha à lista
+                        lista.appendChild(divLista);
+                    }
+                });
+            } else {
+                throw "Erro na API ao buscar usuários.";
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro capturado: ", erro);
+            var lista = document.getElementById("dash-func");
+            lista.innerHTML = ""; // Limpa qualquer conteúdo existente
+            var mensagemErro = document.createElement("span");
+            mensagemErro.innerHTML = "Erro ao carregar os dados.";
+            lista.appendChild(mensagemErro);
+        });
+}
+
+</script>

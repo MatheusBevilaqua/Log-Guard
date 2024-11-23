@@ -118,55 +118,138 @@
             <!-- primeira sessão da página -->
             <div class="sessao1-adm">
                 <div class="sessao1-adm_frame1">
-                    <button onclick="abremodal()" class="sessao-adm-botao-click"><</button>
+                    <button onclick="abremodal(), abremodalalerta()" class="sessao-adm-botao-click">a</button>
                     <div class="sessao1-adm_frame1_texto">
                         <p>ALERTAS SEMANAIS DE RISCO</p>
                         <div class="sessao1-adm_frame1_texto_semana">
-                            <p class="sessao1-adm_frame1_texto_semana_p1">SEG : <a class="sessao1-adm-cor-roxa-dados">X</a></p>
-                            <p class="sessao1-adm_frame1_texto_semana_p2">TER : <a class="sessao1-adm-cor-roxa-dados">X</a></p>
-                            <p class="sessao1-adm_frame1_texto_semana_p3">HOJE : <a class="sessao1-adm-cor-roxa-dados">X</a></p>
+                            <p class="sessao1-adm_frame1_texto_semana_p1">SEG : <a
+                                    class="sessao1-adm-cor-roxa-dados">X</a></p>
+                            <p class="sessao1-adm_frame1_texto_semana_p2">TER : <a
+                                    class="sessao1-adm-cor-roxa-dados">X</a></p>
+                            <p class="sessao1-adm_frame1_texto_semana_p3">HOJE : <a
+                                    class="sessao1-adm-cor-roxa-dados">X</a></p>
                         </div>
                     </div>
                 </div>
                 <div class="sessao1-adm_frame2">
-                    <button onclick="abremodal()" class="sessao-adm-botao-click"><</button>
+                    <button onclick="abremodal(), abremodalrisco()" class="sessao-adm-botao-click"></button>
                     <div class="sessao1-adm_frame2_alertas">
-                        <p>SERVIDORES EM RISCO SEMANALMENTE</p>
+                        <p>SERVIDORES EM RISCO DESTA SEMANA</p>
                         <p class="sessao1-adm_frame1_texto_semana_p1">
                             <a class="sessao1-adm-cor-roxa-dados">X</a> de <a class="sessao1-adm-cor-roxa-dados">Y</a>
                         </p>
                     </div>
-                    
+
                 </div>
                 <div class="sessao1-adm_frame3">
-                    <button onclick="abremodal()" class="sessao-adm-botao-click"><</button>
+                    <button onclick="abremodal(), abremodalanalise()" class="sessao-adm-botao-click"></button>
                     <div class="sessao1-adm_frame2_alertas">
                         <p>ANÁLISE DOS RISCOS SEMANAIS</p>
                     </div>
                 </div>
             </div>
 
-            <!--MODAL-ALERTAS-->
-            <div class="sessao-adm-modal-alertas">
+
+            <div class="sessao-adm-modal-todos">
                 <div class="sessao-adm-modal-card">
                     <button onclick="cancelar_modal()" class="sessao-adm-cancelar">X</button>
+
+                    <!--MODAL-ALERTAS-->
+                    <div class="sessao-adm-modal-alertas">
+                        <p>ALERTAS SEMANAIS DE RISCO REFERENTE A SEMANA X</p>
+                        <table>
+                            <tr>
+                                <th>Máquina</th>
+                                <th>Localidade</th>
+                                <th>Componente</th>
+                                <th>Alerta</th>
+                                <th>Parametro</th>
+                            </tr>
+                            <tr>
+                                <td>HGL-05</td>
+                                <td>DATACENTER 5</td>
+                                <td>CPU</td>
+                                <td>70.5%</td>
+                                <td>60%</td>
+                            </tr>
+                            <tr>
+                                <td>HGL-06</td>
+                                <td>DATACENTER 5</td>
+                                <td>RAM</td>
+                                <td>79.5%</td>
+                                <td>70%</td>
+                            </tr>
+                            <tr>
+                                <td>HGL-06</td>
+                                <td>DATACENTER 5</td>
+                                <td>RAM</td>
+                                <td>79.5%</td>
+                                <td>70%</td>
+                            </tr>
+                            <tr>
+                                <td>HGL-06</td>
+                                <td>DATACENTER 5</td>
+                                <td>RAM</td>
+                                <td>79.5%</td>
+                                <td>70%</td>
+                            </tr>
+                            <tr>
+                                <td>HGL-06</td>
+                                <td>DATACENTER 5</td>
+                                <td>RAM</td>
+                                <td>79.5%</td>
+                                <td>70%</td>
+                            </tr>
+                            <tr>
+                                <td>HGL-06</td>
+                                <td>DATACENTER 5</td>
+                                <td>RAM</td>
+                                <td>79.5%</td>
+                                <td>70%</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!--MODAL-SERVIDORES-RISCO-->
+                    <div class="sessao-adm-modal-riscos">
+                        <p>MÁQUINAS EM RISCO REFERENTE A SEMANA X</p>
+                        <table>
+                            <tr>
+                                <th>Máquina</th>
+                                <th>Localidade</th>
+                                <th>Quantidade de alertas</th>
+                            </tr>
+                            <tr>
+                                <td>HGL-05</td>
+                                <td>DATACENTER 05</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>HGL-06</td>
+                                <td>DATACENTER 05</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>HGL-02</td>
+                                <td>DATACENTER 05</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>HGL-09</td>
+                                <td>DATACENTER 05</td>
+                                <td>2</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                
+
+                <!--MODAL-ANALISE-RISCOS-->
+                <div class="sessao-adm-modal-analise">
+                    
+                </div>
+
             </div>
-
-            <!--MODAL-SERVIDORES-RISCO-->
-            <div class="sessao-adm-modal-riscos">
-
             </div>
-
-            <!--MODAL-ANALISE-RISCOS-->
-            <div class="sessao-adm-modal-analises">
-                <!-- <canvas id="histogramChart" width="400" height="200"></canvas> <script src="histogram.js"></script> -->
-            </div>
-
-
-
-
 
             <!-- segunda sessão da página -->
             <div class="sessao2-adm">
@@ -174,17 +257,19 @@
                     <div class="sessao2-adm_frame1-titulo">
                         <p>RECOMENDAÇÕES</p>
                     </div>
-                    
+
                 </div>
 
                 <div class="sessao2-adm_frame2">
                     <div class="sessao2-adm_frame2-titulo">
                         <p>PROBABILIDADE DE RISCOS</p>
-                        <p class="sessao-adm-pointer-disco-sessao2">< DISCO</p>
-                        <p class="sessao-adm-pointer-cpu-sessao2">< CPU</p>
-                        <p class="sessao-adm-pointer-ram-sessao2">< RAM</p>
+                        <p class="sessao-adm-pointer-disco-sessao2"> DISCO</p>
+                        <p class="sessao-adm-pointer-cpu-sessao2"> CPU</p>
+                        <p class="sessao-adm-pointer-ram-sessao2"> RAM</p>
                     </div>
-                    <div id="probabilityChart"></div>
+                    <div id="probabilityChart">
+                        
+                    </div>
                 </div>
 
             </div>
@@ -193,22 +278,24 @@
             <div class="sessao3-adm">
                 <div class="sessao3-adm-titulo">
                     <p>DESEMPENHO QUINZENAL: DADOS DIÁRIOS</p>
-                    <p onclick="cpu_adm_sessao3()" class="sessao-adm-pointer-cpu-sessao3">< Uso de CPU</p>
-                    <p onclick="ram_adm_sessao3()" class="sessao-adm-pointer-ram-sessao3">< Uso de RAM</p>
-                    <p onclick="rede_adm_sessao3()" class="sessao-adm-pointer-rede-sessao3">< Status de REDE</p>
+                    <p onclick="cpu_adm_sessao3()" class="sessao-adm-pointer-cpu-sessao3"> Uso de CPU</p>
+                    <p onclick="ram_adm_sessao3()" class="sessao-adm-pointer-ram-sessao3"> Uso de RAM</p>
+                    <p onclick="rede_adm_sessao3()" class="sessao-adm-pointer-rede-sessao3"> Status de REDE</p>
                 </div>
-                <div class="sessao3-adm-titulo_mapacalor">
-                    <div class="chart-container"> 
-                        <div class="sessao-adm-chartram-dado" id="chartRAM"></div>
-                        <div class="sessao-adm-chartrede-dado" id="chartREDE"></div>
-                        <div class="sessao-adm-chartcpu-dado" id="chartCPU"></div>
-                     </div>
+                <div class="chart-container">
+                    <div class="sessao-adm-chartram-dado" id="chartRAM"></div>
+                    <div class="sessao-adm-chartrede-dado" id="chartREDE"></div>
+                    <div class="sessao-adm-chartcpu-dado" id="chartCPU"></div>
                 </div>
+
             </div>
 
 
         </main>
         <script>
+
+
+            var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
             //barra lateral
             document.getElementById('open_btn').addEventListener('click', function () {
                 document.getElementById('sidebar').classList.toggle('open-sidebar');
@@ -220,232 +307,307 @@
             //barra lateral
 
             //a
-                function abremodal() {
-                    document.querySelector('.sessao-adm-modal-alertas').style.display = "flex";
-                    document.querySelector('.sessao-adm-modal-card').style.display = "flex";
-                }
+            function abremodal() {
+                document.querySelector('.sessao-adm-modal-todos').style.display = "flex";
+                document.querySelector('.sessao-adm-modal-card').style.display = "flex";
+            }
 
-                function cancelar_modal() {
-                    document.querySelector('.sessao-adm-modal-alertas').style.display = "none";
-                    document.querySelector('.sessao-adm-modal-card').style.display = "none";
-                }
+            function abremodalalerta() {
+                document.querySelector('.sessao-adm-modal-alertas').style.display = "flex";
+            }
+
+            function abremodalrisco() {
+                document.querySelector('.sessao-adm-modal-riscos').style.display = "flex";
+            }
+
+            function abremodalanalise() {
+                document.querySelector('.sessao-adm-modal-analise').style.display = "flex";
+            }
+
+            function cancelar_modal() {
+                document.querySelector('.sessao-adm-modal-todos').style.display = "none";
+                document.querySelector('.sessao-adm-modal-card').style.display = "none";
+                document.querySelector('.sessao-adm-modal-analise').style.display = "none";
+                document.querySelector('.sessao-adm-modal-riscos').style.display = "none";
+                document.querySelector('.sessao-adm-modal-alertas').style.display = "none";
+            }
+
             //a
 
             //b
-            
-                function cpu_adm_sessao3(){
-                    document.querySelector('.sessao-adm-chartcpu-dado').style.display = "flex";
-                    document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
-                    document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
-                }
 
-                function ram_adm_sessao3(){
-                    document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
-                    document.querySelector('.sessao-adm-chartram-dado').style.display = "flex";
-                    document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
-                }
+            function cpu_adm_sessao3() {
+                document.querySelector('.sessao-adm-chartcpu-dado').style.display = "flex";
+                document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
+                document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
+            }
 
-                function rede_adm_sessao3(){
-                    document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
-                    document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
-                    document.querySelector('.sessao-adm-chartrede-dado').style.display = "flex";
-                }
+            function ram_adm_sessao3() {
+                document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
+                document.querySelector('.sessao-adm-chartram-dado').style.display = "flex";
+                document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
+            }
+
+            function rede_adm_sessao3() {
+                document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
+                document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
+                document.querySelector('.sessao-adm-chartrede-dado').style.display = "flex";
+            }
 
             //b
 
 
 
             //MAPA DE CALOR
-          
-        
-
-
-
-        
-
-
-
-        //ram
-        document.addEventListener('DOMContentLoaded', function () {
-    var optionsRAM = {
-        chart: {
-            height: 230,
-            width: 1200,
-            type: 'heatmap',
-        },
-        series: [
-            {
-                name: 'Maquina HGL-23',
-                data: generateDataForDays(15)
-            },
-            {
-                name: 'Maquina HGL-77',
-                data: generateDataForDays(15)
-            },
-            {
-                name: 'Maquina HGL-88',
-                data: generateDataForDays(15)
-            },
-            {
-                name: 'Maquina HGL-99',
-                data: generateDataForDays(15)
-            },
-            {
-                name: 'Maquina HGL-100',
-                data: generateDataForDays(15)
-            }
-        ],
-        plotOptions: {
-            heatmap: {
-                shadeIntensity: 0.5,
-                colorScale: {
-                    ranges: [
-                        {
-                            from: 0,
-                            to: 38,
-                            name: 'Baixo',
-                            color: '#a69cd6'
-                        },
-                        {
-                            from: 38,
-                            to: 70,
-                            name: 'Médio',
-                            color: '#7265b3'
-                        },
-                        {
-                            from: 70,
-                            to: 90,
-                            name: 'Alto',
-                            color: '#442BB3'
-                        },
-                        {
-                            from: 90,
-                            to: 100,
-                            name: 'Muito Alto',
-                            color: '#2b1f64'
-                        }
-                    ]
-                }
-            }
-        },
-        xaxis: {
-            type: 'category',
-        },
-        tooltip: {
-            theme: 'dark'
-        },
-        legend: {
-            position: 'right',
-            horizontalAlign: 'center'
-        }
-    };
-
-    function generateDataForDays(days) {
-        const data = [];
-        const month = '11'; // Mês fixo de Novembro
-
-        for (let i = 1; i <= days; i++) {
-            const date = `${String(i).padStart(2, '0')}/${month}`;
-            const value = Math.floor(Math.random() * 100); // Valores aleatórios entre 0 e 100
-            data.push({ x: date, y: value });
-        }
-
-        return data;
-    }
-
-    var chartRAM = new ApexCharts(document.querySelector("#chartRAM"), optionsRAM);
-    chartRAM.render();
-});
-        //ram
 
 
 
 
-            //MAPA DE CALOR
 
 
 
-            
-
-        </script>
 
 
-<script>
-    //cpu
-    document.addEventListener('DOMContentLoaded', function () {
-            var optionsCPU = {
-                chart: {
-                    height: 190,
-                    width: 1200,
-                    type: 'heatmap',
-                },
-                series: [
-                    {
-                        name: 'Maquina HBL-23',
-                        data: [
-                            { x: '01/11', y: 60 },
-                        ],
+            //ram
+
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('usuarios/getMaquinasDataRAM', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
                     },
-                    {
-                        name: 'Maquina HBL-77',
-                        data: [
-                            { x: '01/11', y: 60 },
-                        ],
-                    },
-                ],
-                plotOptions: {
-                    heatmap: {
-                        shadeIntensity: 0.5,
-                        colorScale: {
-                            ranges: [
-                                {
-                                    from: 0,
-                                    to: 38,
-                                    name: 'Baixo',
-                                    color: '#a69cd6'
-                                },
-                                {
-                                    from: 38,
-                                    to: 70,
-                                    name: 'Médio',
-                                    color: '#7265b3'
-                                },
-                                {
-                                    from: 70,
-                                    to: 90,
-                                    name: 'Alto',
-                                    color: '#442BB3'
-                                },
-                                {
-                                    from: 90,
-                                    to: 100,
-                                    name: 'Muito Alto',
-                                    color: '#2b1f64'
+                    body: JSON.stringify({
+                        idEmpresaUsuarioServer: idEmpresaUsuario
+                    })
+                }).then(response => response.json())
+                    .then(data => {
+                        console.log('Dados recebidos do servidor:', data);
+
+                        var optionsRAM = {
+                            chart: {
+                                height: 200,
+                                width: 1200,
+                                type: 'heatmap',
+                            },
+                            series: data,
+                            plotOptions: {
+                                heatmap: {
+                                    shadeIntensity: 0.5,
+                                    colorScale: {
+                                        ranges: [
+                                            {
+                                                from: 0,
+                                                to: 38,
+                                                name: 'Baixo',
+                                                color: '#a69cd6'
+                                            },
+                                            {
+                                                from: 38,
+                                                to: 70,
+                                                name: 'Médio',
+                                                color: '#7265b3'
+                                            },
+                                            {
+                                                from: 70,
+                                                to: 90,
+                                                name: 'Alto',
+                                                color: '#442BB3'
+                                            },
+                                            {
+                                                from: 90,
+                                                to: 100,
+                                                name: 'Muito Alto',
+                                                color: '#2b1f64'
+                                            }
+                                        ]
+                                    }
                                 }
-                            ]
-                        }
-                    }
-                },
-                xaxis: {
-                    type: 'category',
-                },
-                tooltip: {
-                theme: 'dark'
-                },
-                legend: {
-                    position: 'right',
-                    horizontalAlign: 'center'
-                }
-            };
+                            },
+                            xaxis: {
+                                type: 'category',
+                            },
+                            tooltip: {
+                                theme: 'dark'
+                            },
+                            legend: {
+                                show: true,
+                                position: 'bottom',
+                                horizontalAlign: 'center',
+                            }
+                        };
 
-            var chartCPU = new ApexCharts(document.querySelector("#chartCPU"), optionsCPU);
-            chartCPU.render();
-        });
-        //cpu
-</script>
+                        var chartRAM = new ApexCharts(document.querySelector("#chartRAM"), optionsRAM);
+                        chartRAM.render();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar os dados:', error);
+                    });
+            });
 
 
-        <script>
+
+
+
+
+
+            //cpu
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('usuarios/getMaquinasDataCPU', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        idEmpresaUsuarioServer: idEmpresaUsuario
+                    })
+                }).then(response => response.json())
+                    .then(data => {
+                        console.log('Dados recebidos do servidor:', data);
+
+                        var optionsCPU = {
+                            chart: {
+                                height: 180,
+                                width: 1205,
+                                type: 'heatmap',
+                            },
+                            series: data,
+                            plotOptions: {
+                                heatmap: {
+                                    shadeIntensity: 0.5,
+                                    colorScale: {
+                                        ranges: [
+                                            {
+                                                from: 0,
+                                                to: 38,
+                                                name: 'Baixo',
+                                                color: '#a69cd6'
+                                            },
+                                            {
+                                                from: 38,
+                                                to: 70,
+                                                name: 'Médio',
+                                                color: '#7265b3'
+                                            },
+                                            {
+                                                from: 70,
+                                                to: 90,
+                                                name: 'Alto',
+                                                color: '#442BB3'
+                                            },
+                                            {
+                                                from: 90,
+                                                to: 100,
+                                                name: 'Muito Alto',
+                                                color: '#2b1f64'
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            xaxis: {
+                                type: 'category',
+                            },
+                            tooltip: {
+                                theme: 'dark'
+                            },
+                            legend: {
+                                show: true,
+                                position: 'right',
+                                horizontalAlign: 'center'
+                            }
+                        };
+
+                        var chartCPU = new ApexCharts(document.querySelector("#chartCPU"), optionsCPU);
+                        chartCPU.render();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar os dados:', error);
+                    });
+            });
+            //cpu
+
+
+
+
+            //rede
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('usuarios/getMaquinasDataREDE', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        idEmpresaUsuarioServer: idEmpresaUsuario
+                    })
+                }).then(response => response.json())
+                    .then(data => {
+                        console.log('Dados recebidos do servidor:', data);
+
+                        var optionsREDE = {
+                            chart: {
+                                height: 199,
+                                width: 1210,
+                                type: 'heatmap',
+                            },
+                            series: data,
+                            plotOptions: {
+                                heatmap: {
+                                    shadeIntensity: 0.5,
+                                    colorScale: {
+                                        ranges: [
+                                            {
+                                                from: 0,
+                                                to: 38,
+                                                name: 'Baixo',
+                                                color: '#a69cd6'
+                                            },
+                                            {
+                                                from: 38,
+                                                to: 70,
+                                                name: 'Médio',
+                                                color: '#7265b3'
+                                            },
+                                            {
+                                                from: 70,
+                                                to: 90,
+                                                name: 'Alto',
+                                                color: '#442BB3'
+                                            },
+                                            {
+                                                from: 90,
+                                                to: 100,
+                                                name: 'Muito Alto',
+                                                color: '#2b1f64'
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            xaxis: {
+                                type: 'category',
+                            },
+                            tooltip: {
+                                theme: 'dark'
+                            },
+                            legend: {
+                                show: true,
+                                position: 'right',
+                                horizontalAlign: 'center'
+                            }
+                        };
+
+                        var chartREDE = new ApexCharts(document.querySelector("#chartREDE"), optionsREDE);
+                        chartREDE.render();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar os dados:', error);
+                    });
+            });
+            //rede
+
+
+
+
             // GRAFICO PROBABILIDADE
             document.addEventListener('DOMContentLoaded', function () {
                 var options = {
@@ -460,123 +622,21 @@
                         data: [0.05, 0.1, 0.15, 0.25, 0.4, 0.6, 0.75, 0.9, 0.9] // Dados de exemplo
                     }],
                     xaxis: {
-                        categories: ['Evento1', 'Evento2', 'Evento3', 'Evento4', 'Evento5', 'Evento6', 'Evento7', 'Evento8','Evento9'] // Eventos de exemplo
+                        categories: ['Evento1', 'Evento2', 'Evento3', 'Evento4', 'Evento5', 'Evento6', 'Evento7', 'Evento8', 'Evento9'] // Eventos de exemplo
                     },
-                tooltip: {
-                theme: 'dark',
-                },
-            };
-            
+                    tooltip: {
+                        theme: 'dark',
+                    },
+                };
+
 
                 var chart = new ApexCharts(document.querySelector("#probabilityChart"), options);
 
                 chart.render();
             });
-             // GRAFICO PROBABILIDADE
-        </script>
-        
-        <script>
-            //rede
-        document.addEventListener('DOMContentLoaded', function () {
-            var optionsREDE = {
-                chart: {
-                    height: 200,
-                    width: 1200,
-                    type: 'heatmap',
-                },
-                series: [
-                    {
-                        name: 'Maquina HGL-23',
-                        data: [
-                            { x: '01/11', y: 60 },
-                        ],
-                    },
-                    {
-                        name: 'Maquina HGL-77',
-                        data: [
-                            { x: '01/11', y: 60 },
-                        ],
-                    },
-                ],
-                plotOptions: {
-                    heatmap: {
-                        shadeIntensity: 0.5,
-                        colorScale: {
-                            ranges: [
-                                {
-                                    from: 0,
-                                    to: 38,
-                                    name: 'Baixo',
-                                    color: '#a69cd6'
-                                },
-                                {
-                                    from: 38,
-                                    to: 70,
-                                    name: 'Médio',
-                                    color: '#7265b3'
-                                },
-                                {
-                                    from: 70,
-                                    to: 90,
-                                    name: 'Alto',
-                                    color: '#442BB3'
-                                },
-                                {
-                                    from: 90,
-                                    to: 100,
-                                    name: 'Muito Alto',
-                                    color: '#2b1f64'
-                                }
-                            ]
-                        }
-                    }
-                },
-                xaxis: {
-                    type: 'category',
-                },
-                tooltip: {
-                theme: 'dark'
-                },
-                legend: {
-                    position: 'right',
-                    horizontalAlign: 'center'
-                }
-            };
+            // GRAFICO PROBABILIDADE
 
-            var chartREDE = new ApexCharts(document.querySelector("#chartREDE"), optionsREDE);
-            chartREDE.render();
-        });
-        //rede
-        </script>
 
-        <script>
-            //MYCHART JS
-            const ctx = document.getElementById('histogramChart').getContext('2d');
-
-            const labels = ['Server1', 'Server2', 'Server3', 'Server4', 'Server5'];
-            const data = {
-                labels: labels,
-                datasets: [{
-                    label: 'Irregularidades',
-                    data: [12, 19, 3, 5, 2],
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            };
-
-            const config = {
-                type: 'bar',
-                data: data,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            };
-
-            const histogramChart = new Chart(ctx, config);
-            //MYCHART JS
+            
+           
         </script>

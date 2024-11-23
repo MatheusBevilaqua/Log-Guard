@@ -209,7 +209,7 @@
 .sessao3-adm {
     display: flex;
     width: 100%;
-    height: 48%;
+    height: 60%;
     background-color: #FFFFFF;
     margin-top: 10px;
     border-radius: 20px;
@@ -223,6 +223,7 @@
         border-radius: 20px;
         margin: 1%;
         justify-content: space-around;
+        align-items: center;
 
         >p {
             color: black;
@@ -233,11 +234,16 @@
     .sessao3-adm-titulo_mapacalor {
         display: flex;
         width: 100%;
-        height: 100%;
+        height: 10%;
         background-color: #FFFFFF;
         margin-top: 10px;
         border-radius: 20px;
         flex-direction: column;
+
+        .chart-container {
+            display: flex;
+            padding-left: 20px;
+        }
     }
 }
 
@@ -283,7 +289,12 @@
     background-color: #d3d3d3;
 }
 
-.sessao-adm-pointer-disco-sessao2, .sessao-adm-pointer-cpu-sessao2, .sessao-adm-pointer-ram-sessao2, .sessao-adm-pointer-rede-sessao3, .sessao-adm-pointer-cpu-sessao3, .sessao-adm-pointer-ram-sessao3 {
+.sessao-adm-pointer-disco-sessao2,
+.sessao-adm-pointer-cpu-sessao2,
+.sessao-adm-pointer-ram-sessao2,
+.sessao-adm-pointer-rede-sessao3,
+.sessao-adm-pointer-cpu-sessao3,
+.sessao-adm-pointer-ram-sessao3 {
     cursor: pointer;
 
     >p {
@@ -295,7 +306,7 @@
 
 /* modais */
 
-.sessao-adm-modal-alertas {
+.sessao-adm-modal-todos {
     display: none;
     position: fixed;
     height: 100%;
@@ -317,7 +328,68 @@
         background-color: #ffffff;
         box-shadow: 0px 0px 19px 0px #6d6d6d;
 
+        .sessao-adm-modal-alertas {
+            display: none;
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
 
+            > p {
+                color: black;
+                margin-bottom: 20px;
+            }
+
+            table {
+                height: 70%;
+                width: 70%;
+            }
+            
+            table, th, td {
+                border: 1px solid black;
+                color: black;
+                align-items: center;
+              }
+
+            td {
+                padding-left: 6px;
+            }
+            
+        }
+
+        .sessao-adm-modal-riscos {
+            display: none;
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            > p {
+                color: black;
+                margin-bottom: 20px;
+            }
+
+            table {
+                height: 70%;
+                width: 70%;
+            }
+            
+            table, th, td {
+                border: 1px solid black;
+                color: black;
+                align-items: center;
+              }
+        }
+
+        .sessao-adm-modal-analises {
+            display: none;
+            height: 100%;
+            width: 100%;
+
+            
+        }
 
     }
 
@@ -349,22 +421,24 @@
 /*apex Charts */
 
 
+
 .sessao-adm-chartram-dado {
     display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .sessao-adm-chartrede-dado {
     display: none;
+    width: 100%;
+    height: 70%;
 }
 
 .sessao-adm-chartcpu-dado {
     display: none;
+    width: 100%;
+    height: 70%;
 }
-
-#chartRAM {
-    width: 80%;
-}
-
 
 
 .apexcharts-menu-item {
@@ -385,3 +459,5 @@
     transition: .15s ease all;
     pointer-events: none;
 }
+
+

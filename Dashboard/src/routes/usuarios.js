@@ -56,7 +56,17 @@ router.post("/cadastrarnovouser", function (req, res) {
     usuarioController.cadastrarnovouser(req, res);
 });
 
+router.post("/getMaquinasDataRAM", function (req, res) {
+    usuarioController.getMaquinasDataRAM(req, res);
+});
 
+router.post("/getMaquinasDataCPU", function (req, res) {
+    usuarioController.getMaquinasDataCPU(req, res);
+});
+
+router.post("/getMaquinasDataREDE", function (req, res) {
+    usuarioController.getMaquinasDataREDE(req, res);
+});
 
 
 module.exports = router;
