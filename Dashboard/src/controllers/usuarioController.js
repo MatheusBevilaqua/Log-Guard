@@ -406,8 +406,58 @@ function getMaquinasDataREDE(req, res) {
 
 
 
+function getMaqemriscosemana(req, res) {
+    const { idEmpresaUsuario } = req.body;
+    console.log("Chamada para getMaqemriscosemana com idEmpresaUsuario:", idEmpresaUsuario);
+
+    usuarioModel.getMaqemriscosemana(idEmpresaUsuario)
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(404).send("Nenhum dado encontrado para máquinas em risco na última semana.");
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro ao buscar máquinas em risco:", erro);
+            res.status(500).json(erro);
+        });
+}
+
+
+function getAlertaSemana(req, res) {
+    const { idEmpresaUsuario } = req.body;
+    console.log("Chamada para getAlertaSemana com idEmpresaUsuario:", idEmpresaUsuario);
+
+    usuarioModel.getAlertaSemana(idEmpresaUsuario)
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                const dadosFormatados = resultado.map(dado => {
+                    return {
+                        ...dado,
+                        Data: new Date(dado.Data).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) + ' ' + new Date(dado.Data).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+                        Alerta: `${parseFloat(dado.Alerta).toFixed(0)}%`,
+                        Parametro: `${parseFloat(dado.Parametro).toFixed(0)}%`
+                    };
+                });
+                res.status(200).json(dadosFormatados);
+            } else {
+                res.status(404).send("Nenhum dado encontrado para alertas de máquinas na última semana.");
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro ao buscar alertas das máquinas:", erro);
+            res.status(500).json(erro);
+        });
+}
+
+
+
+
 
 module.exports = {
+    getAlertaSemana,
+    getMaqemriscosemana,
     autenticar,
     cadastrar,
     visualizarUsuarios,
@@ -424,4 +474,4 @@ module.exports = {
     getMaquinasDataRAM,
     getMaquinasDataCPU,
     getMaquinasDataREDE
-}
+};

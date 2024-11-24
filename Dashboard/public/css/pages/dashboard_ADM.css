@@ -304,8 +304,6 @@
 
 
 
-/* modais */
-
 .sessao-adm-modal-todos {
     display: none;
     position: fixed;
@@ -316,87 +314,84 @@
     background-color: #ffffff26;
     z-index: 999;
     backdrop-filter: blur(4px);
-
-
-    .sessao-adm-modal-card {
-        display: none;
-        position: fixed;
-        height: 70%;
-        width: 70%;
-        left: 22%;
-        top: 16%;
-        background-color: #ffffff;
-        box-shadow: 0px 0px 19px 0px #6d6d6d;
-
-        .sessao-adm-modal-alertas {
-            display: none;
-            height: 100%;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-
-            > p {
-                color: black;
-                margin-bottom: 20px;
-            }
-
-            table {
-                height: 70%;
-                width: 70%;
-            }
-            
-            table, th, td {
-                border: 1px solid black;
-                color: black;
-                align-items: center;
-              }
-
-            td {
-                padding-left: 6px;
-            }
-            
-        }
-
-        .sessao-adm-modal-riscos {
-            display: none;
-            height: 100%;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-
-            > p {
-                color: black;
-                margin-bottom: 20px;
-            }
-
-            table {
-                height: 70%;
-                width: 70%;
-            }
-            
-            table, th, td {
-                border: 1px solid black;
-                color: black;
-                align-items: center;
-              }
-        }
-
-        .sessao-adm-modal-analises {
-            display: none;
-            height: 100%;
-            width: 100%;
-
-            
-        }
-
-    }
-
+    align-items: center;
+    justify-content: center;
 }
 
+.sessao-adm-modal-card {
+    display: none;
+    flex-direction: column;
+    height: 70%;
+    width: 70%;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 19px 0px #6d6d6d;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.sessao-adm-modal-alertas,
+.sessao-adm-modal-riscos,
+.sessao-adm-modal-analises {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.sessao-adm-modal-alertas p,
+.sessao-adm-modal-riscos p {
+    color: black;
+    margin-bottom: 20px;
+}
+
+.sessao-adm-modal-alertas table,
+.sessao-adm-modal-riscos table {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.sessao-adm-modal-alertas th, 
+.sessao-adm-modal-alertas td,
+.sessao-adm-modal-riscos th, 
+.sessao-adm-modal-riscos td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+.sessao-adm-modal-alertas th, 
+.sessao-adm-modal-riscos th {
+    background-color: #f2f2f2;
+    color: black;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+.sessao-adm-modal-alertas td, 
+.sessao-adm-modal-riscos td {
+    padding-left: 6px;
+    color: #000;
+}
+
+.sessao-adm-modal-card .sessao-adm-cancelar {
+    align-self: flex-end;
+    margin: 10px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+
 .sessao-adm-cancelar {
-    position: absolute;
+    position:relative;
     top: 10px;
     right: 10px;
     background-color: #442BB3;
@@ -431,13 +426,13 @@
 .sessao-adm-chartrede-dado {
     display: none;
     width: 100%;
-    height: 70%;
+    height: 100%;
 }
 
 .sessao-adm-chartcpu-dado {
     display: none;
     width: 100%;
-    height: 70%;
+    height: 100%;
 }
 
 
@@ -461,3 +456,26 @@
 }
 
 
+.legenda-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 60px;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: black;
+}
+.legenda-item {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+
+    span {
+        color: black;
+    }
+}
+.legenda-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}

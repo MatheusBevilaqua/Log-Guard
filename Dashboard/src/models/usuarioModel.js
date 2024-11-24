@@ -127,7 +127,57 @@ function getMaquinasDataREDE(idEmpresaUsuario) {
     return database.executar(instrucaoSql);
 }
 
+
+function getMaqemriscosemana(idEmpresaUsuario) {
+    const instrucaoSql = `
+        SELECT 
+            m.nomeMaquina, 
+            m.localidade, 
+            COUNT(c.idCaptura) AS quantidade_alertas
+        FROM 
+            maquina m
+        JOIN 
+            captura c 
+        ON 
+            m.idMaquina = c.fkMaquinaCaptura
+        WHERE 
+            c.tem_problema = TRUE 
+            AND c.dtCriacaoCaptura >= NOW() - INTERVAL 1 WEEK
+            AND m.fkEmpresaMaquina = ${idEmpresaUsuario}
+        GROUP BY 
+            m.nomeMaquina, m.localidade
+        ORDER BY
+        quantidade_alertas DESC;
+    `;
+
+    console.log("Executando SQL: \n", instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function getAlertaSemana(idEmpresaUsuario) {
+    const instrucaoSql = `SELECT 
+    c.dtCriacaoCaptura AS Data,
+    m.nomeMaquina AS Máquina,
+    m.localidade AS Localidade,
+    r.nomeRecurso AS Componente,
+    c.registro AS Alerta,
+    mr.parametro AS Parametro
+FROM 
+    captura c
+    JOIN maquina m ON m.idMaquina = c.fkMaquinaCaptura
+    JOIN recurso r ON r.idRecurso = c.fkRecursoCaptura
+    JOIN maquinaRecurso mr ON mr.fkrecurso = r.idRecurso AND mr.idMaquinaRecurso = c.fkMaquinaRecursoCaptura
+WHERE 
+    c.tem_problema = TRUE 
+    AND c.dtCriacaoCaptura >= NOW() - INTERVAL 1 WEEK
+    AND m.fkEmpresaMaquina = ${idEmpresaUsuario};`;
+    console.log("Executando SQL: \n", instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
+    getMaqemriscosemana,
     autenticar,
     cadastrar,
     visualizarUsuarios,
@@ -143,5 +193,6 @@ module.exports = {
     visualizarMaquinas,
     getMaquinasDataRAM,
     getMaquinasDataCPU,
-    getMaquinasDataREDE
+    getMaquinasDataREDE,
+    getAlertaSemana
 };

@@ -68,5 +68,15 @@ router.post("/getMaquinasDataREDE", function (req, res) {
     usuarioController.getMaquinasDataREDE(req, res);
 });
 
+router.post("/getMaqemriscosemana/:idEmpresaUsuario", function (req, res) {
+    usuarioController.getMaqemriscosemana(req, res);
+});
+
+router.post("/getAlertaSemana", function (req, res) {
+    usuarioController.getAlertaSemana(req, res);
+});
+
+
+
 
 module.exports = router;
