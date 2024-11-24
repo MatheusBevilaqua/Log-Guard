@@ -44,13 +44,12 @@ function confirmar_cadastrar(fkEmpresaMaquina,nomeMaquina,modeloCPU,capacidadeRA
   var instrucaoSql = `INSERT INTO maquina VALUES (default,'${fkEmpresaMaquina}',null,'${nomeMaquina}', '${modeloCPU}', '${capacidadeRAM}', '${disco}', '${localidade}','${MACAdress}')`;
   return database.executar(instrucaoSql);
 } 
-function visualizarMaquinas(idEmpresaMaquina) {
-  var instrucaoSql = `SELECT * FROM maquina WHERE fkEmpresaMaquina ='${idEmpresaMaquina}';`;
+function visualizarMaquinas(instrucaoSql) {
   return database.executar(instrucaoSql);
 }
 function deletarMaquina(idMaquina) {
   var instrucaoSql = `DELETE from maquina WHERE idMaquina = '${idMaquina}';`;
-  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  console.log("Executando a instrucao SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 

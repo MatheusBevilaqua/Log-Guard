@@ -474,14 +474,17 @@ function selectFiltro() {
 
     // }
     function visualizarMaquinas() {
+
+        var instrucao = ""
+
+        instrucao = "SELECT * FROM maquina WHERE fkEmpresaMaquina = " + idEmpresaUsuario + ";"
+
         fetch("/empresas/visualizarMaquinas", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                idEmpresaMaquinaServer: idEmpresaUsuario
-            }),
+            body: JSON.stringify({instrucaoServer: instrucao}),
         })
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
@@ -491,7 +494,7 @@ function selectFiltro() {
                         var lista = document.getElementById("dash-func");
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhuma máquina encontrada."
-                        throw "Nenhum resultado encontrada!!";
+                        throw "Nenhum resultado encontrado!!";
                     }
 
                     resposta.json().then(function (resposta) {
