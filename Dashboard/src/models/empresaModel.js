@@ -54,7 +54,7 @@ function deletarMaquina(idMaquina) {
 }
 
 function exibirDadosEdicaoMaquina(idMaquina) {
-  var instrucaoSql = `SELECT * FROM maquina WHERE idMaquina = '${idMaquina}';`;
+  var instrucaoSql = `SELECT maquina.idMaquina, maquina.nomeMaquina, maquina.modeloCPU, maquina.capacidadeRAM,maquina.disco, maquina.MACAdress, localidade.nomeLocalidade AS localidade FROM maquina INNER JOIN localidade ON maquina.fkLocalidadeMaquina = localidade.idLocalidade WHERE idMaquina = ${idMaquina}`;
   return database.executar(instrucaoSql)
 }
 function editarMaquina(idMaquina,nomeMaquina,modeloCPU,capacidadeRAM,disco,localidade) {
