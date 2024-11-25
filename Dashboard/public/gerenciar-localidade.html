@@ -11,7 +11,7 @@
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body onload="validarCargo();validarSessao();visualizarMaquinas()">
+<body onload="validarCargo();validarSessao();visualizarLocalidades()">
 
     </div>
     <section class="page-dash">
@@ -110,22 +110,19 @@
 
             <div class="maingerenpage">
                 <div class="head-funcionarios-gerenc">
-                    <h1>Gerenciar Servidores:</h1>
-                    <div class="filtro-no-gerenciar-maquina">
+                    <h1>Gerenciar Localidades:</h1>
+                    <!-- <div class="filtro-no-gerenciar-maquina">
                         <button onclick="filtrarpormaquina()" class="botao-filtro">Filtrar </button>
                         <p>Pesquisar Máquina:</p>
                         <input placeholder="Ex: DT3-11G" type="text">
-                    </div>
+                    </div> -->
                 </div>
                 <div class="dash-geren">
                     <div class="titulos-geren">
                         <div class="coluna-geren">ID</div>
-                        <div class="coluna-geren">Nome</div>
-                        <div class="coluna-geren">CPU</div>
-                        <div class="coluna-geren">Memória</div>
-                        <div class="coluna-geren">Disco</div>
                         <div class="coluna-geren">Localidade</div>
-                        <div class="coluna-geren">Endereço MAC</div>
+                        <div class="coluna-geren">Qtd. de Máquinas</div>
+                        
                     </div>
                     <div class="linha-geren">
                         <img src="./img/Line1cadastro.png" alt="">
@@ -136,7 +133,7 @@
                 </div>
                 <div class="botoes-geren">
                     <!-- <button onclick="editar_maquina()" class="edit-geren">Editar</button> -->
-                    <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar Servidor</button>
+                    <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar Nova Localidade</button>
                 </div>
             </div>
 
@@ -152,7 +149,7 @@
                     <div class="configuracoes-servidores">
                         <div class="divisorias-titulos-maquinas-1">
                             <div class="titulos-maquina-atribuicao">
-                                <p>Nome do servidor</p>
+                                <p>Nome do Datacenter</p>
                             </div>
                             <input placeholder="Ex: HLE-STEP2" type="text" id="input_alterar_nome">
 
@@ -184,7 +181,7 @@
 
                 <img src="./img/Line1cadastro.png" class="line1-geren" alt="">
                 <div class="editar-geren-titulodelet">
-                    <h1>Gerenciar Servidor:</h1>
+                    <h1>Gerenciar Localidades:</h1>
                 </div>
                 <div class="Editar-geren-botao-delete">
                     <button onclick="confirmar_editar()" class="confirmar-geren">Confirmar Configurações</button>
@@ -473,19 +470,16 @@ function selectFiltro() {
     //     document.querySelector('.Cadastrargeren').style.display = "block";
 
     // }
-    function visualizarMaquinas() {
+    function visualizarLocalidades() {
 
-        var instrucao = ""
-
-        instrucao = "SELECT maquina.idMaquina, maquina.nomeMaquina, maquina.modeloCPU, maquina.capacidadeRAM,maquina.disco, maquina.MACAdress, localidade.nomeLocalidade AS localidade FROM maquina INNER JOIN localidade ON maquina.fkLocalidadeMaquina = localidade.idLocalidade WHERE fkEmpresaMaquina = " + idEmpresaUsuario + ";"
-
-
-        fetch("/empresas/visualizarMaquinas", {
+        fetch("/localidades/visualizarLocalidades", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({instrucaoServer: instrucao}),
+            body: JSON.stringify({
+                idEmpresaUsuarioServer: idEmpresaUsuario
+            }),
         })
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
@@ -494,7 +488,7 @@ function selectFiltro() {
                     if (resposta.status == 204) {
                         var lista = document.getElementById("dash-func");
                         var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhuma máquina encontrada."
+                        mensagem.innerHTML = "Nenhuma localidade encontrada."
                         throw "Nenhum resultado encontrado!!";
                     }
 
@@ -511,36 +505,22 @@ function selectFiltro() {
                             var divId = document.createElement("div");
                             var divnome = document.createElement("div");
                             var divCPU = document.createElement("div");
-                            var divRAM = document.createElement("div");
-                            var divDisco = document.createElement("div");
-                            var divLocalidade = document.createElement("div");
-                            var divMAC = document.createElement("div");
+                        
 
                             divLista.className = "dados-geren";
                             divId.className = "coluna-geren";
                             divnome.className = "coluna-geren";
                             divCPU.className = "coluna-geren";
-                            divRAM.className = "coluna-geren";
-                            divDisco.className = "coluna-geren";
-                            divLocalidade.className = "coluna-geren";
-                            divMAC.className = "coluna-geren";
+    
 
-                            divId.innerHTML = tupla.idMaquina;
-                            divnome.innerHTML = tupla.nomeMaquina;
-                            divCPU.innerHTML = tupla.modeloCPU;
-                            divRAM.innerHTML = tupla.capacidadeRAM;
-                            divDisco.innerHTML = tupla.disco;
-                            divLocalidade.innerHTML = tupla.localidade;
-                            divMAC.innerHTML = tupla.MACAdress;
-
-
+                            divId.innerHTML = i + 1;
+                            divnome.innerHTML = tupla.localidade;
+                            divCPU.innerHTML = tupla.quantidade_maquinas;
+        
                             divLista.appendChild(divId);
                             divLista.appendChild(divnome);
                             divLista.appendChild(divCPU);
-                            divLista.appendChild(divRAM);
-                            divLista.appendChild(divDisco);
-                            divLista.appendChild(divLocalidade);
-                            divLista.appendChild(divMAC);
+                           
 
                             let debounceTimeout;
                             divLista.addEventListener("click", function () {
@@ -549,7 +529,7 @@ function selectFiltro() {
                                 }
 
                                 debounceTimeout = setTimeout(function () {
-                                    gerenciarMaquina(tupla.idMaquina);
+                                    gerenciarLocalidade(tupla.id_localidade);
                                 }, 200);
                             });
 
@@ -566,17 +546,17 @@ function selectFiltro() {
             });
     }
 
-    function gerenciarMaquina(idMaquinaSelecionada) {
+    function gerenciarLocalidade(idLocalidadeSelecionada) {
 
-        idMaquina = idMaquinaSelecionada
+        id_localidade = idLocalidadeSelecionada
 
-        fetch("/empresas/exibirDadosEdicaoMaquina", {
+        fetch("/localidades/exibirDadosEdicaoLocalidade", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                idMaquinaServer: idMaquinaSelecionada,
+                idLocalidadeServer: idLocalidadeSelecionada,
             }),
         })
             .then(function (resposta) {
@@ -702,18 +682,5 @@ function selectFiltro() {
         }
     }
 
-    function mascaraMAC(element) {
-        // Remove caracteres que não sejam dígitos ou letras
-        let value = element.value.replace(/[^A-Fa-f0-9]/g, '');
-        
-        // Aplica a máscara ao valor
-        let formatted = '';
-        for (let i = 0; i < value.length && i < 12; i += 2) {
-            formatted += value.substring(i, i + 2) + (i < 10 ? ':' : '');
-        }
-        
-        // Atualiza o valor no campo de entrada
-        element.value = formatted;
-    }
 
 </script>

@@ -118,7 +118,8 @@
             <!-- primeira sessão da página -->
             <div class="sessao1-adm">
                 <div class="sessao1-adm_frame1">
-                    <button onclick="abremodal(), abremodalalerta()" class="sessao-adm-botao-click">a</button>
+                    <button onclick="abremodal(), abremodalalerta(); getAlertaSemana()"
+                        class="sessao-adm-botao-click">a</button>
                     <div class="sessao1-adm_frame1_texto">
                         <p>ALERTAS SEMANAIS DE RISCO</p>
                         <div class="sessao1-adm_frame1_texto_semana">
@@ -132,7 +133,8 @@
                     </div>
                 </div>
                 <div class="sessao1-adm_frame2">
-                    <button onclick="abremodal(), abremodalrisco()" class="sessao-adm-botao-click"></button>
+                    <button onclick="abremodal(), abremodalrisco(), obterMaquinasEmRisco()"
+                        class="sessao-adm-botao-click"></button>
                     <div class="sessao1-adm_frame2_alertas">
                         <p>SERVIDORES EM RISCO DESTA SEMANA</p>
                         <p class="sessao1-adm_frame1_texto_semana_p1">
@@ -159,53 +161,12 @@
                         <p>ALERTAS SEMANAIS DE RISCO REFERENTE A SEMANA X</p>
                         <table>
                             <tr>
+                                <th>Data</th>
                                 <th>Máquina</th>
                                 <th>Localidade</th>
                                 <th>Componente</th>
                                 <th>Alerta</th>
                                 <th>Parametro</th>
-                            </tr>
-                            <tr>
-                                <td>HGL-05</td>
-                                <td>DATACENTER 5</td>
-                                <td>CPU</td>
-                                <td>70.5%</td>
-                                <td>60%</td>
-                            </tr>
-                            <tr>
-                                <td>HGL-06</td>
-                                <td>DATACENTER 5</td>
-                                <td>RAM</td>
-                                <td>79.5%</td>
-                                <td>70%</td>
-                            </tr>
-                            <tr>
-                                <td>HGL-06</td>
-                                <td>DATACENTER 5</td>
-                                <td>RAM</td>
-                                <td>79.5%</td>
-                                <td>70%</td>
-                            </tr>
-                            <tr>
-                                <td>HGL-06</td>
-                                <td>DATACENTER 5</td>
-                                <td>RAM</td>
-                                <td>79.5%</td>
-                                <td>70%</td>
-                            </tr>
-                            <tr>
-                                <td>HGL-06</td>
-                                <td>DATACENTER 5</td>
-                                <td>RAM</td>
-                                <td>79.5%</td>
-                                <td>70%</td>
-                            </tr>
-                            <tr>
-                                <td>HGL-06</td>
-                                <td>DATACENTER 5</td>
-                                <td>RAM</td>
-                                <td>79.5%</td>
-                                <td>70%</td>
                             </tr>
                         </table>
                     </div>
@@ -219,36 +180,16 @@
                                 <th>Localidade</th>
                                 <th>Quantidade de alertas</th>
                             </tr>
-                            <tr>
-                                <td>HGL-05</td>
-                                <td>DATACENTER 05</td>
-                                <td>6</td>
-                            </tr>
-                            <tr>
-                                <td>HGL-06</td>
-                                <td>DATACENTER 05</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>HGL-02</td>
-                                <td>DATACENTER 05</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>HGL-09</td>
-                                <td>DATACENTER 05</td>
-                                <td>2</td>
-                            </tr>
                         </table>
                     </div>
-                </div>
 
-                <!--MODAL-ANALISE-RISCOS-->
-                <div class="sessao-adm-modal-analise">
-                    
-                </div>
 
-            </div>
+                    <!--MODAL-ANALISE-RISCOS-->
+                    <div class="sessao-adm-modal-analise">
+                        <div id="histogramChart"></div>
+                    </div>
+
+                </div>
             </div>
 
             <!-- segunda sessão da página -->
@@ -268,7 +209,7 @@
                         <p class="sessao-adm-pointer-ram-sessao2"> RAM</p>
                     </div>
                     <div id="probabilityChart">
-                        
+
                     </div>
                 </div>
 
@@ -284,9 +225,31 @@
                 </div>
                 <div class="chart-container">
                     <div class="sessao-adm-chartram-dado" id="chartRAM"></div>
+
                     <div class="sessao-adm-chartrede-dado" id="chartREDE"></div>
                     <div class="sessao-adm-chartcpu-dado" id="chartCPU"></div>
                 </div>
+
+                <body>
+                    <div class="legenda-container">
+                        <div class="legenda-item">
+                            <div class="legenda-color" style="background-color: #a69cd6;"></div>
+                            <span>Baixo</span>
+                        </div>
+                        <div class="legenda-item">
+                            <div class="legenda-color" style="background-color: #7265b3;"></div>
+                            <span>Médio</span>
+                        </div>
+                        <div class="legenda-item">
+                            <div class="legenda-color" style="background-color: #442BB3;"></div>
+                            <span>Alto</span>
+                        </div>
+                        <div class="legenda-item">
+                            <div class="legenda-color" style="background-color: #2b1f64;"></div>
+                            <span>Muito Alto</span>
+                        </div>
+                    </div>
+                </body>
 
             </div>
 
@@ -294,8 +257,9 @@
         </main>
         <script>
 
+            const idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
 
-            var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
+
             //barra lateral
             document.getElementById('open_btn').addEventListener('click', function () {
                 document.getElementById('sidebar').classList.toggle('open-sidebar');
@@ -337,35 +301,204 @@
             //b
 
             function cpu_adm_sessao3() {
-                document.querySelector('.sessao-adm-chartcpu-dado').style.display = "flex";
+                document.querySelector('.sessao-adm-chartcpu-dado').style.display = "block";
                 document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
                 document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
             }
 
             function ram_adm_sessao3() {
                 document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
-                document.querySelector('.sessao-adm-chartram-dado').style.display = "flex";
+                document.querySelector('.sessao-adm-chartram-dado').style.display = "block";
                 document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
             }
 
             function rede_adm_sessao3() {
                 document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
                 document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
-                document.querySelector('.sessao-adm-chartrede-dado').style.display = "flex";
+                document.querySelector('.sessao-adm-chartrede-dado').style.display = "block";
             }
 
             //b
 
 
 
+            // maquinas em risco listagem
+
+            function obterMaquinasEmRisco() {
+                const idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
+                console.log("idEmpresaUsuario na função obterMaquinasEmRisco:", idEmpresaUsuario);
+
+                fetch(`usuarios/getMaqemriscosemana/${idEmpresaUsuario}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        idEmpresaUsuario: idEmpresaUsuario
+                    }),
+                })
+                    .then(function (resposta) {
+                        console.log("Resposta da requisição:", resposta);
+
+                        if (resposta.ok) {
+                            resposta.json().then(function (dados) {
+                                console.log("Dados recebidos do servidor:", dados);
+
+                                var tabela = document.querySelector('.sessao-adm-modal-riscos table');
+
+                                if (tabela) {
+                                    // Limpa a tabela antes de inserir novas linhas
+                                    while (tabela.rows.length > 1) {
+                                        tabela.deleteRow(1);
+                                    }
+
+                                    dados.forEach(function (dado) {
+                                        var linha = tabela.insertRow();
+                                        var celulaMaquina = linha.insertCell(0);
+                                        var celulaLocalidade = linha.insertCell(1);
+                                        var celulaQuantidadeAlertas = linha.insertCell(2);
+
+                                        celulaMaquina.textContent = dado.nomeMaquina;
+                                        celulaLocalidade.textContent = dado.localidade;
+                                        celulaQuantidadeAlertas.textContent = dado.quantidade_alertas;
+                                    });
+
+                                    var mainPage = document.querySelector('.maingerenpage');
+                                    var modalRiscos = document.querySelector('.sessao-adm-modal-riscos');
+
+                                    if (mainPage) {
+                                        mainPage.style.filter = "blur(5px)";
+                                    }
+
+                                    if (modalRiscos) {
+                                        modalRiscos.style.display = "block";
+                                    }
+                                } else {
+                                    console.error("Tabela não encontrada no DOM.");
+                                }
+                            });
+                        } else {
+                            console.error("Erro na requisição. Status:", resposta.status, resposta.statusText);
+                            alert("Erro ao obter máquinas em risco. Tente novamente mais tarde.");
+                        }
+                    })
+                    .catch(function (erro) {
+                        console.error("Erro ao tentar buscar os dados das máquinas:", erro);
+                        alert("Erro na conexão com o servidor. Verifique sua rede e tente novamente.");
+                    });
+
+                return false;
+            }
+
+
+            // maquinas em risco listagem
+
+
+
+
+            // alerta semana
+
+            function getAlertaSemana() {
+                const idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
+                console.log("idEmpresaUsuario na função getAlertaSemana:", idEmpresaUsuario);
+
+                fetch(`usuarios/getAlertaSemana`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ idEmpresaUsuario }),
+                })
+                    .then(function (resposta) {
+                        console.log("Resposta da requisição:", resposta);
+
+                        if (resposta.ok) {
+                            resposta.json().then(function (dados) {
+                                console.log("Dados recebidos do servidor:", dados);
+
+                                var dadosFormatados = formatarDadosAlertas(dados);
+
+                                var tabela = document.querySelector('.sessao-adm-modal-alertas table');
+
+                                if (tabela) {
+                                    // Limpa a tabela antes de inserir novas linhas
+                                    while (tabela.rows.length > 1) {
+                                        tabela.deleteRow(1);
+                                    }
+
+                                    dadosFormatados.forEach(function (dado) {
+                                        var linha = tabela.insertRow();
+                                        var celulaData = linha.insertCell(0);
+                                        var celulaMaquina = linha.insertCell(1);
+                                        var celulaLocalidade = linha.insertCell(2);
+                                        var celulaComponente = linha.insertCell(3);
+                                        var celulaAlerta = linha.insertCell(4);
+                                        var celulaParametro = linha.insertCell(5);
+
+                                        celulaData.textContent = dado.Data;
+                                        celulaMaquina.textContent = dado.Máquina;
+                                        celulaLocalidade.textContent = dado.Localidade;
+                                        celulaComponente.textContent = dado.Componente;
+                                        celulaAlerta.textContent = dado.Alerta;
+                                        celulaParametro.textContent = dado.Parametro;
+                                    });
+
+                                    var mainPage = document.querySelector('.maingerenpage');
+                                    var modalAlertas = document.querySelector('.sessao-adm-modal-alertas');
+
+                                    if (mainPage) {
+                                        mainPage.style.filter = "blur(5px)";
+                                    }
+
+                                    if (modalAlertas) {
+                                        modalAlertas.style.display = "block";
+                                    }
+                                } else {
+                                    console.error("Tabela não encontrada no DOM.");
+                                }
+                            });
+                        } else {
+                            console.error("Erro na requisição. Status:", resposta.status, resposta.statusText);
+                            alert("Erro ao obter alertas semanais. Tente novamente mais tarde.");
+                        }
+                    })
+                    .catch(function (erro) {
+                        console.error("Erro ao tentar buscar os dados dos alertas:", erro);
+                        alert("Erro na conexão com o servidor. Verifique sua rede e tente novamente.");
+                    });
+
+                return false;
+            }
+
+            function formatarDadosAlertas(dados) {
+                return dados.map(dado => {
+                    return {
+                        ...dado,
+                        Data: dado.Data,  // A Data já está formatada no controller
+                        Alerta: dado.Alerta,
+                        Parametro: dado.Parametro
+                    };
+                });
+            }
+
+
+
+
+
+
+
+
+
+
+
+            // alerta semana
+
+
+
+
+
+
             //MAPA DE CALOR
-
-
-
-
-
-
-
 
 
             //ram
@@ -466,8 +599,8 @@
 
                         var optionsCPU = {
                             chart: {
-                                height: 180,
-                                width: 1205,
+                                height: 200,
+                                width: 1210,
                                 type: 'heatmap',
                             },
                             series: data,
@@ -545,8 +678,8 @@
 
                         var optionsREDE = {
                             chart: {
-                                height: 199,
-                                width: 1210,
+                                height: 200,
+                                width: 1200,
                                 type: 'heatmap',
                             },
                             series: data,
@@ -637,6 +770,53 @@
             // GRAFICO PROBABILIDADE
 
 
-            
-           
+            // GRAFICO HISTOGRAMA
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var options = {
+                    series: [{
+                        name: 'Frequency',
+                        data: [10, 15, 20, 35, 40, 25, 10, 5] // Substitua pelos seus dados
+                    }],
+                    chart: {
+                        type: 'bar',
+                        height: 300,
+                        width: 500
+                    },
+                    plotOptions: {
+                        bar: {
+                            borderRadius: 10,
+                            columnWidth: '90%',
+                            endingShape: 'flat'
+                        }
+                    },
+                    xaxis: {
+                        categories: ['GHL-05', 'BT2-093', 'BBL-05', 'GGHL', 'HGL-10', 'BBL09', 'GHL-11', 'BT3-000'],
+                        title: {
+                            text: 'Máquinas'
+                        }
+                    },
+                    yaxis: {
+                        title: {
+                            text: 'Ocorrências'
+                        }
+                    },
+                    title: {
+                        text: 'Histograma',
+                        align: 'center'
+                    },
+                    tooltip: {
+                        theme: 'dark',
+                    },
+                };
+
+                var chart = new ApexCharts(document.querySelector("#histogramChart"), options);
+                chart.render();
+            });
+
+
+            // GRAFICO HISTOGRAMA
+
+
+
         </script>
