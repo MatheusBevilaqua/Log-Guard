@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="css/partials/SideBar.css">
   <link rel="stylesheet" href="css/pages/dash_Gerenciamento_Operacao.css">
   <script src="js/sessao.js"></script>
+  <script src="js/timer.js"></script>
+
   <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
@@ -44,7 +46,7 @@
 
 
           <li class="side_item ">
-            <a href="dashboard_ADM.html">
+            <a href="dashboardFuncionario.html">
               <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
               <span class="item-description">
                 <b> Visão Geral </b>
@@ -197,38 +199,6 @@
 </script>
 
 <!-- PARTE DO TIMER -------------------------------------------------------------------------------------------------------------- -->
-<script>
-  function allowDrop(event) {
-    event.preventDefault();
-  }
-
-  function drag(event) {
-    event.dataTransfer.setData("text", event.target.id);
-  }
-
-  function drop(event) {
-    event.preventDefault();
-    const data = event.dataTransfer.getData("text");
-    const task = document.getElementById(data);
-    event.target.appendChild(task);
-  }
-
-  function allowDrop(event) {
-    event.preventDefault();
-  }
-
-  function drag(event) {
-    event.dataTransfer.setData("text", event.target.id);
-  }
-
-  function drop(event) {
-    event.preventDefault();
-    const data = event.dataTransfer.getData("text");
-    const task = document.getElementById(data);
-    event.target.appendChild(task);
-  }
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -240,6 +210,7 @@
   // Inicia a contagem de tempo para o gráfico de linha
   setInterval(updateCounter, 1000);
 </script>
+
 <script>
   // Variáveis para rastrear o tempo e o gráfico
   let seconds = 0, minutes = 0, hours = 0, minuteCounter = 0;
@@ -273,81 +244,36 @@
   });
 
   // Função para carregar o tempo e o progresso do gráfico do localStorage
-  function loadTimeAndGraph() {
-    const savedTime = localStorage.getItem('timerTime');
-    const savedMinutes = localStorage.getItem('minuteCounter');
-    const savedGraphData = localStorage.getItem('graphData');
+// Função para carregar o estado salvo do gráfico
+function loadGraphData() {
+  const savedGraphData = localStorage.getItem('graphData');
+  const savedMinutes = localStorage.getItem('minuteCounter');
 
-    // Carrega o tempo salvo
-    if (savedTime) {
-      const [savedHours, savedMinutes, savedSeconds] = savedTime.split(':').map(Number);
-      hours = savedHours;
-      minutes = savedMinutes;
-      seconds = savedSeconds;
-    } else {
-      hours = 0;
-      minutes = 0;
-      seconds = 0;
-    }
+  // Inicializa o contador de minutos e os dados do gráfico
+  minuteCounter = savedMinutes ? Number(savedMinutes) : 0;
 
-    // Carrega o contador de minutos para o gráfico
-    minuteCounter = savedMinutes ? Number(savedMinutes) : 0;
-
-    // Carrega os dados do gráfico do localStorage, se houver
-    if (savedGraphData) {
-      const graphData = JSON.parse(savedGraphData);
-      lineChart.data.labels = graphData.labels;
-      lineChart.data.datasets[0].data = graphData.data;
-      lineChart.update();
-    }
-    updateDisplay();
+  if (savedGraphData) {
+    const graphData = JSON.parse(savedGraphData);
+    lineChart.data.labels = graphData.labels;
+    lineChart.data.datasets[0].data = graphData.data;
+    lineChart.update();
   }
+}
 
-  // Função para iniciar o temporizador e atualizar o gráfico
-  function startTimer() {
-    loadTimeAndGraph(); // Carrega o progresso salvo
-    if (!timerInterval) {
-      timerInterval = setInterval(updateCounter, 1000); // Atualiza a cada segundo
-    }
-  }
+// Função para exibir e atualizar o gráfico
+function updateGraph() {
+  // Adiciona um novo ponto ao gráfico
+  lineChart.data.labels.push(minuteCounter); // Adiciona o minuto ao eixo X
+  lineChart.data.datasets[0].data.push(minuteCounter); // Adiciona o valor no eixo Y
+  lineChart.update();
 
-  // Função para atualizar o contador e o gráfico a cada segundo
-  function updateCounter() {
-    seconds++;
-    if (seconds === 60) {
-      seconds = 0;
-      minutes++;
-      minuteCounter++;
-
-      // Adiciona um novo ponto ao gráfico a cada minuto completo
-      lineChart.data.labels.push(minuteCounter); // Adiciona o minuto passado ao eixo X
-      lineChart.data.datasets[0].data.push(minuteCounter); // Adiciona o valor no eixo Y
-      lineChart.update(); // Atualiza o gráfico
-
-      // Salva o progresso do gráfico e o contador de minutos
-      localStorage.setItem('minuteCounter', minuteCounter);
-      localStorage.setItem('graphData', JSON.stringify({
-        labels: lineChart.data.labels,
-        data: lineChart.data.datasets[0].data
-      }));
-    }
-    if (minutes === 60) {
-      minutes = 0;
-      hours++;
-    }
-    updateDisplay();
-    localStorage.setItem('timerTime', `${hours}:${minutes}:${seconds}`); // Salva o tempo atualizado
-  }
-
-  // Atualiza o display do tempo
-  function updateDisplay() {
-    const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    document.getElementById("counter").textContent = formattedTime;
-  }
-
-  // Chama startTimer ao carregar a página
-  window.onload = startTimer;
-
+  // Salva os dados do gráfico no localStorage
+  localStorage.setItem('minuteCounter', minuteCounter);
+  localStorage.setItem('graphData', JSON.stringify({
+    labels: lineChart.data.labels,
+    data: lineChart.data.datasets[0].data
+  }));
+}
 
 </script>
 
@@ -355,7 +281,37 @@
 
 <!-- PARTE DO TRELLO -------------------------------------------------------------------------------------------------------------- -->
 <script>
+  function allowDrop(event) {
+    event.preventDefault();
+  }
 
+  function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+
+  function drop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData("text");
+    const task = document.getElementById(data);
+    event.target.appendChild(task);
+  }
+
+  function allowDrop(event) {
+    event.preventDefault();
+  }
+
+  function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+
+  function drop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData("text");
+    const task = document.getElementById(data);
+    event.target.appendChild(task);
+  }
+</script>
+<script>
   function addTask() {
     const taskText = document.getElementById("newTaskInput").value;
     const taskPriority = document.getElementById("taskPriority").value;
@@ -621,19 +577,44 @@
     return false;
   }
 
+// Salva o estado das atividades em sessionStorage
+function saveTasks() {
+    const columns = ["todo", "inprogress", "done"];
+    const tasks = [];
+
+    columns.forEach(columnId => {
+        const column = document.getElementById(columnId);
+        if (column) {
+            const columnTasks = Array.from(column.getElementsByClassName("task")).map(task => ({
+                id: task.id,
+                text: task.querySelector(".task-text").textContent,
+                priority: task.querySelector(".task-priority").textContent,
+                status: columnId
+            }));
+            tasks.push(...columnTasks);
+        }
+    });
+
+    sessionStorage.setItem("tasks", JSON.stringify(tasks));
+
+    
+}
+
 
 </script>
 
 <!-- BOTÃO DE SAIR -------------------------------------------------------------------------------------------------------------- -->
 <script>
-  function sair() {
+    function sair() {
+    // Limpa os dados do gráfico e do contador
     localStorage.removeItem('timerTime'); // Limpa o tempo armazenado
-    // Ação de logout
+    localStorage.removeItem('minuteCounter'); // Limpa o contador de minutos
+    localStorage.removeItem('graphData'); // Limpa os dados do gráfico
 
-
+    // Redireciona para a página de login ou inicial
     var url = "index.html";
-    window.open(url, "_self")
+    window.open(url, "_self");
+}
 
-  } 
 </script>
 <!-- CONTABILIZADOR DE TAREFAS -------------------------------------------------------------------------------------------------------------- -->
