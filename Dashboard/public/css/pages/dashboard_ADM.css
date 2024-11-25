@@ -327,7 +327,8 @@
     box-shadow: 0px 0px 19px 0px #6d6d6d;
     align-items: center;
     justify-content: center;
-    overflow-y: auto;
+    overflow-y:unset;
+    overflow-x: unset;
 }
 
 .sessao-adm-modal-alertas,
@@ -354,6 +355,10 @@
     max-width: 1000px;
     margin: 0 auto;
     border-collapse: collapse;
+}
+
+.sessao-adm-modal-riscos th, .sessao-adm-modal-alertas th{
+height: 20px;
 }
 
 .sessao-adm-modal-alertas th, 
@@ -478,4 +483,18 @@
     width: 20px;
     height: 20px;
     margin-right: 5px;
+}
+
+.histogramChart {
+    display: none;
+}
+
+.sessao-adm-modal-alertas-table {
+    display: flex;
+    width: 53%;
+    height: 71%;
+    overflow-y: auto;
+    overflow-x: none;
+    margin-left: 25%;
+    border: 2px;
 }

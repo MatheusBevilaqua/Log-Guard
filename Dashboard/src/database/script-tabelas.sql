@@ -1,62 +1,230 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
+CREATE DATABASE logGuard;
+USE logGuard;
 
-/*
-comandos para mysql server
-*/
-
-CREATE DATABASE aquatech;
-
-USE aquatech;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
+CREATE TABLE empresa(
+idEmpresa INT PRIMARY KEY auto_increment,
+nomeEmpresa VARCHAR(225),
+emailInstitucional VARCHAR(225),
+emailResponsavel VARCHAR(225),
+cnpj CHAR(18),
+cep CHAR(9)
 );
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE VIEW visualizar_empresas AS SELECT * FROM empresa;
+insert into empresa VALUES(default,'LOG GUARD', 'log.guard@sptech.school','log.guard@sptech.school','10101010101010','101010101');
+
+INSERT INTO empresa (nomeEmpresa, emailInstitucional, emailResponsavel) 
+VALUES 
+('Empresa A', 'contato@empresaa.com', 'responsavelA@empresaa.com'),
+('Empresa B', 'contato@empresab.com', 'responsavelB@empresab.com'),
+('Empresa C', 'contato@empresac.com', 'responsavelC@empresac.com');
+
+CREATE TABLE usuario(
+idUsuario INT PRIMARY KEY auto_increment,
+fkEmpresaUsuario INT,
+FOREIGN KEY usuario(fkEmpresaUsuario) REFERENCES empresa(idEmpresa),
+nomeUsuario VARCHAR(225),
+emailUsuario VARCHAR(225),
+senhaUsuario VARCHAR(225),
+tipoPerfilUsuario VARCHAR(13),
+CONSTRAINT CHK_TIPO CHECK (tipoPerfilUsuario ='ADMINISTRADOR' OR tipoPerfilUsuario ='LOG_GUARD' OR tipoPerfilUsuario ='COMUM' OR tipoPerfilUsuario = 'DESATIVADO')
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
+VALUES 
+(1, 'jhonatan', 'jhonatan@gmail.com', 'senha123', 'LOG_GUARD'),
+(1, 'carol', 'carol@gmail.com', 'senha123', 'LOG_GUARD'),
+(1, 'bruno', 'bruno@gmail.com', 'senha123', 'LOG_GUARD'),
+(1, 'matheus', 'matheus@gmail.com', 'senha123', 'LOG_GUARD'),
+(1, 'fabricio', 'fabricio@gmail.com', 'senha123', 'LOG_GUARD'),
+(1, 'rodrigo', 'rodrigo@gmail.com', 'senha123', 'LOG_GUARD');
+
+INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
+VALUES 
+(2, 'Funcionario 1A', 'funcionario1a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 2A', 'funcionario2a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 3A', 'funcionario3a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 4A', 'funcionario4a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 5A', 'funcionario5a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 6A', 'funcionario6a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 7A', 'funcionario7a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 8A', 'funcionario8a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 9A', 'funcionario9a@empresaa.com', 'senha123senha123', 'ADMINISTRADOR'),
+(2, 'Funcionario 10A', 'funcionario10a@empresaa.com', 'senha123', 'COMUM');
+
+INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
+VALUES 
+(2, 'Funcionario 11A', 'funcionario11a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 12A', 'funcionario12a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 13A', 'funcionario13a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 14A', 'funcionario14a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 15A', 'funcionario15a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 16A', 'funcionario16a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 17A', 'funcionario17a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 18A', 'funcionario18a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 19A', 'funcionario19a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 20A', 'funcionario20a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 21A', 'funcionario21a@empresaa.com', 'senha123', 'ADMINISTRADOR'),
+(2, 'Funcionario 22A', 'funcionario22a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 23A', 'funcionario23a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 24A', 'funcionario24a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 25A', 'funcionario25a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 26A', 'funcionario26a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 27A', 'funcionario27a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 28A', 'funcionario28a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 29A', 'funcionario29a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 30A', 'funcionario30a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 31A', 'funcionario31a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 32A', 'funcionario32a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 33A', 'funcionario33a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 34A', 'funcionario34a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 35A', 'funcionario35a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 36A', 'funcionario36a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 37A', 'funcionario37a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 38A', 'funcionario38a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 39A', 'funcionario39a@empresaa.com', 'senha123', 'COMUM'),
+(2, 'Funcionario 40A', 'funcionario40a@empresaa.com', 'senha123', 'COMUM');
+
+
+INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
+VALUES 
+(3, 'Funcionario 1B', 'funcionario1b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 2B', 'funcionario2b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 3B', 'funcionario3b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 4B', 'funcionario4b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 5B', 'funcionario5b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 6B', 'funcionario6b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 7B', 'funcionario7b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 8B', 'funcionario8b@empresab.com', 'senha123', 'COMUM'),
+(3, 'Funcionario 9B', 'funcionario9b@empresab.com', 'senha123', 'ADMINISTRADOR'),
+(3, 'Funcionario 10B', 'funcionario10b@empresab.com', 'senha123', 'COMUM');
+
+
+INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
+VALUES 
+(4, 'Funcionario 1C', 'funcionario1c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 2C', 'funcionario2c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 3C', 'funcionario3c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 4C', 'funcionario4c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 5C', 'funcionario5c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 6C', 'funcionario6c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 7C', 'funcionario7c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 8C', 'funcionario8c@empresac.com', 'senha123', 'COMUM'),
+(4, 'Funcionario 9C', 'funcionario9c@empresac.com', 'senha123', 'ADMINISTRADOR'),
+(4, 'Funcionario 10C', 'funcionario10c@empresac.com', 'senha123', 'COMUM');
+
+CREATE TABLE localidade(
+idLocalidade INT PRIMARY KEY auto_increment,
+fkEmpresLocalidade INT,
+FOREIGN KEY (fkEmpresLocalidade) REFERENCES empresa(idEmpresa),
+nomeLocalidade VARCHAR(255)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+
+CREATE TABLE maquina(
+idMaquina INT PRIMARY KEY auto_increment,
+fkEmpresaMaquina INT,
+FOREIGN KEY (fkEmpresaMaquina) REFERENCES empresa(idEmpresa),
+fkUsuarioMaquina INT,
+FOREIGN KEY (fkUsuarioMaquina) REFERENCES usuario(idUsuario),
+fkLocalidadeMaquina INT,
+FOREIGN KEY (fkLocalidadeMaquina) REFERENCES localidade(idLocalidade),
+nomeMaquina VARCHAR(255),
+modeloCPU VARCHAR(45),
+capacidadeRAM DECIMAL(8,3),
+disco INT,
+MACAdress VARCHAR(45)
+); 
+
+CREATE VIEW visualizar_localidades AS SELECT localidade.idLocalidade AS id_localidade, localidade.nomeLocalidade AS localidade, COUNT(maquina.idMaquina) AS quantidade_maquinas
+FROM 
+    localidade
+LEFT JOIN 
+    maquina 
+ON 
+    localidade.idLocalidade = maquina.fkLocalidadeMaquina
+GROUP BY 
+    localidade.idLocalidade, localidade.nomeLocalidade
+ORDER BY 
+    quantidade_maquinas DESC;
+    
+select * from visualizar_localidades;
+
+INSERT INTO localidade (fkEmpresLocalidade, nomeLocalidade) 
+VALUES 
+(3, 'Data Center'),
+(3, 'Sede'),
+(3, 'Escritório 1');
+
+CREATE TABLE atribuicaoMaquina(
+idMaquinaUsuario INT auto_increment,
+fkUsuarioAtribuicao INT,
+FOREIGN KEY (fkUsuarioAtribuicao) REFERENCES usuario(idUsuario),
+fkMaquinAtribuicao INT,
+FOREIGN KEY (fkMaquinAtribuicao) REFERENCES maquina(idMaquina),
+primary key(idMaquinaUsuario,fkUsuarioAtribuicao,fkMaquinAtribuicao)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
+INSERT INTO maquina (fkEmpresaMaquina, fkUsuarioMaquina,fkLocalidadeMaquina, nomeMaquina, modeloCPU, capacidadeRAM, disco, MACAdress) VALUES
+(3, 47, 1, 'Servidor Central', 'Intel Xeon E5', 64.000, 2000, '00:1A:2B:3C:4D:5E'),
+(3, 48, 1, 'Estação Trabalho 01', 'Intel i7 8700', 16.000, 500,  '00:1A:2B:3C:4D:5F'),
+(3, 49, 1, 'Estação Trabalho 02', 'AMD Ryzen 5 3600', 16.000, 500,  '00:1A:2B:3C:4D:60'),
+(3, 50, 1, 'Servidor Backup', 'Intel Xeon E5', 32.000, 1000,  '00:1A:2B:3C:4D:61'),
+(3, 51, 2, 'Estação Design', 'Intel i9 9900K', 32.000, 1000,  '00:1A:2B:3C:4D:62'),
+(3, 52, 2,'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512,  '00:1A:2B:3C:4D:63'),
+(3, 53, 2,'Estação Vendas', 'Intel i5 10400', 8.000, 256, '00:1A:2B:3C:4D:64'),
+(3, 54, 3,'Estação Financeiro', 'Intel i5 9400', 8.000, 256, '00:1A:2B:3C:4D:65'),
+(3, 55, 3,'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256,  '00:1A:2B:3C:4D:66'),
+(3, 56, 3,'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, '00:1A:2B:3C:4D:67');
 
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+
+CREATE TABLE relatorio(
+idRelatorio INT PRIMARY KEY auto_increment,
+fkEmpresaRelatorio INT,
+FOREIGN KEY relatorio(fkEmpresaRelatorio) REFERENCES empresa(idEmpresa),
+fkUsuarioRelatorio INT,
+FOREIGN KEY (fkUsuarioRelatorio) REFERENCES usuario(idUsuario),
+titulo VARCHAR(255),
+texto VARCHAR(255),
+dtCriacaoRelatorio DATETIME default current_timestamp,
+statusRelatorio VARCHAR(10),
+CONSTRAINT CHK_STATUS CHECK (statusRelatorio ='EMERGÊNCIA' OR statusRelatorio ='ALERTA' OR statusRelatorio ='NORMAL')
 );
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+CREATE TABLE recurso(
+idRecurso INT PRIMARY KEY auto_increment,
+nomeRecurso VARCHAR(45)
+);
+INSERT INTO recurso VALUES(default, 'Uso de CPU');
+INSERT INTO recurso VALUES(default, 'Uso de RAM');
+INSERT INTO recurso VALUES(default, 'Uso de Disco');
+INSERT INTO recurso VALUES(default, 'Taxa de uso da largura de banda');
+
+CREATE TABLE maquinaRecurso(
+idMaquinaRecurso INT PRIMARY KEY auto_increment,
+fkrecurso INT,
+FOREIGN KEY (fkrecurso) REFERENCES recurso(idRecurso),
+parametro DECIMAL (8,5)
+);
+
+
+INSERT INTO maquinaRecurso VALUES(default, 1, 65.0);
+INSERT INTO maquinaRecurso VALUES(default, 2, 70.0);
+INSERT INTO maquinaRecurso VALUES(default, 3, 80.0);
+INSERT INTO maquinaRecurso VALUES(default, 4, 100.0);
+
+-- MUDAR ISSO PARA TERCEIRA SPRINT, TANTO A TABELA maquinaRecurso quanto a tabela captura pedem fk da máquina. o que acontece se eles forem diferentes?????
+CREATE TABLE captura(
+idCaptura INT PRIMARY KEY auto_increment,
+fkMaquinaCaptura INT,
+FOREIGN KEY (fkMaquinaCaptura) REFERENCES maquina(idMaquina),
+fkRecursoCaptura INT,
+FOREIGN KEY (fkRecursoCaptura) REFERENCES recurso(idRecurso),
+fkMaquinaRecursoCaptura INT,
+FOREIGN KEY (fkMaquinaRecursoCaptura) REFERENCES maquinaRecurso(idMaquinaRecurso),
+registro DECIMAL (6,3),
+tem_problema boolean,
+dtCriacaoCaptura DATETIME
+);
+
+

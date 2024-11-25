@@ -158,7 +158,9 @@
 
                     <!--MODAL-ALERTAS-->
                     <div class="sessao-adm-modal-alertas">
+                        
                         <p>ALERTAS SEMANAIS DE RISCO REFERENTE A SEMANA X</p>
+                        <div class="sessao-adm-modal-alertas-table">
                         <table>
                             <tr>
                                 <th>Data</th>
@@ -166,14 +168,16 @@
                                 <th>Localidade</th>
                                 <th>Componente</th>
                                 <th>Alerta</th>
-                                <th>Parametro</th>
+                                <th>Parâmetro</th>
                             </tr>
                         </table>
                     </div>
+                </div>
 
                     <!--MODAL-SERVIDORES-RISCO-->
                     <div class="sessao-adm-modal-riscos">
                         <p>MÁQUINAS EM RISCO REFERENTE A SEMANA X</p>
+                        <div class="sessao-adm-modal-alertas-table">
                         <table>
                             <tr>
                                 <th>Máquina</th>
@@ -182,11 +186,12 @@
                             </tr>
                         </table>
                     </div>
+                </div>
 
 
                     <!--MODAL-ANALISE-RISCOS-->
                     <div class="sessao-adm-modal-analise">
-                        <div id="histogramChart"></div>
+                        <div class="histogramChart" id="histogramChart"></div>
                     </div>
 
                 </div>
@@ -286,6 +291,7 @@
 
             function abremodalanalise() {
                 document.querySelector('.sessao-adm-modal-analise').style.display = "flex";
+                document.querySelector('.histogramChart').style.display = "flex";
             }
 
             function cancelar_modal() {
@@ -474,7 +480,7 @@
                 return dados.map(dado => {
                     return {
                         ...dado,
-                        Data: dado.Data,  // A Data já está formatada no controller
+                        Data: dado.Data,
                         Alerta: dado.Alerta,
                         Parametro: dado.Parametro
                     };
@@ -518,8 +524,8 @@
 
                         var optionsRAM = {
                             chart: {
-                                height: 200,
-                                width: 1200,
+                                height: 190,
+                                width: 1210,
                                 type: 'heatmap',
                             },
                             series: data,
@@ -678,7 +684,7 @@
 
                         var optionsREDE = {
                             chart: {
-                                height: 200,
+                                height: 188,
                                 width: 1200,
                                 type: 'heatmap',
                             },

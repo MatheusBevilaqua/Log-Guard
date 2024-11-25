@@ -129,42 +129,42 @@ function getMaquinasDataREDE(idEmpresaUsuario) {
 
 
 function getMaqemriscosemana(idEmpresaUsuario) {
-    const instrucaoSql = `
+    var instrucaoSql = `
         SELECT 
-            m.nomeMaquina, 
-            m.localidade, 
-            COUNT(c.idCaptura) AS quantidade_alertas
-        FROM 
-            maquina m
-        JOIN 
-            captura c 
-        ON 
-            m.idMaquina = c.fkMaquinaCaptura
-        WHERE 
-            c.tem_problema = TRUE 
-            AND c.dtCriacaoCaptura >= NOW() - INTERVAL 1 WEEK
-            AND m.fkEmpresaMaquina = ${idEmpresaUsuario}
-        GROUP BY 
-            m.nomeMaquina, m.localidade
-        ORDER BY
-        quantidade_alertas DESC;
-    `;
+    m.nomeMaquina, 
+    l.nomeLocalidade AS Localidade, 
+    COUNT(c.idCaptura) AS quantidade_alertas
+FROM 
+    maquina m
+JOIN 
+    captura c ON m.idMaquina = c.fkMaquinaCaptura
+JOIN 
+    localidade l ON l.idLocalidade = m.fkLocalidadeMaquina
+WHERE 
+    c.tem_problema = TRUE 
+    AND c.dtCriacaoCaptura >= NOW() - INTERVAL 1 WEEK
+    AND m.fkEmpresaMaquina = ${idEmpresaUsuario}
+GROUP BY 
+    m.nomeMaquina, l.nomeLocalidade
+ORDER BY
+    quantidade_alertas DESC;`;
 
     console.log("Executando SQL: \n", instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function getAlertaSemana(idEmpresaUsuario) {
-    const instrucaoSql = `SELECT 
+    var instrucaoSql = `SELECT 
     c.dtCriacaoCaptura AS Data,
     m.nomeMaquina AS Máquina,
-    m.localidade AS Localidade,
+    l.nomeLocalidade AS Localidade,
     r.nomeRecurso AS Componente,
     c.registro AS Alerta,
     mr.parametro AS Parametro
 FROM 
     captura c
     JOIN maquina m ON m.idMaquina = c.fkMaquinaCaptura
+    JOIN localidade l ON l.idLocalidade = m.fkLocalidadeMaquina
     JOIN recurso r ON r.idRecurso = c.fkRecursoCaptura
     JOIN maquinaRecurso mr ON mr.fkrecurso = r.idRecurso AND mr.idMaquinaRecurso = c.fkMaquinaRecursoCaptura
 WHERE 
