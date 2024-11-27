@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="css/partials/SideBar.css">
     <script src="js/sessao.js"></script>
+    <script src="js/dashboard_ADM.js"></script>
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> <!--apex-charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--chartjs-->
@@ -17,36 +18,37 @@
     <section class="page-dash">
         <nav id="sidebar">
             <div id="sidebar_content">
-                <div id="user">
-                    <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg"
-                        id="user_avatar" alt="Avatar">
 
+                <li class="side_itemLog active" style="cursor: none;">
+                    <a>
+                        <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+                        <span class="item-description">
+                            <b style="color: #442BB3; margin-left: 15px;"> Log Guard </b>
+                        </span>
+                    </a>
+                </li>
+
+
+                <div id="user">
                     <p id="user_infos">
-                        <span class="item-description" id="b_usuario">
+                        <span style="color: black;" class="item-descriptionAtivo"> Olá,
+                            <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                                Jon Doe
+                            </span>
                         </span>
                         <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
                             Lorem Ipsum
                         </span>
                     </p>
-
                 </div>
 
                 <ul id="side_items">
-                    <li class="side_item active">
-                        <a style="cursor: auto;">
-                            <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon"
-                                    style="height: 40px; width: 40px;"></i>
-                            <span class="item-description">
-                                <b style="color: white;"> LOG GUARD </b>
-                            </span>
-                        </a>
-                    </li>
 
-                    <li class="side_item">
-                        <a href="dashboard_ADM.html">
+                    <li class="side_item active">
+                        <a href="dashboardFuncionario.html">
                             <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                            <span class="item-description">
-                                <b> Visão Geral </b>
+                            <span class="item-descriptionAtivo">
+                                <b style="color: aliceblue;"> Visão Geral </b>
                             </span>
                         </a>
                     </li>
@@ -64,7 +66,7 @@
                         <a href="gerenciar-maquina.html">
                             <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
                             <span class="item-description">
-                                <b> Máquinas </b>
+                                <b> Empresas </b>
                             </span>
                         </a>
                     </li>
@@ -73,10 +75,28 @@
                         <a href="gerenciar-usuario-func.html">
                             <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
                             <span class="item-description">
-                                <b> Funcionários </b>
+                                <b> FeedBacks </b>
                             </span>
                         </a>
                     </li>
+
+                    <li class="side_item">
+                        <a href="dash_Gerenciamento_Operacao.html">
+                            <i> <img src="img/engrenagem_Operacao.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Operações </b>
+                            </span>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <div class="counter">
+                            <span id="counter" style="color: black;">00:00:00</span>
+                        </div>
+                    </li>
+
+
 
                     <li class="side_item">
                         <a href="#">
@@ -86,15 +106,6 @@
                             </span>
                         </a>
                     </li>
-
-                    <!-- <li class="side_item"> 
-                        <a href="#">
-                            <i class="fa-solid fa-gear"></i>
-                            <span class="item-description"> 
-                                <b> </b>
-                            </span>    
-                        </a>
-                    </li> -->
                 </ul>
 
                 <button id="open_btn">
@@ -117,38 +128,7 @@
 
             <!-- primeira sessão da página -->
             <div class="sessao1-adm">
-                <div class="sessao1-adm_frame1">
-                    <button onclick="abremodal(), abremodalalerta(); getAlertaSemana()"
-                        class="sessao-adm-botao-click">a</button>
-                    <div class="sessao1-adm_frame1_texto">
-                        <p>ALERTAS SEMANAIS DE RISCO</p>
-                        <div class="sessao1-adm_frame1_texto_semana">
-                            <p class="sessao1-adm_frame1_texto_semana_p1">SEG : <a
-                                    class="sessao1-adm-cor-roxa-dados">X</a></p>
-                            <p class="sessao1-adm_frame1_texto_semana_p2">TER : <a
-                                    class="sessao1-adm-cor-roxa-dados">X</a></p>
-                            <p class="sessao1-adm_frame1_texto_semana_p3">HOJE : <a
-                                    class="sessao1-adm-cor-roxa-dados">X</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="sessao1-adm_frame2">
-                    <button onclick="abremodal(), abremodalrisco(), obterMaquinasEmRisco()"
-                        class="sessao-adm-botao-click"></button>
-                    <div class="sessao1-adm_frame2_alertas">
-                        <p>SERVIDORES EM RISCO DESTA SEMANA</p>
-                        <p class="sessao1-adm_frame1_texto_semana_p1">
-                            <a class="sessao1-adm-cor-roxa-dados">X</a> de <a class="sessao1-adm-cor-roxa-dados">Y</a>
-                        </p>
-                    </div>
-
-                </div>
-                <div class="sessao1-adm_frame3">
-                    <button onclick="abremodal(), abremodalanalise()" class="sessao-adm-botao-click"></button>
-                    <div class="sessao1-adm_frame2_alertas">
-                        <p>ANÁLISE DOS RISCOS SEMANAIS</p>
-                    </div>
-                </div>
+                <p>DASHBOARD ADMINISTRADOR</p>
             </div>
 
 
@@ -158,35 +138,35 @@
 
                     <!--MODAL-ALERTAS-->
                     <div class="sessao-adm-modal-alertas">
-                        
+
                         <p>ALERTAS SEMANAIS DE RISCO REFERENTE A SEMANA X</p>
                         <div class="sessao-adm-modal-alertas-table">
-                        <table>
-                            <tr>
-                                <th>Data</th>
-                                <th>Máquina</th>
-                                <th>Localidade</th>
-                                <th>Componente</th>
-                                <th>Alerta</th>
-                                <th>Parâmetro</th>
-                            </tr>
-                        </table>
+                            <table>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Máquina</th>
+                                    <th>Localidade</th>
+                                    <th>Componente</th>
+                                    <th>Alerta</th>
+                                    <th>Parâmetro</th>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
 
                     <!--MODAL-SERVIDORES-RISCO-->
                     <div class="sessao-adm-modal-riscos">
                         <p>MÁQUINAS EM RISCO REFERENTE A SEMANA X</p>
                         <div class="sessao-adm-modal-alertas-table">
-                        <table>
-                            <tr>
-                                <th>Máquina</th>
-                                <th>Localidade</th>
-                                <th>Quantidade de alertas</th>
-                            </tr>
-                        </table>
+                            <table>
+                                <tr>
+                                    <th>Máquina</th>
+                                    <th>Localidade</th>
+                                    <th>Quantidade de alertas</th>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
 
 
                     <!--MODAL-ANALISE-RISCOS-->
@@ -200,22 +180,87 @@
             <!-- segunda sessão da página -->
             <div class="sessao2-adm">
                 <div class="sessao2-adm_frame1">
-                    <div class="sessao2-adm_frame1-titulo">
-                        <p>RECOMENDAÇÕES</p>
+
+                    <p>Sessão de informações</p>
+
+                    <!-- alertas -->
+                    <div class="sessao1-adm_frame1">
+                        <button onclick="abremodal(), abremodalalerta(); getAlertaSemana()"
+                            class="sessao-adm-botao-click">
+                            <p>➤</p>
+                        </button>
+                        <div class="sessao1-adm_frame1_texto">
+                            <p>ALERTAS SEMANAIS DE RISCO</p>
+                            <div class="sessao1-adm_frame1_texto_semana">
+                                <p class="sessao1-adm_frame1_texto_semana_p1">SEG : <a
+                                        class="sessao1-adm-cor-roxa-dados">X</a></p>
+                                <p class="sessao1-adm_frame1_texto_semana_p2">TER : <a
+                                        class="sessao1-adm-cor-roxa-dados">X</a></p>
+                                <p class="sessao1-adm_frame1_texto_semana_p3">HOJE : <a
+                                        class="sessao1-adm-cor-roxa-dados">X</a></p>
+                            </div>
+                        </div>
                     </div>
+                    <!-- alertas -->
+
+                    <!-- servidores -->
+                    <div class="sessao1-adm_frame2">
+                        <button onclick="abremodal(), abremodalrisco(), obterMaquinasEmRisco()"
+                            class="sessao-adm-botao-click">
+                            <p>➥</p>
+                        </button>
+                        <div class="sessao1-adm_frame2_alertas">
+                            <p>SERVIDORES EM RISCO DESTA SEMANA</p>
+                            <p class="sessao1-adm_frame1_texto_semana_p1">
+                                <a class="sessao1-adm-cor-roxa-dados">X</a> de <a
+                                    class="sessao1-adm-cor-roxa-dados">Y</a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- servidores -->
+
+                    <!-- analise -->
+                    <div class="sessao1-adm_frame3">
+                        <button onclick="abremodal(), abremodalanalise()" class="sessao-adm-botao-click">
+                            <p>➙</p>
+                        </button>
+                        <div class="sessao1-adm_frame2_alertas">
+                            <p>ANÁLISE DOS RISCOS SEMANAIS</p>
+                        </div>
+                    </div>
+                    <!-- analise -->
 
                 </div>
 
                 <div class="sessao2-adm_frame2">
                     <div class="sessao2-adm_frame2-titulo">
                         <p>PROBABILIDADE DE RISCOS</p>
-                        <p class="sessao-adm-pointer-disco-sessao2"> DISCO</p>
-                        <p class="sessao-adm-pointer-cpu-sessao2"> CPU</p>
-                        <p class="sessao-adm-pointer-ram-sessao2"> RAM</p>
-                    </div>
-                    <div id="probabilityChart">
+                        <button class="sessao-adm-pointer-cpu-sessao2" onclick="cpu_adm_probabilidade()"> CPU</button>
+                        <button class="sessao-adm-pointer-ram-sessao2" onclick="ram_adm_probabilidade()"> RAM</button>
+                        <button class="sessao-adm-pointer-disco-sessao2" onclick="disco_adm_probabilidade()"> DISCO</button>
+
 
                     </div>
+
+                    <div class="probabilityChartCPU">
+                        <div id="probabilityChart">
+                        </div>
+
+                    </div>
+
+                    <div class="probabilityChartRAM">
+                        <div id="probabilityChartR">
+                        </div>
+
+                    </div>
+
+                    <div class="probabilityChartDISCO">
+                        <div id="probabilityChartD">
+                        </div>
+
+                    </div>
+
+
                 </div>
 
             </div>
@@ -224,9 +269,9 @@
             <div class="sessao3-adm">
                 <div class="sessao3-adm-titulo">
                     <p>DESEMPENHO QUINZENAL: DADOS DIÁRIOS</p>
-                    <p onclick="cpu_adm_sessao3()" class="sessao-adm-pointer-cpu-sessao3"> Uso de CPU</p>
-                    <p onclick="ram_adm_sessao3()" class="sessao-adm-pointer-ram-sessao3"> Uso de RAM</p>
-                    <p onclick="rede_adm_sessao3()" class="sessao-adm-pointer-rede-sessao3"> Status de REDE</p>
+                    <button class="sessao-adm-pointer-cpu-sessao3" onclick="cpu_adm_sessao3()">Uso de CPU</button>
+                    <button class="sessao-adm-pointer-ram-sessao3" onclick="ram_adm_sessao3()">Uso de RAM</button>
+                    <button class="sessao-adm-pointer-rede-sessao3" onclick="rede_adm_sessao3()">Status de REDE</button>
                 </div>
                 <div class="chart-container">
                     <div class="sessao-adm-chartram-dado" id="chartRAM"></div>
@@ -235,594 +280,30 @@
                     <div class="sessao-adm-chartcpu-dado" id="chartCPU"></div>
                 </div>
 
-                <body>
-                    <div class="legenda-container">
-                        <div class="legenda-item">
-                            <div class="legenda-color" style="background-color: #a69cd6;"></div>
-                            <span>Baixo</span>
-                        </div>
-                        <div class="legenda-item">
-                            <div class="legenda-color" style="background-color: #7265b3;"></div>
-                            <span>Médio</span>
-                        </div>
-                        <div class="legenda-item">
-                            <div class="legenda-color" style="background-color: #442BB3;"></div>
-                            <span>Alto</span>
-                        </div>
-                        <div class="legenda-item">
-                            <div class="legenda-color" style="background-color: #2b1f64;"></div>
-                            <span>Muito Alto</span>
-                        </div>
-                    </div>
-                </body>
 
             </div>
 
 
         </main>
+
+        <script src="js/contador.js"></script>
         <script>
-
-            const idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
-
 
             //barra lateral
             document.getElementById('open_btn').addEventListener('click', function () {
                 document.getElementById('sidebar').classList.toggle('open-sidebar');
             });
 
+
+
+
             function sair() {
-                window.location.href = "index.html";
-            }
-            //barra lateral
+                localStorage.removeItem('timerTime'); // Limpa o tempo armazenado
+                // Ação de logout
 
-            //a
-            function abremodal() {
-                document.querySelector('.sessao-adm-modal-todos').style.display = "flex";
-                document.querySelector('.sessao-adm-modal-card').style.display = "flex";
-            }
 
-            function abremodalalerta() {
-                document.querySelector('.sessao-adm-modal-alertas').style.display = "flex";
-            }
+                var url = "index.html";
+                window.open(url, "_self")
 
-            function abremodalrisco() {
-                document.querySelector('.sessao-adm-modal-riscos').style.display = "flex";
-            }
-
-            function abremodalanalise() {
-                document.querySelector('.sessao-adm-modal-analise').style.display = "flex";
-                document.querySelector('.histogramChart').style.display = "flex";
-            }
-
-            function cancelar_modal() {
-                document.querySelector('.sessao-adm-modal-todos').style.display = "none";
-                document.querySelector('.sessao-adm-modal-card').style.display = "none";
-                document.querySelector('.sessao-adm-modal-analise').style.display = "none";
-                document.querySelector('.sessao-adm-modal-riscos').style.display = "none";
-                document.querySelector('.sessao-adm-modal-alertas').style.display = "none";
-            }
-
-            //a
-
-            //b
-
-            function cpu_adm_sessao3() {
-                document.querySelector('.sessao-adm-chartcpu-dado').style.display = "block";
-                document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
-                document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
-            }
-
-            function ram_adm_sessao3() {
-                document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
-                document.querySelector('.sessao-adm-chartram-dado').style.display = "block";
-                document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
-            }
-
-            function rede_adm_sessao3() {
-                document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
-                document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
-                document.querySelector('.sessao-adm-chartrede-dado').style.display = "block";
-            }
-
-            //b
-
-
-
-            // maquinas em risco listagem
-
-            function obterMaquinasEmRisco() {
-                const idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
-                console.log("idEmpresaUsuario na função obterMaquinasEmRisco:", idEmpresaUsuario);
-
-                fetch(`usuarios/getMaqemriscosemana/${idEmpresaUsuario}`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        idEmpresaUsuario: idEmpresaUsuario
-                    }),
-                })
-                    .then(function (resposta) {
-                        console.log("Resposta da requisição:", resposta);
-
-                        if (resposta.ok) {
-                            resposta.json().then(function (dados) {
-                                console.log("Dados recebidos do servidor:", dados);
-
-                                var tabela = document.querySelector('.sessao-adm-modal-riscos table');
-
-                                if (tabela) {
-                                    // Limpa a tabela antes de inserir novas linhas
-                                    while (tabela.rows.length > 1) {
-                                        tabela.deleteRow(1);
-                                    }
-
-                                    dados.forEach(function (dado) {
-                                        var linha = tabela.insertRow();
-                                        var celulaMaquina = linha.insertCell(0);
-                                        var celulaLocalidade = linha.insertCell(1);
-                                        var celulaQuantidadeAlertas = linha.insertCell(2);
-
-                                        celulaMaquina.textContent = dado.nomeMaquina;
-                                        celulaLocalidade.textContent = dado.localidade;
-                                        celulaQuantidadeAlertas.textContent = dado.quantidade_alertas;
-                                    });
-
-                                    var mainPage = document.querySelector('.maingerenpage');
-                                    var modalRiscos = document.querySelector('.sessao-adm-modal-riscos');
-
-                                    if (mainPage) {
-                                        mainPage.style.filter = "blur(5px)";
-                                    }
-
-                                    if (modalRiscos) {
-                                        modalRiscos.style.display = "block";
-                                    }
-                                } else {
-                                    console.error("Tabela não encontrada no DOM.");
-                                }
-                            });
-                        } else {
-                            console.error("Erro na requisição. Status:", resposta.status, resposta.statusText);
-                            alert("Erro ao obter máquinas em risco. Tente novamente mais tarde.");
-                        }
-                    })
-                    .catch(function (erro) {
-                        console.error("Erro ao tentar buscar os dados das máquinas:", erro);
-                        alert("Erro na conexão com o servidor. Verifique sua rede e tente novamente.");
-                    });
-
-                return false;
-            }
-
-
-            // maquinas em risco listagem
-
-
-
-
-            // alerta semana
-
-            function getAlertaSemana() {
-                const idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
-                console.log("idEmpresaUsuario na função getAlertaSemana:", idEmpresaUsuario);
-
-                fetch(`usuarios/getAlertaSemana`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ idEmpresaUsuario }),
-                })
-                    .then(function (resposta) {
-                        console.log("Resposta da requisição:", resposta);
-
-                        if (resposta.ok) {
-                            resposta.json().then(function (dados) {
-                                console.log("Dados recebidos do servidor:", dados);
-
-                                var dadosFormatados = formatarDadosAlertas(dados);
-
-                                var tabela = document.querySelector('.sessao-adm-modal-alertas table');
-
-                                if (tabela) {
-                                    // Limpa a tabela antes de inserir novas linhas
-                                    while (tabela.rows.length > 1) {
-                                        tabela.deleteRow(1);
-                                    }
-
-                                    dadosFormatados.forEach(function (dado) {
-                                        var linha = tabela.insertRow();
-                                        var celulaData = linha.insertCell(0);
-                                        var celulaMaquina = linha.insertCell(1);
-                                        var celulaLocalidade = linha.insertCell(2);
-                                        var celulaComponente = linha.insertCell(3);
-                                        var celulaAlerta = linha.insertCell(4);
-                                        var celulaParametro = linha.insertCell(5);
-
-                                        celulaData.textContent = dado.Data;
-                                        celulaMaquina.textContent = dado.Máquina;
-                                        celulaLocalidade.textContent = dado.Localidade;
-                                        celulaComponente.textContent = dado.Componente;
-                                        celulaAlerta.textContent = dado.Alerta;
-                                        celulaParametro.textContent = dado.Parametro;
-                                    });
-
-                                    var mainPage = document.querySelector('.maingerenpage');
-                                    var modalAlertas = document.querySelector('.sessao-adm-modal-alertas');
-
-                                    if (mainPage) {
-                                        mainPage.style.filter = "blur(5px)";
-                                    }
-
-                                    if (modalAlertas) {
-                                        modalAlertas.style.display = "block";
-                                    }
-                                } else {
-                                    console.error("Tabela não encontrada no DOM.");
-                                }
-                            });
-                        } else {
-                            console.error("Erro na requisição. Status:", resposta.status, resposta.statusText);
-                            alert("Erro ao obter alertas semanais. Tente novamente mais tarde.");
-                        }
-                    })
-                    .catch(function (erro) {
-                        console.error("Erro ao tentar buscar os dados dos alertas:", erro);
-                        alert("Erro na conexão com o servidor. Verifique sua rede e tente novamente.");
-                    });
-
-                return false;
-            }
-
-            function formatarDadosAlertas(dados) {
-                return dados.map(dado => {
-                    return {
-                        ...dado,
-                        Data: dado.Data,
-                        Alerta: dado.Alerta,
-                        Parametro: dado.Parametro
-                    };
-                });
-            }
-
-
-
-
-
-
-
-
-
-
-
-            // alerta semana
-
-
-
-
-
-
-            //MAPA DE CALOR
-
-
-            //ram
-
-            document.addEventListener('DOMContentLoaded', function () {
-                fetch('usuarios/getMaquinasDataRAM', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        idEmpresaUsuarioServer: idEmpresaUsuario
-                    })
-                }).then(response => response.json())
-                    .then(data => {
-                        console.log('Dados recebidos do servidor:', data);
-
-                        var optionsRAM = {
-                            chart: {
-                                height: 190,
-                                width: 1210,
-                                type: 'heatmap',
-                            },
-                            series: data,
-                            plotOptions: {
-                                heatmap: {
-                                    shadeIntensity: 0.5,
-                                    colorScale: {
-                                        ranges: [
-                                            {
-                                                from: 0,
-                                                to: 38,
-                                                name: 'Baixo',
-                                                color: '#a69cd6'
-                                            },
-                                            {
-                                                from: 38,
-                                                to: 70,
-                                                name: 'Médio',
-                                                color: '#7265b3'
-                                            },
-                                            {
-                                                from: 70,
-                                                to: 90,
-                                                name: 'Alto',
-                                                color: '#442BB3'
-                                            },
-                                            {
-                                                from: 90,
-                                                to: 100,
-                                                name: 'Muito Alto',
-                                                color: '#2b1f64'
-                                            }
-                                        ]
-                                    }
-                                }
-                            },
-                            xaxis: {
-                                type: 'category',
-                            },
-                            tooltip: {
-                                theme: 'dark'
-                            },
-                            legend: {
-                                show: true,
-                                position: 'bottom',
-                                horizontalAlign: 'center',
-                            }
-                        };
-
-                        var chartRAM = new ApexCharts(document.querySelector("#chartRAM"), optionsRAM);
-                        chartRAM.render();
-                    })
-                    .catch(error => {
-                        console.error('Erro ao carregar os dados:', error);
-                    });
-            });
-
-
-
-
-
-
-
-            //cpu
-            document.addEventListener('DOMContentLoaded', function () {
-                fetch('usuarios/getMaquinasDataCPU', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        idEmpresaUsuarioServer: idEmpresaUsuario
-                    })
-                }).then(response => response.json())
-                    .then(data => {
-                        console.log('Dados recebidos do servidor:', data);
-
-                        var optionsCPU = {
-                            chart: {
-                                height: 200,
-                                width: 1210,
-                                type: 'heatmap',
-                            },
-                            series: data,
-                            plotOptions: {
-                                heatmap: {
-                                    shadeIntensity: 0.5,
-                                    colorScale: {
-                                        ranges: [
-                                            {
-                                                from: 0,
-                                                to: 38,
-                                                name: 'Baixo',
-                                                color: '#a69cd6'
-                                            },
-                                            {
-                                                from: 38,
-                                                to: 70,
-                                                name: 'Médio',
-                                                color: '#7265b3'
-                                            },
-                                            {
-                                                from: 70,
-                                                to: 90,
-                                                name: 'Alto',
-                                                color: '#442BB3'
-                                            },
-                                            {
-                                                from: 90,
-                                                to: 100,
-                                                name: 'Muito Alto',
-                                                color: '#2b1f64'
-                                            }
-                                        ]
-                                    }
-                                }
-                            },
-                            xaxis: {
-                                type: 'category',
-                            },
-                            tooltip: {
-                                theme: 'dark'
-                            },
-                            legend: {
-                                show: true,
-                                position: 'right',
-                                horizontalAlign: 'center'
-                            }
-                        };
-
-                        var chartCPU = new ApexCharts(document.querySelector("#chartCPU"), optionsCPU);
-                        chartCPU.render();
-                    })
-                    .catch(error => {
-                        console.error('Erro ao carregar os dados:', error);
-                    });
-            });
-            //cpu
-
-
-
-
-            //rede
-            document.addEventListener('DOMContentLoaded', function () {
-                fetch('usuarios/getMaquinasDataREDE', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        idEmpresaUsuarioServer: idEmpresaUsuario
-                    })
-                }).then(response => response.json())
-                    .then(data => {
-                        console.log('Dados recebidos do servidor:', data);
-
-                        var optionsREDE = {
-                            chart: {
-                                height: 188,
-                                width: 1200,
-                                type: 'heatmap',
-                            },
-                            series: data,
-                            plotOptions: {
-                                heatmap: {
-                                    shadeIntensity: 0.5,
-                                    colorScale: {
-                                        ranges: [
-                                            {
-                                                from: 0,
-                                                to: 38,
-                                                name: 'Baixo',
-                                                color: '#a69cd6'
-                                            },
-                                            {
-                                                from: 38,
-                                                to: 70,
-                                                name: 'Médio',
-                                                color: '#7265b3'
-                                            },
-                                            {
-                                                from: 70,
-                                                to: 90,
-                                                name: 'Alto',
-                                                color: '#442BB3'
-                                            },
-                                            {
-                                                from: 90,
-                                                to: 100,
-                                                name: 'Muito Alto',
-                                                color: '#2b1f64'
-                                            }
-                                        ]
-                                    }
-                                }
-                            },
-                            xaxis: {
-                                type: 'category',
-                            },
-                            tooltip: {
-                                theme: 'dark'
-                            },
-                            legend: {
-                                show: true,
-                                position: 'right',
-                                horizontalAlign: 'center'
-                            }
-                        };
-
-                        var chartREDE = new ApexCharts(document.querySelector("#chartREDE"), optionsREDE);
-                        chartREDE.render();
-                    })
-                    .catch(error => {
-                        console.error('Erro ao carregar os dados:', error);
-                    });
-            });
-            //rede
-
-
-
-
-            // GRAFICO PROBABILIDADE
-            document.addEventListener('DOMContentLoaded', function () {
-                var options = {
-                    chart: {
-                        type: 'line',
-                        height: 200,
-                        width: 675
-                    },
-                    series: [{
-                        color: '#442BB3',
-                        name: 'Probabilidade',
-                        data: [0.05, 0.1, 0.15, 0.25, 0.4, 0.6, 0.75, 0.9, 0.9] // Dados de exemplo
-                    }],
-                    xaxis: {
-                        categories: ['Evento1', 'Evento2', 'Evento3', 'Evento4', 'Evento5', 'Evento6', 'Evento7', 'Evento8', 'Evento9'] // Eventos de exemplo
-                    },
-                    tooltip: {
-                        theme: 'dark',
-                    },
-                };
-
-
-                var chart = new ApexCharts(document.querySelector("#probabilityChart"), options);
-
-                chart.render();
-            });
-            // GRAFICO PROBABILIDADE
-
-
-            // GRAFICO HISTOGRAMA
-
-            document.addEventListener('DOMContentLoaded', function () {
-                var options = {
-                    series: [{
-                        name: 'Frequency',
-                        data: [10, 15, 20, 35, 40, 25, 10, 5] // Substitua pelos seus dados
-                    }],
-                    chart: {
-                        type: 'bar',
-                        height: 300,
-                        width: 500
-                    },
-                    plotOptions: {
-                        bar: {
-                            borderRadius: 10,
-                            columnWidth: '90%',
-                            endingShape: 'flat'
-                        }
-                    },
-                    xaxis: {
-                        categories: ['GHL-05', 'BT2-093', 'BBL-05', 'GGHL', 'HGL-10', 'BBL09', 'GHL-11', 'BT3-000'],
-                        title: {
-                            text: 'Máquinas'
-                        }
-                    },
-                    yaxis: {
-                        title: {
-                            text: 'Ocorrências'
-                        }
-                    },
-                    title: {
-                        text: 'Histograma',
-                        align: 'center'
-                    },
-                    tooltip: {
-                        theme: 'dark',
-                    },
-                };
-
-                var chart = new ApexCharts(document.querySelector("#histogramChart"), options);
-                chart.render();
-            });
-
-
-            // GRAFICO HISTOGRAMA
-
-
-
+            } 
         </script>

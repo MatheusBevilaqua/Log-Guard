@@ -66,79 +66,11 @@
         border-radius: 20px;
         gap: 10px;
         align-items: center;
-
-        .sessao1-adm_frame1 {
-            display: flex;
-            width: 90%;
-            height: 85%;
-            background-color: #E0E0E0;
-            border-radius: 20px;
-            margin-left: 1%;
-
-            .sessao1-adm_frame1_texto {
-                display: flex;
-                width: 100%;
-                height: 100%;
-                flex-direction: column;
-                justify-content: space-evenly;
-                align-items: center;
-
-                >p {
-                    color: #000;
-                    font-size: 16px;
-                }
-
-                .sessao1-adm_frame1_texto_semana {
-                    display: flex;
-                    width: 100%;
-                    flex-direction: row;
-                    justify-content: space-evenly;
-
-
-                    .sessao1-adm_frame1_texto_semana_p1 {
-                        color: #7c7c7c;
-                        font-size: 14px;
-                    }
-                }
-
-
-
-                .sessao1-adm_frame1_texto_semana_p2 {
-                    color: #3d3d3d;
-                    font-size: 14px;
-                }
-
-                .sessao1-adm_frame1_texto_semana_p3 {
-                    color: #0f0f0f;
-                    font-size: 14px;
-                }
-            }
-        }
-
-    }
-
-    .sessao1-adm_frame2 {
-        display: flex;
-        width: 90%;
-        height: 78%;
-        background-color: #E0E0E0;
-        border-radius: 20px;
-        align-items: center;
-
-
-    }
-
-    .sessao1-adm_frame3 {
-        display: flex;
-        width: 90%;
-        height: 85%;
-        background-color: #E0E0E0;
-        border-radius: 20px;
-        margin-right: 1%;
+        justify-content: center;
 
         >p {
-            color: #000;
-            font-size: 16px;
+            color: black;
+            font-size: 25px;
         }
     }
 }
@@ -160,22 +92,12 @@
         background-color: #FFFFFF;
         border-radius: 20px;
         flex-direction: column;
+        padding: 10px;
+        gap: 8px;
+        align-items: center;
 
-        .sessao2-adm_frame1-titulo {
-            display: flex;
-            width: 98%;
-            height: 14%;
-            background-color: #E0E0E0;
-            border-radius: 20px;
-            margin: 1%;
-            margin-top: 7px;
-            align-items: center;
-            justify-content: center;
-
-            >p {
-                color: #000;
-                font-size: 18px;
-            }
+        >p {
+            color: black;
         }
     }
 
@@ -287,6 +209,12 @@
     color: #4932bb;
     cursor: pointer;
     background-color: #d3d3d3;
+    align-items: center;
+
+    >p {
+        font-size: 30px;
+        color: #000000;
+    }
 }
 
 .sessao-adm-pointer-disco-sessao2,
@@ -296,6 +224,8 @@
 .sessao-adm-pointer-cpu-sessao3,
 .sessao-adm-pointer-ram-sessao3 {
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
 
     >p {
         color: #d3d3d3;
@@ -321,14 +251,43 @@
 .sessao-adm-modal-card {
     display: none;
     flex-direction: column;
-    height: 70%;
-    width: 70%;
+    height: 60%;
+    width: 55%;
     background-color: #ffffff;
     box-shadow: 0px 0px 19px 0px #6d6d6d;
     align-items: center;
     justify-content: center;
-    overflow-y:unset;
+    overflow-y: unset;
     overflow-x: unset;
+}
+
+.sessao-adm-pointer-rede-sessao3,
+.sessao-adm-pointer-cpu-sessao3,
+.sessao-adm-pointer-ram-sessao3 {
+    height: 70%;
+    width: 10%;
+    max-width: 10%;
+    border-radius: 10px;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    background-color: #d3d3d3;
+    align-items: center;
+}
+
+.sessao-adm-pointer-disco-sessao2,
+.sessao-adm-pointer-cpu-sessao2,
+.sessao-adm-pointer-ram-sessao2 {
+    height: 75%;
+    width: 15%;
+    max-width: 10%;
+    border-radius: 10px;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    background-color: #d3d3d3;
+    align-items: center;
+    justify-content: center;
 }
 
 .sessao-adm-modal-alertas,
@@ -339,7 +298,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 90%;
     display: none;
 }
 
@@ -347,6 +306,7 @@
 .sessao-adm-modal-riscos p {
     color: black;
     margin-bottom: 20px;
+    margin-left: 30px;
 }
 
 .sessao-adm-modal-alertas table,
@@ -357,20 +317,21 @@
     border-collapse: collapse;
 }
 
-.sessao-adm-modal-riscos th, .sessao-adm-modal-alertas th{
-height: 20px;
+.sessao-adm-modal-riscos th,
+.sessao-adm-modal-alertas th {
+    height: 20px;
 }
 
-.sessao-adm-modal-alertas th, 
+.sessao-adm-modal-alertas th,
 .sessao-adm-modal-alertas td,
-.sessao-adm-modal-riscos th, 
+.sessao-adm-modal-riscos th,
 .sessao-adm-modal-riscos td {
     border: 1px solid black;
     padding: 8px;
     text-align: left;
 }
 
-.sessao-adm-modal-alertas th, 
+.sessao-adm-modal-alertas th,
 .sessao-adm-modal-riscos th {
     background-color: #f2f2f2;
     color: black;
@@ -379,7 +340,7 @@ height: 20px;
     text-align: center;
 }
 
-.sessao-adm-modal-alertas td, 
+.sessao-adm-modal-alertas td,
 .sessao-adm-modal-riscos td {
     padding-left: 6px;
     color: #000;
@@ -396,8 +357,8 @@ height: 20px;
 
 
 .sessao-adm-cancelar {
-    position:relative;
-    top: 10px;
+    position: relative;
+    top: 18px;
     right: 10px;
     background-color: #442BB3;
     border: none;
@@ -423,7 +384,7 @@ height: 20px;
 
 
 .sessao-adm-chartram-dado {
-    display: block;
+    display: none;
     width: 100%;
     height: 100%;
 }
@@ -435,7 +396,7 @@ height: 20px;
 }
 
 .sessao-adm-chartcpu-dado {
-    display: none;
+    display: flex;
     width: 100%;
     height: 100%;
 }
@@ -460,41 +421,104 @@ height: 20px;
     pointer-events: none;
 }
 
-
-.legenda-container {
-    display: flex;
-    justify-content: space-evenly;
-    margin-right: 60px;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    color: black;
-}
-.legenda-item {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-
-    span {
-        color: black;
-    }
-}
-.legenda-color {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-}
-
 .histogramChart {
     display: none;
 }
 
 .sessao-adm-modal-alertas-table {
     display: flex;
-    width: 53%;
+    width: 70%;
     height: 71%;
     overflow-y: auto;
     overflow-x: none;
-    margin-left: 25%;
-    border: 2px;
+    margin-left: 16%;
+}
+
+.sessao1-adm_frame1 {
+    display: flex;
+    width: 100%;
+    height: 25%;
+    background-color: #E0E0E0;
+    border-radius: 20px;
+}
+
+.sessao1-adm_frame1_texto {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    >p {
+        color: #000;
+        font-size: 16px;
+    }
+
+    .sessao1-adm_frame1_texto_semana {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+
+        .sessao1-adm_frame1_texto_semana_p1 {
+            color: #7c7c7c;
+            font-size: 14px;
+        }
+    }
+
+
+
+    .sessao1-adm_frame1_texto_semana_p2 {
+        color: #3d3d3d;
+        font-size: 14px;
+    }
+
+    .sessao1-adm_frame1_texto_semana_p3 {
+        color: #0f0f0f;
+        font-size: 14px;
+    }
+}
+
+.sessao1-adm_frame2 {
+    display: flex;
+    width: 100%;
+    height: 25%;
+    background-color: #E0E0E0;
+    border-radius: 20px;
+    align-items: center;
+
+
+}
+
+.sessao1-adm_frame3 {
+    display: flex;
+    width: 100%;
+    height: 25%;
+    background-color: #E0E0E0;
+    border-radius: 20px;
+
+    >p {
+        color: #000;
+        font-size: 16px;
+    }
+}
+
+.probabilityChartCPU {
+    display: flex;
+    width: 70%;
+    height: 75%;
+}
+
+.probabilityChartRAM {
+    display: none;
+    width: 70%;
+    height: 75%;
+}
+
+.probabilityChartDISCO {
+    display: none;
+    width: 70%;
+    height: 75%;
 }
