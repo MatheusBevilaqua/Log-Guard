@@ -54,40 +54,6 @@ VALUES
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
-(2, 'Funcionario 11A', 'funcionario11a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 12A', 'funcionario12a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 13A', 'funcionario13a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 14A', 'funcionario14a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 15A', 'funcionario15a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 16A', 'funcionario16a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 17A', 'funcionario17a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 18A', 'funcionario18a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 19A', 'funcionario19a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 20A', 'funcionario20a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 21A', 'funcionario21a@empresaa.com', 'senha123', 'ADMINISTRADOR'),
-(2, 'Funcionario 22A', 'funcionario22a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 23A', 'funcionario23a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 24A', 'funcionario24a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 25A', 'funcionario25a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 26A', 'funcionario26a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 27A', 'funcionario27a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 28A', 'funcionario28a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 29A', 'funcionario29a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 30A', 'funcionario30a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 31A', 'funcionario31a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 32A', 'funcionario32a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 33A', 'funcionario33a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 34A', 'funcionario34a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 35A', 'funcionario35a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 36A', 'funcionario36a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 37A', 'funcionario37a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 38A', 'funcionario38a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 39A', 'funcionario39a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 40A', 'funcionario40a@empresaa.com', 'senha123', 'COMUM');
-
-
-INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
-VALUES 
 (3, 'Funcionario 1B', 'funcionario1b@empresab.com', 'senha123', 'COMUM'),
 (3, 'Funcionario 2B', 'funcionario2b@empresab.com', 'senha123', 'COMUM'),
 (3, 'Funcionario 3B', 'funcionario3b@empresab.com', 'senha123', 'COMUM'),
@@ -99,6 +65,9 @@ VALUES
 (3, 'Funcionario 9B', 'funcionario9b@empresab.com', 'senha123', 'ADMINISTRADOR'),
 (3, 'Funcionario 10B', 'funcionario10b@empresab.com', 'senha123', 'COMUM');
 
+INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
+VALUES 
+(3, 'Funcionario 11B', 'funcionario11b@empresab.com', 'senha123', 'ADMINISTRADOR');
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -119,7 +88,6 @@ fkEmpresLocalidade INT,
 FOREIGN KEY (fkEmpresLocalidade) REFERENCES empresa(idEmpresa),
 nomeLocalidade VARCHAR(255)
 );
-
 
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
@@ -156,26 +124,17 @@ VALUES
 (3, 'Sede'),
 (3, 'Escritório 1');
 
-CREATE TABLE atribuicaoMaquina(
-idMaquinaUsuario INT auto_increment,
-fkUsuarioAtribuicao INT,
-FOREIGN KEY (fkUsuarioAtribuicao) REFERENCES usuario(idUsuario),
-fkMaquinAtribuicao INT,
-FOREIGN KEY (fkMaquinAtribuicao) REFERENCES maquina(idMaquina),
-primary key(idMaquinaUsuario,fkUsuarioAtribuicao,fkMaquinAtribuicao)
-);
-
-INSERT INTO maquina (fkEmpresaMaquina, fkUsuarioMaquina,fkLocalidadeMaquina, nomeMaquina, modeloCPU, capacidadeRAM, disco, MACAdress) VALUES
-(3, 47, 1, 'Servidor Central', 'Intel Xeon E5', 64.000, 2000, '00:1A:2B:3C:4D:5E'),
-(3, 48, 1, 'Estação Trabalho 01', 'Intel i7 8700', 16.000, 500,  '00:1A:2B:3C:4D:5F'),
-(3, 49, 1, 'Estação Trabalho 02', 'AMD Ryzen 5 3600', 16.000, 500,  '00:1A:2B:3C:4D:60'),
-(3, 50, 1, 'Servidor Backup', 'Intel Xeon E5', 32.000, 1000,  '00:1A:2B:3C:4D:61'),
-(3, 51, 2, 'Estação Design', 'Intel i9 9900K', 32.000, 1000,  '00:1A:2B:3C:4D:62'),
-(3, 52, 2,'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512,  '00:1A:2B:3C:4D:63'),
-(3, 53, 2,'Estação Vendas', 'Intel i5 10400', 8.000, 256, '00:1A:2B:3C:4D:64'),
-(3, 54, 3,'Estação Financeiro', 'Intel i5 9400', 8.000, 256, '00:1A:2B:3C:4D:65'),
-(3, 55, 3,'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256,  '00:1A:2B:3C:4D:66'),
-(3, 56, 3,'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, '00:1A:2B:3C:4D:67');
+INSERT INTO maquina (fkEmpresaMaquina,fkLocalidadeMaquina, nomeMaquina, modeloCPU, capacidadeRAM, disco, MACAdress) VALUES
+(3, 1, 'Servidor Central', 'Intel Xeon E5', 64.000, 2000, '00:1A:2B:3C:4D:5E'),
+(3, 1, 'Estação Trabalho 01', 'Intel i7 8700', 16.000, 500,  '00:1A:2B:3C:4D:5F'),
+(3, 1, 'Estação Trabalho 02', 'AMD Ryzen 5 3600', 16.000, 500,  '00:1A:2B:3C:4D:60'),
+(3, 1, 'Servidor Backup', 'Intel Xeon E5', 32.000, 1000,  '00:1A:2B:3C:4D:61'),
+(3, 2, 'Estação Design', 'Intel i9 9900K', 32.000, 1000,  '00:1A:2B:3C:4D:62'),
+(3, 2,'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512,  '00:1A:2B:3C:4D:63'),
+(3, 2,'Estação Vendas', 'Intel i5 10400', 8.000, 256, '00:1A:2B:3C:4D:64'),
+(3, 3,'Estação Financeiro', 'Intel i5 9400', 8.000, 256, '00:1A:2B:3C:4D:65'),
+(3, 3,'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256,  '00:1A:2B:3C:4D:66'),
+(3, 3,'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, '00:1A:2B:3C:4D:67');
 
 
 CREATE TABLE relatorio(
@@ -227,4 +186,9 @@ tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
 
-
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (9, 2, 2, 70,1, '2024-11-25 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (8, 2, 2, 20,1, '2024-11-25 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (7, 1, 1, 40,1, '2024-11-25 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (6, 1, 1, 80,1, '2024-11-25 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 4, 1, 100,1, '2024-11-25 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 4, 2, 20, 1,'2024-11-25 10:00:00');

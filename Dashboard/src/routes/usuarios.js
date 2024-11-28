@@ -56,25 +56,6 @@ router.post("/cadastrarnovouser", function (req, res) {
     usuarioController.cadastrarnovouser(req, res);
 });
 
-router.post("/getMaquinasDataRAM", function (req, res) {
-    usuarioController.getMaquinasDataRAM(req, res);
-});
-
-router.post("/getMaquinasDataCPU", function (req, res) {
-    usuarioController.getMaquinasDataCPU(req, res);
-});
-
-router.post("/getMaquinasDataREDE", function (req, res) {
-    usuarioController.getMaquinasDataREDE(req, res);
-});
-
-router.post("/getMaqemriscosemana/:idEmpresaUsuario", function (req, res) {
-    usuarioController.getMaqemriscosemana(req, res);
-});
-
-router.post("/getAlertaSemana", function (req, res) {
-    usuarioController.getAlertaSemana(req, res);
-});
 
 
 

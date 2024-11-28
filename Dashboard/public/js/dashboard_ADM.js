@@ -89,7 +89,7 @@ function obterMaquinasEmRisco() {
     const idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
     console.log("idEmpresaUsuario na função obterMaquinasEmRisco:", idEmpresaUsuario);
 
-    fetch(`usuarios/getMaqemriscosemana/${idEmpresaUsuario}`, {
+    fetch(`adm/getMaqemriscosemana/${idEmpresaUsuario}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -163,7 +163,7 @@ function getAlertaSemana() {
     const idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
     console.log("idEmpresaUsuario na função getAlertaSemana:", idEmpresaUsuario);
 
-    fetch(`usuarios/getAlertaSemana`, {
+    fetch(`adm/getAlertaSemana`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -265,7 +265,7 @@ function formatarDadosAlertas(dados) {
 //ram
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('usuarios/getMaquinasDataRAM', {
+    fetch('adm/getMaquinasDataRAM', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -342,11 +342,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
 //cpu
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('usuarios/getMaquinasDataCPU', {
+    fetch('adm/getMaquinasDataCPU', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -425,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //rede
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('usuarios/getMaquinasDataREDE', {
+    fetch('adm/getMaquinasDataREDE', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -591,45 +589,56 @@ document.addEventListener('DOMContentLoaded', function () {
 // GRAFICO HISTOGRAMA
 
 document.addEventListener('DOMContentLoaded', function () {
-    var options = {
-        series: [{
-            name: 'Frequency',
-            data: [10, 15, 20, 35, 40, 25, 10, 5] // Substitua pelos seus dados
-        }],
-        chart: {
-            type: 'bar',
-            height: 300,
-            width: 500
-        },
-        plotOptions: {
-            bar: {
-                borderRadius: 10,
-                columnWidth: '90%',
-                endingShape: 'flat'
-            }
-        },
-        xaxis: {
-            categories: ['GHL-05', 'BT2-093', 'BBL-05', 'GGHL', 'HGL-10', 'BBL09', 'GHL-11', 'BT3-000'],
+    fetch(`adm/getRiscoSemanal/${idEmpresaUsuario}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        var options = {
+            series: [{
+                name: 'Ocorrências',
+                data: data.dados
+            }],
+            chart: {
+                type: 'bar',
+                height: 310,
+                width: 620
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 10,
+                    columnWidth: '90%',
+                    endingShape: 'flat'
+                }
+            },
+            xaxis: {
+                categories: data.categorias,
+                title: {
+                    text: 'Máquinas'
+                },
+                labels: {
+                    rotate: -45,
+                    style: {
+                        fontSize: '10px'
+                    }
+                }
+            },
             title: {
-                text: 'Máquinas'
+                text: 'Histograma de ocorrências em relação as máquinas',
+                align: 'center'
+            },
+            tooltip: {
+                theme: 'dark'
             }
-        },
-        yaxis: {
-            title: {
-                text: 'Ocorrências'
-            }
-        },
-        title: {
-            text: 'Histograma',
-            align: 'center'
-        },
-        tooltip: {
-            theme: 'dark',
-        },
-    };
+        };
 
-    var chart = new ApexCharts(document.querySelector("#histogramChart"), options);
-    chart.render();
+        var chart = new ApexCharts(document.querySelector("#histogramChart"), options);
+        chart.render();
+    })
+    .catch(error => console.error('Erro ao buscar dados:', error));
 });
 
 
@@ -637,6 +646,76 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+// COMPOSIÇÃO DIAS DO ALERTA
+
+document.addEventListener('DOMContentLoaded', function () {
+    function atualizarAlertasSemanais() {
+        var diasDaSemana = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
+
+        var hoje = new Date();
+        var ontem = new Date(hoje);
+        ontem.setDate(hoje.getDate() - 1);
+        var antesDeOntem = new Date(hoje);
+        antesDeOntem.setDate(hoje.getDate() - 2);
+
+        var diaHoje = 'HOJE';
+        var diaOntem = diasDaSemana[ontem.getDay()];
+        var diaAntesDeOntem = diasDaSemana[antesDeOntem.getDay()];
+
+        document.getElementById('sessao-2dias-antes').childNodes[0].nodeValue = `${diaAntesDeOntem} : `;
+        document.getElementById('sessao-1dias-antes').childNodes[0].nodeValue = `${diaOntem} : `;
+        document.getElementById('sessao-hoje').childNodes[0].nodeValue = `${diaHoje} : `;
+
+        fetch('/adm/getAlertasPorDia', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idEmpresaUsuarioServer: 3 }) 
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na resposta do servidor');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Dados recebidos:', data);
+            var alertasHoje = 0;
+            var alertasOntem = 0;
+            var alertasAntesDeOntem = 0;
+
+            if (Array.isArray(data)) {
+                data.forEach(alerta => {
+                    const dataAlerta = new Date(alerta.Data);
+                    if (dataAlerta.toDateString() === hoje.toDateString()) {
+                        alertasHoje = alerta.Quantidade;
+                    } else if (dataAlerta.toDateString() === ontem.toDateString()) {
+                        alertasOntem = alerta.Quantidade;
+                    } else if (dataAlerta.toDateString() === antesDeOntem.toDateString()) {
+                        alertasAntesDeOntem = alerta.Quantidade;
+                    }
+                });
+            }
+
+            document.getElementById('alerts-today').textContent = alertasHoje;
+            document.getElementById('alerts-yesterday').textContent = alertasOntem;
+            document.getElementById('alerts-before-yesterday').textContent = alertasAntesDeOntem;
+        })
+        .catch(error => {
+            console.error('Erro ao buscar dados de alertas:', error);
+        });
+    }
+
+    atualizarAlertasSemanais();
+});
+
+
+
+
+
+
+// COMPOSIÇÃO DIAS DO ALERTA
 
 
 
