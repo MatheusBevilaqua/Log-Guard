@@ -5,6 +5,12 @@ function visualizarLocalidades() {
     return database.executar(instrucaoSql);
   }
 
+  function exibirDadosEdicaoLocalidade(idLocalidade) {
+    var instrucaoSql = `SELECT * FROM localidade WHERE idLocalidade = ${idLocalidade}`;
+    return database.executar(instrucaoSql)
+  }
+
 module.exports = {
-    visualizarLocalidades
+    visualizarLocalidades,
+    exibirDadosEdicaoLocalidade
 }

@@ -19,15 +19,14 @@ function visualizarLocalidades(req, res) {
 }
 
 function exibirDadosEdicaoLocalidade(req, res) {
-  var idMaquina = req.body.idMaquinaServer;
-  localidadesModel.exibirDadosEdicaoLocalidade(idMaquina).then(function (resultado) {
+  var idLocalidade = req.body.idLocalidadeServer;
+  localidadesModel.exibirDadosEdicaoLocalidade(idLocalidade).then(function (resultado) {
       if (resultado.length > 0) {
           res.json({
-              nomeMaquina: resultado[0].nomeMaquina,
-              modeloCPU: resultado[0].modeloCPU,
-              capacidadeRAM: resultado[0].capacidadeRAM,
-              disco: resultado[0].disco,
-              localidade: resultado[0].localidade,
+            nomeLocalidade: resultado[0].nomeLocalidade,
+            CEP_localidade: resultado[0].CEP_localidade,
+            rua_localidade: resultado[0].rua_localidade,
+             
           });
       } else {
           res.status(204).send("Nenhum resultado encontrado!");
