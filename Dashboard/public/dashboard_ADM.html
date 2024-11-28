@@ -185,22 +185,20 @@
 
                     <!-- alertas -->
                     <div class="sessao1-adm_frame1">
-                        <button onclick="abremodal(), abremodalalerta(); getAlertaSemana()"
-                            class="sessao-adm-botao-click">
+                        <button onclick="abremodal(), abremodalalerta(); getAlertaSemana()" class="sessao-adm-botao-click">
                             <p>➤</p>
                         </button>
                         <div class="sessao1-adm_frame1_texto">
-                            <p>ALERTAS SEMANAIS DE RISCO</p>
+                            <p>ALERTAS DE RISCO DESTA SEMANA</p>
                             <div class="sessao1-adm_frame1_texto_semana">
-                                <p class="sessao1-adm_frame1_texto_semana_p1">SEG : <a
-                                        class="sessao1-adm-cor-roxa-dados">X</a></p>
-                                <p class="sessao1-adm_frame1_texto_semana_p2">TER : <a
-                                        class="sessao1-adm-cor-roxa-dados">X</a></p>
-                                <p class="sessao1-adm_frame1_texto_semana_p3">HOJE : <a
-                                        class="sessao1-adm-cor-roxa-dados">X</a></p>
+                                <p id="sessao-2dias-antes">X : <a class="sessao1-adm-cor-roxa-dados" id="alerts-before-yesterday">X</a></p>
+                                <p id="sessao-1dias-antes">X : <a class="sessao1-adm-cor-roxa-dados" id="alerts-yesterday">X</a></p>
+                                <p id="sessao-hoje">HOJE : <a class="sessao1-adm-cor-roxa-dados" id="alerts-today">X</a></p>
                             </div>
                         </div>
                     </div>
+                    
+                    
                     <!-- alertas -->
 
                     <!-- servidores -->
@@ -225,7 +223,7 @@
                             <p>➙</p>
                         </button>
                         <div class="sessao1-adm_frame2_alertas">
-                            <p>ANÁLISE DOS RISCOS SEMANAIS</p>
+                            <p>HISTOGRAMA DOS RISCOS DESTA SEMANA</p>
                         </div>
                     </div>
                     <!-- analise -->

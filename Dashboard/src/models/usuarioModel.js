@@ -91,93 +91,10 @@ function cadastrarnovouser(idEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsu
     return database.executar(instrucaoSql);
 }
 
-function getMaquinasDataRAM(idEmpresaUsuario) {
-    var instrucaoSql = `
-        SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
-        FROM maquina m 
-        JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 2
-        ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
 
-function getMaquinasDataCPU(idEmpresaUsuario) {
-    var instrucaoSql = `
-        SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
-        FROM maquina m 
-        JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 1
-        ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function getMaquinasDataREDE(idEmpresaUsuario) {
-    var instrucaoSql = `
-        SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
-        FROM maquina m 
-        JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 4
-        ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-
-function getMaqemriscosemana(idEmpresaUsuario) {
-    var instrucaoSql = `
-        SELECT 
-    m.nomeMaquina, 
-    l.nomeLocalidade AS Localidade, 
-    COUNT(c.idCaptura) AS quantidade_alertas
-FROM 
-    maquina m
-JOIN 
-    captura c ON m.idMaquina = c.fkMaquinaCaptura
-JOIN 
-    localidade l ON l.idLocalidade = m.fkLocalidadeMaquina
-WHERE 
-    c.tem_problema = TRUE 
-    AND c.dtCriacaoCaptura >= NOW() - INTERVAL 1 WEEK
-    AND m.fkEmpresaMaquina = ${idEmpresaUsuario}
-GROUP BY 
-    m.nomeMaquina, l.nomeLocalidade
-ORDER BY
-    quantidade_alertas DESC;`;
-
-    console.log("Executando SQL: \n", instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function getAlertaSemana(idEmpresaUsuario) {
-    var instrucaoSql = `SELECT 
-    c.dtCriacaoCaptura AS Data,
-    m.nomeMaquina AS Máquina,
-    l.nomeLocalidade AS Localidade,
-    r.nomeRecurso AS Componente,
-    c.registro AS Alerta,
-    mr.parametro AS Parametro
-FROM 
-    captura c
-    JOIN maquina m ON m.idMaquina = c.fkMaquinaCaptura
-    JOIN localidade l ON l.idLocalidade = m.fkLocalidadeMaquina
-    JOIN recurso r ON r.idRecurso = c.fkRecursoCaptura
-    JOIN maquinaRecurso mr ON mr.fkrecurso = r.idRecurso AND mr.idMaquinaRecurso = c.fkMaquinaRecursoCaptura
-WHERE 
-    c.tem_problema = TRUE 
-    AND c.dtCriacaoCaptura >= NOW() - INTERVAL 1 WEEK
-    AND m.fkEmpresaMaquina = ${idEmpresaUsuario};`;
-    console.log("Executando SQL: \n", instrucaoSql);
-    return database.executar(instrucaoSql);
-}
 
 
 module.exports = {
-    getMaqemriscosemana,
     autenticar,
     cadastrar,
     visualizarUsuarios,
@@ -191,8 +108,4 @@ module.exports = {
     editarusuario,
     cadastrarnovouser,
     visualizarMaquinas,
-    getMaquinasDataRAM,
-    getMaquinasDataCPU,
-    getMaquinasDataREDE,
-    getAlertaSemana
 };
