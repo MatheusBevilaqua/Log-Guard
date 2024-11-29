@@ -178,7 +178,6 @@
 </html>
 
 <script>
-
   var teste = 0
 
   document.getElementById('open_btn').addEventListener('click', function () {
@@ -518,6 +517,8 @@ function updateGraph() {
 
   function contabilizaTarefas() {
 
+    alert("ESTOU NA FUNC")
+
     let qtdTarefasImportantes = 0;
     let qtdTarefasDesejaveis = 0;
     let qtdTarefasEssenciais = 0;
@@ -615,6 +616,6 @@ function saveTasks() {
     var url = "index.html";
     window.open(url, "_self");
 }
-
+startTimer()
 </script>
 <!-- CONTABILIZADOR DE TAREFAS -------------------------------------------------------------------------------------------------------------- -->

@@ -1,5 +1,13 @@
+
+function salvarExpediente() {
+  window.location = "dash_Gerenciamento_Operacao.html"
+  alert("FOI")
+    contabilizaTarefas()
+}
+
 function loadTimerData() {
     const savedTime = localStorage.getItem('timerTime');
+
   
     // Inicializa o tempo salvo ou define os valores padrões
     if (savedTime) {
@@ -13,6 +21,7 @@ function loadTimerData() {
       seconds = 0;
     }
   }
+  
   
   // Função para contabilizar o tempo
   function updateCounter() {
@@ -38,6 +47,10 @@ function loadTimerData() {
     // Atualiza a interface e salva o tempo no localStorage
     updateDisplay();
     localStorage.setItem('timerTime', `${hours}:${minutes}:${seconds}`);
+
+    if (hours == 8 || minutes == 8 || seconds == 30 ) {
+      salvarExpediente()
+    }
   }
   
   // Função para atualizar o display do tempo
