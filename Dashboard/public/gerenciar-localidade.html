@@ -7,9 +7,11 @@
     <title>LogGuard - Dashboard</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="css/partials/SideBar.css">
+    <link rel="stylesheet" href="css/pages/gerenciar-localidade.css">
     <script src="js/sessao.js"></script>
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
+
 
 <body onload="validarCargo();validarSessao();visualizarLocalidades()">
 
@@ -105,19 +107,13 @@
             </div>
         </nav>
 
-        <section class="page-dash-geren" onload="validarSessao()">
 
 
             <div class="maingerenpage">
                 <div class="head-funcionarios-gerenc">
                     <h1>Gerenciar Localidades:</h1>
-                    <!-- <div class="filtro-no-gerenciar-maquina">
-                        <button onclick="filtrarpormaquina()" class="botao-filtro">Filtrar </button>
-                        <p>Pesquisar Máquina:</p>
-                        <input placeholder="Ex: DT3-11G" type="text">
-                    </div> -->
                 </div>
-                <div class="dash-geren">
+                <!-- <div class="dash-geren">
                     <div class="titulos-geren">
                         <div class="coluna-geren">ID</div>
                         <div class="coluna-geren">Localidade</div>
@@ -130,8 +126,30 @@
                     <div class="geren-dados" id="geren-dados">
 
                     </div>
+                </div> -->
+                <div class="metricas-loc">
+
+
+                    <div class="dash-loc" >
+    
+                        <div class="titulos-loc" style="display: flex; flex-direction: row;">
+                            <div class="coluna-loc">ID</div>
+                            <div class="coluna-loc" >Nome</div>
+                            <div class="coluna-loc">Endereço</div>
+                            <div class="coluna-loc">CEP</div>
+                            <div class="coluna-loc">Quantidade de Máquinas</div>
+                        </div>
+                        <div class="linha-loc">
+                            <img src="./img/Line1cadastro.png" alt="">
+                        </div>
+                        <div class="dash-loc">
+                            <div id="dash-loc"></div>
+                        </div>
+                    </div>
+    
                 </div>
-                <div class="botoes-geren">
+
+                <div class="botoes-geren" style="margin-top: 50px;">
                     <!-- <button onclick="editar_maquina()" class="edit-geren">Editar</button> -->
                     <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar Nova Localidade</button>
                 </div>
@@ -139,41 +157,28 @@
 
             <div class="Editargeren">
                 <div class="Editar-geren-segundo">
-
                     <div class="Editar-geren-botoes">
                         <button onclick="cancelar_editar()" class="cancelar-geren">X</button>
                     </div>
                 </div>
                 <div class="Editar-geren-primeiro">
-                    <h1>Alterar as configurações do servidor:</h1>
+                    <h1>Alterar as configurações da Localidade:</h1>
                     <div class="configuracoes-servidores">
                         <div class="divisorias-titulos-maquinas-1">
                             <div class="titulos-maquina-atribuicao">
                                 <p>Nome do Datacenter</p>
                             </div>
-                            <input placeholder="Ex: HLE-STEP2" type="text" id="input_alterar_nome">
+                            <input placeholder="Ex: Datacenter 01 (Sede)" type="text" id="input_alterar_nome">
 
                             <div class="titulos-maquina-atribuicao">
-                                <p>Modelo da CPU</p>
+                                <p>CEP</p>
                             </div>
-                            <input placeholder="Ex: Ryzen 5 1600AF" type="text" id="input_alterar_modeloCPU">
+                            <input placeholder="Ex: XXXXX-XXX" type="text" id="input_alterar_modeloCPU">
 
                             <div class="titulos-maquina-atribuicao">
-                                <p>RAM(Gb)</p>
+                                <p>Rua</p>
                             </div>
-                            <input placeholder="Ex: 500" type="text" id="input_alterar_capacidadeRAM">
-
-                        </div>
-                        <div class="divisorias-titulos-maquinas-2">
-                            <div class="titulos-maquina-atribuicao">
-                                <p>Disco(TB)</p>
-                            </div>
-                            <input placeholder="Ex: 20" type="text" id="input_alterar_disco">
-
-                            <div class="titulos-maquina-atribuicao">
-                                <p>Localidade</p>
-                            </div>
-                            <input placeholder="Ex: Datacenter 5" type="text" id="input_alterar_localidade">
+                            <input placeholder="Ex: Avenida Paulista, 123" type="text" id="input_alterar_capacidadeRAM">
 
                         </div>
                     </div>
@@ -486,7 +491,7 @@ function selectFiltro() {
 
                 if (resposta.ok) {
                     if (resposta.status == 204) {
-                        var lista = document.getElementById("dash-func");
+                        var lista = document.getElementById("dash-loc");
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhuma localidade encontrada."
                         throw "Nenhum resultado encontrado!!";
@@ -495,7 +500,7 @@ function selectFiltro() {
                     resposta.json().then(function (resposta) {
                         console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                        var lista = document.getElementById("geren-dados");
+                        var lista = document.getElementById("dash-loc");
 
 
                         for (let i = 0; i < resposta.length; i++) {
@@ -503,23 +508,31 @@ function selectFiltro() {
                             let tupla = resposta[i];
                             var divLista = document.createElement("div");
                             var divId = document.createElement("div");
-                            var divnome = document.createElement("div");
-                            var divCPU = document.createElement("div");
+                            var divLocalidade = document.createElement("div");
+                            var divEndereco = document.createElement("div");
+                            var divEndereco1 = document.createElement("div");
+                            var divQtd = document.createElement("div");
                         
 
-                            divLista.className = "dados-geren";
-                            divId.className = "coluna-geren";
-                            divnome.className = "coluna-geren";
-                            divCPU.className = "coluna-geren";
+                            divLista.className = "dados-loc";
+                            divId.className = "coluna-loc coluna-func-id";
+                            divLocalidade.className = "coluna-loc coluna-func-divLocalidade";
+                            divEndereco.className = "coluna-loc coluna-func-Endereco";
+                            divEndereco1.className = "coluna-loc coluna-func-Endereco";
+                            divQtd.className = "coluna-loc coluna-func-Qtd";
     
 
                             divId.innerHTML = i + 1;
-                            divnome.innerHTML = tupla.localidade;
-                            divCPU.innerHTML = tupla.quantidade_maquinas;
-        
+                            divLocalidade.innerHTML = tupla.localidade;
+                            divEndereco.innerHTML = tupla.rua_localidade;
+                            divEndereco1.innerHTML = tupla.cep_localidade;
+                            divQtd.innerHTML = tupla.quantidade_maquinas;
+    
                             divLista.appendChild(divId);
-                            divLista.appendChild(divnome);
-                            divLista.appendChild(divCPU);
+                            divLista.appendChild(divLocalidade);
+                            divLista.appendChild(divEndereco);
+                            divLista.appendChild(divEndereco1);
+                            divLista.appendChild(divQtd);
                            
 
                             let debounceTimeout;
@@ -563,18 +576,15 @@ function selectFiltro() {
                 if (resposta.ok) {
                     resposta.json().then(function (json) {
 
-                        let nomeMaquinaEdicao = json.nomeMaquina;
-                        let modeloCPUMaquinaEdicao = json.modeloCPU;
-                        let capacidadeRAMaquinaEdicao = json.capacidadeRAM;
-                        let discoMaquinaEdicao = json.disco;
-                        let localidadeMaquinaEdicao = json.localidade;
+                
+                        let nomeLocalidadeEdicao = json.nomeLocalidade;
+                        let CEPlocalidadeEdicao = json.CEP_localidade;
+                        let RuaLocalidadeEdicao = json.rua_localidade;
+                        
+                        document.getElementById("input_alterar_nome").value = nomeLocalidadeEdicao;
+                        document.getElementById("input_alterar_modeloCPU").value = CEPlocalidadeEdicao;
+                        document.getElementById("input_alterar_capacidadeRAM").value = RuaLocalidadeEdicao;
 
-
-                        document.getElementById("input_alterar_nome").value = nomeMaquinaEdicao;
-                        document.getElementById("input_alterar_modeloCPU").value = modeloCPUMaquinaEdicao;
-                        document.getElementById("input_alterar_capacidadeRAM").value = capacidadeRAMaquinaEdicao;
-                        document.getElementById("input_alterar_disco").value = discoMaquinaEdicao;
-                        document.getElementById("input_alterar_localidade").value = localidadeMaquinaEdicao;
 
                         document.querySelector('.maingerenpage').style.filter = "blur(5px)";
                         document.querySelector('.Editargeren').style.display = "block";

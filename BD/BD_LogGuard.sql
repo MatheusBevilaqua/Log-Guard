@@ -123,6 +123,15 @@ VALUES
 (4, 'Funcionario 9C', 'funcionario9c@empresac.com', 'senha123', 'ADMINISTRADOR'),
 (4, 'Funcionario 10C', 'funcionario10c@empresac.com', 'senha123', 'COMUM');
 
+CREATE TABLE localidade(
+idLocalidade INT PRIMARY KEY auto_increment,
+fkEmpresLocalidade INT,
+FOREIGN KEY (fkEmpresLocalidade) REFERENCES empresa(idEmpresa),
+nomeLocalidade VARCHAR(255),
+CEP_localidade CHAR (9),
+rua_localidade VARCHAR(255)
+);
+
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
 fkEmpresaMaquina INT,
@@ -137,6 +146,26 @@ localidade VARCHAR(45),
 MACAdress VARCHAR(45)
 ); 
 
+CREATE VIEW visualizar_localidades AS SELECT localidade.idLocalidade AS id_localidade, localidade.nomeLocalidade AS localidade, 
+COUNT(maquina.idMaquina) AS quantidade_maquinas, localidade.CEP_localidade AS cep_localidade, localidade.rua_localidade AS rua_localidade
+FROM 
+    localidade
+LEFT JOIN 
+    maquina 
+ON 
+    localidade.idLocalidade = maquina.fkLocalidadeMaquina
+GROUP BY 
+    localidade.idLocalidade, localidade.nomeLocalidade
+ORDER BY 
+    quantidade_maquinas DESC;
+    
+select * from visualizar_localidades;
+
+INSERT INTO localidade (fkEmpresLocalidade, nomeLocalidade,CEP_localidade,rua_localidade ) 
+VALUES 
+(3, 'Data Center', '68906-631', 'Rua das Flores'),
+(3, 'Sede', '12345-678', 'Alameda dos santos'),
+(3, 'Escritório 1',  '11223-445', 'Avenida dos exemplos');
 CREATE TABLE atribuicaoMaquina(
 idMaquinaUsuario INT auto_increment,
 fkUsuarioAtribuicao INT,
