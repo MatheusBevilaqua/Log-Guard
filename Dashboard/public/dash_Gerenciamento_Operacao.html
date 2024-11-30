@@ -143,7 +143,7 @@
           <option value="desejavel">Desejável</option>
         </select>
         <button onclick="addTask()" class="botao_trello">Adicionar Tarefa</button>
-        <button onclick="contabilizaTarefas()" class="botao_trello">Contabilizar Tarefas</button>
+        <!-- <button onclick="contabilizaTarefas()" class="botao_trello">Contabilizar Tarefas</button> -->
       </div>
 
 
@@ -455,27 +455,27 @@ function updateGraph() {
   }
 
   // Configuração do gráfico de tarefas
-  const taskCtx = document.getElementById('taskChart').getContext('2d');
-  const taskChart = new Chart(taskCtx, {
-    type: 'bar',
-    data: {
-      labels: ['A Fazer', 'Andamento', 'Concluído'],
-      datasets: [{
-        label: 'Quantidade de Tarefas',
-        data: [0, 0, 0],
-        backgroundColor: ['rgb(106, 90, 205)', 'rgb(79, 29, 126)', 'rgb(138, 43, 226)']
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: { display: true, text: 'Quantidade de Tarefas' }
-        }
-      }
-    }
-  });
+  // const taskCtx = document.getElementById('taskChart').getContext('2d');
+  // const taskChart = new Chart(taskCtx, {
+  //   type: 'bar',
+  //   data: {
+  //     labels: ['A Fazer', 'Andamento', 'Concluído'],
+  //     datasets: [{
+  //       label: 'Quantidade de Tarefas',
+  //       data: [0, 0, 0],
+  //       backgroundColor: ['rgb(106, 90, 205)', 'rgb(79, 29, 126)', 'rgb(138, 43, 226)']
+  //     }]
+  //   },
+  //   options: {
+  //     responsive: true,
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true,
+  //         title: { display: true, text: 'Quantidade de Tarefas' }
+  //       }
+  //     }
+  //   }
+  // });
 
   // Adiciona o evento de atualização do gráfico de tarefas nas colunas
   document.querySelectorAll('.column').forEach(column => {
@@ -600,6 +600,133 @@ function saveTasks() {
 
     
 }
+
+// Salva tarefas no localStorage
+function saveTasks() {
+    const columns = ["todo", "inprogress", "done"];
+    const tasks = [];
+
+    columns.forEach(columnId => {
+        const column = document.getElementById(columnId);
+        if (column) {
+            const columnTasks = Array.from(column.getElementsByClassName("task")).map(task => ({
+                id: task.id,
+                text: task.querySelector(".task-text").textContent,
+                priority: task.querySelector(".task-priority").textContent,
+                status: columnId
+            }));
+            tasks.push(...columnTasks);
+        }
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// Restaura tarefas do localStorage
+function loadTasks() {
+    const savedTasks = JSON.parse(localStorage.getItem("tasks"));
+    if (savedTasks) {
+        savedTasks.forEach(({ id, text, priority, status }) => {
+            const task = document.createElement("div");
+            task.className = "task";
+            task.draggable = true;
+            task.ondragstart = drag;
+            task.id = id;
+
+            const taskContent = document.createElement("div");
+            taskContent.className = "task-content";
+
+            const taskTextElement = document.createElement("span");
+            taskTextElement.textContent = text;
+            taskTextElement.className = "task-text";
+
+            const taskPriorityElement = document.createElement("span");
+            taskPriorityElement.textContent = priority;
+            taskPriorityElement.className = `task-priority ${priority}`;
+            taskPriorityElement.onclick = () => editPriority(taskPriorityElement);
+
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "delete-button";
+            deleteButton.textContent = "X";
+            deleteButton.onclick = function () {
+                deleteTask(task.id);
+            };
+
+            taskContent.appendChild(taskTextElement);
+            taskContent.appendChild(deleteButton);
+            taskContent.appendChild(taskPriorityElement);
+            task.appendChild(taskContent);
+
+            document.getElementById(status).appendChild(task);
+        });
+    }
+}
+
+// Salva dados do gráfico no localStorage
+function saveTaskChartData() {
+    const todoCount = document.getElementById("todo").getElementsByClassName("task").length;
+    const inProgressCount = document.getElementById("inprogress").getElementsByClassName("task").length;
+    const doneCount = document.getElementById("done").getElementsByClassName("task").length;
+
+    const chartData = [todoCount, inProgressCount, doneCount];
+    localStorage.setItem("taskChartData", JSON.stringify(chartData));
+}
+
+// Restaura dados do gráfico do localStorage
+function loadTaskChartData() {
+    const savedData = JSON.parse(localStorage.getItem("taskChartData"));
+    if (savedData) {
+        taskChart.data.datasets[0].data = savedData;
+        taskChart.update();
+    }
+}
+
+// Atualiza o gráfico e salva o estado
+function updateTaskChart() {
+    const todoCount = document.getElementById("todo").getElementsByClassName("task").length;
+    const inProgressCount = document.getElementById("inprogress").getElementsByClassName("task").length;
+    const doneCount = document.getElementById("done").getElementsByClassName("task").length;
+
+    taskChart.data.datasets[0].data = [todoCount, inProgressCount, doneCount];
+    taskChart.update();
+
+    saveTaskChartData();
+}
+
+// Configuração inicial do gráfico
+const taskCtx = document.getElementById('taskChart').getContext('2d');
+const taskChart = new Chart(taskCtx, {
+    type: 'bar',
+    data: {
+        labels: ['A Fazer', 'Andamento', 'Concluído'],
+        datasets: [{
+            label: 'Quantidade de Tarefas',
+            data: [0, 0, 0],
+            backgroundColor: ['rgb(106, 90, 205)', 'rgb(79, 29, 126)', 'rgb(138, 43, 226)']
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: { display: true, text: 'Quantidade de Tarefas' }
+            }
+        }
+    }
+});
+
+// Eventos para carregar e salvar ao mudar de página
+window.onload = () => {
+    loadTasks(); // Restaurar tarefas
+    loadTaskChartData(); // Restaurar gráfico
+};
+
+window.addEventListener("beforeunload", () => {
+    saveTasks(); // Salvar tarefas
+    saveTaskChartData(); // Salvar gráfico
+});
+
 
 
 </script>
