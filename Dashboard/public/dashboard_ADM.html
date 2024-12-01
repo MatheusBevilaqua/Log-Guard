@@ -90,11 +90,6 @@
                     </li>
 
 
-                    <li>
-                        <div class="counter">
-                            <span id="counter" style="color: black;">00:00:00</span>
-                        </div>
-                    </li>
 
 
 
@@ -139,7 +134,7 @@
                     <!--MODAL-ALERTAS-->
                     <div class="sessao-adm-modal-alertas">
 
-                        <p>ALERTAS SEMANAIS DE RISCO REFERENTE A SEMANA X</p>
+                        <p>ALERTAS SEMANAIS DE RISCO REFERENTE A ESTA SEMANA</p>
                         <div class="sessao-adm-modal-alertas-table">
                             <table>
                                 <tr>
@@ -156,7 +151,7 @@
 
                     <!--MODAL-SERVIDORES-RISCO-->
                     <div class="sessao-adm-modal-riscos">
-                        <p>MÁQUINAS EM RISCO REFERENTE A SEMANA X</p>
+                        <p>MÁQUINAS EM RISCO REFERENTE AOS ÚLTIMOS 7 DIAS</p>
                         <div class="sessao-adm-modal-alertas-table">
                             <table>
                                 <tr>
@@ -181,7 +176,7 @@
             <div class="sessao2-adm">
                 <div class="sessao2-adm_frame1">
 
-                    <p>Sessão de informações</p>
+                    <p>SESSÃO DE INFORMAÇÕES</p>
 
                     <!-- alertas -->
                     <div class="sessao1-adm_frame1">
@@ -266,10 +261,10 @@
             <!-- terceira sessão da página -->
             <div class="sessao3-adm">
                 <div class="sessao3-adm-titulo">
-                    <p>DESEMPENHO QUINZENAL: DADOS DIÁRIOS</p>
+                    <p>DESEMPENHO QUINZENAL: MÉDIA DIÁRIA</p>
                     <button class="sessao-adm-pointer-cpu-sessao3" onclick="cpu_adm_sessao3()">Uso de CPU</button>
                     <button class="sessao-adm-pointer-ram-sessao3" onclick="ram_adm_sessao3()">Uso de RAM</button>
-                    <button class="sessao-adm-pointer-rede-sessao3" onclick="rede_adm_sessao3()">Status de REDE</button>
+                    <button class="sessao-adm-pointer-rede-sessao3" onclick="rede_adm_sessao3()">mbps de REDE</button>
                 </div>
                 <div class="chart-container">
                     <div class="sessao-adm-chartram-dado" id="chartRAM"></div>
@@ -284,7 +279,6 @@
 
         </main>
 
-        <script src="js/contador.js"></script>
         <script>
 
             //barra lateral

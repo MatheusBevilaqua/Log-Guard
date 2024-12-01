@@ -39,22 +39,47 @@ function cancelar_modal() {
 //b
 
 function cpu_adm_sessao3() {
-    document.querySelector('.sessao-adm-chartcpu-dado').style.display = "block";
-    document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
-    document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('color', 'BLACK');
+
+    document.querySelector('.sessao-adm-chartcpu-dado').style.setProperty('display', 'block');
+    document.querySelector('.sessao-adm-chartram-dado').style.setProperty('display', 'none');
+    document.querySelector('.sessao-adm-chartrede-dado').style.setProperty('display', 'none');
 }
 
 function ram_adm_sessao3() {
-    document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
-    document.querySelector('.sessao-adm-chartram-dado').style.display = "block";
-    document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('color', 'BLACK');
+
+    document.querySelector('.sessao-adm-chartcpu-dado').style.setProperty('display', 'none');
+    document.querySelector('.sessao-adm-chartram-dado').style.setProperty('display', 'block');
+    document.querySelector('.sessao-adm-chartrede-dado').style.setProperty('display', 'none');
 }
 
 function rede_adm_sessao3() {
-    document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
-    document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
-    document.querySelector('.sessao-adm-chartrede-dado').style.display = "block";
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('color', 'BLACK');
+
+    document.querySelector('.sessao-adm-chartcpu-dado').style.setProperty('display', 'none');
+    document.querySelector('.sessao-adm-chartram-dado').style.setProperty('display', 'none');
+    document.querySelector('.sessao-adm-chartrede-dado').style.setProperty('display', 'block');
 }
+
 
 //b
 
@@ -62,18 +87,42 @@ function rede_adm_sessao3() {
 //c
 
 function cpu_adm_probabilidade() {
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('color', 'BLACK');
+
     document.querySelector('.probabilityChartCPU').style.display = "block";
     document.querySelector('.probabilityChartRAM').style.display = "none";
     document.querySelector('.probabilityChartDISCO').style.display = "none";
 }
 
 function ram_adm_probabilidade() {
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('color', 'BLACK');
+
     document.querySelector('.probabilityChartCPU').style.display = "none";
     document.querySelector('.probabilityChartRAM').style.display = "block";
     document.querySelector('.probabilityChartDISCO').style.display = "none";
 }
 
 function disco_adm_probabilidade() {
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('color', 'BLACK');
+
     document.querySelector('.probabilityChartCPU').style.display = "none";
     document.querySelector('.probabilityChartRAM').style.display = "none";
     document.querySelector('.probabilityChartDISCO').style.display = "block";
