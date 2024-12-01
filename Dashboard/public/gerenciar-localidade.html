@@ -164,24 +164,34 @@
                 <div class="Editar-geren-primeiro">
                     <h1>Alterar as configurações da Localidade:</h1>
                     <div class="configuracoes-servidores">
-                        <div class="divisorias-titulos-maquinas-1">
-                            <div class="titulos-maquina-atribuicao">
-                                <p>Nome do Datacenter</p>
-                            </div>
-                            <input placeholder="Ex: Datacenter 01 (Sede)" type="text" id="input_alterar_nome">
-
-                            <div class="titulos-maquina-atribuicao">
-                                <p>CEP</p>
-                            </div>
-                            <input placeholder="Ex: XXXXX-XXX" type="text" id="input_alterar_modeloCPU">
-
-                            <div class="titulos-maquina-atribuicao">
-                                <p>Rua</p>
-                            </div>
-                            <input placeholder="Ex: Avenida Paulista, 123" type="text" id="input_alterar_capacidadeRAM">
-
+                    <div class="divisorias-titulos-maquinas-1">
+                        <div class="titulos-maquina-atribuicao">
+                            <p>Nome do Datacenter</p>
                         </div>
+                        <input placeholder="Ex: Datacenter 01 (Sede)" type="text" id="input_alterar_nome">
+
+                        <div class="titulos-maquina-atribuicao">
+                            <p>CEP</p>
+                        </div>
+                        <input placeholder="Ex: XXXXX-XXX" type="text" id="input_alterar_cep">
+
+                        <div class="titulos-maquina-atribuicao">
+                            <p>Rua</p>
+                        </div>
+                        <input placeholder="Ex: Avenida Paulista, 123" type="text" id="input_alterar_rua">
                     </div>
+                    <div class="divisorias-titulos-maquinas-2">
+                        <div class="titulos-maquina-atribuicao">
+                            <p>banda larga da localidade:</p>
+                        </div>
+                        <input placeholder="Ex: 300 Mbps" type="text" id="input_alterar_banda">
+
+                        <div class="titulos-maquina-atribuicao">
+                            <p>Parâmetro de Perda de Pacotes</p>
+                        </div>
+                        <input placeholder="Ex: 5.0%" type="text" id="input_alterar_Pacotes">
+                    </div>
+                </div>
                 </div>
 
                 <img src="./img/Line1cadastro.png" class="line1-geren" alt="">
@@ -190,28 +200,26 @@
                 </div>
                 <div class="Editar-geren-botao-delete">
                     <button onclick="confirmar_editar()" class="confirmar-geren">Confirmar Configurações</button>
-                    <button onclick="excluir_editar()" class="excluir-geren">Excluir Servidor</button>
+                    <button onclick="excluir_editar()" class="excluir-geren">Excluir Localidade</button>
                 </div>
             </div>
 
             <div class="Cadastrargeren">
-                <h1>Cadastrar novo servidor:</h1>
+                <h1>Cadastrar nova Localidade:</h1>
                 <div class="cadastrar-geren-primeiro">
                     <div class="divisorias-maquinas-1">
-                        <p>Nome do servidor</p>
-                        <input placeholder="Ex: HLE-STEP2" type="text" id="nome_input">
-                        <p>Modelo da CPU</p>
-                        <input placeholder="Ex: Ryzen 5 1600AF" type="text" id="modeloCPU_input">
-                        <p>RAM(GB)</p>
-                        <input placeholder="Ex: 500" type="text" id="capacidadeRAM_input">
+                        <p>Nome da Localidade</p>
+                        <input placeholder="Ex: Datacenter 01 (Sede)" type="text" id="nome_input">
+                        <p>CEP</p>
+                        <input placeholder="Ex: XXXXX-XXX" type="text" id="CEP_input">
+                        <p>Rua</p>
+                        <input placeholder="Ex: Avenida Paulista, 123" type="text" id="rua_input">
                     </div>
                     <div class="divisorias-maquinas-2">
-                        <p>Disco(TB)</p>
-                        <input placeholder="Ex: 20" type="text" id="disco_input">
-                        <p>Localidade</p>
-                        <input placeholder="Ex: Datacenter 5" type="text" id="localidade_input">
-                        <p>Endereço MAC</p>
-                        <input placeholder="Ex: 00:19:B9:FB:E2:58" type="text" id="MACAdress_input" oninput="mascaraMAC(this)">
+                        <p>banda larga da localidade:</p>
+                        <input placeholder="Ex: 300 Mbps " type="number" id="banda_larga_input">
+                        <p>Parâmetro de Perda de Pacotes:</p>
+                        <input placeholder="Ex: 7%" type="number" id="pacotes_input">
                     </div>
 
                 </div>
@@ -367,7 +375,7 @@ function selectFiltro() {
         document.querySelector('.maingerenpage').style.filter = "blur(0px)";
         document.querySelector('.Editargeren').style.display = "none";
         {
-            var r = confirm("Tem certeza que deseja alterar este perfil?");
+            var r = confirm("Tem certeza que deseja alterar esta Localidade?");
             if (r == true) {
                 editarMaquina();
             } else {
@@ -389,7 +397,7 @@ function selectFiltro() {
     }
 
     function excluir_editar() {
-        var r = confirm("Tem certeza que deseja excluir este servidor?");
+        var r = confirm("Tem certeza que deseja excluir esta Localidade?");
         if (r == true) {
             deletarMaquina()
             window.location.reload(true); //reload na página
@@ -399,41 +407,38 @@ function selectFiltro() {
     function confirmar_cadastrar() {
 
 
-        var nomeMaquinaVAR = nome_input.value;
-        var modeloCPUVAR = modeloCPU_input.value;
-        var capacidadeRAMVAR = capacidadeRAM_input.value;
-        var discoVAR = disco_input.value;
-        var localidadeVAR = localidade_input.value;
-        var MACAdressVAR = MACAdress_input.value;
+        var nomeLocalidadeVAR = nome_input.value;
+        var CEPVAR = CEP_input.value;
+        var ruaVAR = rua_input.value;
+        var bandaVAR = banda_larga_input.value;
+        var param_pacotesVAR = pacotes_input.value;
 
 
 
         if (
-            nomeMaquinaVAR == "" ||
-            modeloCPUVAR == "" ||
-            capacidadeRAMVAR == "" ||
-            discoVAR == "" ||
-            localidadeVAR == "" ||
-            MACAdressVAR == ""
+            nomeLocalidadeVAR == "" ||
+            CEPVAR == "" ||
+            ruaVAR == "" ||
+            bandaVAR == "" ||
+            param_pacotesVAR == ""
         ) {
             alert("Todos os campos dever ser preenchidos!")
             return false;
         } else {
 
-            fetch("/empresas/confirmar_cadastrar", {
+            fetch("/localidades/cadastrarLocalidade", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
 
-                    nomeMaquinaServer: nomeMaquinaVAR,
-                    modeloCServer: modeloCPUVAR,
-                    capacidadeServer: capacidadeRAMVAR,
-                    discoServer: discoVAR,
-                    localidadeServer: localidadeVAR,
-                    MACAdressServer: MACAdressVAR,
-                    fkEmpresaMaquinaServer: sessionStorage.EMPRESA_USUARIO
+                    nomeLocalidadeServer: nomeLocalidadeVAR,
+                    CEPLocalidadeServer: CEPVAR,
+                    ruaServer: ruaVAR,
+                    bandaLargaServer: bandaVAR,
+                    parametroPacotesServer: param_pacotesVAR,
+                    fkEmpresaLocalidadeServer: sessionStorage.EMPRESA_USUARIO
                 }),
             })
                 .then(function (resposta) {
@@ -559,6 +564,8 @@ function selectFiltro() {
             });
     }
 
+    id_localidade = "";
+
     function gerenciarLocalidade(idLocalidadeSelecionada) {
 
         id_localidade = idLocalidadeSelecionada
@@ -580,10 +587,15 @@ function selectFiltro() {
                         let nomeLocalidadeEdicao = json.nomeLocalidade;
                         let CEPlocalidadeEdicao = json.CEP_localidade;
                         let RuaLocalidadeEdicao = json.rua_localidade;
+                        let bandaEdicao = json.parametro_taxa_uso_bl;
+                        let PerdaPacotesEdicao = json.parametro_perda_pacotes;
+
                         
                         document.getElementById("input_alterar_nome").value = nomeLocalidadeEdicao;
-                        document.getElementById("input_alterar_modeloCPU").value = CEPlocalidadeEdicao;
-                        document.getElementById("input_alterar_capacidadeRAM").value = RuaLocalidadeEdicao;
+                        document.getElementById("input_alterar_cep").value = CEPlocalidadeEdicao;
+                        document.getElementById("input_alterar_rua").value = RuaLocalidadeEdicao;
+                        document.getElementById("input_alterar_banda").value = bandaEdicao;
+                        document.getElementById("input_alterar_Pacotes").value = PerdaPacotesEdicao;
 
 
                         document.querySelector('.maingerenpage').style.filter = "blur(5px)";
@@ -603,21 +615,21 @@ function selectFiltro() {
     }
 
     function deletarMaquina() {
-        alert("Máquina deletada com sucesso!");
+        alert("Localidade deletada com sucesso!");
 
-        fetch("/empresas/deletarMaquina", {
+        fetch("/localidades/deletarLocalidade", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                idMaquinaServer: idMaquina,
+                id_localidadeServer: id_localidade,
             }),
         })
             .then(function (resposta) {
                 if (resposta.ok) {
                     resposta.json().then(function (json) {
-                        console.log("Máquina deletada com sucesso:", json);
+                        console.log("Localidade deletada com sucesso:", json);
                         verUsuarios();
                     });
                 } else {
@@ -632,18 +644,18 @@ function selectFiltro() {
     }
     function editarMaquina() {
 
-        var nomeMaquinaVAR = input_alterar_nome.value;
-        var modeloCPUVAR = input_alterar_modeloCPU.value;
-        var capacidadeRAMVAR = input_alterar_capacidadeRAM.value;
-        var discoVAR = input_alterar_disco.value;
-        var localidadeVAR = input_alterar_localidade.value;
+        var nomeLocalidadeVAR = input_alterar_nome.value;
+        var CEPVAR = input_alterar_cep.value;
+        var ruaVAR = input_alterar_rua.value;
+        var bandaVAR = input_alterar_banda.value;
+        var PacotesVAR = input_alterar_Pacotes.value;
 
         if (
-            nomeMaquinaVAR == "" ||
-            modeloCPUVAR == "" ||
-            capacidadeRAMVAR == "" ||
-            discoVAR == "" ||
-            localidadeVAR == ""
+            nomeLocalidadeVAR == "" ||
+            CEPVAR == "" ||
+            ruaVAR == "" ||
+            bandaVAR == "" ||
+            PacotesVAR == ""
         ) {
             alert("Todos os campos dever ser preenchidos!")
             return false;
@@ -651,24 +663,24 @@ function selectFiltro() {
 
 
             console.log("Dados a serem enviados:", {
-                nomeMaquinaServer: nomeMaquinaVAR,
-                modeloCPUServer: modeloCPUVAR,
-                capacidadeRAMServer: capacidadeRAMVAR,
-                discoServer: discoVAR,
-                localidadeServer: localidadeVAR,
+                nomeLocalidadeServer: nomeLocalidadeVAR,
+                CEPServer: CEPVAR,
+                ruaServer: ruaVAR,
+                bandaServer: bandaVAR,
+                PacotesServer: PacotesVAR,
             });
-            fetch("/empresas/editarMaquina", {
+            fetch("/localidades/editarLocalidades", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    idMaquinaServer: idMaquina,
-                    nomeMaquinaServer: nomeMaquinaVAR,
-                    modeloCPUServer: modeloCPUVAR,
-                    capacidadeRAMServer: capacidadeRAMVAR,
-                    discoServer: discoVAR,
-                    localidadeServer: localidadeVAR,
+                    idLocalidadeServer: id_localidade,
+                    nomeLocalidadeServer: nomeLocalidadeVAR,
+                    CEPServer: CEPVAR,
+                    ruaServer: ruaVAR,
+                    bandaServer: bandaVAR,
+                    PacotesServer: PacotesVAR,
                 }),
             })
                 .then(function (resposta) {
@@ -676,8 +688,8 @@ function selectFiltro() {
                     if (resposta.ok) {
 
                         resposta.json().then(function (json) {
-                            console.log("Máquina atualizada com sucesso:", json);
-                            alert("Perfil alterado com sucesso!");
+                            console.log("Localidade atualizada com sucesso:", json);
+                            alert("Localidade alterada com sucesso!");
                             window.location.reload(true);
                         });
                     } else {
@@ -687,7 +699,7 @@ function selectFiltro() {
                     }
                 })
                 .catch(function (erro) {
-                    console.error("Erro ao tentar alterar os dados da máquina:", erro);
+                    console.error("Erro ao tentar alterar os dados da Localidade:", erro);
                 });
         }
     }

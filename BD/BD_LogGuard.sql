@@ -129,8 +129,12 @@ fkEmpresLocalidade INT,
 FOREIGN KEY (fkEmpresLocalidade) REFERENCES empresa(idEmpresa),
 nomeLocalidade VARCHAR(255),
 CEP_localidade CHAR (9),
-rua_localidade VARCHAR(255)
+rua_localidade VARCHAR(255),
+parametro_perda_pacotes DOUBLE,
+parametro_taxa_uso_bl DECIMAL (6,3) -- bl é Banda Larga 
 );
+
+
 
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
@@ -142,12 +146,19 @@ nomeMaquina VARCHAR(255),
 modeloCPU VARCHAR(45),
 capacidadeRAM DECIMAL(8,3),
 disco INT,
-localidade VARCHAR(45),
+fkLocalidadeMaquina INT,
+FOREIGN KEY (fkLocalidadeMaquina) REFERENCES localidade(idLocalidade),
 MACAdress VARCHAR(45)
 ); 
 
-CREATE VIEW visualizar_localidades AS SELECT localidade.idLocalidade AS id_localidade, localidade.nomeLocalidade AS localidade, 
-COUNT(maquina.idMaquina) AS quantidade_maquinas, localidade.CEP_localidade AS cep_localidade, localidade.rua_localidade AS rua_localidade
+CREATE VIEW view_localidades_maquinas AS
+SELECT 
+    localidade.idLocalidade AS id_localidade,
+    localidade.nomeLocalidade AS localidade,
+    localidade.CEP_localidade AS cep_localidade,
+	localidade.rua_localidade AS rua_localidade,
+    localidade.fkEmpresLocalidade AS id_empresa,
+    COUNT(maquina.idMaquina) AS quantidade_maquinas
 FROM 
     localidade
 LEFT JOIN 
@@ -155,17 +166,17 @@ LEFT JOIN
 ON 
     localidade.idLocalidade = maquina.fkLocalidadeMaquina
 GROUP BY 
-    localidade.idLocalidade, localidade.nomeLocalidade
+    localidade.idLocalidade, localidade.nomeLocalidade, localidade.fkEmpresLocalidade
 ORDER BY 
     quantidade_maquinas DESC;
     
-select * from visualizar_localidades;
-
-INSERT INTO localidade (fkEmpresLocalidade, nomeLocalidade,CEP_localidade,rua_localidade ) 
+    
+INSERT INTO localidade (fkEmpresLocalidade, nomeLocalidade,CEP_localidade,rua_localidade,parametro_perda_pacotes, parametro_taxa_uso_bl) 
 VALUES 
-(3, 'Data Center', '68906-631', 'Rua das Flores'),
-(3, 'Sede', '12345-678', 'Alameda dos santos'),
-(3, 'Escritório 1',  '11223-445', 'Avenida dos exemplos');
+(3, 'Data Center', '68906-631', 'Rua das Flores',2.3,120.000),
+(3, 'Sede', '12345-678', 'Alameda dos santos',1.4,130.000),
+(3, 'Escritório 1',  '11223-445', 'Avenida dos exemplos',5.4,100.000);
+
 CREATE TABLE atribuicaoMaquina(
 idMaquinaUsuario INT auto_increment,
 fkUsuarioAtribuicao INT,
@@ -176,17 +187,17 @@ primary key(idMaquinaUsuario,fkUsuarioAtribuicao,fkMaquinAtribuicao)
 );
 
 
-INSERT INTO maquina (fkEmpresaMaquina, fkUsuarioMaquina, nomeMaquina, modeloCPU, capacidadeRAM, disco, localidade, MACAdress) VALUES
-(3, 47, 'Servidor Central', 'Intel Xeon E5', 64.000, 2000, 'Data Center', '00:1A:2B:3C:4D:5E'),
-(3, 48, 'Estação Trabalho 01', 'Intel i7 8700', 16.000, 500, 'Escritório 1', '00:1A:2B:3C:4D:5F'),
-(3, 49, 'Estação Trabalho 02', 'AMD Ryzen 5 3600', 16.000, 500, 'Escritório 1', '00:1A:2B:3C:4D:60'),
-(3, 50, 'Servidor Backup', 'Intel Xeon E5', 32.000, 1000, 'Data Center', '00:1A:2B:3C:4D:61'),
-(3, 51, 'Estação Design', 'Intel i9 9900K', 32.000, 1000, 'Escritório 2', '00:1A:2B:3C:4D:62'),
-(3, 52, 'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512, 'Escritório 3', '00:1A:2B:3C:4D:63'),
-(3, 53, 'Estação Vendas', 'Intel i5 10400', 8.000, 256, 'Escritório 4', '00:1A:2B:3C:4D:64'),
-(3, 54, 'Estação Financeiro', 'Intel i5 9400', 8.000, 256, 'Escritório 5', '00:1A:2B:3C:4D:65'),
-(3, 55, 'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256, 'Escritório 6', '00:1A:2B:3C:4D:66'),
-(3, 56, 'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, 'Sede', '00:1A:2B:3C:4D:67');
+INSERT INTO maquina (fkEmpresaMaquina, fkUsuarioMaquina, nomeMaquina, modeloCPU, capacidadeRAM, disco, fkLocalidadeMaquina, MACAdress) VALUES
+(3, 47, 'Servidor Central', 'Intel Xeon E5', 64.000, 2000, 1, '00:1A:2B:3C:4D:5E'),
+(3, 48, 'Estação Trabalho 01', 'Intel i7 8700', 16.000, 500, 1, '00:1A:2B:3C:4D:5F'),
+(3, 49, 'Estação Trabalho 02', 'AMD Ryzen 5 3600', 16.000, 500, 1, '00:1A:2B:3C:4D:60'),
+(3, 50, 'Servidor Backup', 'Intel Xeon E5', 32.000, 1000, 1, '00:1A:2B:3C:4D:61'),
+(3, 51, 'Estação Design', 'Intel i9 9900K', 32.000, 1000, 2, '00:1A:2B:3C:4D:62'),
+(3, 52, 'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512, 2, '00:1A:2B:3C:4D:63'),
+(3, 53, 'Estação Vendas', 'Intel i5 10400', 8.000, 256, 2, '00:1A:2B:3C:4D:64'),
+(3, 54, 'Estação Financeiro', 'Intel i5 9400', 8.000, 256, 3, '00:1A:2B:3C:4D:65'),
+(3, 55, 'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256, 3, '00:1A:2B:3C:4D:66'),
+(3, 56, 'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, 3, '00:1A:2B:3C:4D:67');
 
 
 CREATE TABLE relatorio(
@@ -239,7 +250,6 @@ tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
 
-
 CREATE TABLE tarefa(
 idTarefa INT PRIMARY KEY auto_increment,
 fkUsuarioTarefa INT,
@@ -248,8 +258,3 @@ qtdDesejavel INT,
 qtdImportante INT, 
 qtdEssencial INT
 );
-
-INSERT INTO tarefa VALUES 
-(default, "?", "?", "?","?");
-
-SELECT * FROM tarefa;
