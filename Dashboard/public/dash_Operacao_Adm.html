@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body onload="verUsuarios()">
+<body onload="visualizarFuncionarios()">
     <section class="page-dash">
         <nav id="sidebar">
             <div id="sidebar_content">
@@ -129,8 +129,8 @@
                     <div class="titulos-func">
                         <div class="coluna-func">ID</div>
                         <div class="coluna-func">Nome</div>
-                        <div class="coluna-func">Horas trabalhadas</div>
-                        <div class="coluna-func">Tarefas Concluídas</div>
+                        <div class="coluna-func">Essenciais concluídas</div>
+                        <div class="coluna-func">Tarefas concluídas</div>
                     </div>
                     <div class="linha-func">
                         <img src="./img/Line1cadastro.png" alt="">
@@ -145,7 +145,7 @@
                         <br><br>
                         <div class="totalfuncs" id="totalfuncionarios"></div>
                         <div class="me2-func">
-                            <h5>Horas Trabalhadas:</h5>
+                            <h5>Essenciais Concluídas:</h5>
                             <br>
                             <div class="totalfuncs" id="totaladms">0</div>
 
@@ -190,6 +190,8 @@
 <!-- BOTÃO DE SAIR -------------------------------------------------------------------------------------------------------------- -->
 <script>
     function sair() {  
+
+      
   
       var url = "index.html";
       window.open(url, "_self")
@@ -199,14 +201,15 @@
 
 <!-- LISTA DE FUNCIONÁRIOS -------------------------------------------------------------------------------------------------------------- -->
 <script> 
-  function verUsuarios() {
-    fetch("/usuarios/visualizarUsuarios", {
+  function visualizarFuncionarios() {
+
+    fetch("/operacao/visualizarFuncionarios", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            idEmpresaUsuarioServer: idEmpresaUsuario, // Certifique-se de que esta variável está definida
+            idEmpresaUsuarioServer: sessionStorage.EMPRESA_USUARIO 
         }),
     })
         .then(function (resposta) {
@@ -235,31 +238,31 @@
                         var divLista = document.createElement("div");
                         var divId = document.createElement("div");
                         var divNome = document.createElement("div");
-                        var divHoras = document.createElement("div");
+                        var divEssenciais = document.createElement("div");
                         var divTarefas = document.createElement("div");
 
                         // Adiciona classes às colunas
                         divLista.className = "dados-func";
                         divId.className = "coluna-func";
                         divNome.className = "coluna-func";
-                        divHoras.className = "coluna-func";
+                        divEssenciais.className = "coluna-func";
                         divTarefas.className = "coluna-func";
 
                         // Preenche os dados
-                        divId.innerHTML = tupla.idUsuario || "N/A";
-                        divNome.innerHTML = tupla.nomeUsuario || "N/A";
-                        divHoras.innerHTML = tupla.horasTrabalhadas || "0"; // Exibe "0" se não houver dados
-                        divTarefas.innerHTML = tupla.tarefasConcluidas || "0"; // Exibe "0" se não houver dados
+                        divId.innerHTML = i + 1 || "N/A";
+                        divNome.innerHTML = tupla.usuario_nome || "N/A";
+                        divEssenciais.innerHTML = tupla.tarefas_essenciais || "0"; // Exibe "0" se não houver dados
+                        divTarefas.innerHTML = tupla.total_tarefas || "0"; // Exibe "0" se não houver dados
 
                         // Monta a linha com os dados
                         divLista.appendChild(divId);
                         divLista.appendChild(divNome);
-                        divLista.appendChild(divHoras);
+                        divLista.appendChild(divEssenciais);
                         divLista.appendChild(divTarefas);
 
                         // Evento de clique para gerenciar o usuário
                         divLista.addEventListener("click", function () {
-                            gerenciarUsuario(tupla.idUsuario);
+                            // gerenciarUsuario(tupla.usuario_id);
                         });
 
                         // Adiciona a linha à lista

@@ -1,8 +1,8 @@
 
 function salvarExpediente() {
-  window.location = "dash_Gerenciamento_Operacao.html"
-  alert("FOI")
+ 
     contabilizaTarefas()
+
 }
 
 function loadTimerData() {
@@ -49,9 +49,13 @@ function loadTimerData() {
     localStorage.setItem('timerTime', `${hours}:${minutes}:${seconds}`);
 
     if (hours == 8 || minutes == 8 || seconds == 30 ) {
+
       salvarExpediente()
+     
     }
   }
+
+  
   
   // Função para atualizar o display do tempo
   function updateDisplay() {
