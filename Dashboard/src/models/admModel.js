@@ -5,7 +5,9 @@ function getMaquinasDataRAM(idEmpresaUsuario) {
         SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
         FROM maquina m 
         JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 2
+        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} 
+        AND c.fkRecursoCaptura = 2
+        AND c.dtCriacaoCaptura >= DATE_SUB(CURDATE(), INTERVAL 15 DAY)
         ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -17,7 +19,9 @@ function getMaquinasDataCPU(idEmpresaUsuario) {
         SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
         FROM maquina m 
         JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 1
+        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario}
+        AND c.fkRecursoCaptura = 1
+        AND c.dtCriacaoCaptura >= DATE_SUB(CURDATE(), INTERVAL 15 DAY)
         ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -29,7 +33,9 @@ function getMaquinasDataREDE(idEmpresaUsuario) {
         SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
         FROM maquina m 
         JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 4
+        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario}
+        AND c.fkRecursoCaptura = 4
+        AND c.dtCriacaoCaptura >= DATE_SUB(CURDATE(), INTERVAL 15 DAY)
         ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

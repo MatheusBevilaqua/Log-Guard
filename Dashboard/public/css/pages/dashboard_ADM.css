@@ -261,8 +261,32 @@
     overflow-x: unset;
 }
 
-.sessao-adm-pointer-rede-sessao3,
-.sessao-adm-pointer-cpu-sessao3,
+.sessao-adm-pointer-rede-sessao3{
+    height: 70%;
+    width: 10%;
+    max-width: 10%;
+    border-radius: 10px;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    background-color: #d3d3d3;
+    align-items: center;
+}
+
+
+.sessao-adm-pointer-cpu-sessao3{
+height: 70%;
+    width: 10%;
+    max-width: 10%;
+    border-radius: 10px;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    background-color: #442BB3;
+    align-items: center;
+    color: white;
+}
+
 .sessao-adm-pointer-ram-sessao3 {
     height: 70%;
     width: 10%;
@@ -275,8 +299,31 @@
     align-items: center;
 }
 
-.sessao-adm-pointer-disco-sessao2,
-.sessao-adm-pointer-cpu-sessao2,
+.sessao-adm-pointer-disco-sessao2{
+height: 75%;
+width: 15%;
+max-width: 10%;
+border-radius: 10px;
+border: none;
+color: #000000;
+cursor: pointer;
+background-color: #d3d3d3;
+align-items: center;
+justify-content: center;
+}
+.sessao-adm-pointer-cpu-sessao2{
+height: 75%;
+width: 15%;
+max-width: 10%;
+border-radius: 10px;
+border: none;
+color: #000000;
+cursor: pointer;
+background-color: #442BB3;
+align-items: center;
+justify-content: center;
+color: white;
+}
 .sessao-adm-pointer-ram-sessao2 {
     height: 75%;
     width: 15%;
@@ -462,22 +509,23 @@
         justify-content: space-evenly;
 
 
-        .sessao1-adm_frame1_texto_semana_p1 {
+        #sessao-2dias-antes {
             color: #7c7c7c;
-            font-size: 14px;
+            font-size: 16px;
         }
+
     }
 
 
 
-    .sessao1-adm_frame1_texto_semana_p2 {
+    #sessao-1dias-antes {
         color: #3d3d3d;
-        font-size: 14px;
+        font-size: 17px;
     }
 
-    .sessao1-adm_frame1_texto_semana_p3 {
+    #sessao-hoje {
         color: #0f0f0f;
-        font-size: 14px;
+        font-size: 18px;
     }
 }
 

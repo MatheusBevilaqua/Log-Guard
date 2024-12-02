@@ -77,23 +77,7 @@ VALUES
 (2, 'Funcionario 21A', 'funcionario21a@empresaa.com', 'senha123', 'ADMINISTRADOR'),
 (2, 'Funcionario 22A', 'funcionario22a@empresaa.com', 'senha123', 'COMUM'),
 (2, 'Funcionario 23A', 'funcionario23a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 24A', 'funcionario24a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 25A', 'funcionario25a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 26A', 'funcionario26a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 27A', 'funcionario27a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 28A', 'funcionario28a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 29A', 'funcionario29a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 30A', 'funcionario30a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 31A', 'funcionario31a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 32A', 'funcionario32a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 33A', 'funcionario33a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 34A', 'funcionario34a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 35A', 'funcionario35a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 36A', 'funcionario36a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 37A', 'funcionario37a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 38A', 'funcionario38a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 39A', 'funcionario39a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 40A', 'funcionario40a@empresaa.com', 'senha123', 'COMUM');
+(2, 'Funcionario 24A', 'funcionario24a@empresaa.com', 'senha123', 'COMUM');
 
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
@@ -133,8 +117,6 @@ rua_localidade VARCHAR(255),
 parametro_perda_pacotes DOUBLE,
 parametro_taxa_uso_bl DECIMAL (6,3) -- bl é Banda Larga 
 );
-
-
 
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
@@ -228,7 +210,7 @@ fkrecurso INT,
 FOREIGN KEY (fkrecurso) REFERENCES recurso(idRecurso),
 parametro DECIMAL (8,5)
 );
-
+select * from maquinaRecurso;
 
 INSERT INTO maquinaRecurso VALUES(default, 1, 65.0);
 INSERT INTO maquinaRecurso VALUES(default, 2, 70.0);
@@ -258,3 +240,27 @@ qtdDesejavel INT,
 qtdImportante INT, 
 qtdEssencial INT
 );
+
+CREATE TABLE ProbabilidadeRiscos (
+idProbabilidade INT PRIMARY KEY auto_increment,
+dataRegistro DATE,
+fkRecurso INT,
+probabilidade DECIMAL(5,2),
+FOREIGN KEY (fkRecurso) REFERENCES recurso(idRecurso)
+);
+
+SELECT * FROM ProbabilidadeRiscos;
+
+SELECT fkRecurso, probabilidade, DATE(dataRegistro) AS data
+FROM probabilidadeRiscos
+WHERE fkRecurso = 1
+AND dataRegistro >= DATE_SUB(CURDATE(), INTERVAL 7 DAY);
+
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (9, 2, 2, 70,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (8, 2, 2, 20,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (7, 1, 1, 40,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (6, 1, 1, 80,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 4, 1, 100,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 4, 2, 20, 1,'2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 3, 1, 100,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 3, 2, 20, 1,'2024-12-01 10:00:00');
