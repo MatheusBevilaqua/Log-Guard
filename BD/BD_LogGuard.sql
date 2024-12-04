@@ -1,7 +1,11 @@
 CREATE DATABASE logGuard;
 USE logGuard;
 
-Insert into expediente values (default, '00:08:00');
+CREATE TABLE expediente(
+idExpediente INT PRIMARY KEY AUTO_INCREMENT,
+duracaoExpediente TIME, 
+dataExpediente DATE
+);
 
 CREATE TABLE empresa(
 idEmpresa INT PRIMARY KEY auto_increment,
@@ -9,20 +13,8 @@ nomeEmpresa VARCHAR(225),
 emailInstitucional VARCHAR(225),
 emailResponsavel VARCHAR(225),
 cnpj CHAR(18),
-cep CHAR(9),
-fkExpediante INT,
-FOREIGN KEY empresa(fkExpediante) REFERENCES expediente(idExpediente)
+cep CHAR(9)
 );
-
-CREATE VIEW visualizar_empresas AS SELECT * FROM empresa;
-
-insert into empresa VALUES(default,'LOG GUARD', 'log.guard@sptech.school','log.guard@sptech.school','10101010101010','101010101', 1);
-
-INSERT INTO empresa (nomeEmpresa, emailInstitucional, emailResponsavel) 
-VALUES 
-('Empresa A', 'contato@empresaa.com', 'responsavelA@empresaa.com'),
-('Empresa B', 'contato@empresab.com', 'responsavelB@empresab.com'),
-('Empresa C', 'contato@empresac.com', 'responsavelC@empresac.com');
 
 CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY auto_increment,
@@ -35,13 +27,26 @@ tipoPerfilUsuario VARCHAR(13),
 CONSTRAINT CHK_TIPO CHECK (tipoPerfilUsuario ='ADMINISTRADOR' OR tipoPerfilUsuario ='LOG_GUARD' OR tipoPerfilUsuario ='COMUM' OR tipoPerfilUsuario = 'DESATIVADO')
 );
 
-CREATE TABLE expediente(
-idExpediente INT PRIMARY KEY auto_increment,
-fkFuncionario INT,
-FOREIGN KEY (fkFuncionario) REFERENCES usuario(idUsuario),
-duracaoExpediente TIME, 
-dataExpediente DATE
-);
+CREATE VIEW visualizar_empresas AS SELECT * FROM empresa;
+
+ALTER TABLE expediente ADD COLUMN fkFuncionario INT,
+ADD CONSTRAINT fkFuncionario FOREIGN KEY (fkFuncionario)
+REFERENCES usuario(idUsuario);
+
+ALTER TABLE empresa ADD COLUMN fkExpediente INT,
+ADD CONSTRAINT fkExpediente FOREIGN KEY (fkExpediente)
+REFERENCES expediente(idExpediente);
+
+INSERT INTO expediente (duracaoExpediente, dataExpediente) VALUES ('08:00:00', '2024-12-04');
+
+INSERT INTO empresa (nomeEmpresa, emailInstitucional, emailResponsavel, cnpj, cep, fkExpediente) 
+VALUES ('LOG GUARD', 'log.guard@sptech.school', 'log.guard@sptech.school', '10101010101010', '101010101',1);
+
+INSERT INTO empresa (nomeEmpresa, emailInstitucional, emailResponsavel) 
+VALUES 
+('Empresa A', 'contato@empresaa.com', 'responsavelA@empresaa.com'),
+('Empresa B', 'contato@empresab.com', 'responsavelB@empresab.com'),
+('Empresa C', 'contato@empresac.com', 'responsavelC@empresac.com');
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -62,42 +67,7 @@ VALUES
 (2, 'Funcionario 6A', 'funcionario6a@empresaa.com', 'senha123', 'COMUM'),
 (2, 'Funcionario 7A', 'funcionario7a@empresaa.com', 'senha123', 'COMUM'),
 (2, 'Funcionario 8A', 'funcionario8a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 9A', 'funcionario9a@empresaa.com', 'senha123senha123', 'ADMINISTRADOR'),
-(2, 'Funcionario 10A', 'funcionario10a@empresaa.com', 'senha123', 'COMUM');
-
-INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
-VALUES 
-(2, 'Funcionario 11A', 'funcionario11a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 12A', 'funcionario12a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 13A', 'funcionario13a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 14A', 'funcionario14a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 15A', 'funcionario15a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 16A', 'funcionario16a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 17A', 'funcionario17a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 18A', 'funcionario18a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 19A', 'funcionario19a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 20A', 'funcionario20a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 21A', 'funcionario21a@empresaa.com', 'senha123', 'ADMINISTRADOR'),
-(2, 'Funcionario 22A', 'funcionario22a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 23A', 'funcionario23a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 24A', 'funcionario24a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 25A', 'funcionario25a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 26A', 'funcionario26a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 27A', 'funcionario27a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 28A', 'funcionario28a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 29A', 'funcionario29a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 30A', 'funcionario30a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 31A', 'funcionario31a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 32A', 'funcionario32a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 33A', 'funcionario33a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 34A', 'funcionario34a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 35A', 'funcionario35a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 36A', 'funcionario36a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 37A', 'funcionario37a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 38A', 'funcionario38a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 39A', 'funcionario39a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 40A', 'funcionario40a@empresaa.com', 'senha123', 'COMUM');
-
+(2, 'Funcionario 9A', 'funcionario9a@empresaa.com', 'senha123senha123', 'ADMINISTRADOR');
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -137,8 +107,6 @@ parametro_perda_pacotes DOUBLE,
 parametro_taxa_uso_bl DECIMAL (6,3) -- bl é Banda Larga 
 );
 
-
-
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
 fkEmpresaMaquina INT,
@@ -150,9 +118,21 @@ modeloCPU VARCHAR(45),
 capacidadeRAM DECIMAL(8,3),
 disco INT,
 fkLocalidadeMaquina INT,
- 
 MACAdress VARCHAR(45)
 ); 
+
+INSERT INTO maquina (fkEmpresaMaquina, nomeMaquina, modeloCPU, capacidadeRAM, disco, fkLocalidadeMaquina, MACAdress) VALUES
+(3, 'Servidor Central', 'Intel Xeon E5', 64.000, 2000, 1, '00:1A:2B:3C:4D:5E'),
+(3, 'Estação Trabalho 01', 'Intel i7 8700', 16.000, 500, 1, '00:1A:2B:3C:4D:5F'),
+(3, 'Estação Trabalho 02', 'AMD Ryzen 5 3600', 16.000, 500, 1, '00:1A:2B:3C:4D:60'),
+(3, 'Servidor Backup', 'Intel Xeon E5', 32.000, 1000, 1, '00:1A:2B:3C:4D:61'),
+(3, 'Estação Design', 'Intel i9 9900K', 32.000, 1000, 2, '00:1A:2B:3C:4D:62'),
+(3, 'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512, 2, '00:1A:2B:3C:4D:63'),
+(3, 'Estação Vendas', 'Intel i5 10400', 8.000, 256, 2, '00:1A:2B:3C:4D:64'),
+(3, 'Estação Financeiro', 'Intel i5 9400', 8.000, 256, 3, '00:1A:2B:3C:4D:65'),
+(3, 'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256, 3, '00:1A:2B:3C:4D:66'),
+(3, 'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, 3, '00:1A:2B:3C:4D:67');
+
 
 CREATE VIEW view_localidades_maquinas AS
 SELECT 
@@ -190,18 +170,6 @@ primary key(idMaquinaUsuario,fkUsuarioAtribuicao,fkMaquinAtribuicao)
 );
 
 
-INSERT INTO maquina (fkEmpresaMaquina, fkUsuarioMaquina, nomeMaquina, modeloCPU, capacidadeRAM, disco, fkLocalidadeMaquina, MACAdress) VALUES
-(3, 47, 'Servidor Central', 'Intel Xeon E5', 64.000, 2000, 1, '00:1A:2B:3C:4D:5E'),
-(3, 48, 'Estação Trabalho 01', 'Intel i7 8700', 16.000, 500, 1, '00:1A:2B:3C:4D:5F'),
-(3, 49, 'Estação Trabalho 02', 'AMD Ryzen 5 3600', 16.000, 500, 1, '00:1A:2B:3C:4D:60'),
-(3, 50, 'Servidor Backup', 'Intel Xeon E5', 32.000, 1000, 1, '00:1A:2B:3C:4D:61'),
-(3, 51, 'Estação Design', 'Intel i9 9900K', 32.000, 1000, 2, '00:1A:2B:3C:4D:62'),
-(3, 52, 'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512, 2, '00:1A:2B:3C:4D:63'),
-(3, 53, 'Estação Vendas', 'Intel i5 10400', 8.000, 256, 2, '00:1A:2B:3C:4D:64'),
-(3, 54, 'Estação Financeiro', 'Intel i5 9400', 8.000, 256, 3, '00:1A:2B:3C:4D:65'),
-(3, 55, 'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256, 3, '00:1A:2B:3C:4D:66'),
-(3, 56, 'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, 3, '00:1A:2B:3C:4D:67');
-
 
 CREATE TABLE relatorio(
 idRelatorio INT PRIMARY KEY auto_increment,
@@ -232,12 +200,10 @@ FOREIGN KEY (fkrecurso) REFERENCES recurso(idRecurso),
 parametro DECIMAL (8,5)
 );
 
-
 INSERT INTO maquinaRecurso VALUES(default, 1, 65.0);
 INSERT INTO maquinaRecurso VALUES(default, 2, 70.0);
 INSERT INTO maquinaRecurso VALUES(default, 3, 80.0);
 INSERT INTO maquinaRecurso VALUES(default, 4, 100.0);
-
 
 -- MUDAR ISSO PARA TERCEIRA SPRINT, TANTO A TABELA maquinaRecurso quanto a tabela captura pedem fk da máquina. o que acontece se eles forem diferentes?????
 CREATE TABLE captura(
@@ -294,6 +260,14 @@ ORDER BY tarefa.qtdEssencial DESC
 LIMIT 1; 
 
 
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (9, 2, 2, 70,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (8, 2, 2, 20,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (7, 1, 1, 40,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (6, 1, 1, 80,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 4, 1, 100,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 4, 2, 20, 1,'2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 3, 1, 100,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 3, 2, 20, 1,'2024-12-01 10:00:00');
 
 SELECT tarefas_essenciais FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC LIMIT 1;
 SELECT total_tarefas FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC;
