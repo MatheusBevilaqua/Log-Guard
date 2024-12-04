@@ -15,10 +15,6 @@ router.post("/getMaquinasDataREDE", function (req, res) {
     admController.getMaquinasDataREDE(req, res);
 });
 
-router.post("/getMaqemriscosemana/:idEmpresaUsuario", function (req, res) {
-    admController.getMaqemriscosemana(req, res);
-});
-
 router.post("/getAlertaSemana", function (req, res) {
     admController.getAlertaSemana(req, res);
 });
@@ -29,6 +25,18 @@ router.post("/getRiscoSemanal/:idEmpresaUsuario", function (req, res) {
 
 router.post("/getAlertasPorDia", function (req, res) {
     admController.getAlertasPorDia(req, res);
+});
+
+router.get("/getProbabilidadeCPU", function (req, res) {
+    admController.getProbabilidadeCPU(req, res);
+});
+
+router.get("/getProbabilidadeRAM", function (req, res) {
+    admController.getProbabilidadeRAM(req, res);
+});
+
+router.get("/getProbabilidadeDISCO", function (req, res) {
+    admController.getProbabilidadeDISCO(req, res);
 });
 
 

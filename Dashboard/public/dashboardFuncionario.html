@@ -2,500 +2,445 @@
 <html lang="ptbr">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Funcionario</title>
-  <link rel="stylesheet" href="./css/main.css">
-  <link rel="stylesheet" href="css/partials/SideBar.css">
-  <script src="js/sessao.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Funcionario</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/partials/SideBar.css">
+    <script src="js/sessao.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="validarCargo();validarSessao()">
+<body onload="validarCargo();validarSessao(); visualizarMaquinas();">
 
-  <section class="page-dash">
-    <nav id="sidebar">
-      <div id="sidebar_content">
+    <section class="page-dash">
+        <nav id="sidebar">
+            <div id="sidebar_content">
+                <div id="user">
+                    <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg"
+                        id="user_avatar" alt="Avatar">
 
-        <li class="side_itemLog active" style="cursor: none;">
-          <a>
-            <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
-            <span class="item-description">
-              <b style="color: #442BB3; margin-left: 15px;"> Log Guard </b>
-            </span>
-          </a>
-        </li>
-
-
-        <div id="user">
-          <p id="user_infos">
-            <span style="color: black;" class="item-descriptionAtivo"> Olá,
-              <span style="color: #442BB3;" class="item-description" id="b_usuario">
-                Jon Doe
-              </span>
-            </span>
-            <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
-              Lorem Ipsum
-            </span>
-          </p>
-        </div>
-
-        <ul id="side_items">
-
-          <li class="side_item active">
-            <a href="dashboardFuncionario.html">
-              <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
-              <span class="item-descriptionAtivo">
-                <b style="color: aliceblue;"> Visão Geral </b>
-              </span>
-            </a>
-          </li>
-
-          <li class="side_item">
-            <a href="relatorios.html">
-              <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> Relatórios </b>
-              </span>
-            </a>
-          </li>
-
-          <li class="side_item">
-            <a href="gerenciar-maquina.html">
-              <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> Empresas </b>
-              </span>
-            </a>
-          </li>
-
-          <li class="side_item">
-            <a href="gerenciar-usuario-func.html">
-              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> FeedBacks </b>
-              </span>
-            </a>
-          </li>
-
-          <li class="side_item">
-            <a href="dash_Gerenciamento_Operacao.html">
-              <i> <img src="img/engrenagem_Operacao.png" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> Operações </b>
-              </span>
-            </a>
-          </li>
-
-
-          <li>
-            <div class="counter">
-              <span id="counter" style="color: black;">00:00:00</span>
-            </div>
-          </li>
+                    <p id="user_infos">
+                        <span class="item-description" id="b_usuario">
+                        </span>
+                        <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+                            Lorem Ipsum
+                        </span>
+                    </p>
 
 
 
-          <li class="side_item">
-            <a href="#">
-              <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
-              <span class="item-description">
-                <b> Ajuda </b>
-              </span>
-            </a>
-          </li>
-        </ul>
+                </div>
 
-        <button id="open_btn">
-          <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
-        </button>
-      </div>
+                <ul id="side_items">
+                    <li class="side_item active">
+                        <a style="cursor: auto;">
+                            <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon"
+                                    style="height: 40px; width: 40px;"></i>
+                            <span class="item-description">
+                                <b style="color: white;"> LOG GUARD </b>
+                            </span>
+                        </a>
+                    </li>
 
-      <div id="logout">
-        <button id="logout_btn" onclick="sair()">
-          <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
-          <span class="item-description">
-            Sair
-          </span>
-        </button>
-      </div>
-    </nav>
+                    <li class="side_item">
+                        <a href="dashboardFuncionario.html">
+                            <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description">
+                                <b> Visão Geral </b>
+                            </span>
+                        </a>
+                    </li>
 
+                    <li class="side_item">
+                        <a href="relatorios.html">
+                            <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Relatórios </b>
+                            </span>
+                        </a>
+                    </li>
 
-    <div class="main-dash-funcionarios">
-      <div class="alerta-funcionario">
-        <h3>Quantidade de irregularidades por componente (todas as máquinas):</h3>
-        <div class="tempo-real-func">
+                    <li class="side_item">
+                        <a href="#">
+                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description">
+                                <b> Ajuda </b>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
 
-          <p><b>CPUs:</b></p>
-          <p class="red"><b>3</b></p>
-          <p><b>|</b></p>
-          <p><b>RAMs:</b></p>
-          <p class="red"><b>6</b></p>
-          <p><b>|</b></p>
-          <p><b>DISCO(s):</b></p>
-          <p class="green"><b>0</b></p>
-          <p><b>|</b></p>
-          <p><b>REDE(s):</b></p>
-          <p class="red"><b>1</b></p>
-        </div>
-      </div>
-
-      <div class="div-grafico-funcionario">
-        <div class="barra-titulo-funcionario">
-          <a href="#box-consumo"> ← Visualizar consumo de componentes</a>
-          <a href="#maquinas-risco"> ← Visualizar máquinas em risco</a>
-          <a href="#listagem-logs"> ← Visualizar Logs</a>
-
-        </div>
-        <div class="div-todos-graficos-func">
-
-          <div class="box-dos-graficos1">
-            <div id="box-consumo" class="grafico-consumo-componentes">
-              <h2>Gráfico de consumo de componentes</h2>
+                <button id="open_btn">
+                    <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+                </button>
             </div>
 
-            <div class="box-consumo">
-              <div class="box-mychart">
-                <canvas id="Chart"></canvas>
-              </div>
+            <div id="logout">
+                <button id="logout_btn" onclick="sair()">
+                    <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                        Sair
+                    </span>
+                </button>
             </div>
-          </div>
+        </nav>
 
-          <!-- Script para o Chart.js -->
-          <script>
-            var consumo = document.getElementById('Chart').getContext('2d');
-            var myChart = new Chart(consumo, {
-              type: 'bar',
-              data: {
-                labels: ['CPU', 'RAM', 'DISCO', 'REDE'],
-                datasets: [{
-                  label: 'Alertas',
-                  data: [30, 50, 30, 50],
-                  backgroundColor: [
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(153, 102, 255, 0.2)'
-                  ],
-                  borderColor: [
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(153, 102, 255, 1)'
-                  ],
-                  borderWidth: 1
-                }]
-              },
-              options: {
-                scales: {
-                  y: {
+        <div class="main-dash-funcionarios">
+            <div class="alerta-funcionario">
+                <h3>Quantidade de irregularidades por componente (todas as máquinas):</h3>
+                <div class="tempo-real-func">
+
+                    <p><b>CPUs:</b></p>
+                    <p class="red"><b>x/y</b></p>
+                    <p><b>|</b></p>
+                    <p><b>RAMs:</b></p>
+                    <p class="red"><b>x/y</b></p>
+                    <p><b>|</b></p>
+                    <p><b>DISCO(s):</b></p>
+                    <p class="green"><b>x/y</b></p>
+                    <p><b>|</b></p>
+                    <p><b>REDE(s):</b></p>
+                    <p class="red"><b>mbyts</b></p>
+                </div>
+            </div>
+
+            <div class="div-grafico-funcionario">
+                    <div class="barra-titulo-funcionario">
+                       <a href="#box-consumo"> ← Visualizar consumo de componentes por dia</a>
+                       <a href="#maquinas-risco"> ← Visualizar servidores em estado crítico</a>
+                       <a href="#listagem-logs"> ← Visualizar Logs</a>
+                    </div>
+
+                <div class="div-todos-graficos-func">
+                    
+                    <div class="box-dos-graficos2">
+                        <div id="maquinas-risco" class="grafico-consumo-componentes">
+                          <h2>Servidores em estado Crítico</h2>
+                          <h4 style="color: #BDBABB;">servidores que estão com o uso de componentes perto de sua capacidade total</h4>
+                        </div>
+
+                        <div id="div-listas-funcionario" class="div-listas-funcionario">
+
+                        <div class="listas-funcionario-logs-dashfunc">
+
+                        <div class="dash-func-riscos">
+                        <div class="titulos-func-maquinasrisco">
+                        <div class="coluna-func">ID</div>
+                        <div class="coluna-func">Máquina</div>
+                        <div class="coluna-func">Localidade</div>
+                        <div class="coluna-func">CPU</div>
+                        <div class="coluna-func">RAM</div>
+                        <div class="coluna-func">DISCO</div>
+                        <div class="coluna-func">Uso Banda-Larga</div>
+                    </div>
+
+                    <div class="linha-func">
+                        <img src="./img/Line1cadastro.png" alt="">
+                        <div class="geren-dados" id="geren-dados">
+                    </div>
+
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="box-dos-graficos1">
+                    <div id="box-consumo" class="grafico-consumo-componentes">
+                      <h2>Gráfico de consumo de componentes por dia</h2>
+                    </div>
+
+                    <div class="box-consumo">
+                    <div class="box-mychart">
+                    <canvas id="Chart"></canvas>
+                    </div>
+                    </div>
+                    </div>
+
+                    <canvas id="barChart"></canvas>
+                    <!-- Script para o Chart.js -->
+                    <script>
+
+                        // Passo 2: Configurar os Dados do Gráfico
+                    const ctx = document.getElementById('barChart').getContext('2d');
+                    const data = {
+                    labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+                    datasets: [{
+                    label: 'Alertas',
+                    data: [4, 1, 8, 1, 3, 2, 0],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                    }]
+                    };
+
+                        // Passo 3: Configurar o Gráfico
+                    const config = {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                    scales: {
+                    y: {
                     beginAtZero: true
-                  }
-                }
-              }
-            });
-          </script>
+                    }
+                    }
+                    },
+                    plugins: [{
+                    beforeDraw: (chart, args, options) => {
+                    const ctx = chart.ctx;
+                    const xAxis = chart.scales.x;
+                    const yAxis = chart.scales.y;
+                    const ablineY = 3; // Defina a posição da linha de referência
 
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.moveTo(xAxis.left, yAxis.getPixelForValue(ablineY));
+                    ctx.lineTo(xAxis.right, yAxis.getPixelForValue(ablineY));
+                    ctx.strokeStyle = 'red';
+                    ctx.stroke();
+                    ctx.restore();
+                    }
+                    }]
+                    };
 
-          <!-- listagens -->
+                    // Passo 4: Criar o Gráfico
+                    new Chart(ctx, config);
+                    </script>
 
-          <div class="box-dos-graficos2">
-            <div id="maquinas-risco" class="grafico-consumo-componentes">
-              <h2>Máquinas em risco</h2>
-            </div>
-
-
-            <div id="div-listas-funcionario" class="div-listas-funcionario">
-
-              <div class="listas-funcionario-logs-dashfunc">
-
-                <div class="dash-func-riscos">
-                  <div class="titulos-func-maquinasrisco">
-                    <div class="coluna-func">ID</div>
-                    <div class="coluna-func">Máquina</div>
-                    <div class="coluna-func">Localidade</div>
-                    <div class="coluna-func">CPU</div>
-                    <div class="coluna-func">RAM</div>
-                    <div class="coluna-func">DISCO</div>
-                    <div class="coluna-func">Uso Banda-Larga</div>
-                  </div>
-                  <div class="linha-func">
-                    <img src="./img/Line1cadastro.png" alt="">
-                  </div>
-                  <div class="table-dash-ADM">
-                    <div class="func-dados-atribuicao">
-                      <div class="dados-func-atribuicao-maquinasrisco">
-                        <div class="coluna-func-dashfunc">102</div>
-                        <div class="coluna-func-dashfunc">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-dashfunc">DATACENTER 5</div>
-                        <div class="coluna-func-dashfunc">80%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">12%</div>
-                      </div>
-                      <div class="dados-func-atribuicao-maquinasrisco">
-                        <div class="coluna-func-dashfunc">102</div>
-                        <div class="coluna-func-dashfunc">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-dashfunc">DATACENTER 5</div>
-                        <div class="coluna-func-dashfunc">80%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">12%</div>
-
-                      </div>
-                      <div class="dados-func-atribuicao-maquinasrisco">
-                        <div class="coluna-func-dashfunc">102</div>
-                        <div class="coluna-func-dashfunc">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-dashfunc">DATACENTER 5</div>
-                        <div class="coluna-func-dashfunc">80%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">12%</div>
-
-                      </div>
-                      <div class="dados-func-atribuicao-maquinasrisco">
-                        <div class="coluna-func-dashfunc">102</div>
-                        <div class="coluna-func-dashfunc">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-dashfunc">DATACENTER 5</div>
-                        <div class="coluna-func-dashfunc">80%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">12%</div>
-
-                      </div>
-                      <div class="dados-func-atribuicao-maquinasrisco">
-                        <div class="coluna-func-dashfunc">102</div>
-                        <div class="coluna-func-dashfunc">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-dashfunc">DATACENTER 5</div>
-                        <div class="coluna-func-dashfunc">80%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">12%</div>
-
-                      </div>
-                      <div class="dados-func-atribuicao-maquinasrisco">
-                        <div class="coluna-func-dashfunc">102</div>
-                        <div class="coluna-func-dashfunc">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-dashfunc">DATACENTER 5</div>
-                        <div class="coluna-func-dashfunc">80%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">12%</div>
-
-                      </div>
-                      <div class="dados-func-atribuicao-maquinasrisco">
-                        <div class="coluna-func-dashfunc">102</div>
-                        <div class="coluna-func-dashfunc">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-dashfunc">DATACENTER 5</div>
-                        <div class="coluna-func-dashfunc">80%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">12%</div>
-
-                      </div>
-                      <div class="dados-func-atribuicao-maquinasrisco">
-                        <div class="coluna-func-dashfunc">102</div>
-                        <div class="coluna-func-dashfunc">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-dashfunc">DATACENTER 5</div>
-                        <div class="coluna-func-dashfunc">80%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">12%</div>
-
-                      </div>
-                      <div class="dados-func-atribuicao-maquinasrisco">
-                        <div class="coluna-func-dashfunc">102</div>
-                        <div class="coluna-func-dashfunc">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-dashfunc">DATACENTER 5</div>
-                        <div class="coluna-func-dashfunc">80%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">12%</div>
-
-                      </div>
-                      <div class="dados-func-atribuicao-maquinasrisco">
-                        <div class="coluna-func-dashfunc">102</div>
-                        <div class="coluna-func-dashfunc">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-dashfunc">DATACENTER 5</div>
-                        <div class="coluna-func-dashfunc">80%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">12%</div>
-
-                      </div>
-                      <div class="dados-func-atribuicao-maquinasrisco">
-                        <div class="coluna-func-dashfunc">102</div>
-                        <div class="coluna-func-dashfunc">DESKTOP-L776AUQ</div>
-                        <div class="coluna-func-dashfunc">DATACENTER 5</div>
-                        <div class="coluna-func-dashfunc">80%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">30%</div>
-                        <div class="coluna-func-dashfunc">12%</div>
-
-                      </div>
+                    <!-- listagens -->
+                    <div class="box-dos-graficos3">
+                    <div id="listagem-logs" class="grafico-consumo-componentes">
+                    <h2>Log's Máquinas em risco</h2>
+                    <h4 style="color: #BDBABB;">Listagem das máquinas que ficaram em estado de risco (nas últimas 72hrs)</h4>
                     </div>
-                  </div>
+                    <div id="div-listas-funcionario-2" class="div-listas-funcionario-2">
+                    <div class="dash-func-logs">
+                      <div class="titulos-func-logsfunc">
+                        <div class="coluna-geren">ID</div>
+                        <div class="coluna-geren">Nome</div>
+                        <div class="coluna-geren">CPU</div>
+                        <div class="coluna-geren">RAMs</div>
+                        <div class="coluna-geren">Disco</div>
+                        <div class="coluna-geren">Localidade</div>
+                        <div class="coluna-geren">Endereço MAC</div>
+                       </div>
+                    
+                    <div class="linha-geren">
+                        <img src="./img/Line1cadastro.png" alt="">
+                    </div>
+                    
+                    <div class="geren-dados-logs" id="geren-dados-logs">
+                    </div>
+                    </div>
+                    </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-
-
-
-          <div class="box-dos-graficos3">
-            <div id="listagem-logs" class="grafico-consumo-componentes">
-              <h2>Listagem de log's</h2>
-            </div>
-            <div id="div-listas-funcionario-2" class="div-listas-funcionario-2">
-              <div class="dash-func-logs">
-                <div class="titulos-func-logsfunc">
-                  <div class="coluna-func">ID</div>
-                  <div class="coluna-func">Conteúdo</div>
-                  <div class="coluna-func">Dado (%)</div>
-                  <div class="coluna-func">Métrica (%)</div>
-                  <div class="coluna-func">Data</div>
-                  <div class="coluna-func">Localidade</div>
-                </div>
-                <div class="linha-func">
-                  <img src="./img/Line1cadastro.png" alt="">
-                </div>
-                <div class="table-dash-ADM">
-                  <div class="func-dados-atribuicao">
-                    <div class="dados-func-atribuicao-dashfunc">
-                      <div class="coluna-func-atribuicao-adm">102</div>
-                      <div class="coluna-func-atribuicao-adm">RAM</div>
-                      <div class="coluna-func-atribuicao-adm">90%</div>
-                      <div class="coluna-func-atribuicao-adm">60%</div>
-                      <div class="coluna-func-atribuicao-adm">12/09/2024 13:59:00</div>
-                      <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao-dashfunc">
-                      <div class="coluna-func-atribuicao-adm">102</div>
-                      <div class="coluna-func-atribuicao-adm">RAM</div>
-                      <div class="coluna-func-atribuicao-adm">90%</div>
-                      <div class="coluna-func-atribuicao-adm">60%</div>
-                      <div class="coluna-func-atribuicao-adm">12/09/2024 13:59:00</div>
-                      <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao-dashfunc">
-                      <div class="coluna-func-atribuicao-adm">102</div>
-                      <div class="coluna-func-atribuicao-adm">RAM</div>
-                      <div class="coluna-func-atribuicao-adm">90%</div>
-                      <div class="coluna-func-atribuicao-adm">60%</div>
-                      <div class="coluna-func-atribuicao-adm">12/09/2024 13:59:00</div>
-                      <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao-dashfunc">
-                      <div class="coluna-func-atribuicao-adm">102</div>
-                      <div class="coluna-func-atribuicao-adm">RAM</div>
-                      <div class="coluna-func-atribuicao-adm">90%</div>
-                      <div class="coluna-func-atribuicao-adm">60%</div>
-                      <div class="coluna-func-atribuicao-adm">12/09/2024 13:59:00</div>
-                      <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao-dashfunc">
-                      <div class="coluna-func-atribuicao-adm">102</div>
-                      <div class="coluna-func-atribuicao-adm">RAM</div>
-                      <div class="coluna-func-atribuicao-adm">90%</div>
-                      <div class="coluna-func-atribuicao-adm">60%</div>
-                      <div class="coluna-func-atribuicao-adm">12/09/2024 13:59:00</div>
-                      <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao-dashfunc">
-                      <div class="coluna-func-atribuicao-adm">102</div>
-                      <div class="coluna-func-atribuicao-adm">RAM</div>
-                      <div class="coluna-func-atribuicao-adm">90%</div>
-                      <div class="coluna-func-atribuicao-adm">60%</div>
-                      <div class="coluna-func-atribuicao-adm">12/09/2024 13:59:00</div>
-                      <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao-dashfunc">
-                      <div class="coluna-func-atribuicao-adm">102</div>
-                      <div class="coluna-func-atribuicao-adm">RAM</div>
-                      <div class="coluna-func-atribuicao-adm">90%</div>
-                      <div class="coluna-func-atribuicao-adm">60%</div>
-                      <div class="coluna-func-atribuicao-adm">12/09/2024 13:59:00</div>
-                      <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao-dashfunc">
-                      <div class="coluna-func-atribuicao-adm">102</div>
-                      <div class="coluna-func-atribuicao-adm">RAM</div>
-                      <div class="coluna-func-atribuicao-adm">90%</div>
-                      <div class="coluna-func-atribuicao-adm">60%</div>
-                      <div class="coluna-func-atribuicao-adm">12/09/2024 13:59:00</div>
-                      <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao-dashfunc">
-                      <div class="coluna-func-atribuicao-adm">102</div>
-                      <div class="coluna-func-atribuicao-adm">RAM</div>
-                      <div class="coluna-func-atribuicao-adm">90%</div>
-                      <div class="coluna-func-atribuicao-adm">60%</div>
-                      <div class="coluna-func-atribuicao-adm">12/09/2024 13:59:00</div>
-                      <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao-dashfunc">
-                      <div class="coluna-func-atribuicao-adm">102</div>
-                      <div class="coluna-func-atribuicao-adm">RAM</div>
-                      <div class="coluna-func-atribuicao-adm">90%</div>
-                      <div class="coluna-func-atribuicao-adm">60%</div>
-                      <div class="coluna-func-atribuicao-adm">12/09/2024 13:59:00</div>
-                      <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
-                    </div>
-                    <div class="dados-func-atribuicao-dashfunc">
-                      <div class="coluna-func-atribuicao-adm">102</div>
-                      <div class="coluna-func-atribuicao-adm">RAM</div>
-                      <div class="coluna-func-atribuicao-adm">90%</div>
-                      <div class="coluna-func-atribuicao-adm">60%</div>
-                      <div class="coluna-func-atribuicao-adm">12/09/2024 13:59:00</div>
-                      <div class="coluna-func-atribuicao-adm">DATACENTER 5</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-
-
-          </div>
         </div>
-
-
-      </div>
-
-
-
-    </div>
-
-
-
-
-    </div>
+        </div>
+        </div>
+        </div>
 
 
 </body>
 
 </html>
-<script src="js/contador.js"></script>
-<script src="js/timer.js"></script>
 <script>
-  document.getElementById('open_btn').addEventListener('click', function () {
-    document.getElementById('sidebar').classList.toggle('open-sidebar');
-  });
+    document.getElementById('open_btn').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
+    });
 
-</script>
+    // Função para listar os logs das máquinas que entraram em estado de alerta
+    function visualizarMaquinas() {
+        fetch("/matheusgrafico/visualizarMaquinas", {
+            
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            
+            body: JSON.stringify({
+            idEmpresaMaquinaServer: idEmpresaUsuario
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-<script>
-  function sair() {
-    localStorage.removeItem('timerTime'); // Limpa o tempo armazenado
-    // Ação de logout
+                if (resposta.ok) {
+                   if (resposta.status == 204) {
+                   var lista = document.getElementById("dash-func-logs");
+                   var mensagem = document.createElement("span");
+                   mensagem.innerHTML = "Nenhuma máquina encontrada."
+                   throw "Nenhum resultado encontrada!!";
+                   }
+
+                  resposta.json().then(function (resposta) {
+                  console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                  var lista = document.getElementById("geren-dados-logs");
 
 
-    var url = "index.html";
-    window.open(url, "_self")
+                  for (let i = 0; i < resposta.length; i++) {
 
-  } 
+                  let tupla = resposta[i];
+                  var divLista = document.createElement("div");
+                  var divId = document.createElement("div");
+                  var divnome = document.createElement("div");
+                  var divCPU = document.createElement("div");
+                  var divRAM = document.createElement("div");
+                  var divDisco = document.createElement("div");
+                  var divLocalidade = document.createElement("div");
+                  var divMAC = document.createElement("div");
+
+                  divLista.className = "geren-dados-logs";
+                  divId.className = "coluna-geren";
+                  divnome.className = "coluna-geren";
+                  divCPU.className = "coluna-geren";
+                  divRAM.className = "coluna-geren";
+                  divDisco.className = "coluna-geren";
+                  divLocalidade.className = "coluna-geren";
+                  divMAC.className = "coluna-geren";
+
+                  divId.innerHTML = tupla.idMaquina;
+                  divnome.innerHTML = tupla.nomeMaquina;
+                  divCPU.innerHTML = tupla.modeloCPU;
+                  divRAM.innerHTML = tupla.capacidadeRAM;
+                  divDisco.innerHTML = tupla.disco;
+                  divLocalidade.innerHTML = tupla.localidade;
+                  divMAC.innerHTML = tupla.MACAdress;
+
+
+                  divLista.appendChild(divId);
+                  divLista.appendChild(divnome);
+                  divLista.appendChild(divCPU);
+                  divLista.appendChild(divRAM);
+                  divLista.appendChild(divDisco);
+                  divLista.appendChild(divLocalidade);
+                  divLista.appendChild(divMAC);
+
+
+                  let debounceTimeout;
+                  divLista.addEventListener("click", function () {
+                  if (debounceTimeout) {
+                  clearTimeout(debounceTimeout);
+                  }
+
+                  debounceTimeout = setTimeout(function () {
+                  gerenciarMaquina(tupla.idMaquina);
+                  }, 200);
+                  });
+
+
+                  lista.appendChild(divLista);
+                  }
+                  });
+
+                } else {
+                  throw ('Houve um erro na API!');
+                }
+            }).catch(function (resposta) {
+                console.error(resposta);
+            });
+    }
+
+
+    // Função para listar as maquinas que estão em estado criticos!
+    function buscarCritico() {
+        fetch("/matheusgrafico/buscarCritico", {
+            
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            
+            body: JSON.stringify({
+            idEmpresaMaquinaServer: idEmpresaUsuario
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                   if (resposta.status == 204) {
+                   var lista = document.getElementById("dash-func-logs");
+                   var mensagem = document.createElement("span");
+                   mensagem.innerHTML = "Nenhuma máquina encontrada."
+                   throw "Nenhum resultado encontrada!!";
+                   }
+
+                  resposta.json().then(function (resposta) {
+                  console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                  var lista = document.getElementById("geren-dados-logs");
+
+
+                  for (let i = 0; i < resposta.length; i++) {
+
+                  let tupla = resposta[i];
+                  var divLista = document.createElement("div");
+                  var divId = document.createElement("div");
+                  var divnome = document.createElement("div");
+                  var divLocalidade = document.createElement("div");
+                  var divCPU = document.createElement("div");
+                  var divRAM = document.createElement("div");
+                  var divDisco = document.createElement("div");
+                  var divBandaLarga = document.createElement("div");
+
+                  divLista.className = "geren-dados-logs";
+                  divId.className = "coluna-geren";
+                  divnome.className = "coluna-geren";
+                  divCPU.className = "coluna-geren";
+                  divRAM.className = "coluna-geren";
+                  divDisco.className = "coluna-geren";
+                  divLocalidade.className = "coluna-geren";
+                  divBandaLarga.className = "coluna-geren";
+
+                  divId.innerHTML = tupla.idMaquina;
+                  divnome.innerHTML = tupla.nomeMaquina;
+                  divCPU.innerHTML = tupla.modeloCPU;
+                  divRAM.innerHTML = tupla.capacidadeRAM;
+                  divDisco.innerHTML = tupla.disco;
+                  divLocalidade.innerHTML = tupla.localidade;
+                  divBandaLarga.innerHTML = tupla.MACAdress;
+
+
+                  divLista.appendChild(divId);
+                  divLista.appendChild(divnome);
+                  divLista.appendChild(divCPU);
+                  divLista.appendChild(divRAM);
+                  divLista.appendChild(divDisco);
+                  divLista.appendChild(divLocalidade);
+                  divLista.appendChild(divBandaLarga);
+
+
+                  let debounceTimeout;
+                  divLista.addEventListener("click", function () {
+                  if (debounceTimeout) {
+                  clearTimeout(debounceTimeout);
+                  }
+
+                  debounceTimeout = setTimeout(function () {
+                  gerenciarMaquina(tupla.idMaquina);
+                  }, 200);
+                  });
+
+
+                  lista.appendChild(divLista);
+                  }
+                  });
+
+                } else {
+                  throw ('Houve um erro na API!');
+                }
+            }).catch(function (resposta) {
+                console.error(resposta);
+            });
+    }
+
+    function sair() {
+        window.location.href = "index.html";
+    }
+    var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
+    var idMaquina = ""
 </script>

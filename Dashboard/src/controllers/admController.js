@@ -124,26 +124,6 @@ function getMaquinasDataREDE(req, res) {
 }
 
 
-
-function getMaqemriscosemana(req, res) {
-    const { idEmpresaUsuario } = req.body;
-    console.log("Chamada para getMaqemriscosemana com idEmpresaUsuario:", idEmpresaUsuario);
-
-    admModel.getMaqemriscosemana(idEmpresaUsuario)
-        .then((resultado) => {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(404).send("Nenhum dado encontrado para máquinas em risco na última semana.");
-            }
-        })
-        .catch((erro) => {
-            console.error("Erro ao buscar máquinas em risco:", erro);
-            res.status(500).json(erro);
-        });
-}
-
-
 function getAlertaSemana(req, res) {
     const { idEmpresaUsuario } = req.body;
     console.log("Chamada para getAlertaSemana com idEmpresaUsuario:", idEmpresaUsuario);
@@ -219,14 +199,84 @@ function getAlertasPorDia(req, res) {
 }
 
 
+function getProbabilidadeCPU(req, res) {
+    console.log("Chamada para getProbabilidadeCPU");
+
+    admModel.getProbabilidadeCPU()
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                const dadosFormatados = resultado.map(dado => {
+                    return {
+                        data: dado.data,
+                        probabilidade: parseFloat(dado.probabilidade)
+                    };
+                });
+                res.status(200).json(dadosFormatados);
+            } else {
+                res.status(404).send("Nenhum dado encontrado para probabilidade de uso da CPU na última semana.");
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro ao buscar dados de probabilidade de uso da CPU:", erro);
+            res.status(500).json(erro);
+        });
+}
+
+function getProbabilidadeRAM(req, res) {
+    console.log("Chamada para getProbabilidadeRAM");
+
+    admModel.getProbabilidadeRAM()
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                const dadosFormatados = resultado.map(dado => {
+                    return {
+                        data: dado.data,
+                        probabilidade: parseFloat(dado.probabilidade)
+                    };
+                });
+                res.status(200).json(dadosFormatados);
+            } else {
+                res.status(404).send("Nenhum dado encontrado para probabilidade de uso de RAM na última semana.");
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro ao buscar dados de probabilidade de uso da RAM:", erro);
+            res.status(500).json(erro);
+        });
+}
+
+function getProbabilidadeDISCO(req, res) {
+    console.log("Chamada para getProbabilidadeDISCO");
+
+    admModel.getProbabilidadeDISCO()
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                const dadosFormatados = resultado.map(dado => {
+                    return {
+                        data: dado.data,
+                        probabilidade: parseFloat(dado.probabilidade)
+                    };
+                });
+                res.status(200).json(dadosFormatados);
+            } else {
+                res.status(404).send("Nenhum dado encontrado para probabilidade de uso de DISCO na última semana.");
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro ao buscar dados de probabilidade de uso de DISCO:", erro);
+            res.status(500).json(erro);
+        });
+}
 
 
 
 
 
 module.exports = {
+    getProbabilidadeDISCO,
+    getProbabilidadeRAM,
+    getProbabilidadeCPU,
     getAlertaSemana,
-    getMaqemriscosemana,
     getRiscoSemanal,
     getMaquinasDataRAM,
     getMaquinasDataCPU,
