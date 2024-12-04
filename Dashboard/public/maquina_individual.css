@@ -1,0 +1,151 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background: var(--darkness-blue);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  transition: opacity 0.5s ease;
+}
+
+/* Estilo das KPIs */
+.kpi-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.kpi-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  /* padding: 20px; ALTERAÇÃO DO GABRIEL :) */
+  text-align: center;
+}
+
+.kpi-icon {
+  font-size: 30px;
+  color: #c73db1;
+  margin-bottom: 10px;
+}
+
+.kpi-info h3 {
+  font-size: 16px;
+  color: #333;
+}
+
+.kpi-info .value {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.kpi-info .update {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Estilo dos Gráficos */
+.charts-row {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  /* width: 55%; */
+  overflow: scroll;
+  position: relative;
+}
+
+.chart-box {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+.modal {
+  display: none; /* Oculta por padrão */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+}
+
+.modal-conteudo {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.fechar {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* Estilo do botão */
+#openModalBtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#openModalBtn:hover {
+  background-color: #45a049;
+}
+
+/* Estilo do modal */
+.modal {
+  display: none; /* Escondido por padrão */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Conteúdo do modal */
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  width: 50%;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Botão de fechar */
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+}
