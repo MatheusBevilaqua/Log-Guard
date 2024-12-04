@@ -12,4 +12,13 @@ router.post("/melhorDesempenho", function (req, res) {
 });
 
   
+router.post("/exibirGrafico", function (req, res) {
+  operacaoController.exibirGrafico(req, res);
+});
+
+router.get("/verRelatorio", function (req, res) {
+  operacaoController.verRelatorio(req, res);
+});
+
+
 module.exports = router;

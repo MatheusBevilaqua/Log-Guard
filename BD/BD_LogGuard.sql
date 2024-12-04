@@ -1,8 +1,6 @@
 CREATE DATABASE logGuard;
 USE logGuard;
 
-Insert into expediente values (default, '00:08:00');
-
 CREATE TABLE empresa(
 idEmpresa INT PRIMARY KEY auto_increment,
 nomeEmpresa VARCHAR(225),
@@ -42,6 +40,8 @@ FOREIGN KEY (fkFuncionario) REFERENCES usuario(idUsuario),
 duracaoExpediente TIME, 
 dataExpediente DATE
 );
+
+Insert into expediente values (default, '00:08:00');
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -262,7 +262,7 @@ qtdImportante INT,
 qtdEssencial INT
 );
 
-SELECT * FROM tarefa;
+SELECT * FROM usuario;
 
 
 
@@ -293,7 +293,29 @@ WHERE usuario.fkEmpresaUsuario = 4
 ORDER BY tarefa.qtdEssencial DESC 
 LIMIT 1; 
 
+select * FROM usuario;
 
 
 SELECT tarefas_essenciais FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC LIMIT 1;
 SELECT total_tarefas FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC;
+
+SELECT usuario_nome as nomeUsuario, tarefas_essenciais as tarefasEssenciais, id_empresa,
+total_tarefas - tarefas_essenciais as outrasTarefas FROM view_tarefasUsuarios 
+WHERE id_empresa = 4;
+
+
+insert into tarefa values 
+(default, 57, 15, 5, 30),
+(default, 58, 26, 15, 10);
+
+insert into tarefa values 
+(default, 59, 11, 19, 32),
+(default, 60, 20, 17, 14),
+(default, 61, 23, 20, 17),
+(default, 62, 30, 12, 20),
+(default, 63, 22, 10, 30),
+(default, 64, 25, 15, 33),
+(default, 65, 20, 12, 45),
+(default, 66, 35, 20, 15);
+
+
