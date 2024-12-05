@@ -5,7 +5,9 @@ function getMaquinasDataRAM(idEmpresaUsuario) {
         SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
         FROM maquina m 
         JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 2
+        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} 
+        AND c.fkRecursoCaptura = 2
+        AND c.dtCriacaoCaptura >= DATE_SUB(CURDATE(), INTERVAL 15 DAY)
         ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -17,7 +19,9 @@ function getMaquinasDataCPU(idEmpresaUsuario) {
         SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
         FROM maquina m 
         JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 1
+        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario}
+        AND c.fkRecursoCaptura = 1
+        AND c.dtCriacaoCaptura >= DATE_SUB(CURDATE(), INTERVAL 15 DAY)
         ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -29,36 +33,12 @@ function getMaquinasDataREDE(idEmpresaUsuario) {
         SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
         FROM maquina m 
         JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 4
+        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario}
+        AND c.fkRecursoCaptura = 4
+        AND c.dtCriacaoCaptura >= DATE_SUB(CURDATE(), INTERVAL 15 DAY)
         ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-
-function getMaqemriscosemana(idEmpresaUsuario) {
-    var instrucaoSql = `
-        SELECT 
-    m.nomeMaquina, 
-    l.nomeLocalidade AS Localidade, 
-    COUNT(c.idCaptura) AS quantidade_alertas
-FROM 
-    maquina m
-JOIN 
-    captura c ON m.idMaquina = c.fkMaquinaCaptura
-JOIN 
-    localidade l ON l.idLocalidade = m.fkLocalidadeMaquina
-WHERE 
-    c.tem_problema = TRUE 
-    AND c.dtCriacaoCaptura >= NOW() - INTERVAL 1 WEEK
-    AND m.fkEmpresaMaquina = ${idEmpresaUsuario}
-GROUP BY 
-    m.nomeMaquina, l.nomeLocalidade
-ORDER BY
-    quantidade_alertas DESC;`;
-
-    console.log("Executando SQL: \n", instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
@@ -131,13 +111,48 @@ function getAlertasPorDia(idEmpresaUsuario) {
 }
 
 
+function getProbabilidadeCPU() {
+    var instrucaoSql = `
+        SELECT probabilidade, 
+        DATE_FORMAT(dataRegistro, '%d/%m') AS data
+        FROM probabilidadeRiscos 
+        WHERE fkRecurso = 1 
+        AND dataRegistro >= DATE_SUB(CURDATE(), INTERVAL 7 DAY);
+    `;
+    console.log("Executando SQL: \n", instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
+function getProbabilidadeRAM() {
+    var instrucaoSql = `
+        SELECT probabilidade, 
+        DATE_FORMAT(dataRegistro, '%d/%m') AS data
+        FROM probabilidadeRiscos 
+        WHERE fkRecurso = 2 
+        AND dataRegistro >= DATE_SUB(CURDATE(), INTERVAL 7 DAY);
+    `;
+    console.log("Executando SQL: \n", instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
+function getProbabilidadeDISCO() {
+    var instrucaoSql = `
+        SELECT probabilidade, 
+        DATE_FORMAT(dataRegistro, '%d/%m') AS data
+        FROM probabilidadeRiscos 
+        WHERE fkRecurso = 3
+        AND dataRegistro >= DATE_SUB(CURDATE(), INTERVAL 7 DAY);
+    `;
+    console.log("Executando SQL: \n", instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 
 module.exports = {
+    getProbabilidadeRAM,
+    getProbabilidadeDISCO,
+    getProbabilidadeCPU,
     getRiscoSemanal,
-    getMaqemriscosemana,
     getMaquinasDataRAM,
     getMaquinasDataCPU,
     getMaquinasDataREDE,

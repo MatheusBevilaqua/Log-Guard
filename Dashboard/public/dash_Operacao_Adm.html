@@ -2,282 +2,543 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogGuard - Dashboard</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="css/partials/SideBar.css">
-    <link rel="stylesheet" href="css/pages/dash_Operacao_Adm.css">
-    <script src="js/sessao.js"></script>
-    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogGuard - Dashboard</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="css/partials/SideBar.css">
+  <link rel="stylesheet" href="css/pages/dash_Operacao_Adm.css">
+  <script src="js/sessao.js"></script>
+  <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
-<body onload="verUsuarios()">
-    <section class="page-dash">
-        <nav id="sidebar">
-            <div id="sidebar_content">
-              
-              <li class="side_itemLog active" style="cursor: none;">
-                <a>
-                  <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
-                  <span class="item-description">
-                    <b style="color: #442BB3; margin-left: 15px;"> Log Guard </b>
-                  </span>
-                </a>
-              </li>
-      
-      
-              <div id="user">
-                <p id="user_infos">
-                  <span style="color: black;" class="item-descriptionAtivo"> Olá,
-                    <span style="color: #442BB3;" class="item-description" id="b_usuario">
-                      Jon Doe
-                    </span>
-                  </span>
-                  <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
-                    Lorem Ipsum
-                  </span>
-                </p>
-              </div>
-      
-              <ul id="side_items">
-      
-      
-                <li class="side_item ">
-                  <a href="dashboard_ADM.html">
-                    <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                    <span class="item-description">
-                      <b> Visão Geral </b>
-                    </span>
-                  </a>
-                </li>
-      
-                <li class="side_item">
-                  <a href="relatorios.html">
-                    <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
-                    <span class="item-description">
-                      <b> Relatórios </b>
-                    </span>
-                  </a>
-                </li>
-      
-                <li class="side_item">
-                  <a href="gerenciar-maquina.html">
-                    <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
-                    <span class="item-description">
-                      <b> Empresas </b>
-                    </span>
-                  </a>
-                </li>
-      
-                <li class="side_item">
-                  <a href="gerenciar-usuario-func.html">
-                    <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-                    <span class="item-description">
-                      <b> Funcionários </b>
-                    </span>
-                  </a>
-                </li>
-      
-                <li class="side_item active">
-                  <a href="dash_Gerenciamento_Operacao.html">
-                    <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
-                    <span class="item-descriptionAtivo">
-                      <b style="color: aliceblue;"> Operações </b>
-                    </span>
-                  </a>
-                </li>  
-      
-                <li class="side_item">
-                  <a href="#">
-                    <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                    <span class="item-description">
-                      <b> Ajuda </b>
-                    </span>
-                  </a>
-                </li>
-              </ul>
-      
-              <button id="open_btn">
-                <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
-              </button>
-            </div>
-      
-            <div id="logout">
-              <button id="logout_btn" onclick="sair()">
-                <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
-                <span class="item-description">
-                  Sair
-                </span>
-              </button>
-            </div>
-          </nav>
-
-        <div class="mainfuncpage">
-            <div class="head-funcionarios-gerenc">
-
-                <h1>Gerenciar Operação</h1>
-
-            </div>
+<style>
+  .me1-func {
+    display: flex;
+    width: 260px;
+    ;
+    height: 150px;
+    background-color: #442BB3;
+    border-radius: 20px;
+    color: white;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    top: 100px;
+    z-index: 1;
+    padding-top: 20px;
+  }
 
 
-            <div class="metricas-func">
+  .modal {
+    display: none;
+    /* Escondido por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Fundo semitransparente */
+  }
+
+  .modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Estilo do pop-up */
+.popup {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+  /* Conteúdo do pop-up */
+  .popupContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 80vw;
+    height: 70vh;
+    text-align: center;
+    margin-top: 10%;
+  }
+
+  /* Botão de fechar */
+  .closePopup {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+  }
+</style>
+
+<body onload="visualizarFuncionarios(), melhorDesempenho()">
+  <section class="page-dash">
+    <nav id="sidebar">
+      <div id="sidebar_content">
+
+        <li class="side_itemLog active" style="cursor: none;">
+          <a>
+            <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+            <span class="item-description">
+              <b style="color: #442BB3; margin-left: 15px;"> Log Guard </b>
+            </span>
+          </a>
+        </li>
 
 
-                <div class="dash-func">
-
-                    <div class="titulos-func">
-                        <div class="coluna-func">ID</div>
-                        <div class="coluna-func">Nome</div>
-                        <div class="coluna-func">Horas trabalhadas</div>
-                        <div class="coluna-func">Tarefas Concluídas</div>
-                    </div>
-                    <div class="linha-func">
-                        <img src="./img/Line1cadastro.png" alt="">
-                    </div>
-                    <div class="dash-func">
-                        <div id="dash-func"></div>
-                    </div>
-                </div>
-                <div class="tre-func">
-                    <div class="me1-func">
-                        <h5>Melhor Desempenho:</h5>
-                        <br><br>
-                        <div class="totalfuncs" id="totalfuncionarios"></div>
-                        <div class="me2-func">
-                            <h5>Horas Trabalhadas:</h5>
-                            <br>
-                            <div class="totalfuncs" id="totaladms">0</div>
-
-                            <div class="me3-func">
-                                <h5>Tarefas Realizadas:</h5>
-                                <br><br>
-                                <div class="totalfuncs" id="totalanalista">0</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="user">
+          <p id="user_infos">
+            <span style="color: black;" class="item-descriptionAtivo"> Olá,
+              <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                Jon Doe
+              </span>
+            </span>
+            <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+              Lorem Ipsum
+            </span>
+          </p>
         </div>
 
+        <ul id="side_items">
 
-    </section>
+
+          <li class="side_item ">
+            <a href="dashboard_ADM.html">
+              <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+              <span class="item-description">
+                <b> Visão Geral </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="relatorios.html">
+              <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Relatórios </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="gerenciar-maquina.html">
+              <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Empresas </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="gerenciar-usuario-func.html">
+              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Funcionários </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item active">
+            <a href="dash_Gerenciamento_Operacao.html">
+              <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
+              <span class="item-descriptionAtivo">
+                <b style="color: aliceblue;"> Operações </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="#">
+              <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+              <span class="item-description">
+                <b> Ajuda </b>
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <button id="open_btn">
+          <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+        </button>
+      </div>
+
+      <div id="logout">
+        <button id="logout_btn" onclick="sair()">
+          <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+          <span class="item-description">
+            Sair
+          </span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mainfuncpage">
+
+      <div class="head-funcionarios-gerenc">
+
+        <h1>Gerenciar Operação</h1>
+
+      </div>
+
+
+      <div class="metricas-func">
+        <!-- Pop-up -->
+        <div id="popupGraficoRelatorio" class="popup">
+          <div class="popupContent">
+            <span class="closePopup" id="closePopupGraficoRelatorio">&times;</span>
+            <div class="graficoUsers" id="graficoRelatorioUser"></div>
+          </div>
+        </div>
+
+        <div class="dash-func">
+
+          <div class="titulos-func">
+            <div class="coluna-func">ID</div>
+            <div class="coluna-func">Nome</div>
+            <div class="coluna-func">Essenciais concluídas</div>
+            <div class="coluna-func">Tarefas concluídas</div>
+          </div>
+          <div class="linha-func">
+            <img src="./img/Line1cadastro.png" alt="">
+          </div>
+          <div class="dash-func">
+            <div id="dash-func"></div>
+          </div>
+        </div>
+        <div class="tre-func">
+          <div class="me1-func">
+            <h5>Melhor Desempenho:</h5>
+            <br><br>
+            <div class="totalfuncs" id="bestDesempenho" style="height: 40%;"></div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="botoes-func">
+        <!-- <button onclick="editar_gefunc()" class="edit-func">Editar</button> -->
+        <button onclick="verRelatorio()" class="cad-func" id="graficoRelatorio">Ver Relatório </button>
+      </div>
+    </div>
+
+
+
+
+  </section>
 </body>
 
 </html>
 <script>
 
-    var teste = 0
-  
-    document.getElementById('open_btn').addEventListener('click', function () {
-  
-      document.getElementById('sidebar').classList.toggle('open-sidebar');
-      this.classList.toggle('rodar');
-  
-      if (teste == 0) {
-        document.getElementById('nomeLog').style.display = "block";
-        teste = 1
-      } else {
-        document.getElementById('nomeLog').style.display = "none";
-        teste = 0
-      }
-  
-    });
-  
-  </script>
+  // Pop up do gráfico de barras
+  const graficoRelatorio = document.getElementById("graficoRelatorio");
+  const popupGraficoRelatorio = document.getElementById("popupGraficoRelatorio");
+  const closePopupGraficoRelatorio = document.getElementById("closePopupGraficoRelatorio");
 
-  
+  // Abrir o pop-up
+  graficoRelatorio.addEventListener("click", () => {
+    popupGraficoRelatorio.style.display = "flex";
+  });
+
+  // Fechar o pop-up
+  closePopupGraficoRelatorio.addEventListener("click", () => {
+    popupGraficoRelatorio.style.display = "none";
+  });
+
+  // Fechar ao clicar fora do pop-up
+  window.addEventListener("click", (event) => {
+    if (event.target === popupGraficoRelatorio) {
+      popupGraficoRelatorio.style.display = "none";
+    }
+  });
+
+  var teste = 0
+
+  document.getElementById('open_btn').addEventListener('click', function () {
+
+    document.getElementById('sidebar').classList.toggle('open-sidebar');
+    this.classList.toggle('rodar');
+
+    if (teste == 0) {
+      document.getElementById('nomeLog').style.display = "block";
+      teste = 1
+    } else {
+      document.getElementById('nomeLog').style.display = "none";
+      teste = 0
+    }
+
+  });
+
+</script>
+
+
 <!-- BOTÃO DE SAIR -------------------------------------------------------------------------------------------------------------- -->
 <script>
-    function sair() {  
-  
-      var url = "index.html";
-      window.open(url, "_self")
-  
-    } 
-  </script>
+  function sair() {
+
+
+
+    var url = "index.html";
+    window.open(url, "_self")
+
+  } 
+</script>
 
 <!-- LISTA DE FUNCIONÁRIOS -------------------------------------------------------------------------------------------------------------- -->
-<script> 
-  function verUsuarios() {
-    fetch("/usuarios/visualizarUsuarios", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            idEmpresaUsuarioServer: idEmpresaUsuario, // Certifique-se de que esta variável está definida
-        }),
+<script>
+  var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
+  function visualizarFuncionarios() {
+    fetch("/operacao/visualizarFuncionarios", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idEmpresaUsuarioServer: sessionStorage.EMPRESA_USUARIO,
+      }),
     })
-        .then(function (resposta) {
-            console.log("Resposta da API: ", resposta);
+      .then(function (resposta) {
+        console.log("Resposta da API: ", resposta);
 
-            if (resposta.ok) {
-                if (resposta.status === 204) {
-                    var lista = document.getElementById("dash-func");
-                    lista.innerHTML = ""; // Limpa qualquer conteúdo existente
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum dado encontrado.";
-                    lista.appendChild(mensagem);
-                    throw "Nenhum dado encontrado!";
-                }
-
-                resposta.json().then(function (dados) {
-                    console.log("Dados recebidos: ", JSON.stringify(dados));
-
-                    var lista = document.getElementById("dash-func");
-                    lista.innerHTML = ""; // Limpa a lista para evitar duplicações
-
-                    for (let i = 0; i < dados.length; i++) {
-                        let tupla = dados[i];
-
-                        // Criação dos elementos das colunas
-                        var divLista = document.createElement("div");
-                        var divId = document.createElement("div");
-                        var divNome = document.createElement("div");
-                        var divHoras = document.createElement("div");
-                        var divTarefas = document.createElement("div");
-
-                        // Adiciona classes às colunas
-                        divLista.className = "dados-func";
-                        divId.className = "coluna-func";
-                        divNome.className = "coluna-func";
-                        divHoras.className = "coluna-func";
-                        divTarefas.className = "coluna-func";
-
-                        // Preenche os dados
-                        divId.innerHTML = tupla.idUsuario || "N/A";
-                        divNome.innerHTML = tupla.nomeUsuario || "N/A";
-                        divHoras.innerHTML = tupla.horasTrabalhadas || "0"; // Exibe "0" se não houver dados
-                        divTarefas.innerHTML = tupla.tarefasConcluidas || "0"; // Exibe "0" se não houver dados
-
-                        // Monta a linha com os dados
-                        divLista.appendChild(divId);
-                        divLista.appendChild(divNome);
-                        divLista.appendChild(divHoras);
-                        divLista.appendChild(divTarefas);
-
-                        // Evento de clique para gerenciar o usuário
-                        divLista.addEventListener("click", function () {
-                            gerenciarUsuario(tupla.idUsuario);
-                        });
-
-                        // Adiciona a linha à lista
-                        lista.appendChild(divLista);
-                    }
-                });
-            } else {
-                throw "Erro na API ao buscar usuários.";
-            }
-        })
-        .catch(function (erro) {
-            console.error("Erro capturado: ", erro);
+        if (resposta.ok) {
+          if (resposta.status === 204) {
             var lista = document.getElementById("dash-func");
             lista.innerHTML = ""; // Limpa qualquer conteúdo existente
-            var mensagemErro = document.createElement("span");
-            mensagemErro.innerHTML = "Erro ao carregar os dados.";
-            lista.appendChild(mensagemErro);
-        });
+            var mensagem = document.createElement("span");
+            mensagem.innerHTML = "Nenhum dado encontrado.";
+            lista.appendChild(mensagem);
+            throw "Nenhum dado encontrado!";
+          }
+
+          resposta.json().then(function (dados) {
+            console.log("Dados recebidos: ", JSON.stringify(dados));
+
+            var lista = document.getElementById("dash-func");
+            lista.innerHTML = ""; // Limpa a lista para evitar duplicações
+
+            for (let i = 0; i < dados.length; i++) {
+              let tupla = dados[i];
+
+              // Criação dos elementos das colunas
+              var divLista = document.createElement("div");
+              var divId = document.createElement("div");
+              var divNome = document.createElement("div");
+              var divEssenciais = document.createElement("div");
+              var divTarefas = document.createElement("div");
+
+              // Adiciona classes às colunas
+              divLista.className = "dados-func";
+              divId.className = "coluna-func";
+              divNome.className = "coluna-func";
+              divEssenciais.className = "coluna-func";
+              divTarefas.className = "coluna-func";
+
+              // Adiciona atributo com o ID do usuário
+              divLista.setAttribute("data-id-usuario", tupla.usuario_id);
+
+              // Preenche os dados
+              divId.innerHTML = i + 1 || "N/A";
+              divNome.innerHTML = tupla.usuario_nome || "N/A";
+              divEssenciais.innerHTML = tupla.tarefas_essenciais || "0"; // Exibe "0" se não houver dados
+              divTarefas.innerHTML = tupla.total_tarefas || "0"; // Exibe "0" se não houver dados
+
+              // Monta a linha com os dados
+              divLista.appendChild(divId);
+              divLista.appendChild(divNome);
+              divLista.appendChild(divEssenciais);
+              divLista.appendChild(divTarefas);
+
+              // Evento de clique para exibir o gráfico do funcionário
+              divLista.addEventListener("click", function () {
+                const idUsuario = this.getAttribute("data-id-usuario");
+                gerarGrafico(idUsuario); // Chama a função para gerar o gráfico
+              });
+
+              // Adiciona a linha à lista
+              lista.appendChild(divLista);
+            }
+          });
+        } else {
+          throw "Erro na API ao buscar usuários.";
+        }
+      })
+      .catch(function (erro) {
+        console.error("Erro capturado: ", erro);
+        var lista = document.getElementById("dash-func");
+        lista.innerHTML = ""; // Limpa qualquer conteúdo existente
+        var mensagemErro = document.createElement("span");
+        mensagemErro.innerHTML = "Erro ao carregar os dados.";
+        lista.appendChild(mensagemErro);
+      });
+  }
+
+
+  function melhorDesempenho() {
+    console.log("Iniciando fetch para melhorDesempenho...");
+    fetch("/operacao/melhorDesempenho", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idEmpresaUsuarioServer: idEmpresaUsuario
+      }),
+    }).then(function (resposta) {
+      console.log("Resposta recebida: ", resposta);
+      if (resposta.ok) {
+        return resposta.json();
+      } else {
+        console.error('Erro na resposta:', resposta.statusText);
+      }
+    }).then(function (melhor) {
+      console.log("Melhor desempenho recebido: ", melhor);
+      var bestDesempenho = document.getElementById("bestDesempenho");
+      if (bestDesempenho) {
+        bestDesempenho.textContent = melhor.nomeusuario;
+        console.log("Texto atualizado: ", bestDesempenho.textContent);
+      } else {
+        console.error("Elemento 'bestDesempenho' não encontrado!");
+      }
+    }).catch(function (erro) {
+      console.error('Erro ao buscar dados:', erro);
+    });
+  }
+
+
+  function verRelatorio() {
+    document.getElementById("graficoRelatorioUser").innerHTML += `
+        <canvas id="myChartgraficoRelatorioUser" width="800" height="350"></canvas>`;
+
+        fetch(`/operacao/verRelatorio?idEmpresaUsuarioServer=${idEmpresaUsuario}`, { cache: "no-store" })
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                plotarGraficoTarefas(resposta);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+
 }
+
+function plotarGraficoTarefas(resposta) {
+    console.log('Iniciando plotagem do gráfico...');
+
+    // Criando estrutura para plotar gráfico - labels e datasets
+    let labels = [];
+    let dadosSimples = [];
+    let dadosEssenciais = [];
+
+    // Processando os dados da resposta
+    resposta.forEach(registro => {
+        labels.push(registro.nomeUsuario);
+        dadosSimples.push(registro.outrasTarefas);
+        dadosEssenciais.push(registro.tarefasEssenciais);
+    });
+
+    console.log('----------------------------------------------');
+    console.log('Dados processados para o gráfico:');
+    console.log('Labels:', labels);
+    console.log('Tarefas Simples:', dadosSimples);
+    console.log('Tarefas Essenciais:', dadosEssenciais);
+    console.log('----------------------------------------------');
+
+    // Configuração do gráfico
+    const dados = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Tarefas Simples',
+                data: dadosSimples,
+                backgroundColor: 'rgb(68, 43, 179)', // Azul
+                borderColor: 'rgb(68, 43, 150)',
+                borderWidth: 1
+            },
+            {
+                label: 'Tarefas Essenciais',
+                data: dadosEssenciais,
+                backgroundColor: 'rgb(122, 87, 228)', // Vermelho
+                borderColor: 'rgb(122, 87, 200)',
+                borderWidth: 1
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: dados,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Tarefas Concluídas por Funcionário'
+                }
+            },
+            scales: {
+                x: {
+                    stacked: false // Desativa empilhamento
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    // Criando e renderizando o gráfico
+    let myChartTarefas = new Chart(
+        document.getElementById("myChartgraficoRelatorioUser"),
+        config
+    );
+}
+
+
+
+
+
+
 
 </script>

@@ -30,7 +30,6 @@ function cancelar_modal() {
     document.querySelector('.sessao-adm-modal-todos').style.display = "none";
     document.querySelector('.sessao-adm-modal-card').style.display = "none";
     document.querySelector('.sessao-adm-modal-analise').style.display = "none";
-    document.querySelector('.sessao-adm-modal-riscos').style.display = "none";
     document.querySelector('.sessao-adm-modal-alertas').style.display = "none";
 }
 
@@ -39,22 +38,47 @@ function cancelar_modal() {
 //b
 
 function cpu_adm_sessao3() {
-    document.querySelector('.sessao-adm-chartcpu-dado').style.display = "block";
-    document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
-    document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('color', 'BLACK');
+
+    document.querySelector('.sessao-adm-chartcpu-dado').style.setProperty('display', 'block');
+    document.querySelector('.sessao-adm-chartram-dado').style.setProperty('display', 'none');
+    document.querySelector('.sessao-adm-chartrede-dado').style.setProperty('display', 'none');
 }
 
 function ram_adm_sessao3() {
-    document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
-    document.querySelector('.sessao-adm-chartram-dado').style.display = "block";
-    document.querySelector('.sessao-adm-chartrede-dado').style.display = "none";
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('color', 'BLACK');
+
+    document.querySelector('.sessao-adm-chartcpu-dado').style.setProperty('display', 'none');
+    document.querySelector('.sessao-adm-chartram-dado').style.setProperty('display', 'block');
+    document.querySelector('.sessao-adm-chartrede-dado').style.setProperty('display', 'none');
 }
 
 function rede_adm_sessao3() {
-    document.querySelector('.sessao-adm-chartcpu-dado').style.display = "none";
-    document.querySelector('.sessao-adm-chartram-dado').style.display = "none";
-    document.querySelector('.sessao-adm-chartrede-dado').style.display = "block";
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-rede-sessao3').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao3').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao3').style.setProperty('color', 'BLACK');
+
+    document.querySelector('.sessao-adm-chartcpu-dado').style.setProperty('display', 'none');
+    document.querySelector('.sessao-adm-chartram-dado').style.setProperty('display', 'none');
+    document.querySelector('.sessao-adm-chartrede-dado').style.setProperty('display', 'block');
 }
+
 
 //b
 
@@ -62,100 +86,48 @@ function rede_adm_sessao3() {
 //c
 
 function cpu_adm_probabilidade() {
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('color', 'BLACK');
+
     document.querySelector('.probabilityChartCPU').style.display = "block";
     document.querySelector('.probabilityChartRAM').style.display = "none";
     document.querySelector('.probabilityChartDISCO').style.display = "none";
 }
 
 function ram_adm_probabilidade() {
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('color', 'BLACK');
+
     document.querySelector('.probabilityChartCPU').style.display = "none";
     document.querySelector('.probabilityChartRAM').style.display = "block";
     document.querySelector('.probabilityChartDISCO').style.display = "none";
 }
 
 function disco_adm_probabilidade() {
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('background-color', '#442BB3');
+    document.querySelector('.sessao-adm-pointer-disco-sessao2').style.setProperty('color', 'WHITE');
+
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-ram-sessao2').style.setProperty('color', 'BLACK');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('background-color', '#d3d3d3');
+    document.querySelector('.sessao-adm-pointer-cpu-sessao2').style.setProperty('color', 'BLACK');
+
     document.querySelector('.probabilityChartCPU').style.display = "none";
     document.querySelector('.probabilityChartRAM').style.display = "none";
     document.querySelector('.probabilityChartDISCO').style.display = "block";
 }
 
 //c
-
-
-
-// maquinas em risco listagem
-
-function obterMaquinasEmRisco() {
-    const idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
-    console.log("idEmpresaUsuario na função obterMaquinasEmRisco:", idEmpresaUsuario);
-
-    fetch(`adm/getMaqemriscosemana/${idEmpresaUsuario}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            idEmpresaUsuario: idEmpresaUsuario
-        }),
-    })
-        .then(function (resposta) {
-            console.log("Resposta da requisição:", resposta);
-
-            if (resposta.ok) {
-                resposta.json().then(function (dados) {
-                    console.log("Dados recebidos do servidor:", dados);
-
-                    var tabela = document.querySelector('.sessao-adm-modal-riscos table');
-
-                    if (tabela) {
-                        // Limpa a tabela antes de inserir novas linhas
-                        while (tabela.rows.length > 1) {
-                            tabela.deleteRow(1);
-                        }
-
-                        dados.forEach(function (dado) {
-                            var linha = tabela.insertRow();
-                            var celulaMaquina = linha.insertCell(0);
-                            var celulaLocalidade = linha.insertCell(1);
-                            var celulaQuantidadeAlertas = linha.insertCell(2);
-
-                            celulaMaquina.textContent = dado.nomeMaquina;
-                            celulaLocalidade.textContent = dado.Localidade;
-                            celulaQuantidadeAlertas.textContent = dado.quantidade_alertas;
-                        });
-
-                        var mainPage = document.querySelector('.maingerenpage');
-                        var modalRiscos = document.querySelector('.sessao-adm-modal-riscos');
-
-                        if (mainPage) {
-                            mainPage.style.filter = "blur(5px)";
-                        }
-
-                        if (modalRiscos) {
-                            modalRiscos.style.display = "block";
-                        }
-                    } else {
-                        console.error("Tabela não encontrada no DOM.");
-                    }
-                });
-            } else {
-                console.error("Erro na requisição. Status:", resposta.status, resposta.statusText);
-                alert("Erro ao obter máquinas em risco. Tente novamente mais tarde.");
-            }
-        })
-        .catch(function (erro) {
-            console.error("Erro ao tentar buscar os dados das máquinas:", erro);
-            alert("Erro na conexão com o servidor. Verifique sua rede e tente novamente.");
-        });
-
-    return false;
-}
-
-
-// maquinas em risco listagem
-
-
-
 
 // alerta semana
 
@@ -502,86 +474,120 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // GRAFICO PROBABILIDADE CPU
 document.addEventListener('DOMContentLoaded', function () {
-    var options = {
-        chart: {
-            type: 'line',
-            height: 200,
-            width: 675
-        },
-        series: [{
-            color: '#442BB3',
-            name: 'Probabilidade',
-            data: [0.05, 0.1, 0.15, 0.25, 0.4, 0.6, 0.75, 0.9, 0.9] // Dados de exemplo
-        }],
-        xaxis: {
-            categories: ['Evento1', 'Evento2', 'Evento3', 'Evento4', 'Evento5', 'Evento6', 'Evento7', 'Evento8', 'Evento9'] // Eventos de exemplo
-        },
-        tooltip: {
-            theme: 'dark',
-        },
-    };
+    fetch('adm/getProbabilidadeCPU', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => response.json())
+        .then(data => {
+            console.log('Dados recebidos do servidor:', data);
 
+            var options = {
+                chart: {
+                    height: 200,
+                    width: 675,
+                    type: 'line'
+                },
+                series: [{
+                    color: '#442BB3',
+                    name: 'Probabilidade',
+                    data: data.map(item => item.probabilidade)
+                }],
+                xaxis: {
+                    categories: data.map(item => item.data)
+                },
+                tooltip: {
+                    theme: 'dark'
+                }
+            };
 
-    var chart = new ApexCharts(document.querySelector("#probabilityChart"), options);
-
-    chart.render();
+            var chart = new ApexCharts(document.querySelector("#probabilityChart"), options);
+            chart.render();
+        })
+        .catch(error => {
+            console.error('Erro ao carregar os dados:', error);
+        });
 });
+
 // GRAFICO PROBABILIDADE CPU
 
 
 // GRAFICO PROBABILIDADE RAM
 document.addEventListener('DOMContentLoaded', function () {
-    var options = {
-        chart: {
-            type: 'line',
-            height: 200,
-            width: 675
-        },
-        series: [{
-            color: '#442BB3',
-            name: 'Probabilidade',
-            data: [0.05, 0.1, 0.15, 0.25, 0.4, 0.6, 0.75, 0.9, 0.9] // Dados de exemplo
-        }],
-        xaxis: {
-            categories: ['Evento1', 'Evento2', 'Evento3', 'Evento4', 'Evento5', 'Evento6', 'Evento7', 'Evento8', 'Evento9'] // Eventos de exemplo
-        },
-        tooltip: {
-            theme: 'dark',
-        },
-    };
+    fetch('adm/getProbabilidadeRAM', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => response.json())
+        .then(data => {
+            console.log('Dados recebidos do servidor:', data);
 
+            var options = {
+                chart: {
+                    height: 200,
+                    width: 675,
+                    type: 'line'
+                },
+                series: [{
+                    color: '#442BB3',
+                    name: 'Probabilidade',
+                    data: data.map(item => item.probabilidade)
+                }],
+                xaxis: {
+                    categories: data.map(item => item.data)
+                },
+                tooltip: {
+                    theme: 'dark'
+                }
+            };
 
-    var chart = new ApexCharts(document.querySelector("#probabilityChartR"), options);
-
-    chart.render();
+            var chart = new ApexCharts(document.querySelector("#probabilityChartR"), options);
+            chart.render();
+        })
+        .catch(error => {
+            console.error('Erro ao carregar os dados:', error);
+        });
 });
 // GRAFICO PROBABILIDADE RAM
 
 // GRAFICO PROBABILIDADE DISCO
 document.addEventListener('DOMContentLoaded', function () {
-    var options = {
-        chart: {
-            type: 'line',
-            height: 200,
-            width: 675
-        },
-        series: [{
-            color: '#442BB3',
-            name: 'Probabilidade',
-            data: [0.05, 0.1, 0.15, 0.25, 0.4, 0.6, 0.75, 0.9, 0.9] // Dados de exemplo
-        }],
-        xaxis: {
-            categories: ['Evento1', 'Evento2', 'Evento3', 'Evento4', 'Evento5', 'Evento6', 'Evento7', 'Evento8', 'Evento9'] // Eventos de exemplo
-        },
-        tooltip: {
-            theme: 'dark',
-        },
-    };
+    fetch('adm/getProbabilidadeDISCO', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => response.json())
+        .then(data => {
+            console.log('Dados recebidos do servidor:', data);
 
+            var options = {
+                chart: {
+                    height: 200,
+                    width: 675,
+                    type: 'line'
+                },
+                series: [{
+                    color: '#442BB3',
+                    name: 'Probabilidade',
+                    data: data.map(item => item.probabilidade)
+                }],
+                xaxis: {
+                    categories: data.map(item => item.data)
+                },
+                tooltip: {
+                    theme: 'dark'
+                }
+            };
 
-    var chart = new ApexCharts(document.querySelector("#probabilityChartD"), options);
-
-    chart.render();
+            var chart = new ApexCharts(document.querySelector("#probabilityChartD"), options);
+            chart.render();
+        })
+        .catch(error => {
+            console.error('Erro ao carregar os dados:', error);
+        });
 });
 // GRAFICO PROBABILIDADE DISCO
 
@@ -595,50 +601,50 @@ document.addEventListener('DOMContentLoaded', function () {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.json())
-    .then(data => {
-        var options = {
-            series: [{
-                name: 'Ocorrências',
-                data: data.dados
-            }],
-            chart: {
-                type: 'bar',
-                height: 310,
-                width: 620
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 10,
-                    columnWidth: '90%',
-                    endingShape: 'flat'
-                }
-            },
-            xaxis: {
-                categories: data.categorias,
-                title: {
-                    text: 'Máquinas'
+        .then(response => response.json())
+        .then(data => {
+            var options = {
+                series: [{
+                    name: 'Ocorrências',
+                    data: data.dados
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 310,
+                    width: 620
                 },
-                labels: {
-                    rotate: -45,
-                    style: {
-                        fontSize: '10px'
+                plotOptions: {
+                    bar: {
+                        borderRadius: 10,
+                        columnWidth: '90%',
+                        endingShape: 'flat'
                     }
+                },
+                xaxis: {
+                    categories: data.categorias,
+                    title: {
+                        text: 'Máquinas'
+                    },
+                    labels: {
+                        rotate: -45,
+                        style: {
+                            fontSize: '10px'
+                        }
+                    }
+                },
+                title: {
+                    text: 'Histograma de ocorrências em relação as máquinas',
+                    align: 'center'
+                },
+                tooltip: {
+                    theme: 'dark'
                 }
-            },
-            title: {
-                text: 'Histograma de ocorrências em relação as máquinas',
-                align: 'center'
-            },
-            tooltip: {
-                theme: 'dark'
-            }
-        };
+            };
 
-        var chart = new ApexCharts(document.querySelector("#histogramChart"), options);
-        chart.render();
-    })
-    .catch(error => console.error('Erro ao buscar dados:', error));
+            var chart = new ApexCharts(document.querySelector("#histogramChart"), options);
+            chart.render();
+        })
+        .catch(error => console.error('Erro ao buscar dados:', error));
 });
 
 
@@ -671,40 +677,40 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ idEmpresaUsuarioServer: 3 }) 
+            body: JSON.stringify({ idEmpresaUsuarioServer: 3 })
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Dados recebidos:', data);
-            var alertasHoje = 0;
-            var alertasOntem = 0;
-            var alertasAntesDeOntem = 0;
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na resposta do servidor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Dados recebidos:', data);
+                var alertasHoje = 0;
+                var alertasOntem = 0;
+                var alertasAntesDeOntem = 0;
 
-            if (Array.isArray(data)) {
-                data.forEach(alerta => {
-                    const dataAlerta = new Date(alerta.Data);
-                    if (dataAlerta.toDateString() === hoje.toDateString()) {
-                        alertasHoje = alerta.Quantidade;
-                    } else if (dataAlerta.toDateString() === ontem.toDateString()) {
-                        alertasOntem = alerta.Quantidade;
-                    } else if (dataAlerta.toDateString() === antesDeOntem.toDateString()) {
-                        alertasAntesDeOntem = alerta.Quantidade;
-                    }
-                });
-            }
+                if (Array.isArray(data)) {
+                    data.forEach(alerta => {
+                        const dataAlerta = new Date(alerta.Data);
+                        if (dataAlerta.toDateString() === hoje.toDateString()) {
+                            alertasHoje = alerta.Quantidade;
+                        } else if (dataAlerta.toDateString() === ontem.toDateString()) {
+                            alertasOntem = alerta.Quantidade;
+                        } else if (dataAlerta.toDateString() === antesDeOntem.toDateString()) {
+                            alertasAntesDeOntem = alerta.Quantidade;
+                        }
+                    });
+                }
 
-            document.getElementById('alerts-today').textContent = alertasHoje;
-            document.getElementById('alerts-yesterday').textContent = alertasOntem;
-            document.getElementById('alerts-before-yesterday').textContent = alertasAntesDeOntem;
-        })
-        .catch(error => {
-            console.error('Erro ao buscar dados de alertas:', error);
-        });
+                document.getElementById('alerts-today').textContent = alertasHoje;
+                document.getElementById('alerts-yesterday').textContent = alertasOntem;
+                document.getElementById('alerts-before-yesterday').textContent = alertasAntesDeOntem;
+            })
+            .catch(error => {
+                console.error('Erro ao buscar dados de alertas:', error);
+            });
     }
 
     atualizarAlertasSemanais();

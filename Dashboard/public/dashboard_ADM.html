@@ -90,11 +90,6 @@
                     </li>
 
 
-                    <li>
-                        <div class="counter">
-                            <span id="counter" style="color: black;">00:00:00</span>
-                        </div>
-                    </li>
 
 
 
@@ -128,7 +123,7 @@
 
             <!-- primeira sessão da página -->
             <div class="sessao1-adm">
-                <p>DASHBOARD ADMINISTRADOR</p>
+                <h1>DASHBOARD ADMINISTRADOR</h1>
             </div>
 
 
@@ -139,7 +134,7 @@
                     <!--MODAL-ALERTAS-->
                     <div class="sessao-adm-modal-alertas">
 
-                        <p>ALERTAS SEMANAIS DE RISCO REFERENTE A SEMANA X</p>
+                        <p>ALERTAS SEMANAIS DE RISCO REFERENTE A ESTA SEMANA</p>
                         <div class="sessao-adm-modal-alertas-table">
                             <table>
                                 <tr>
@@ -149,20 +144,6 @@
                                     <th>Componente</th>
                                     <th>Alerta</th>
                                     <th>Parâmetro</th>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!--MODAL-SERVIDORES-RISCO-->
-                    <div class="sessao-adm-modal-riscos">
-                        <p>MÁQUINAS EM RISCO REFERENTE A SEMANA X</p>
-                        <div class="sessao-adm-modal-alertas-table">
-                            <table>
-                                <tr>
-                                    <th>Máquina</th>
-                                    <th>Localidade</th>
-                                    <th>Quantidade de alertas</th>
                                 </tr>
                             </table>
                         </div>
@@ -181,12 +162,12 @@
             <div class="sessao2-adm">
                 <div class="sessao2-adm_frame1">
 
-                    <p>Sessão de informações</p>
+                    <p>SESSÃO DE INFORMAÇÕES</p>
 
                     <!-- alertas -->
                     <div class="sessao1-adm_frame1">
                         <button onclick="abremodal(), abremodalalerta(); getAlertaSemana()" class="sessao-adm-botao-click">
-                            <p>➤</p>
+                            <p><img src="./img/seta-direita.png"></p>
                         </button>
                         <div class="sessao1-adm_frame1_texto">
                             <p>ALERTAS DE RISCO DESTA SEMANA</p>
@@ -201,26 +182,10 @@
                     
                     <!-- alertas -->
 
-                    <!-- servidores -->
-                    <div class="sessao1-adm_frame2">
-                        <button onclick="abremodal(), abremodalrisco(), obterMaquinasEmRisco()"
-                            class="sessao-adm-botao-click">
-                            <p>➥</p>
-                        </button>
-                        <div class="sessao1-adm_frame2_alertas">
-                            <p>SERVIDORES EM RISCO DESTA SEMANA</p>
-                            <p class="sessao1-adm_frame1_texto_semana_p1">
-                                <a class="sessao1-adm-cor-roxa-dados">X</a> de <a
-                                    class="sessao1-adm-cor-roxa-dados">Y</a>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- servidores -->
-
                     <!-- analise -->
                     <div class="sessao1-adm_frame3">
                         <button onclick="abremodal(), abremodalanalise()" class="sessao-adm-botao-click">
-                            <p>➙</p>
+                            <p><img src="./img/seta-direita.png"></p>
                         </button>
                         <div class="sessao1-adm_frame2_alertas">
                             <p>HISTOGRAMA DOS RISCOS DESTA SEMANA</p>
@@ -266,10 +231,10 @@
             <!-- terceira sessão da página -->
             <div class="sessao3-adm">
                 <div class="sessao3-adm-titulo">
-                    <p>DESEMPENHO QUINZENAL: DADOS DIÁRIOS</p>
+                    <p>DESEMPENHO QUINZENAL: MÉDIA DIÁRIA</p>
                     <button class="sessao-adm-pointer-cpu-sessao3" onclick="cpu_adm_sessao3()">Uso de CPU</button>
                     <button class="sessao-adm-pointer-ram-sessao3" onclick="ram_adm_sessao3()">Uso de RAM</button>
-                    <button class="sessao-adm-pointer-rede-sessao3" onclick="rede_adm_sessao3()">Status de REDE</button>
+                    <button class="sessao-adm-pointer-rede-sessao3" onclick="rede_adm_sessao3()">mbps de REDE</button>
                 </div>
                 <div class="chart-container">
                     <div class="sessao-adm-chartram-dado" id="chartRAM"></div>
@@ -284,7 +249,6 @@
 
         </main>
 
-        <script src="js/contador.js"></script>
         <script>
 
             //barra lateral

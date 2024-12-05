@@ -1,6 +1,12 @@
 CREATE DATABASE logGuard;
 USE logGuard;
 
+CREATE TABLE expediente(
+idExpediente INT PRIMARY KEY AUTO_INCREMENT,
+duracaoExpediente TIME, 
+dataExpediente DATE
+);
+
 CREATE TABLE empresa(
 idEmpresa INT PRIMARY KEY auto_increment,
 nomeEmpresa VARCHAR(225),
@@ -9,15 +15,6 @@ emailResponsavel VARCHAR(225),
 cnpj CHAR(18),
 cep CHAR(9)
 );
-
-CREATE VIEW visualizar_empresas AS SELECT * FROM empresa;
-insert into empresa VALUES(default,'LOG GUARD', 'log.guard@sptech.school','log.guard@sptech.school','10101010101010','101010101');
-
-INSERT INTO empresa (nomeEmpresa, emailInstitucional, emailResponsavel) 
-VALUES 
-('Empresa A', 'contato@empresaa.com', 'responsavelA@empresaa.com'),
-('Empresa B', 'contato@empresab.com', 'responsavelB@empresab.com'),
-('Empresa C', 'contato@empresac.com', 'responsavelC@empresac.com');
 
 CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY auto_increment,
@@ -29,6 +26,27 @@ senhaUsuario VARCHAR(225),
 tipoPerfilUsuario VARCHAR(13),
 CONSTRAINT CHK_TIPO CHECK (tipoPerfilUsuario ='ADMINISTRADOR' OR tipoPerfilUsuario ='LOG_GUARD' OR tipoPerfilUsuario ='COMUM' OR tipoPerfilUsuario = 'DESATIVADO')
 );
+
+CREATE VIEW visualizar_empresas AS SELECT * FROM empresa;
+
+ALTER TABLE expediente ADD COLUMN fkFuncionario INT,
+ADD CONSTRAINT fkFuncionario FOREIGN KEY (fkFuncionario)
+REFERENCES usuario(idUsuario);
+
+ALTER TABLE empresa ADD COLUMN fkExpediente INT,
+ADD CONSTRAINT fkExpediente FOREIGN KEY (fkExpediente)
+REFERENCES expediente(idExpediente);
+
+INSERT INTO expediente (duracaoExpediente, dataExpediente) VALUES ('08:00:00', '2024-12-04');
+
+INSERT INTO empresa (nomeEmpresa, emailInstitucional, emailResponsavel, cnpj, cep, fkExpediente) 
+VALUES ('LOG GUARD', 'log.guard@sptech.school', 'log.guard@sptech.school', '10101010101010', '101010101',1);
+
+INSERT INTO empresa (nomeEmpresa, emailInstitucional, emailResponsavel) 
+VALUES 
+('Empresa A', 'contato@empresaa.com', 'responsavelA@empresaa.com'),
+('Empresa B', 'contato@empresab.com', 'responsavelB@empresab.com'),
+('Empresa C', 'contato@empresac.com', 'responsavelC@empresac.com');
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -49,8 +67,7 @@ VALUES
 (2, 'Funcionario 6A', 'funcionario6a@empresaa.com', 'senha123', 'COMUM'),
 (2, 'Funcionario 7A', 'funcionario7a@empresaa.com', 'senha123', 'COMUM'),
 (2, 'Funcionario 8A', 'funcionario8a@empresaa.com', 'senha123', 'COMUM'),
-(2, 'Funcionario 9A', 'funcionario9a@empresaa.com', 'senha123senha123', 'ADMINISTRADOR'),
-(2, 'Funcionario 10A', 'funcionario10a@empresaa.com', 'senha123', 'COMUM');
+(2, 'Funcionario 9A', 'funcionario9a@empresaa.com', 'senha123senha123', 'ADMINISTRADOR');
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -65,9 +82,6 @@ VALUES
 (3, 'Funcionario 9B', 'funcionario9b@empresab.com', 'senha123', 'ADMINISTRADOR'),
 (3, 'Funcionario 10B', 'funcionario10b@empresab.com', 'senha123', 'COMUM');
 
-INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
-VALUES 
-(3, 'Funcionario 11B', 'funcionario11b@empresab.com', 'senha123', 'ADMINISTRADOR');
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -86,7 +100,11 @@ CREATE TABLE localidade(
 idLocalidade INT PRIMARY KEY auto_increment,
 fkEmpresLocalidade INT,
 FOREIGN KEY (fkEmpresLocalidade) REFERENCES empresa(idEmpresa),
-nomeLocalidade VARCHAR(255)
+nomeLocalidade VARCHAR(255),
+CEP_localidade CHAR (9),
+rua_localidade VARCHAR(255),
+parametro_perda_pacotes DOUBLE,
+parametro_taxa_uso_bl DECIMAL (6,3) -- bl é Banda Larga 
 );
 
 CREATE TABLE maquina(
@@ -95,16 +113,35 @@ fkEmpresaMaquina INT,
 FOREIGN KEY (fkEmpresaMaquina) REFERENCES empresa(idEmpresa),
 fkUsuarioMaquina INT,
 FOREIGN KEY (fkUsuarioMaquina) REFERENCES usuario(idUsuario),
-fkLocalidadeMaquina INT,
-FOREIGN KEY (fkLocalidadeMaquina) REFERENCES localidade(idLocalidade),
 nomeMaquina VARCHAR(255),
 modeloCPU VARCHAR(45),
 capacidadeRAM DECIMAL(8,3),
 disco INT,
+fkLocalidadeMaquina INT,
 MACAdress VARCHAR(45)
 ); 
 
-CREATE VIEW visualizar_localidades AS SELECT localidade.idLocalidade AS id_localidade, localidade.nomeLocalidade AS localidade, COUNT(maquina.idMaquina) AS quantidade_maquinas
+INSERT INTO maquina (fkEmpresaMaquina, nomeMaquina, modeloCPU, capacidadeRAM, disco, fkLocalidadeMaquina, MACAdress) VALUES
+(3, 'Servidor Central', 'Intel Xeon E5', 64.000, 2000, 1, '00:1A:2B:3C:4D:5E'),
+(3, 'Estação Trabalho 01', 'Intel i7 8700', 16.000, 500, 1, '00:1A:2B:3C:4D:5F'),
+(3, 'Estação Trabalho 02', 'AMD Ryzen 5 3600', 16.000, 500, 1, '00:1A:2B:3C:4D:60'),
+(3, 'Servidor Backup', 'Intel Xeon E5', 32.000, 1000, 1, '00:1A:2B:3C:4D:61'),
+(3, 'Estação Design', 'Intel i9 9900K', 32.000, 1000, 2, '00:1A:2B:3C:4D:62'),
+(3, 'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512, 2, '00:1A:2B:3C:4D:63'),
+(3, 'Estação Vendas', 'Intel i5 10400', 8.000, 256, 2, '00:1A:2B:3C:4D:64'),
+(3, 'Estação Financeiro', 'Intel i5 9400', 8.000, 256, 3, '00:1A:2B:3C:4D:65'),
+(3, 'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256, 3, '00:1A:2B:3C:4D:66'),
+(3, 'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, 3, '00:1A:2B:3C:4D:67');
+
+
+CREATE VIEW view_localidades_maquinas AS
+SELECT 
+    localidade.idLocalidade AS id_localidade,
+    localidade.nomeLocalidade AS localidade,
+    localidade.CEP_localidade AS cep_localidade,
+	localidade.rua_localidade AS rua_localidade,
+    localidade.fkEmpresLocalidade AS id_empresa,
+    COUNT(maquina.idMaquina) AS quantidade_maquinas
 FROM 
     localidade
 LEFT JOIN 
@@ -112,29 +149,26 @@ LEFT JOIN
 ON 
     localidade.idLocalidade = maquina.fkLocalidadeMaquina
 GROUP BY 
-    localidade.idLocalidade, localidade.nomeLocalidade
+    localidade.idLocalidade, localidade.nomeLocalidade, localidade.fkEmpresLocalidade
 ORDER BY 
     quantidade_maquinas DESC;
     
-select * from visualizar_localidades;
-
-INSERT INTO localidade (fkEmpresLocalidade, nomeLocalidade) 
+    
+INSERT INTO localidade (fkEmpresLocalidade, nomeLocalidade,CEP_localidade,rua_localidade,parametro_perda_pacotes, parametro_taxa_uso_bl) 
 VALUES 
-(3, 'Data Center'),
-(3, 'Sede'),
-(3, 'Escritório 1');
+(3, 'Data Center', '68906-631', 'Rua das Flores',2.3,120.000),
+(3, 'Sede', '12345-678', 'Alameda dos santos',1.4,130.000),
+(3, 'Escritório 1',  '11223-445', 'Avenida dos exemplos',5.4,100.000);
 
-INSERT INTO maquina (fkEmpresaMaquina,fkLocalidadeMaquina, nomeMaquina, modeloCPU, capacidadeRAM, disco, MACAdress) VALUES
-(3, 1, 'Servidor Central', 'Intel Xeon E5', 64.000, 2000, '00:1A:2B:3C:4D:5E'),
-(3, 1, 'Estação Trabalho 01', 'Intel i7 8700', 16.000, 500,  '00:1A:2B:3C:4D:5F'),
-(3, 1, 'Estação Trabalho 02', 'AMD Ryzen 5 3600', 16.000, 500,  '00:1A:2B:3C:4D:60'),
-(3, 1, 'Servidor Backup', 'Intel Xeon E5', 32.000, 1000,  '00:1A:2B:3C:4D:61'),
-(3, 2, 'Estação Design', 'Intel i9 9900K', 32.000, 1000,  '00:1A:2B:3C:4D:62'),
-(3, 2,'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512,  '00:1A:2B:3C:4D:63'),
-(3, 2,'Estação Vendas', 'Intel i5 10400', 8.000, 256, '00:1A:2B:3C:4D:64'),
-(3, 3,'Estação Financeiro', 'Intel i5 9400', 8.000, 256, '00:1A:2B:3C:4D:65'),
-(3, 3,'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256,  '00:1A:2B:3C:4D:66'),
-(3, 3,'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, '00:1A:2B:3C:4D:67');
+CREATE TABLE atribuicaoMaquina(
+idMaquinaUsuario INT auto_increment,
+fkUsuarioAtribuicao INT,
+FOREIGN KEY (fkUsuarioAtribuicao) REFERENCES usuario(idUsuario),
+fkMaquinAtribuicao INT,
+FOREIGN KEY (fkMaquinAtribuicao) REFERENCES maquina(idMaquina),
+primary key(idMaquinaUsuario,fkUsuarioAtribuicao,fkMaquinAtribuicao)
+);
+
 
 
 CREATE TABLE relatorio(
@@ -166,7 +200,6 @@ FOREIGN KEY (fkrecurso) REFERENCES recurso(idRecurso),
 parametro DECIMAL (8,5)
 );
 
-
 INSERT INTO maquinaRecurso VALUES(default, 1, 65.0);
 INSERT INTO maquinaRecurso VALUES(default, 2, 70.0);
 INSERT INTO maquinaRecurso VALUES(default, 3, 80.0);
@@ -186,9 +219,55 @@ tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
 
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (9, 2, 2, 70,1, '2024-11-25 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (8, 2, 2, 20,1, '2024-11-25 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (7, 1, 1, 40,1, '2024-11-25 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (6, 1, 1, 80,1, '2024-11-25 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 4, 1, 100,1, '2024-11-25 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 4, 2, 20, 1,'2024-11-25 10:00:00');
+CREATE TABLE tarefa(
+idTarefa INT PRIMARY KEY auto_increment,
+fkUsuarioTarefa INT,
+FOREIGN KEY (fkUsuarioTarefa) REFERENCES usuario(idUsuario),
+qtdDesejavel INT,
+qtdImportante INT, 
+qtdEssencial INT
+);
+
+SELECT * FROM tarefa;
+
+
+
+CREATE VIEW view_tarefasUsuarios AS
+SELECT 
+    u.idUsuario AS usuario_id,
+    u.nomeUsuario AS usuario_nome,
+    u.fkEmpresaUsuario AS id_empresa,
+    SUM(t.qtdEssencial) AS tarefas_essenciais,
+    SUM(t.qtdDesejavel + t.qtdImportante + t.qtdEssencial) AS total_tarefas
+FROM 
+    usuario AS u
+JOIN 
+    tarefa AS t 
+    ON u.idUsuario = t.fkUsuarioTarefa
+GROUP BY 
+    u.idUsuario, u.nomeUsuario, u.fkEmpresaUsuario;
+
+    
+SELECT * FROM view_tarefasUsuarios WHERE id_empresa = 4;
+
+SELECT usuario.nomeusuario FROM usuario JOIN tarefa ON usuario.idusuario = tarefa.fkUsuarioTarefa WHERE usuario.fkEmpresaUsuario = 4 ORDER BY tarefa.qtdEssencial DESC LIMIT 1;
+
+SELECT usuario.nomeusuario 
+FROM usuario 
+JOIN tarefa ON usuario.idusuario = tarefa.fkUsuarioTarefa 
+WHERE usuario.fkEmpresaUsuario = 4
+ORDER BY tarefa.qtdEssencial DESC 
+LIMIT 1; 
+
+
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (9, 2, 2, 70,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (8, 2, 2, 20,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (7, 1, 1, 40,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (6, 1, 1, 80,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 4, 1, 100,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 4, 2, 20, 1,'2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 3, 1, 100,1, '2024-12-01 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 3, 2, 20, 1,'2024-12-01 10:00:00');
+
+SELECT tarefas_essenciais FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC LIMIT 1;
+SELECT total_tarefas FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC;
