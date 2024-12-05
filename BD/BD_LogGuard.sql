@@ -48,6 +48,8 @@ VALUES
 ('Empresa B', 'contato@empresab.com', 'responsavelB@empresab.com'),
 ('Empresa C', 'contato@empresac.com', 'responsavelC@empresac.com');
 
+Insert into expediente values (default, '00:08:00');
+
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
 (1, 'jhonatan', 'jhonatan@gmail.com', 'senha123', 'LOG_GUARD'),
@@ -224,7 +226,7 @@ qtdImportante INT,
 qtdEssencial INT
 );
 
-SELECT * FROM tarefa;
+SELECT * FROM usuario;
 
 
 
@@ -255,10 +257,12 @@ WHERE usuario.fkEmpresaUsuario = 4
 ORDER BY tarefa.qtdEssencial DESC 
 LIMIT 1; 
 
+select * FROM usuario;
 
 SELECT tarefas_essenciais FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC LIMIT 1;
 SELECT total_tarefas FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC;
 
+<<<<<<< HEAD
 
 SELECT 
     c.dtCriacaoCaptura AS Data,
@@ -277,4 +281,25 @@ WHERE
     c.tem_problema = TRUE 
     AND m.fkEmpresaMaquina = 3
     AND c.dtCriacaoCaptura >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+=======
+SELECT usuario_nome as nomeUsuario, tarefas_essenciais as tarefasEssenciais, id_empresa,
+total_tarefas - tarefas_essenciais as outrasTarefas FROM view_tarefasUsuarios 
+WHERE id_empresa = 4;
+
+
+insert into tarefa values 
+(default, 57, 15, 5, 30),
+(default, 58, 26, 15, 10);
+
+insert into tarefa values 
+(default, 59, 11, 19, 32),
+(default, 60, 20, 17, 14),
+(default, 61, 23, 20, 17),
+(default, 62, 30, 12, 20),
+(default, 63, 22, 10, 30),
+(default, 64, 25, 15, 33),
+(default, 65, 20, 12, 45),
+(default, 66, 35, 20, 15);
+
+>>>>>>> 657929ec4ac180238da7db6d56bc610b85c49554
 

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogGuard - Dashboard</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/partials/SideBar.css">
+    <link rel="stylesheet" href="css/pages/dash-datacenters.css">
+    <script src="js/sessao.js"></script>
+    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <section class="page-dash">
+        <nav id="sidebar">
+            <div id="sidebar_content">
+
+                <li class="side_item" style="cursor: none;">
+                    <a>
+                        <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+                        <span class="item-description">
+                            <b style="color: #442BB3; margin-left: 15px;"> Log Guard </b>
+                        </span>
+                    </a>
+                </li>
+
+                <div id="user">
+                    <p id="user_infos">
+                        <span style="color: black;" class="item-descriptionAtivo"> Olá,
+                            <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                                Jon Doe
+                            </span>
+                        </span>
+                        <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+                            Lorem Ipsum
+                        </span>
+                    </p>
+                </div>
+
+                <ul id="side_items">
+
+
+                    <li class="side_item ">
+                        <a href="dashboard_ADM.html">
+                            <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description">
+                                <b> Visão Geral </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="relatorios.html">
+                            <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Relatórios </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="gerenciar-maquina.html">
+                            <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Empresas </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="gerenciar-usuario-func.html">
+                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Usuários </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="gerenciar-usuario-func.html">
+                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> FeedBacks </b>
+                            </span>
+                        </a>
+                    </li>
+
+
+                    <li class="side_item active">
+                        <a href="dash_Gerenciamento_Operacao.html">
+                            <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
+                            <span class="item-descriptionAtivo">
+                                <b style="color: aliceblue;"> Operações </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="#">
+                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description">
+                                <b> Ajuda </b>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <button id="open_btn">
+                    <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+                </button>
+            </div>
+
+            <div id="logout">
+                <button id="logout_btn" onclick="sair()">
+                    <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                        Sair
+                    </span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="container_dash_rede">
+            <div class="container_top">
+                <div class="div_filtro_componente_datacenter"> <button onclick="verREDE()" style="color: #442BB3; font-weight: bolder;"> REDE </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verRAM()"> RAM </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verCPU()"> CPU </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verDISCO()"> DISCO </button></div>
+            </div>
+
+            <div class="container_interno">
+                <div class="container_maior">
+
+                <div class="container_indicadores">
+                    <div class="container_kpi">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Taxa de Uso de Banda Larga </h2>
+                            <h3 class="h3_indicador">1200 / 4000 GBs</h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Média de Pacotes Perdidos </h2>
+                            <h3 class="h3_indicador">1200 etcs</h3>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="container_info_servidores">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Qtd. Servidores da Localidade:</h2>
+                            <h3 class="h3_indicador">12</h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Qtd. Servidores em Alerta: </h2>
+                            <h3 class="h3_indicador">4</h3>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                    <div class="graficos">
+                        <div class="segundo_grafico">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    
+                        <div class="segundo_grafico">
+                            <canvas id="myChart1"></canvas>
+                        </div>
+                    
+                    </div>
+
+                </div>
+
+                <div class="container_menor">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container_dash_RAM">
+            <div class="container_top">
+                <div class="div_filtro_componente_datacenter"> <button onclick="verREDE()"> REDE </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verRAM()" style="color: #442BB3; font-weight: bolder;"> RAM </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verCPU()"> CPU </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verDISCO()"> DISCO </button></div>
+            </div>
+
+            <div class="container_interno">
+                <div class="container_maior">
+
+                <div class="container_indicadores">
+                    <div class="container_kpi">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador_ram">Qtd. máquinas que ultrapassaram parâmetro de uso de memória</h2>
+                            <h3 class="h3_indicador">2/12</h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Média de uso de memória</h2>
+                            <h3 class="h3_indicador">53%</h3>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="container_info_servidores">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Qtd. Servidores da Localidade:</h2>
+                            <h3 class="h3_indicador">12</h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Qtd. Servidores em Alerta: </h2>
+                            <h3 class="h3_indicador">4</h3>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                    <div class="graficos">
+                        <div class="segundo_grafico">
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                    
+                        <div class="segundo_grafico">
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                    
+                    </div>
+
+                </div>
+
+                <div class="container_menor">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container_dash_CPU">
+            <div class="container_top">
+                <div class="div_filtro_componente_datacenter"> <button onclick="verREDE()"> REDE </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verRAM()"> RAM </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verCPU()" style="color: #442BB3; font-weight: bolder;"> CPU </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verDISCO()"> DISCO </button></div>
+            </div>
+
+            <div class="container_interno">
+                <div class="container_maior">
+
+                <div class="container_indicadores">
+                    <div class="container_kpi">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador_ram">Qtd. máquinas que ultrapassaram parâmetro de uso de CPU</h2>
+                            <h3 class="h3_indicador">2/12</h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Média de uso de CPU</h2>
+                            <h3 class="h3_indicador">53%</h3>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="container_info_servidores">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Qtd. Servidores da Localidade:</h2>
+                            <h3 class="h3_indicador">12</h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Qtd. Servidores em Alerta: </h2>
+                            <h3 class="h3_indicador">4</h3>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                    <div class="graficos">
+                        <div class="segundo_grafico">
+                            <canvas id="myChart4"></canvas>
+                        </div>
+                    
+                        <div class="segundo_grafico">
+                            <canvas id="myChart5"></canvas>
+                        </div>
+                    
+                    </div>
+
+                </div>
+
+                <div class="container_menor">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container_dash_DISCO">
+            <div class="container_top">
+                <div class="div_filtro_componente_datacenter"> <button onclick="verREDE()"> REDE </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verRAM()"> RAM </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verCPU()"> CPU </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verDISCO()" style="color: #442BB3; font-weight: bolder;"> DISCO </button></div>
+            </div>
+
+            <div class="container_interno">
+                <div class="container_maior">
+
+                <div class="container_indicadores">
+                    <div class="container_kpi">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador"> Qtd. máquinas que ultrapassaram parâmetro de uso de Disco </h2>
+                            <h3 class="h3_indicador">1200 / 4000 GBs</h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Média de uso de Disco</h2>
+                            <h3 class="h3_indicador">60%</h3>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="container_info_servidores">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador"> Qtd. Servidores da Localidade:</h2>
+                            <h3 class="h3_indicador">12</h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador"> Qtd. Servidores em Alerta: </h2>
+                            <h3 class="h3_indicador">4</h3>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                    <div class="graficos">
+                        <div class="segundo_grafico">
+                            <canvas id="myChart6"></canvas>
+                        </div>
+                    
+                        <div class="segundo_grafico">
+                            <canvas id="myChart7"></canvas>
+                        </div>
+                    
+                    </div>
+
+                </div>
+
+                <div class="container_menor">
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+
+</html>
+<script>
+
+   function verREDE() {
+    document.querySelector('.container_dash_RAM').style.display = "none";
+    document.querySelector('.container_dash_CPU').style.display = "none";
+    document.querySelector('.container_dash_DISCO').style.display = "none";
+    document.querySelector('.container_dash_rede').style.display = "block";
+   }
+
+   function verRAM() {
+    document.querySelector('.container_dash_RAM').style.display = "block";
+    document.querySelector('.container_dash_CPU').style.display = "none";
+    document.querySelector('.container_dash_DISCO').style.display = "none";
+    document.querySelector('.container_dash_rede').style.display = "none";
+   }
+
+
+   function verCPU() {
+    document.querySelector('.container_dash_RAM').style.display = "none";
+    document.querySelector('.container_dash_CPU').style.display = "block";
+    document.querySelector('.container_dash_DISCO').style.display = "none";
+    document.querySelector('.container_dash_rede').style.display = "none";
+   }
+
+
+   function verDISCO() {
+    document.querySelector('.container_dash_RAM').style.display = "none";
+    document.querySelector('.container_dash_CPU').style.display = "none";
+    document.querySelector('.container_dash_DISCO').style.display = "block";
+    document.querySelector('.container_dash_rede').style.display = "none";
+   }
+
+
+
+    var teste = 0
+
+    document.getElementById('open_btn').addEventListener('click', function () {
+
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
+        this.classList.toggle('rodar');
+
+        if (teste == 0) {
+            document.getElementById('nomeLog').style.display = "block";
+            teste = 1
+        } else {
+            document.getElementById('nomeLog').style.display = "none";
+            teste = 0
+        }
+
+    });
+
+    function sair() {
+        window.location.href = "index.html";
+    }
+
+
+
+ const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+        backgroundColor: '#320E3B',
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  const ctx1 = document.getElementById('myChart1');
+
+  new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+        backgroundColor: '#320E3B',
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx2 = document.getElementById('myChart2');
+
+  new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+        backgroundColor: '#320E3B',
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  const ctx3 = document.getElementById('myChart3');
+
+  new Chart(ctx3, {
+    type: 'line',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+        backgroundColor: '#320E3B',
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  const ctx4 = document.getElementById('myChart4');
+
+  new Chart(ctx4, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+        backgroundColor: '#320E3B',
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  const ctx5 = document.getElementById('myChart5');
+
+  new Chart(ctx5, {
+    type: 'line',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+        backgroundColor: '#320E3B',
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  const ctx6 = document.getElementById('myChart6');
+
+  new Chart(ctx6, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+        backgroundColor: '#320E3B',
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  const ctx7 = document.getElementById('myChart7');
+
+  new Chart(ctx7, {
+    type: 'line',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+        backgroundColor: '#320E3B',
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+
+
+  
+</script>
