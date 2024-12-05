@@ -9,11 +9,16 @@ router.post("/visualizarMaquinas", function (req, res) {
     matheusgraficoController.visualizarMaquinas(req, res);
   });
 
+  router.post("/buscarCritico"), function (req, res) {
+    matheusgraficoController.buscarCritico(req,res);
+  }
+
 router.post("/buscarComponentes"), function (req, res) {
     matheusgraficoController.buscarComponentes(req,res);
 }
 
-router.post("/buscarCritico"), function (req, res) {
-    matheusgraficoController.buscarCritico(req,res);
+router.post("/Grafico"), function (req, res) {
+    matheusgraficoController.Grafico(req, res);
 }
+
   module.exports = router;
