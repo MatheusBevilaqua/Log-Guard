@@ -111,8 +111,6 @@ CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
 fkEmpresaMaquina INT,
 FOREIGN KEY (fkEmpresaMaquina) REFERENCES empresa(idEmpresa),
-fkUsuarioMaquina INT,
-FOREIGN KEY (fkUsuarioMaquina) REFERENCES usuario(idUsuario),
 nomeMaquina VARCHAR(255),
 modeloCPU VARCHAR(45),
 capacidadeRAM DECIMAL(8,3),
@@ -120,6 +118,12 @@ disco INT,
 fkLocalidadeMaquina INT,
 MACAdress VARCHAR(45)
 ); 
+select * from maquina;
+
+update maquina set fkEmpresaMaquina = 3 WHERE idMaquina = 11;
+update maquina set nomeMaquina = "Jhonatan" WHERE idMaquina = 11;
+update maquina set fkLocalidadeMaquina = 1 WHERE idMaquina = 11;
+
 
 INSERT INTO maquina (fkEmpresaMaquina, nomeMaquina, modeloCPU, capacidadeRAM, disco, fkLocalidadeMaquina, MACAdress) VALUES
 (3, 'Servidor Central', 'Intel Xeon E5', 64.000, 2000, 1, '00:1A:2B:3C:4D:5E'),
@@ -159,16 +163,6 @@ VALUES
 (3, 'Data Center', '68906-631', 'Rua das Flores',2.3,120.000),
 (3, 'Sede', '12345-678', 'Alameda dos santos',1.4,130.000),
 (3, 'Escritório 1',  '11223-445', 'Avenida dos exemplos',5.4,100.000);
-
-CREATE TABLE atribuicaoMaquina(
-idMaquinaUsuario INT auto_increment,
-fkUsuarioAtribuicao INT,
-FOREIGN KEY (fkUsuarioAtribuicao) REFERENCES usuario(idUsuario),
-fkMaquinAtribuicao INT,
-FOREIGN KEY (fkMaquinAtribuicao) REFERENCES maquina(idMaquina),
-primary key(idMaquinaUsuario,fkUsuarioAtribuicao,fkMaquinAtribuicao)
-);
-
 
 
 CREATE TABLE relatorio(
@@ -219,6 +213,8 @@ tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
 
+SELECT * FROM CAPTURA;
+
 CREATE TABLE tarefa(
 idTarefa INT PRIMARY KEY auto_increment,
 fkUsuarioTarefa INT,
@@ -260,14 +256,25 @@ ORDER BY tarefa.qtdEssencial DESC
 LIMIT 1; 
 
 
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (9, 2, 2, 70,1, '2024-12-01 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (8, 2, 2, 20,1, '2024-12-01 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (7, 1, 1, 40,1, '2024-12-01 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (6, 1, 1, 80,1, '2024-12-01 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 4, 1, 100,1, '2024-12-01 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 4, 2, 20, 1,'2024-12-01 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 3, 1, 100,1, '2024-12-01 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 3, 2, 20, 1,'2024-12-01 10:00:00');
-
 SELECT tarefas_essenciais FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC LIMIT 1;
 SELECT total_tarefas FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC;
+
+
+SELECT 
+    c.dtCriacaoCaptura AS Data,
+    m.nomeMaquina AS Máquina,
+    l.nomeLocalidade AS Localidade,
+    r.nomeRecurso AS Componente,
+    c.registro AS Alerta,
+    mr.parametro AS Parametro
+FROM 
+    captura c
+    LEFT JOIN maquina m ON m.idMaquina = c.fkMaquinaCaptura
+    LEFT JOIN localidade l ON l.idLocalidade = m.fkLocalidadeMaquina
+    LEFT JOIN recurso r ON r.idRecurso = c.fkRecursoCaptura
+    LEFT JOIN maquinaRecurso mr ON mr.idMaquinaRecurso = c.fkMaquinaRecursoCaptura
+WHERE 
+    c.tem_problema = TRUE 
+    AND m.fkEmpresaMaquina = 3
+    AND c.dtCriacaoCaptura >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+

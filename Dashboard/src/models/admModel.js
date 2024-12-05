@@ -52,14 +52,14 @@ function getAlertaSemana(idEmpresaUsuario) {
     mr.parametro AS Parametro
 FROM 
     captura c
-    JOIN maquina m ON m.idMaquina = c.fkMaquinaCaptura
-    JOIN localidade l ON l.idLocalidade = m.fkLocalidadeMaquina
-    JOIN recurso r ON r.idRecurso = c.fkRecursoCaptura
-    JOIN maquinaRecurso mr ON mr.fkrecurso = r.idRecurso AND mr.idMaquinaRecurso = c.fkMaquinaRecursoCaptura
+    LEFT JOIN maquina m ON m.idMaquina = c.fkMaquinaCaptura
+    LEFT JOIN localidade l ON l.idLocalidade = m.fkLocalidadeMaquina
+    LEFT JOIN recurso r ON r.idRecurso = c.fkRecursoCaptura
+    LEFT JOIN maquinaRecurso mr ON mr.idMaquinaRecurso = c.fkMaquinaRecursoCaptura
 WHERE 
     c.tem_problema = TRUE 
-    AND c.dtCriacaoCaptura >= NOW() - INTERVAL 1 WEEK
-    AND m.fkEmpresaMaquina = ${idEmpresaUsuario};`;
+    AND m.fkEmpresaMaquina = ${idEmpresaUsuario}
+    AND c.dtCriacaoCaptura >= DATE_SUB(NOW(), INTERVAL 7 DAY);`;
     console.log("Executando SQL: \n", instrucaoSql);
     return database.executar(instrucaoSql);
 }
