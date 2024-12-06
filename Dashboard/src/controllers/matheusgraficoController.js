@@ -19,7 +19,6 @@ var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
 
   
   function buscarCritico(req, res) {
-      
       var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
       
       matheusgraficoModel.buscarCritico(idEmpresaMaquina).then(function (resultado) {
@@ -38,14 +37,8 @@ var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
     function buscarComponentes(req, res) {
 
         var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
-        var qtdCPU = req.body.cpuServer;
-        var qtdRAM = req.body.ramServer;
-        var qtdDisco = req.body.discoServer;
-        var probCPU = req.body.probcpuServer;
-        var probRAM = req.body.probramServer;
-        var probDisco = req.body.probServer;
 
-        matheusgraficoModel.buscarComponentes(idEmpresaMaquina, qtdCPU, qtdRAM, qtdDisco, probCPU,probRAM, probDisco).then(function (resultado) {
+        matheusgraficoModel.buscarComponentes(idEmpresaMaquina).then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {
@@ -80,7 +73,7 @@ var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
 
     module.exports = {
       visualizarMaquinas,
-      buscarCritico
-    // buscarComponentes,
+      buscarCritico,
+      buscarComponentes
     // Graficos
 }

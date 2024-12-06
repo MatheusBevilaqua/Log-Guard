@@ -8,22 +8,25 @@ function getMaquinasDataRAM(req, res) {
             let maquinasMap = {};
 
             resultado.forEach(row => {
-                console.log('Processando linha:', row);
                 let nomeMaquina = row.nomeMaquina;
                 let dataCaptura = new Date(row.dtCriacaoCaptura).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
 
                 if (!maquinasMap[nomeMaquina]) {
-                    maquinasMap[nomeMaquina] = [];
+                    maquinasMap[nomeMaquina] = {};
                 }
-                maquinasMap[nomeMaquina].push({
-                    x: dataCaptura,
-                    y: parseFloat(row.registro)
-                });
+                if (!maquinasMap[nomeMaquina][dataCaptura]) {
+                    maquinasMap[nomeMaquina][dataCaptura] = { total: 0, count: 0 };
+                }
+                maquinasMap[nomeMaquina][dataCaptura].total += parseFloat(row.registro);
+                maquinasMap[nomeMaquina][dataCaptura].count += 1;
             });
 
             let series = Object.keys(maquinasMap).map(maquina => ({
                 name: maquina,
-                data: maquinasMap[maquina]
+                data: Object.keys(maquinasMap[maquina]).map(data => ({
+                    x: data,
+                    y: parseFloat((maquinasMap[maquina][data].total / maquinasMap[maquina][data].count).toFixed(2))
+                }))
             }));
 
             console.log('Dados processados para o gráfico RAM:', series);
@@ -37,6 +40,7 @@ function getMaquinasDataRAM(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
 
 
 
@@ -67,7 +71,7 @@ function getMaquinasDataCPU(req, res) {
                 name: maquina,
                 data: Object.keys(maquinasMap[maquina]).map(data => ({
                     x: data,
-                    y: parseFloat((maquinasMap[maquina][data].total / maquinasMap[maquina][data].count).toFixed(2))
+                    y: parseFloat((maquinasMap[maquina][data].total / maquinasMap[maquina][data].count).toFixed(2)) + '%'
                 }))
             }));
 

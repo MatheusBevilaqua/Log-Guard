@@ -1,42 +1,52 @@
 var database = require("../database/config")
 
 function visualizarMaquinas(idEmpresaMaquina) {
-    var instrucaoSql = ` SELECT m.idMaquina, m.nomeMaquina, m.modeloCPU, m.capacidadeRAM, m.disco, l.nomeLocalidade, m.MACAdress
-        FROM maquina m
-        JOIN localidade l ON l.nomeLocalidade 
-        JOIN captura c ON c.fkMaquinaCaptura = m.idMaquina
-        WHERE c.dtCriacaoCaptura >= NOW() - INTERVAL 3 DAY
-        AND m.fkEmpresaMaquina = ${idEmpresaMaquina};`
-
-    return database.executar(instrucaoSql);
-}
-
-function buscarCritico(idEmpresaMaquina) {
-    var instrucaoSql = `SELECT 
+    var instrucaoSql = `  SELECT 
     m.idMaquina, 
     m.nomeMaquina, 
-    l.nomeLocalidade AS localidade, 
     m.modeloCPU, 
     m.capacidadeRAM, 
     m.disco, 
+    l.nomeLocalidade, 
     m.MACAdress
 FROM 
     maquina m
 JOIN 
     localidade l ON m.fkLocalidadeMaquina = l.idLocalidade
 JOIN 
-    maquinaRecurso mr ON m.idMaquina = mr.idMaquina
+    captura c ON c.fkMaquinaCaptura = m.idMaquina
 WHERE 
+    c.dtCriacaoCaptura >= NOW() - INTERVAL 3 DAY
+    AND m.fkEmpresaMaquina = ${idEmpresaMaquina};`
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarCritico(idEmpresaMaquina) {
+    var instrucaoSql = `
+     SELECT 
+    m.idMaquina, 
+    m.nomeMaquina, 
+    l.nomeLocalidade AS localidade, 
+    r.nomeRecurso AS Componente,
+    c.registro AS Registros
+    FROM 
+    maquina m
+    JOIN 
+    localidade l ON m.fkLocalidadeMaquina = l.idLocalidade
+    JOIN 
+    maquinaRecurso mr ON m.idMaquina = mr.idMaquinaRecurso
+    JOIN 
+    captura c ON m.idMaquina = c.fkMaquinaCaptura
+    JOIN 
+    recurso r ON mr.fkrecurso = r.idRecurso
+    WHERE 
     m.fkEmpresaMaquina = ${idEmpresaMaquina}
-    AND (
+    AND(
         (mr.fkrecurso = 1 AND mr.parametro > 65.0) OR
         (mr.fkrecurso = 2 AND mr.parametro > 70.0) OR
         (mr.fkrecurso = 3 AND mr.parametro > 80.0)
-    );
-`
-
-    // Select na tabela maquina com join na tabela captura
-    //Colocar o select para selecionar conforme o parametro, se passar aparece, caso não, vc já sabe...
+    );`
     return database.executar(instrucaoSql)
 }
 
@@ -64,7 +74,7 @@ function buscarComponentes(idEmpresaMaquina) {
 }
 
 
-function Grafico(){
+function Grafico() {
     var instrucaoSql = `SELECT    
     recurso.nomeRecurso,
     SUM(captura.registro) AS quantidade_uso 
@@ -86,9 +96,9 @@ function Grafico(){
     `
 }
 
-module.exports = { 
+module.exports = {
+    visualizarMaquinas,
     buscarCritico,
-    visualizarMaquinas
+    buscarComponentes
     // Grafico,
-    // buscarComponentes,
 }

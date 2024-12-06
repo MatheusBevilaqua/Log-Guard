@@ -10,11 +10,13 @@
   <link rel="stylesheet" href="css/pages/dash_Operacao_Adm.css">
   <script src="js/sessao.js"></script>
   <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<style> 
+<style>
   .me1-func {
     display: flex;
-    width: 260px;;
+    width: 260px;
+    ;
     height: 150px;
     background-color: #442BB3;
     border-radius: 20px;
@@ -24,9 +26,85 @@
     justify-content: flex-start;
     top: 100px;
     z-index: 1;
-    padding-top: 20px; 
+    padding-top: 20px;
+  }
+
+
+  .modal {
+    display: none;
+    /* Escondido por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Fundo semitransparente */
+  }
+
+  .modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Estilo do pop-up */
+.popup {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
 }
+
+  /* Conteúdo do pop-up */
+  .popupContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 80vw;
+    height: 70vh;
+    text-align: center;
+    margin-top: 10%;
+  }
+
+  /* Botão de fechar */
+  .closePopup {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+  }
 </style>
+
 <body onload="visualizarFuncionarios(), melhorDesempenho()">
   <section class="page-dash">
     <nav id="sidebar">
@@ -129,6 +207,7 @@
     </nav>
 
     <div class="mainfuncpage">
+
       <div class="head-funcionarios-gerenc">
 
         <h1>Gerenciar Operação</h1>
@@ -137,7 +216,13 @@
 
 
       <div class="metricas-func">
-
+        <!-- Pop-up -->
+        <div id="popupGraficoRelatorio" class="popup">
+          <div class="popupContent">
+            <span class="closePopup" id="closePopupGraficoRelatorio">&times;</span>
+            <div class="graficoUsers" id="graficoRelatorioUser"></div>
+          </div>
+        </div>
 
         <div class="dash-func">
 
@@ -159,21 +244,18 @@
             <h5>Melhor Desempenho:</h5>
             <br><br>
             <div class="totalfuncs" id="bestDesempenho" style="height: 40%;"></div>
-            <!-- <div class="me2-func">
-              <h5>Essenciais Concluídas:</h5>
-              <br>
-              <div class="totalfuncs" id="essenciaisConcluidas"></div>
 
-              <div class="me3-func">
-                <h5>Tarefas Realizadas:</h5>
-                <br><br>
-                <div class="totalfuncs" id="tarefasRealizadas"></div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
+
+      <div class="botoes-func">
+        <!-- <button onclick="editar_gefunc()" class="edit-func">Editar</button> -->
+        <button onclick="verRelatorio()" class="cad-func" id="graficoRelatorio">Ver Relatório </button>
+      </div>
     </div>
+
+
 
 
   </section>
@@ -181,6 +263,28 @@
 
 </html>
 <script>
+
+  // Pop up do gráfico de barras
+  const graficoRelatorio = document.getElementById("graficoRelatorio");
+  const popupGraficoRelatorio = document.getElementById("popupGraficoRelatorio");
+  const closePopupGraficoRelatorio = document.getElementById("closePopupGraficoRelatorio");
+
+  // Abrir o pop-up
+  graficoRelatorio.addEventListener("click", () => {
+    popupGraficoRelatorio.style.display = "flex";
+  });
+
+  // Fechar o pop-up
+  closePopupGraficoRelatorio.addEventListener("click", () => {
+    popupGraficoRelatorio.style.display = "none";
+  });
+
+  // Fechar ao clicar fora do pop-up
+  window.addEventListener("click", (event) => {
+    if (event.target === popupGraficoRelatorio) {
+      popupGraficoRelatorio.style.display = "none";
+    }
+  });
 
   var teste = 0
 
@@ -218,14 +322,13 @@
 <script>
   var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
   function visualizarFuncionarios() {
-
     fetch("/operacao/visualizarFuncionarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        idEmpresaUsuarioServer: sessionStorage.EMPRESA_USUARIO
+        idEmpresaUsuarioServer: sessionStorage.EMPRESA_USUARIO,
       }),
     })
       .then(function (resposta) {
@@ -264,6 +367,9 @@
               divEssenciais.className = "coluna-func";
               divTarefas.className = "coluna-func";
 
+              // Adiciona atributo com o ID do usuário
+              divLista.setAttribute("data-id-usuario", tupla.usuario_id);
+
               // Preenche os dados
               divId.innerHTML = i + 1 || "N/A";
               divNome.innerHTML = tupla.usuario_nome || "N/A";
@@ -276,9 +382,10 @@
               divLista.appendChild(divEssenciais);
               divLista.appendChild(divTarefas);
 
-              // Evento de clique para gerenciar o usuário
+              // Evento de clique para exibir o gráfico do funcionário
               divLista.addEventListener("click", function () {
-                // gerenciarUsuario(tupla.usuario_id);
+                const idUsuario = this.getAttribute("data-id-usuario");
+                gerarGrafico(idUsuario); // Chama a função para gerar o gráfico
               });
 
               // Adiciona a linha à lista
@@ -299,35 +406,139 @@
       });
   }
 
+
   function melhorDesempenho() {
     console.log("Iniciando fetch para melhorDesempenho...");
     fetch("/operacao/melhorDesempenho", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            idEmpresaUsuarioServer: idEmpresaUsuario
-        }),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idEmpresaUsuarioServer: idEmpresaUsuario
+      }),
     }).then(function (resposta) {
-        console.log("Resposta recebida: ", resposta);
-        if (resposta.ok) {
-            return resposta.json();
-        } else {
-            console.error('Erro na resposta:', resposta.statusText);
-        }
+      console.log("Resposta recebida: ", resposta);
+      if (resposta.ok) {
+        return resposta.json();
+      } else {
+        console.error('Erro na resposta:', resposta.statusText);
+      }
     }).then(function (melhor) {
-        console.log("Melhor desempenho recebido: ", melhor);
-        var bestDesempenho = document.getElementById("bestDesempenho");
-        if (bestDesempenho) {
-            bestDesempenho.textContent = melhor.nomeusuario;
-            console.log("Texto atualizado: ", bestDesempenho.textContent);
-        } else {
-            console.error("Elemento 'bestDesempenho' não encontrado!");
-        }
+      console.log("Melhor desempenho recebido: ", melhor);
+      var bestDesempenho = document.getElementById("bestDesempenho");
+      if (bestDesempenho) {
+        bestDesempenho.textContent = melhor.nomeusuario;
+        console.log("Texto atualizado: ", bestDesempenho.textContent);
+      } else {
+        console.error("Elemento 'bestDesempenho' não encontrado!");
+      }
     }).catch(function (erro) {
-        console.error('Erro ao buscar dados:', erro);
+      console.error('Erro ao buscar dados:', erro);
     });
+  }
+
+
+  function verRelatorio() {
+    document.getElementById("graficoRelatorioUser").innerHTML += `
+        <canvas id="myChartgraficoRelatorioUser" width="800" height="350"></canvas>`;
+
+        fetch(`/operacao/verRelatorio?idEmpresaUsuarioServer=${idEmpresaUsuario}`, { cache: "no-store" })
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                plotarGraficoTarefas(resposta);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+
 }
+
+function plotarGraficoTarefas(resposta) {
+    console.log('Iniciando plotagem do gráfico...');
+
+    // Criando estrutura para plotar gráfico - labels e datasets
+    let labels = [];
+    let dadosSimples = [];
+    let dadosEssenciais = [];
+
+    // Processando os dados da resposta
+    resposta.forEach(registro => {
+        labels.push(registro.nomeUsuario);
+        dadosSimples.push(registro.outrasTarefas);
+        dadosEssenciais.push(registro.tarefasEssenciais);
+    });
+
+    console.log('----------------------------------------------');
+    console.log('Dados processados para o gráfico:');
+    console.log('Labels:', labels);
+    console.log('Tarefas Simples:', dadosSimples);
+    console.log('Tarefas Essenciais:', dadosEssenciais);
+    console.log('----------------------------------------------');
+
+    // Configuração do gráfico
+    const dados = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Tarefas Simples',
+                data: dadosSimples,
+                backgroundColor: 'rgb(68, 43, 179)', // Azul
+                borderColor: 'rgb(68, 43, 150)',
+                borderWidth: 1
+            },
+            {
+                label: 'Tarefas Essenciais',
+                data: dadosEssenciais,
+                backgroundColor: 'rgb(122, 87, 228)', // Vermelho
+                borderColor: 'rgb(122, 87, 200)',
+                borderWidth: 1
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: dados,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Tarefas Concluídas por Funcionário'
+                }
+            },
+            scales: {
+                x: {
+                    stacked: false // Desativa empilhamento
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    // Criando e renderizando o gráfico
+    let myChartTarefas = new Chart(
+        document.getElementById("myChartgraficoRelatorioUser"),
+        config
+    );
+}
+
+
+
+
+
+
 
 </script>

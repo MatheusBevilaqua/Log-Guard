@@ -30,7 +30,6 @@ function cancelar_modal() {
     document.querySelector('.sessao-adm-modal-todos').style.display = "none";
     document.querySelector('.sessao-adm-modal-card').style.display = "none";
     document.querySelector('.sessao-adm-modal-analise').style.display = "none";
-    document.querySelector('.sessao-adm-modal-riscos').style.display = "none";
     document.querySelector('.sessao-adm-modal-alertas').style.display = "none";
 }
 

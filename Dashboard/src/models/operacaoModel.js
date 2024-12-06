@@ -16,8 +16,16 @@ function melhorDesempenho(idEmpresaUsuario) {
   });
 }
 
+function verRelatorio(fkEmpresa) {
+    var instrucaoSql = `SELECT usuario_nome as nomeUsuario, tarefas_essenciais as tarefasEssenciais, 
+total_tarefas - tarefas_essenciais as outrasTarefas FROM view_tarefasUsuarios 
+WHERE id_empresa = ${fkEmpresa};`;
+    return database.executar(instrucaoSql);
+  }
 
 module.exports = {
   visualizarFuncionarios,
-  melhorDesempenho
+  melhorDesempenho,
+  verRelatorio
+  
 }
