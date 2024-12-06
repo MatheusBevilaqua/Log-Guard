@@ -214,6 +214,12 @@ registro DECIMAL (6,3),
 tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
+SELECT idCaptura, registro 
+FROM captura 
+WHERE fkMaquinaRecursoCaptura = 1 
+ORDER BY idCaptura DESC 
+LIMIT 5;
+
 
 SELECT * FROM CAPTURA;
 

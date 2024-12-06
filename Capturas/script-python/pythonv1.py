@@ -86,7 +86,7 @@ def buscaQueryIdmaquina (enderecoMAC):
 def executarQuery(script): # Função responsável por inserir os dados no banco, recebe uma query SQL qualquer como parâmetro e a executa, usando as credenciais específicas
      config = {
        'user': 'root',
-       'password': '1234',
+       'password': 'ca2006rol',
        'host': 'localhost',
        'database': 'logGuard'
      }
