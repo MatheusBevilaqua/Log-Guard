@@ -14,6 +14,7 @@
 <body onload="validarCargo();validarSessao();visualizarMaquinas()">
 
     </div>
+    
     <section class="page-dash">
         <nav id="sidebar">
             <div id="sidebar_content">
@@ -87,7 +88,14 @@
                         </a>
                     </li>
 
-
+                    <li class="side_item">
+                        <a href="maquina_individual.html">
+                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description">
+                                <b> dash </b>
+                            </span>
+                        </a>
+                    </li>
                 </ul>
 
                 <button id="open_btn">
@@ -221,7 +229,9 @@
                 <div class="cadastrar-geren-terceiro">
                     <button onclick="confirmar_cadastrar()" class="confirmar-geren">Confirmar Configurações</button>
                     <button onclick="cancelar_cadastrar()" class="cancelar-geren">X</button>
-                    <button onclick="teste()"class="cancelar-geren">teste</button>
+                  
+
+
                 </div>
             </div>
             </div>
@@ -648,10 +658,7 @@ function selectFiltro() {
         return false;
     }
 
-function teste() {
-    window.location.href = `/maquina_individual.html?id=${encodeURIComponent(idMaquina)}`;
-    sessionStorage.MAQUINA_SELECIONADA = idMaquina
-};
+
 
 
     function editarMaquina() {

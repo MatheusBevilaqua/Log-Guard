@@ -11,11 +11,14 @@
   <script src="js/sessao.js"></script>
   <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@latest"></script>
+
 </head>
 
 <body>
-  <div
-  <section class="page-dash">
+  <div <section class="page-dash">
     <nav id="sidebar">
       <div id="sidebar_content">
 
@@ -55,7 +58,7 @@
           </li>
 
           <li class="side_item">
-            <a href="relatorios.html">-----
+            <a href="relatorios.html">
               <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
               <span class="item-description">
                 <b> Relatórios </b>
@@ -137,14 +140,13 @@
         <h1 style="color: black; font-weight: bold;">Uso dos Componentes</h1>
         <p style="color: black; font-size: 18px;">Máquina:</p>
       </div>
-      
+
       <div class="kpi-row">
         <div class="kpi-card">
           <div class="kpi-icon">%</div>
           <div class="kpi-info">
             <h3>Uso Do Disco</h3>
-            <p class="value" id= "KPIDisc">41.8%</p>
-            <p class="update">🔄 Update Now</p>
+            <p class="value" id="KPIDisc">Carregando...</p>
           </div>
         </div>
 
@@ -152,8 +154,8 @@
           <div class="kpi-icon">📊</div>
           <div class="kpi-info">
             <h3>Uso da CPU</h3>
-            <p class="value" id="KpiCPU"></p>
-            <p class="update">🔄 Update Now</p>
+            <p class="value" id="KpiCPU">Carregando...</p>
+
           </div>
         </div>
 
@@ -161,12 +163,12 @@
           <div class="kpi-icon">📈</div>
           <div class="kpi-info">
             <h3>Uso da RAM</h3>
-            <p class="value">153 KB/s</p>
-            <p class="update">🔄 Update Now</p>
+            <p class="value" id="KpiRAM">Carregando...</p>
+
           </div>
         </div>
 
-       
+
       </div>
 
       <!-- Seção de Gráficos -->
@@ -174,241 +176,255 @@
         <!-- Gráfico de Alertas - CPU -->
         <div class="chart-box">
           <div class="chart-header">
-            <h3 style="color: black;">Uso- CPU</h3>
+            <h3 style="color: black;">Uso - CPU</h3>
           </div>
           <canvas id="cpuAlertsChart"></canvas>
         </div>
-      
+
         <!-- Gráfico de Alertas - Rede -->
         <div class="chart-box">
           <div class="chart-header">
-            <h3 style="color: black;">Uso- Rede</h3>
+            <h3 style="color: black;">Uso - Rede</h3>
           </div>
           <canvas id="redeAlertsChart"></canvas>
         </div>
+
         <!-- Botão para abrir o modal -->
-<button id="openModalBtn">Abrir Modal</button>
+        <button id="openModalBtn">Abrir Modal</button>
 
-<!-- Modal -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <h2>Bem-vindo ao Modal!</h2>
-    <p>Este é um modal de exemplo.</p>
-  </div>
-</div>
+        <!-- Modal -->
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Bem-vindo ao Modal!</h2>
+            <p>Este é um modal de exemplo.</p>
+          </div>
+        </div>
       </div>
-      
+      </section>
 
-     
-      
-      
-      
-  </section>
-
-  <script src="js/maquina_individual.js"></script>
 </body>
 
 </html>
 
 <script>
-
-alert(sessionStorage.MAQUINA_SELECIONADA)
-
-    document.addEventListener("DOMContentLoaded", function () {
-        // Função para buscar o valor do KPI e exibir na página
-        function fetchKpi() {
-            fetch('/kpi')
-                .then(response => response.json())
-                .then(data => {
-                    // Atualiza o valor do KPI no painel
-                    document.getElementById('KpiCPU').innerText = data;
-                })
-                .catch(error => console.error('Erro ao carregar o KPI:', error));
-        }
-
-        // Chama a função para atualizar o KPI quando a página carregar
-        fetchKpi();
-    });
-
-
-
-  var teste = 0
+  var teste = 0;
+  var chartInstance = null; // Variável para armazenar a instância do gráfico
 
   document.getElementById('open_btn').addEventListener('click', function () {
-
     document.getElementById('sidebar').classList.toggle('open-sidebar');
     this.classList.toggle('rodar');
 
     if (teste == 0) {
       document.getElementById('nomeLog').style.display = "block";
-      teste = 1
+      teste = 1;
     } else {
       document.getElementById('nomeLog').style.display = "none";
-      teste = 0
+      teste = 0;
     }
-
   });
 
   function sair() {
     window.location.href = "index.html";
   }
-</script>
-<script>
-  <!-- PARTE DO TIMER -------------------------------------------------------------------------------------------------------------- -->
-  // Função para criar gráficos Gauge para os componentes
-  
 
-</script>
-
-  <script>
-var kpiCPU = document.getElementById("kpi-CPU");
-
-
-function obterDadosCPU() {
-  fetch(`/maquina_individualRota/ultimasCPU/`, { cache: 'no-store' }).then(function (response) {
+  async function atualizarKPIs() {
+    try {
+      const response = await fetch('/maquina_individualRota/metricas');
       if (response.ok) {
-          response.json().then(function (resposta) {
-              console.log(`Dados recebidos DE CPU: ${JSON.stringify(resposta)}`);
-              resposta.reverse();
+        const metricas = await response.json();
+        console.log("Métricas recebidas:", metricas);
 
-              plotarGraficoCPU(resposta);
+        metricas.forEach((metrica) => {
+          const { fkRecursoCaptura, registro } = metrica;
+          const registroArredondado = parseFloat(registro).toFixed(1);
 
-          });
-      } else {
-          console.error('Nenhum dado encontrado ou erro na API');
-      }
-  })
-      .catch(function (error) {
-          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-      });
-};
-
-function plotarGraficoCPU(resposta) {
-
-  console.log('iniciando plotagem do gráfico...');
-
-  // Criando estrutura para plotar gráfico - labels
-  let labels = [];
-
-  // Criando estrutura para plotar gráfico - dados
-  let dados = {
-    labels: labels,
-    datasets: [{
-        label: 'Usada',
-        data: [],
-        backgroundColor: [],
-        borderColor: ['#393d42'],
-        tension: 0.3,
-        fill: false, 
-        pointRadius: 6
-    }]
-};
-
-  console.log('----------------------------------------------')
-  console.log('-------------------PLOT CPU---------------------')
-  console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-  console.log(resposta)
-// ...
-
-// Dentro do seu loop for na função plotarGraficoDisco
-for (i = resposta.length - 1; i >= 0; i--) {
-    var registro = resposta[i];
-    dados.datasets[0].data.push(registro.CPU);
-    labels.push(registro.intervalo_tempo);
-  
-    if (registro.CPU != null) {
-        // Atualize kpiDisco.textContent em vez de atribuir diretamente ao elemento
-        kpiCPU.textContent = registro.CPU + '%';
-    } else {
-        kpiCPU.textContent = "Erro";
-    }
-   
-    // Definindo a cor com base nas condições
-    if (registro.CPU <= 15) {
-        dados.datasets[0].backgroundColor.push('#00FF00');
-        // dados.datasets[0].borderColor.push('#00FF00');
-    } else if (registro.CPU <= 39) {
-        dados.datasets[0].backgroundColor.push('#f6ff00');
-        // dados.datasets[0].borderColor.push('#f6ff00');
-    } else {
-        dados.datasets[0].backgroundColor.push('#FF0000');
-        // dados.datasets[0].borderColor.push('#FF0000');
-    }
-  }
-  
-  // ...
-
-  console.log('----------------------------------------------')
-  console.log('O gráfico será plotado com os respectivos valores:')
-  console.log('Labels:')
-  console.log(labels)
-  console.log('Dados:')
-  console.log(dados.datasets)
-  console.log('----------------------------------------------')
-
-  // Criando estrutura para plotar gráfico - config
-  const config = {
-    type: 'line',
-    data: dados,
-    fill: false,
-  }
-  
-  // Adicionando gráfico criado em div na tela
-  let chartCPU = new Chart(
-      document.getElementById(`chartCPU`),
-      config
-  );
-
-  setTimeout(() => atualizarGraficoCPU(dados, chartCPU ), 5000);
-};
-
-
-function atualizarGraficoCPU(dados, chartCPU) {
-
-  fetch(`/maquina_individualRota/tempoRealCPU/`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (novoRegistro) {
-
-          if (novoRegistro[0].intervalo_tempo == dados.datasets[0].data.intervalo_tempo) {
-              console.log("---------------------------------------------------------------")
-              console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-              console.log("Horário do novo dado capturado:")
-              console.log(novoRegistro[0].intervalo_tempo)
-              console.log("Horário do último dado capturado:")
-              console.log(dados.labels[dados.labels.length - 1])
-              console.log("---------------------------------------------------------------")
-          } else {
-              // tirando e colocando valores no gráfico
-              dados.labels.shift(); // apagar o primeiro
-              dados.labels.push(novoRegistro[0].intervalo_tempo); // incluir um novo momento
-
-              dados.datasets[0].data.shift();  // apagar o primeira medida
-              dados.datasets[0].data.push(novoRegistro[0].CPU); // incluir uma nova medida
-
-
-              if(novoRegistro.CPU != null){
-                kpiCPU = novoRegistro.CPU;
-            } else {
-                kpiCPU = "Erro"
-              }
-              
-              chartCPU.update();
+          switch (fkRecursoCaptura) {
+            case 1: // CPU
+              document.getElementById("KpiCPU").textContent = `${registroArredondado}%`;
+              break;
+            case 2: // RAM
+              document.getElementById("KpiRAM").textContent = `${registroArredondado}%`;
+              break;
+            case 7: // Uso de Disco
+              document.getElementById("KPIDisc").textContent = `${registroArredondado}%`;
+              break;
+            default:
+              console.warn("Recurso desconhecido:", fkRecursoCaptura);
           }
-
-          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          proximaAtualizacao = setTimeout(() => atualizarGraficoCPU(dados, chartCPU), 5000);
-      });
-  } else {
-      console.error('Nenhum dado encontrado ou erro na API');
-      // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-      proximaAtualizacao = setTimeout(() => atualizarGraficoCPU(dados, chartCPU), 5000);
+        });
+      } else {
+        console.error("Erro ao buscar métricas:", response.statusText);
+      }
+    } catch (erro) {
+      console.error("Erro na requisição de métricas:", erro);
+    }
   }
-})
-  .catch(function (error) {
-      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-  });
 
-};
-  </script>
+  setInterval(atualizarKPIs, 5000);
+  atualizarKPIs();
+
+  async function atualizarGraficoCPU() {
+    try {
+      const response = await fetch('/maquina_individualRota/metrics');
+      if (response.ok) {
+        const metricas = await response.json();
+
+        // Formatar a data para mostrar hora, minuto e segundo (HH:mm:ss)
+        const labels = metricas.map(metrica => {
+          const dataObj = new Date(metrica.dtCriacaoCaptura); // Criando um objeto Date
+          const horas = dataObj.getHours().toString().padStart(2, '0');  // Hora com 2 dígitos
+          const minutos = dataObj.getMinutes().toString().padStart(2, '0'); // Minutos com 2 dígitos
+          const segundos = dataObj.getSeconds().toString().padStart(2, '0'); // Segundos com 2 dígitos
+          return `${horas}:${minutos}:${segundos}`; // Retorna o horário no formato "HH:mm:ss"
+        });
+
+        const valores = metricas.map(metrica => metrica.registro);
+
+        // Inverter a ordem para garantir que o mais recente fique à direita
+        labels.reverse();
+        valores.reverse();
+
+        // Se o gráfico já existe, apenas atualiza os dados
+        if (chartInstance) {
+          chartInstance.data.labels = labels; // Atualiza os rótulos (labels)
+          chartInstance.data.datasets[0].data = valores; // Atualiza os dados do gráfico
+          chartInstance.update(); // Atualiza o gráfico
+        } else {
+          // Caso não exista, cria um novo gráfico
+          const ctx = document.getElementById('cpuAlertsChart').getContext('2d');
+          chartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Uso de CPU (%)',
+                data: valores,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.1
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Hora'
+                  }
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: 'Uso (%)'
+                  },
+                  min: 0,
+                  max: 100,
+                  stepSize: 10
+                }
+              },
+              plugins: {
+                annotation: {
+                  annotations: {
+                    line: {
+                      type: 'line',
+                      xMin: 0,
+                      xMax: labels.length - 1,
+                      yMin: 70,
+                      yMax: 70,
+                      borderColor: 'red',
+                      borderWidth: 2,
+                      borderDash: [10, 5]
+                    }
+                  }
+                }
+              }
+            }
+          });
+        }
+      } else {
+        console.error("Erro ao buscar métricas:", response.statusText);
+      }
+    } catch (erro) {
+      console.error("Erro na requisição de métricas:", erro);
+    }
+  }
+
+  setInterval(atualizarGraficoCPU, 2000);
+  atualizarGraficoCPU();
   
+  async function fetchNetworkData() {
+  try {
+    const response = await fetch('/maquina_individualRota/metricasrede');
+    console.log("Fetch de /api/metricas-rede executado, status:", response.status);
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Dados recebidos para o gráfico de rede:", data);
+
+      // Formatar as datas para mostrar apenas HH:mm:ss
+      let labels = data.map(item => {
+        const dataObj = new Date(item.dtCriacaoCaptura); // Cria um objeto Date
+        const horas = dataObj.getHours().toString().padStart(2, '0'); // Hora com 2 dígitos
+        const minutos = dataObj.getMinutes().toString().padStart(2, '0'); // Minutos com 2 dígitos
+        const segundos = dataObj.getSeconds().toString().padStart(2, '0'); // Segundos com 2 dígitos
+        return `${horas}:${minutos}:${segundos}`; // Retorna no formato HH:mm:ss
+      });
+
+      let valores = data.map(item => item.registro);
+
+      // Inverter a ordem para garantir que o mais recente fique à direita
+      labels.reverse();
+      valores.reverse();
+
+      // Criar ou atualizar o gráfico
+      const ctx = document.getElementById('redeAlertsChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Uso de Rede (%)',
+            data: valores,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            fill: true,
+            tension: 0.1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Hora'
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Uso (%)'
+              },
+              min: 0,
+              max: 100,
+              stepSize: 10
+            }
+          }
+        }
+      });
+    } else {
+      console.error("Erro ao buscar métricas de rede:", response.statusText);
+    }
+  } catch (erro) {
+    console.error("Erro na requisição de métricas de rede:", erro);
+  }
+}
+
+
+setInterval(fetchNetworkData, 2000);
+fetchNetworkData();
+
+</script>
