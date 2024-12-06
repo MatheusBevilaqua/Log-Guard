@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<!-- <body onload="validarCargo();validarSessao();verUsuarios(); totalfunc(); totaladms(); totalanalista(); verMaquinas(), filtrarCargo"> -->
+<body onload="validarCargo();validarSessao();verUsuarios(); totalfunc(); totaladms(); totalanalista(); verMaquinas(), filtrarCargo()">
     <section class="page-dash">
         <nav id="sidebar">
             <div id="sidebar_content">
@@ -277,9 +277,6 @@
                 </div>
                 <div class="editar-func-titulodelet">
                 </div>
-                <div class="Editar-func-botao-editar">
-                    <button onclick="atribuicao_maquina_gefunc()" class="editar-func">Atribuição de Máquinas</button>
-                </div>
                 <!-- <img src="./img/Line1cadastro.png" class="linhacad"> -->
                 <div class="Editar-func-botao-delete">
                     <button onclick="atribuicao_editar_gefunc()" class="editar-func">Editar Perfil</button>
@@ -501,11 +498,6 @@
         } else {
             alert("Algo deu errado na alteração de perfil!");
         }
-    }
-
-    function atribuicao_maquina_gefunc() {
-        document.querySelector('.Editarfunc').style.filter = "blur(5px)";
-        document.querySelector('.Editaratribuicaofunc').style.display = "block";
     }
 
 
