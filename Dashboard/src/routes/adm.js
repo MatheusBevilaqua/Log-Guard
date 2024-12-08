@@ -39,5 +39,18 @@ router.get("/getProbabilidadeDISCO", function (req, res) {
     admController.getProbabilidadeDISCO(req, res);
 });
 
+router.get("/getParametrosRiscoRAM", function (req, res) {
+    admController.getParametrosRiscoRAM(req, res);
+});
+
+router.get("/getParametrosRiscoCPU", function (req, res) {
+    admController.getParametrosRiscoCPU(req, res);
+});
+
+router.get("/getParametrosRiscoREDE", function (req, res) {
+    admController.getParametrosRiscoREDE(req, res);
+});
+
+
 
 module.exports = router;

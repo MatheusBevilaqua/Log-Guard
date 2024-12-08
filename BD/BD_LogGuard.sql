@@ -48,8 +48,6 @@ VALUES
 ('Empresa B', 'contato@empresab.com', 'responsavelB@empresab.com'),
 ('Empresa C', 'contato@empresac.com', 'responsavelC@empresac.com');
 
-Insert into expediente values (default, '00:08:00');
-
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
 (1, 'jhonatan', 'jhonatan@gmail.com', 'senha123', 'LOG_GUARD'),
@@ -84,6 +82,7 @@ VALUES
 (3, 'Funcionario 9B', 'funcionario9b@empresab.com', 'senha123', 'ADMINISTRADOR'),
 (3, 'Funcionario 10B', 'funcionario10b@empresab.com', 'senha123', 'COMUM');
 
+select * from usuario where fkEmpresaUsuario = 3;
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -214,14 +213,8 @@ registro DECIMAL (6,3),
 tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
-SELECT idCaptura, registro 
-FROM captura 
-WHERE fkMaquinaRecursoCaptura = 1 
-ORDER BY idCaptura DESC 
-LIMIT 5;
 
-
-SELECT * FROM CAPTURA;
+SELECT * FROM MAQUINA;
 
 CREATE TABLE tarefa(
 idTarefa INT PRIMARY KEY auto_increment,
@@ -232,7 +225,25 @@ qtdImportante INT,
 qtdEssencial INT
 );
 
-SELECT * FROM usuario;
+insert into tarefa values 
+(default, 16, 15, 5, 30),
+(default, 17, 26, 15, 10);
+
+insert into tarefa values 
+(default, 20, 11, 19, 32),
+(default, 22, 20, 17, 14),
+(default, 23, 23, 20, 17),
+(default, 25, 30, 12, 20);
+
+CREATE TABLE ProbabilidadeRiscos (
+idProbabilidade INT PRIMARY KEY auto_increment,
+dataRegistro DATE,
+fkRecurso INT,
+probabilidade DECIMAL(5,2),
+FOREIGN KEY (fkRecurso) REFERENCES recurso(idRecurso)
+);
+
+SELECT * FROM tarefa;
 
 
 
@@ -263,12 +274,10 @@ WHERE usuario.fkEmpresaUsuario = 4
 ORDER BY tarefa.qtdEssencial DESC 
 LIMIT 1; 
 
-select * FROM usuario;
 
 SELECT tarefas_essenciais FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC LIMIT 1;
 SELECT total_tarefas FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC;
 
-<<<<<<< HEAD
 
 SELECT 
     c.dtCriacaoCaptura AS Data,
@@ -287,25 +296,12 @@ WHERE
     c.tem_problema = TRUE 
     AND m.fkEmpresaMaquina = 3
     AND c.dtCriacaoCaptura >= DATE_SUB(NOW(), INTERVAL 7 DAY);
-=======
-SELECT usuario_nome as nomeUsuario, tarefas_essenciais as tarefasEssenciais, id_empresa,
-total_tarefas - tarefas_essenciais as outrasTarefas FROM view_tarefasUsuarios 
-WHERE id_empresa = 4;
-
-
-insert into tarefa values 
-(default, 57, 15, 5, 30),
-(default, 58, 26, 15, 10);
-
-insert into tarefa values 
-(default, 59, 11, 19, 32),
-(default, 60, 20, 17, 14),
-(default, 61, 23, 20, 17),
-(default, 62, 30, 12, 20),
-(default, 63, 22, 10, 30),
-(default, 64, 25, 15, 33),
-(default, 65, 20, 12, 45),
-(default, 66, 35, 20, 15);
-
->>>>>>> 657929ec4ac180238da7db6d56bc610b85c49554
-
+    
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (9, 2, 2, 70,1, '2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (8, 2, 2, 20,1, '2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (7, 1, 1, 40,1, '2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (6, 1, 1, 80,1, '2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 4, 1, 100,1, '2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 4, 2, 20,1,'2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 3, 1, 100,1, '2024-09-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 3, 2, 20,1,'2024-12-07 10:00:00');
