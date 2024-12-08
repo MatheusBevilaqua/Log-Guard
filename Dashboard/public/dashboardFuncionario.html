@@ -1,291 +1,325 @@
 <!DOCTYPE html>
 <html lang="ptbr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Visão Geral Analista</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="css/partials/SideBar.css">
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="css/partials/SideBar.css" />
     <script src="js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+    <link
+      rel="shortcut icon"
+      type="imagex/png"
+      href="./img/logo_vetorizada6.png"
+    />
+  </head>
 
-</head>
-
-<body onload="validarCargo();validarSessao(); visualizarMaquinas(); buscarCritico(); buscarComponentes()">
-
+  <body
+    onload="validarCargo(); validarSessao(); visualizarMaquinas(); buscarCritico(); buscarComponentes()"
+  >
     <section class="page-dash">
-        <nav id="sidebar">
-            <div id="sidebar_content">
-                <div id="user">
-                    <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg"
-                        id="user_avatar" alt="Avatar">
+      <nav id="sidebar">
+        <div id="sidebar_content">
+          <div id="user">
+            <img
+              src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg"
+              id="user_avatar"
+              alt="Avatar"
+            />
 
-                    <p id="user_infos">
-                        <span class="item-description" id="b_usuario">
-                        </span>
-                        <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
-                            Lorem Ipsum
-                        </span>
-                    </p>
+            <p id="user_infos">
+              <span class="item-description" id="b_usuario"> </span>
+              <span
+                class="item-description"
+                id="cargo_usuario"
+                style="color: #442bb3"
+              >
+                Lorem Ipsum
+              </span>
+            </p>
+          </div>
 
+          <ul id="side_items">
+            <li class="side_item active">
+              <a style="cursor: auto">
+                <i
+                  ><img
+                    src="img/logo_vetorizada6.png"
+                    class="nav-dash-icon"
+                    style="height: 40px; width: 40px"
+                /></i>
+                <span class="item-description">
+                  <b style="color: white"> LOG GUARD </b>
+                </span>
+              </a>
+            </li>
 
+            <li class="side_item">
+              <a href="dashboardFuncionario.html">
+                <i>
+                  <img
+                    src="./img/olho.png"
+                    class="nav-dash-icon"
+                    style="width: 25px"
+                  />
+                </i>
+                <span class="item-description">
+                  <b> Visão Geral </b>
+                </span>
+              </a>
+            </li>
 
-                </div>
+            <li class="side_item">
+              <a href="relatorios.html">
+                <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon" /> </i>
+                <span class="item-description">
+                  <b> Relatórios </b>
+                </span>
+              </a>
+            </li>
 
-                <ul id="side_items">
-                    <li class="side_item active">
-                        <a style="cursor: auto;">
-                            <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon"
-                                    style="height: 40px; width: 40px;"></i>
-                            <span class="item-description">
-                                <b style="color: white;"> LOG GUARD </b>
-                            </span>
-                        </a>
-                    </li>
+            <li class="side_item">
+              <a href="#">
+                <i>
+                  <img
+                    src="./img/e-mail.png"
+                    class="nav-dash-icon"
+                    style="width: 25px"
+                  />
+                </i>
+                <span class="item-description">
+                  <b> Ajuda </b>
+                </span>
+              </a>
+            </li>
+          </ul>
 
-                    <li class="side_item">
-                        <a href="dashboardFuncionario.html">
-                            <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                            <span class="item-description">
-                                <b> Visão Geral </b>
-                            </span>
-                        </a>
-                    </li>
+          <button id="open_btn">
+            <i> <img src="./img/seta-direita.png" class="nav-dash-icon" /> </i>
+          </button>
+        </div>
 
-                    <li class="side_item">
-                        <a href="relatorios.html">
-                            <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
-                            <span class="item-description">
-                                <b> Relatórios </b>
-                            </span>
-                        </a>
-                    </li>
+        <div id="logout">
+          <button id="logout_btn" onclick="sair()">
+            <i> <img src="img/sair.png" class="nav-dash-icon" /> </i>
+            <span class="item-description"> Sair </span>
+          </button>
+        </div>
+      </nav>
 
-                    <li class="side_item">
-                        <a href="#">
-                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                            <span class="item-description">
-                                <b> Ajuda </b>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-
-                <button id="open_btn">
-                    <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
-                </button>
-            </div>
-
-            <div id="logout">
-                <button id="logout_btn" onclick="sair()">
-                    <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
-                    <span class="item-description">
-                        Sair
-                    </span>
-                </button>
-            </div>
-        </nav>
-
-        <div class="main-dash-funcionarios">
-            <div class="alerta-funcionario">
-                <h3>Quantidade de irregularidades por componente (todas as máquinas):</h3>
-                <div class="tempo-real-func" id="tempo-real-func">
-                    <!-- <p><b>CPUs:</b></p> <p class="red"><b class="cpuprob">1</b> <b> / </b><b class="cpugeral">2 </b></p> 
+      <div class="main-dash-funcionarios">
+        <div class="alerta-funcionario">
+          <h3>
+            Quantidade de irregularidades por componente (todas as máquinas):
+          </h3>
+          <div class="tempo-real-func" id="tempo-real-func">
+            <!-- <p><b>CPUs:</b></p> <p class="red"><b class="cpuprob">1</b> <b> / </b><b class="cpugeral">2 </b></p> 
                     <p><b>|</b></p>
                     <p><b>RAMs:</b></p> <p class="red"><b class="ramprob"></b> <b> / </b><b class="ramgeral"></b></p> 
                     <p><b>|</b></p> 
                     <p><b>DISCO(s):</b></p> <p class="green"><b class="discoprob"> </b><b> / </b><b class="discogeral"></b></p>
                     <p><b>|</b></p> 
                     <p><b>REDE(s):</b></p> <p class="red"><b class="rede"> </b><b>mbyts</b></p> -->
+          </div>
+        </div>
+
+        <div class="div-grafico-funcionario">
+          <div class="barra-titulo-funcionario">
+            <a href="#box-consumo">
+              ← Visualizar consumo de componentes por dia</a
+            >
+            <a href="#maquinas-risco">
+              ← Visualizar servidores em estado crítico</a
+            >
+            <a href="#listagem-logs"> ← Visualizar Logs</a>
+          </div>
+
+          <div class="div-todos-graficos-func">
+            <div class="box-dos-graficos2">
+              <div id="maquinas-risco" class="grafico-consumo-componentes">
+                <h2>Servidores em estado Crítico</h2>
+                <h4 style="color: #bdbabb">
+                  servidores que estão com o uso de componentes perto de sua
+                  capacidade total
+                </h4>
+              </div>
+
+              <div id="div-listas-funcionario" class="div-listas-funcionario">
+                <div class="dash-func-risco">
+                  <div class="dash-func-riscos">
+                    <div class="titulos-func-maquinasrisco">
+                      <div class="coluna-func">ID</div>
+                      <div class="coluna-func">Máquina</div>
+                      <div class="coluna-func">Localidade</div>
+                      <div class="coluna-func">Componente irregular</div>
+                      <div class="coluna-func">Uso do Componente</div>
+                    </div>
+
+                    <div class="linha-func">
+                      <img src="./img/Line1cadastro.png" alt="" />
+                      <div
+                        class="geren-dados-risco"
+                        id="geren-dados-risco"
+                      ></div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
 
-            <div class="div-grafico-funcionario">
-                <div class="barra-titulo-funcionario">
-                    <a href="#box-consumo"> ← Visualizar consumo de componentes por dia</a>
-                    <a href="#maquinas-risco"> ← Visualizar servidores em estado crítico</a>
-                    <a href="#listagem-logs"> ← Visualizar Logs</a>
+            <div class="box-dos-graficos1">
+              <div id="box-consumo" class="grafico-consumo-componentes">
+                <h2>Gráfico de consumo de componentes por dia</h2>
+              </div>
+
+              <div class="box-consumo">
+                <div class="box-mychart">
+                  <canvas id="barChart" style="width: 500px;"></canvas>
                 </div>
-
-                <div class="div-todos-graficos-func">
-
-                    <div class="box-dos-graficos2">
-                        <div id="maquinas-risco" class="grafico-consumo-componentes">
-                            <h2>Servidores em estado Crítico</h2>
-                            <h4 style="color: #BDBABB;">servidores que estão com o uso de componentes perto de sua
-                                capacidade total</h4>
-                        </div>
-
-                        <div id="div-listas-funcionario" class="div-listas-funcionario">
-                            <div class="dash-func-risco">
-
-                                <div class="dash-func-riscos">
-                                    <div class="titulos-func-maquinasrisco">
-                                        <div class="coluna-func">ID</div>
-                                        <div class="coluna-func">Máquina</div>
-                                        <div class="coluna-func">Localidade</div>
-                                        <div class="coluna-func">Componente que está fora do parametro</div>
-                                        <div class="coluna-func">Uso do Componente</div>
-                                    </div>
-
-                                    <div class="linha-func">
-                                        <img src="./img/Line1cadastro.png" alt="">
-                                        <div class="geren-dados-risco" id="geren-dados-risco">
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="box-dos-graficos1">
-                        <div id="box-consumo" class="grafico-consumo-componentes">
-                            <h2>Gráfico de consumo de componentes por dia</h2>
-                        </div>
-
-                        <div class="box-consumo">
-                            <div class="box-mychart">
-                                <canvas id="Chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <canvas id="barChart"></canvas>
-                    <!-- Script para o Chart.js -->
-                    <script>
-
-                        // Passo 2: Configurar os Dados do Gráfico
-                        const ctx = document.getElementById('barChart').getContext('2d');
-                        const data = {
-                            labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
-                            datasets: [{
-                                label: 'Alertas',
-                                data: [4, 1, 8, 1, 3, 2, 0],
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 1
-                            }]
-                        };
-
-                        // Passo 3: Configurar o Gráfico
-                        const config = {
-                            type: 'bar',
-                            data: data,
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            },
-                            plugins: [{
-                                beforeDraw: (chart, args, options) => {
-                                    const ctx = chart.ctx;
-                                    const xAxis = chart.scales.x;
-                                    const yAxis = chart.scales.y;
-                                    const ablineY = 3; // Defina a posição da linha de referência
-
-                                    ctx.save();
-                                    ctx.beginPath();
-                                    ctx.moveTo(xAxis.left, yAxis.getPixelForValue(ablineY));
-                                    ctx.lineTo(xAxis.right, yAxis.getPixelForValue(ablineY));
-                                    ctx.strokeStyle = 'red';
-                                    ctx.stroke();
-                                    ctx.restore();
-                                }
-                            }]
-                        };
-
-                        // Passo 4: Criar o Gráfico
-                        new Chart(ctx, config);
-                    </script>
-
-                    <!-- listagens -->
-                    <div class="box-dos-graficos3">
-                        <div id="listagem-logs" class="grafico-consumo-componentes">
-                            <h2>Log's Máquinas em risco</h2>
-                            <h4 style="color: #BDBABB;">Listagem das máquinas que ficaram em estado de risco (nas
-                                últimas 72hrs)</h4>
-                        </div>
-
-                        <div id="div-listas-funcionario-2" class="div-listas-funcionario-2">
-                            <div class="dash-func-logs">
-
-                                <div class="titulos-func-logsfunc">
-                                    <div class="coluna-geren">ID</div>
-                                    <div class="coluna-geren">Nome</div>
-                                    <div class="coluna-geren">CPU</div>
-                                    <div class="coluna-geren">RAMs</div>
-                                    <div class="coluna-geren">Disco</div>
-                                    <div class="coluna-geren">Localidade</div>
-                                    <div class="coluna-geren">Endereço MAC</div>
-                                </div>
-
-                                <div class="linha-geren">
-                                    <img src="./img/Line1cadastro.png" alt="">
-                                </div>
-
-                                <div class="geren-dados-logs" id="geren-dados-logs">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-        </div>
-        </div>
-        </div>
-        </div>
+            <!-- Script para o Chart.js -->
+            <script>
+              // Passo 2: Configurar os Dados do Gráfico
+              const ctx = document.getElementById("barChart").getContext("2d");
+              const data = {
+                labels: [
+                  "Domingo",
+                  "Segunda",
+                  "Terça",
+                  "Quarta",
+                  "Quinta",
+                  "Sexta",
+                  "Sabado",
+                ],
+                datasets: [
+                  {
+                    label: "Alertas",
+                    data: [4, 1, 8, 1, 3, 2, 0],
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1,
+                  },
+                ],
+              };
 
+              // Passo 3: Configurar o Gráfico
+              const config = {
+                type: "bar",
+                data: data,
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                },
+                plugins: [
+                  {
+                    beforeDraw: (chart, args, options) => {
+                      const ctx = chart.ctx;
+                      const xAxis = chart.scales.x;
+                      const yAxis = chart.scales.y;
+                      const ablineY = 3; // Defina a posição da linha de referência
 
-</body>
+                      ctx.save();
+                      ctx.beginPath();
+                      ctx.moveTo(xAxis.left, yAxis.getPixelForValue(ablineY));
+                      ctx.lineTo(xAxis.right, yAxis.getPixelForValue(ablineY));
+                      ctx.strokeStyle = "red";
+                      ctx.stroke();
+                      ctx.restore();
+                    },
+                  },
+                ],
+              };
 
+              // Passo 4: Criar o Gráfico
+              new Chart(ctx, config);
+            </script>
+
+            <!-- listagens -->
+            <div class="box-dos-graficos3">
+              <div id="listagem-logs" class="grafico-consumo-componentes">
+                <h2>Log's Máquinas em risco</h2>
+                <h4 style="color: #bdbabb">
+                  Listagem das máquinas que ficaram em estado de risco (nas
+                  últimas 72hrs)
+                </h4>
+              </div>
+
+              <div
+                id="div-listas-funcionario-2"
+                class="div-listas-funcionario-2"
+              >
+                <div class="dash-func-logs">
+                  <div class="titulos-func-logsfunc">
+                    <div class="coluna-gerente">ID</div>
+                    <div class="coluna-gerente">Nome</div>
+                    <div class="coluna-gerente">CPU</div>
+                    <div class="coluna-gerente">RAMs</div>
+                    <div class="coluna-gerente">Disco</div>
+                    <div class="coluna-gerente">Localidade</div>
+                    <div class="coluna-gerente">Endereço MAC</div>
+                  </div>
+
+                  <div class="linha-geren">
+                    <hr />
+                  </div>
+
+                  <div class="geren-dados-logs" id="geren-dados-logs"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
 <script>
-    document.getElementById('open_btn').addEventListener('click', function () {
-        document.getElementById('sidebar').classList.toggle('open-sidebar');
-    });
+  document.getElementById("open_btn").addEventListener("click", function () {
+    document.getElementById("sidebar").classList.toggle("open-sidebar");
+  });
 
-    var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
-    var idMaquina = ""
+  var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
+  var idMaquina = "";
 
-    function buscarComponentes() {
-        fetch("/matheusgrafico/buscarComponentes", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                idEmpresaMaquinaServer: idEmpresaUsuario
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
+  function buscarComponentes() {
+    fetch("/matheusgrafico/buscarComponentes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idEmpresaMaquinaServer: idEmpresaUsuario,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
 
-                if (resposta.ok) {
-                    if (resposta.status == 204) {
-                        var lista = document.getElementById("tempo-real-func");
-                        if (lista) {
-                            var mensagem = document.createElement("span");
-                            mensagem.innerHTML = "Nenhuma máquina encontrada.";
-                            lista.appendChild(mensagem);
-                        }
-                        throw "Nenhum resultado encontrado!";
-                    }
+        if (resposta.ok) {
+          if (resposta.status == 204) {
+            var lista = document.getElementById("tempo-real-func");
+            if (lista) {
+              var mensagem = document.createElement("span");
+              mensagem.innerHTML = "Nenhuma máquina encontrada.";
+              lista.appendChild(mensagem);
+            }
+            throw "Nenhum resultado encontrado!";
+          }
 
-                    resposta.json().then(function (resposta) {
-                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+          resposta.json().then(function (resposta) {
+            console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                        var lista = document.getElementById("tempo-real-func");
+            var lista = document.getElementById("tempo-real-func");
 
-                        if (lista) {
-                            for (let i = 0; i < resposta.length; i++) {
-                    var registro = resposta[i];
+            if (lista) {
+              for (let i = 0; i < resposta.length; i++) {
+                var registro = resposta[i];
 
-                    lista.innerHTML = `
+                lista.innerHTML = `
                         
 
                          <p><b>CPUs:</b></p> <p class="red"><b class="cpuprob">${registro.CPU_acima_parametro}</b> <b> / </b><b class="cpugeral">${registro.totalCPU} </b></p> 
@@ -295,201 +329,167 @@
                     <p><b>DISCO(s):</b></p> <p class="green"><b class="discoprob">${registro.Disco_acima_parametro}</b><b> / </b><b class="discogeral">${registro.totalDisco}</b></p>
                     <p><b>|</b></p> 
                     <p><b>REDE(s):</b></p> <p class="red"><b class="rede"> </b><b>mbyts</b></p>
-                        `
-                }
-            } 
-                    });
+                        `;
+              }
+            }
+          });
+        } else {
+          throw "Houve um erro na API!";
+        }
+      })
+      .catch(function (resposta) {
+        console.error(resposta);
+      });
+  }
 
-                } else {
-                    throw ('Houve um erro na API!');
-                }
-            }).catch(function (resposta) {
-                console.error(resposta);
-            });
-    }
+  // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- //
 
-    
-    // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- //
+  // Função para listar as maquinas que estão em estado criticos!
+  function buscarCritico() {
+    fetch("/matheusgrafico/buscarCritico", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
 
-    // Função para listar as maquinas que estão em estado criticos!
-    function buscarCritico() {
-        fetch("/matheusgrafico/buscarCritico", {
+      body: JSON.stringify({
+        idEmpresaMaquinaServer: idEmpresaUsuario,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
 
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+        if (resposta.ok) {
+          if (resposta.status == 204) {
+            var lista = document.getElementById("dash-func-risco");
+            var mensagem = document.createElement("span");
+            mensagem.innerHTML = "Nenhuma máquina encontrada.";
+            throw "Nenhum resultado encontrada!!";
+          }
 
-            body: JSON.stringify({
-                idEmpresaMaquinaServer: idEmpresaUsuario
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
+          resposta.json().then(function (resposta) {
+            console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                if (resposta.ok) {
-                    if (resposta.status == 204) {
-                        var lista = document.getElementById("dash-func-risco");
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhuma máquina encontrada."
-                        throw "Nenhum resultado encontrada!!";
-                    }
+            var lista = document.getElementById("geren-dados-risco");
 
-                    resposta.json().then(function (resposta) {
-                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+            for (let i = 0; i < resposta.length; i++) {
+              let tupla = resposta[i];
+              var divLista = document.createElement("div");
+              var divId = document.createElement("div");
+              var divnome = document.createElement("div");
+              var divLocalidade = document.createElement("div");
+              var divComponente = document.createElement("div");
+              var divRegistros = document.createElement("div");
 
-                        var lista = document.getElementById("geren-dados-risco");
+              divLista.className = "geren-dados-riscos";
+              divId.className = "coluna-func";
+              divnome.className = "coluna-func";
+              divLocalidade.className = "coluna-func";
+              divComponente.className = "coluna-func";
+              divRegistros.className = "coluna-func";
 
+              divId.innerHTML = tupla.idMaquina;
+              divnome.innerHTML = tupla.nomeMaquina;
+              divLocalidade.innerHTML = tupla.localidade;
+              divComponente.innerHTML = tupla.Componente;
+              divRegistros.innerHTML = tupla.Registros;
 
-                        for (let i = 0; i < resposta.length; i++) {
+              divLista.appendChild(divId);
+              divLista.appendChild(divnome);
+              divLista.appendChild(divLocalidade);
+              divLista.appendChild(divComponente);
+              divLista.appendChild(divRegistros);
 
-                            let tupla = resposta[i];
-                            var divLista = document.createElement("div");
-                            var divId = document.createElement("div");
-                            var divnome = document.createElement("div");
-                            var divLocalidade = document.createElement("div");
-                            var divComponente = document.createElement("div");
-                            var divRegistros = document.createElement("div");
+              lista.appendChild(divLista);
+            }
+          });
+        } else {
+          throw "Houve um erro na API!";
+        }
+      })
+      .catch(function (resposta) {
+        console.error(resposta);
+      });
+  }
 
-                            divLista.className = "geren-dados-risco";
-                            divId.className = "coluna-func";
-                            divnome.className = "coluna-func";
-                            divLocalidade.className = "coluna-func";
-                            divComponente.className = "coluna-func";
-                            divRegistros.className = "coluna-func";
+  // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- //
 
-                            divId.innerHTML = tupla.idMaquina;
-                            divnome.innerHTML = tupla.nomeMaquina;
-                            divLocalidade.innerHTML = tupla.localidade;
-                            divComponente.innerHTML = tupla.Componente;
-                            divRegistros.innerHTML = tupla.Registros;
+  function visualizarMaquinas() {
+    fetch("/matheusgrafico/visualizarMaquinas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
 
-                            divLista.appendChild(divId);
-                            divLista.appendChild(divnome);
-                            divLista.appendChild(divLocalidade);
-                            divLista.appendChild(divComponente);
-                            divLista.appendChild(divRegistros);
+      body: JSON.stringify({
+        idEmpresaMaquinaServer: idEmpresaUsuario,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
 
-                            let debounceTimeout;
-                            divLista.addEventListener("click", function () {
-                                if (debounceTimeout) {
-                                    clearTimeout(debounceTimeout);
-                                }
+        if (resposta.ok) {
+          if (resposta.status == 204) {
+            var lista = document.getElementById("dash-func-logs");
+            var mensagem = document.createElement("span");
+            mensagem.innerHTML = "Nenhuma máquina encontrada.";
+            throw "Nenhum resultado encontrada!!";
+          }
 
-                                debounceTimeout = setTimeout(function () {
-                                    buscarCritico(tupla.idMaquina);
-                                }, 200);
-                            });
+          resposta.json().then(function (resposta) {
+            console.log("Dados recebidos: ", JSON.stringify(resposta));
 
+            var lista = document.getElementById("geren-dados-logs");
 
-                            lista.appendChild(divLista);
-                        }
-                    });
+            for (let i = 0; i < resposta.length; i++) {
+              let tupla = resposta[i];
+              var divLista = document.createElement("div");
+              var divId = document.createElement("div");
+              var divnome = document.createElement("div");
+              var divCPU = document.createElement("div");
+              var divRAM = document.createElement("div");
+              var divDisco = document.createElement("div");
+              var divnomeLocalidade = document.createElement("div");
+              var divMAC = document.createElement("div");
 
-                } else {
-                    throw ('Houve um erro na API!');
-                }
-            }).catch(function (resposta) {
-                console.error(resposta);
-            });
-    }
+              divLista.className = "geren-dados-item";
+              divId.className = "coluna-geren-item";
+              divnome.className = "coluna-geren-item";
+              divCPU.className = "coluna-geren-item";
+              divRAM.className = "coluna-geren-item";
+              divDisco.className = "coluna-geren-item";
+              divnomeLocalidade.className = "coluna-geren-item";
+              divMAC.className = "coluna-geren-item";
 
-    // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- //
+              divId.innerHTML = tupla.idMaquina;
+              divnome.innerHTML = tupla.nomeMaquina;
+              divCPU.innerHTML = tupla.modeloCPU;
+              divRAM.innerHTML = tupla.capacidadeRAM;
+              divDisco.innerHTML = tupla.disco;
+              divnomeLocalidade.innerHTML = tupla.nomelocalidade;
+              divMAC.innerHTML = tupla.MACAdress;
 
-    function visualizarMaquinas() {
-        fetch("/matheusgrafico/visualizarMaquinas", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+              divLista.appendChild(divId);
+              divLista.appendChild(divnome);
+              divLista.appendChild(divCPU);
+              divLista.appendChild(divRAM);
+              divLista.appendChild(divDisco);
+              divLista.appendChild(divnomeLocalidade);
+              divLista.appendChild(divMAC);
 
-            body: JSON.stringify({
-                idEmpresaMaquinaServer: idEmpresaUsuario
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
+              lista.appendChild(divLista);
+            }
+          });
+        } else {
+          throw "Houve um erro na API!";
+        }
+      })
+      .catch(function (resposta) {
+        console.error(resposta);
+      });
+  }
 
-                if (resposta.ok) {
-                    if (resposta.status == 204) {
-                        var lista = document.getElementById("dash-func-logs");
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhuma máquina encontrada."
-                        throw "Nenhum resultado encontrada!!";
-                    }
-
-                    resposta.json().then(function (resposta) {
-                        console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                        var lista = document.getElementById("geren-dados-logs");
-
-
-                        for (let i = 0; i < resposta.length; i++) {
-
-                            let tupla = resposta[i];
-                            var divLista = document.createElement("div");
-                            var divId = document.createElement("div");
-                            var divnome = document.createElement("div");
-                            var divCPU = document.createElement("div");
-                            var divRAM = document.createElement("div");
-                            var divDisco = document.createElement("div");
-                            var divLocalidade = document.createElement("div");
-                            var divMAC = document.createElement("div");
-
-                            divLista.className = "geren-dados-logs";
-                            divId.className = "coluna-geren";
-                            divnome.className = "coluna-geren";
-                            divCPU.className = "coluna-geren";
-                            divRAM.className = "coluna-geren";
-                            divDisco.className = "coluna-geren";
-                            divLocalidade.className = "coluna-geren";
-                            divMAC.className = "coluna-geren";
-
-                            divId.innerHTML = tupla.idMaquina;
-                            divnome.innerHTML = tupla.nomeMaquina;
-                            divCPU.innerHTML = tupla.modeloCPU;
-                            divRAM.innerHTML = tupla.capacidadeRAM;
-                            divDisco.innerHTML = tupla.disco;
-                            divLocalidade.innerHTML = tupla.localidade;
-                            divMAC.innerHTML = tupla.MACAdress;
-
-
-                            divLista.appendChild(divId);
-                            divLista.appendChild(divnome);
-                            divLista.appendChild(divCPU);
-                            divLista.appendChild(divRAM);
-                            divLista.appendChild(divDisco);
-                            divLista.appendChild(divLocalidade);
-                            divLista.appendChild(divMAC);
-
-
-                            let debounceTimeout;
-                            divLista.addEventListener("click", function () {
-                                if (debounceTimeout) {
-                                    clearTimeout(debounceTimeout);
-                                }
-
-                                debounceTimeout = setTimeout(function () {
-                                    visualizarMaquinas(tupla.idMaquina);
-                                }, 200);
-                            });
-
-
-                            lista.appendChild(divLista);
-                        }
-                    });
-
-                } else {
-                    throw ('Houve um erro na API!');
-                }
-            }).catch(function (resposta) {
-                console.error(resposta);
-            });
-    }
-
-
-    function sair() {
-        window.location.href = "index.html";
-    }
-
+  function sair() {
+    window.location.href = "index.html";
+  }
 </script>

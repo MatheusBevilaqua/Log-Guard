@@ -35,12 +35,17 @@
 
 .tempo-real-func{
     display: grid;
-    grid-template-columns: 0px 2px 0px 2px 2px 2px 2px 2px 2px 2px 2px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
     flex-direction: row;
     margin-top: 30px;
     color: black;
     justify-content: space-evenly;
+
+    & p{
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .div-grafico-funcionario {
@@ -83,17 +88,14 @@
 
 .dash-func-logs {
     display: flex;
+    gap: var(--gap-1);
     flex-direction: column;
+    border-radius: 10px;
     width: 100%;
     height: 100%;
     background-color: rgb(255, 255, 255);
-    padding-top: 2%;
-    padding-bottom: 2%;
-    justify-content: space-between;
     color: black;
-    padding-left: 1%;
-    padding-right: 1%;
-    overflow: unset;
+    padding: var(--gap-1);
 }
 
 .dash-func-riscos {
@@ -126,7 +128,7 @@
     background-color: #e3e3e3;
     border-radius: 10px;
     width: 100%;
-    height: 300px;
+    height: 500px;
     margin-top: 20px;
     padding: 10px;
 }
@@ -178,10 +180,9 @@
     color: black;
     align-items: baseline;
     display: grid;
-    grid-template-columns: 100px 250px 200px 150px 140px 120px 100px;
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr;
     flex-direction: row;
-    height: 10%;
-    padding-left: 10px;
+    height: 35px;
 }
 
 .dados-func-atribuicao-maquinasrisco {
@@ -212,12 +213,9 @@
 
 .titulos-func-logsfunc {
     color: black;
-    align-items: baseline;
     display: grid;
-    grid-template-columns: 100px 180px 180px 240px 210px 120px 100px;
-    flex-direction: row;
-    height: 10%;
-    padding-left: 10px;
+    grid-template-columns: 1fr 3fr 2fr 2fr 2fr 2fr 2fr;
+    height: 35px;
 }
 
 .dados-func-atribuicao-dashfunc {
@@ -251,4 +249,75 @@
     justify-content: center;
     display: flex;
     background-color: white;
+}
+
+/* -- ALTERAÇÕES -- */
+
+.dash-func-risco{
+ width: 100%;
+}
+
+.linha-geren{
+    width: 100%;
+
+    & hr{
+        width: 100%;
+        border: 2px solid #2e2e2e;
+        border-radius: 5px;
+    }
+}
+
+.geren-dados-risco{
+    padding-top: var(--gap-1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-1);
+    overflow-y: auto;
+}
+
+.geren-dados-riscos{
+    height: 50px;
+    border-radius: 10px;
+    background: #e3e3e3;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr;
+}
+
+.coluna-gerente{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+
+    width: 100%;
+    height: 100%;
+}
+
+.geren-dados-logs{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    gap: var(--gap-1);
+}
+
+.geren-dados-item{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 2fr 2fr 2fr 2fr;
+    border-radius: 10px;
+    background: #e3e3e3;
+    height: 50px;
+    min-height: 50px;
+}
+
+.coluna-geren-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: black;
 }
