@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogGuard - Dashboard</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/partials/SideBar.css">
+    <link rel="stylesheet" href="css/pages/dash-datacenters.css">
+    <script src="js/sessao.js"></script>
+    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</head>
+
+<body onload="usoCPUPorMaquinaLocalidade(sessionStorage.LOCALIDADE_SELECIONADA); obterDadosGrafico(sessionStorage.LOCALIDADE_SELECIONADA);quantidadeLocalidade(idLocalidadeAtual);qtdEmAlertaCPULocalidade(idLocalidadeAtual); qtdEmAlertaMemoriaLocalidade(idLocalidadeAtual);usoMemoriaPorMaquinaLocalidade(idLocalidadeAtual);obterDadosGraficoRam(idLocalidadeAtual);qtdEmAlertaDiscoLocalidade(idLocalidadeAtual);;usoDiscoPorMaquinaLocalidade(idLocalidadeAtual); usoBandaPorMaquinaLocalidade(idLocalidadeAtual);obterDadosGraficoRede(idLocalidadeAtual);porcentagemPerdaPacotesLocalidade(idLocalidadeAtual);visualizarMaquinas()">
+    <section class="page-dash">
+        <nav id="sidebar">
+            <div id="sidebar_content">
+
+                <li class="side_item" style="cursor: none;">
+                    <a>
+                        <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+                        <span class="item-description">
+                            <b style="color: #442BB3; margin-left: 15px;"> Log Guard </b>
+                        </span>
+                    </a>
+                </li>
+
+                <div id="user">
+                    <p id="user_infos">
+                        <span style="color: black;" class="item-descriptionAtivo"> Olá,
+                            <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                                Jon Doe
+                            </span>
+                        </span>
+                        <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+                            Lorem Ipsum
+                        </span>
+                    </p>
+                </div>
+
+                <ul id="side_items">
+
+
+                    <li class="side_item ">
+                        <a href="dashboard_ADM.html">
+                            <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description">
+                                <b> Visão Geral </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="relatorios.html">
+                            <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Relatórios </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="gerenciar-maquina.html">
+                            <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Empresas </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="gerenciar-usuario-func.html">
+                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> Usuários </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="gerenciar-usuario-func.html">
+                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                            <span class="item-description">
+                                <b> FeedBacks </b>
+                            </span>
+                        </a>
+                    </li>
+
+
+                    <li class="side_item active">
+                        <a href="dash_Gerenciamento_Operacao.html">
+                            <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
+                            <span class="item-descriptionAtivo">
+                                <b style="color: aliceblue;"> Operações </b>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side_item">
+                        <a href="#">
+                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                            <span class="item-description">
+                                <b> Ajuda </b>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <button id="open_btn">
+                    <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+                </button>
+            </div>
+
+            <div id="logout">
+                <button id="logout_btn" onclick="sair()">
+                    <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                        Sair
+                    </span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="container_dash_rede">
+            <div class="container_top">
+                <div class="div_filtro_componente_datacenter"> <button onclick="verREDE()" style="color: #442BB3; font-weight: bolder;"> REDE </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verRAM()"> RAM </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verCPU()"> CPU </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verDISCO()"> DISCO </button></div>
+            </div>
+
+            <div class="container_interno">
+                <div class="container_maior">
+
+                <div class="container_indicadores">
+                    <div class="container_kpi">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador indicador_rede ">Taxa de Uso de Banda Larga </h2>
+                            <h3 class="h3_indicador" id="uso_banda"> x Mpbs</h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador" style="margin-left: 5%;">Média de Pacotes Perdidos </h2>
+                            <h3 class="h3_indicador" id="porcentagem_perda_pacotes"> X%</h3>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="container_info_servidores">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador" style="margin-left: 5%;">Qtd. Servidores da Localidade:</h2>
+                            <h3 class="h3_indicador" id="qtd_servidores_rede"></h3>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="graficos">
+                        <div class="segundo_grafico">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    
+                        <div class="segundo_grafico">
+                            <canvas id="myChart1"></canvas>
+                        </div>
+                    
+                    </div>
+
+                </div>
+
+                <div class="container_menor">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container_dash_RAM">
+            <div class="container_top">
+                <div class="div_filtro_componente_datacenter"> <button onclick="verREDE()"> REDE </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verRAM()" style="color: #442BB3; font-weight: bolder;"> RAM </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verCPU()"> CPU </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verDISCO()"> DISCO </button></div>
+            </div>
+
+            <div class="container_interno">
+                <div class="container_maior">
+
+                <div class="container_indicadores">
+                    <div class="container_kpi">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador_ram">Qtd. máquinas que ultrapassaram parâmetro de uso de memória</h2>
+                            <h3 class="h3_indicador" id="qtd_problema_memoria"></h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Média de uso de memória</h2>
+                            <h3 class="h3_indicador"  id="porcentagem_uso_memoria">%</h3>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="container_info_servidores">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Qtd. Servidores da Localidade:</h2>
+                            <h3 class="h3_indicador" id="qtd_servidores_mem">12</h3>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="graficos">
+                        <div class="segundo_grafico">
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                    
+                        <div class="segundo_grafico">
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                    
+                    </div>
+
+                </div>
+
+                <div class="container_menor">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container_dash_CPU">
+            <div class="container_top">
+                <div class="div_filtro_componente_datacenter"> <button onclick="verREDE()"> REDE </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verRAM()"> RAM </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verCPU()" style="color: #442BB3; font-weight: bolder;"> CPU </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verDISCO()"> DISCO </button></div>
+            </div>
+
+            <div class="container_interno">
+                <div class="container_maior">
+
+                <div class="container_indicadores">
+                    <div class="container_kpi">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador_ram">Qtd. máquinas que ultrapassaram parâmetro de uso de CPU</h2>
+                            <h3 class="h3_indicador" id="qtd_problema_cpu">2/12</h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Média de uso de CPU</h2>
+                            <h3 class="h3_indicador" id="porcentagem_cpu">%</h3>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="container_info_servidores">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Qtd. Servidores da Localidade:</h2>
+                            <h3 class="h3_indicador" id="qtd_servidores_cpu">12</h3>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                    <div class="graficos">
+                        <div class="segundo_grafico">
+                            <canvas id="myChart4"></canvas>
+                        </div>
+                    
+                        <div class="segundo_grafico">
+                            <canvas id="myChart5"></canvas>
+                        </div>
+                    
+                    </div>
+
+                </div>
+
+                <div class="container_menor">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container_dash_DISCO">
+            <div class="container_top">
+                <div class="div_filtro_componente_datacenter"> <button onclick="verREDE()"> REDE </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verRAM()"> RAM </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verCPU()"> CPU </button></div>
+                <div class="div_filtro_componente_datacenter"><button onclick="verDISCO()" style="color: #442BB3; font-weight: bolder;"> DISCO </button></div>
+            </div>
+
+            <div class="container_interno">
+                <div class="container_maior">
+
+                <div class="container_indicadores">
+                    <div class="container_kpi">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador"> Qtd. máquinas que ultrapassaram parâmetro de uso de Disco </h2>
+                            <h3 class="h3_indicador" id="qtd_problema_disco"> 0</h3>
+                        </div>
+
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador">Média de espaço de Disco Livre</h2>
+                            <h3 class="h3_indicador" id="porcentagem_uso_disco">60%</h3>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="container_info_servidores">
+                        <div class="div_indicador">
+                            <h2 class="titulo_indicador"> Qtd. Servidores da Localidade:</h2>
+                            <h3 class="h3_indicador" id="qtd_servidores_disco">12</h3>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                    <div class="graficos">
+                        <div class="segundo_grafico">
+                            <canvas id="myChart6"></canvas>
+                        </div>
+                    
+                    </div>
+
+                </div>
+
+                <div class="container_menor">
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+
+</html>
+<script>
+
+const idLocalidadeAtual = sessionStorage.LOCALIDADE_SELECIONADA;
+
+
+   function verREDE() {
+    document.querySelector('.container_dash_RAM').style.display = "none";
+    document.querySelector('.container_dash_CPU').style.display = "none";
+    document.querySelector('.container_dash_DISCO').style.display = "none";
+    document.querySelector('.container_dash_rede').style.display = "block";
+   }
+
+   function verRAM() {
+    document.querySelector('.container_dash_RAM').style.display = "block";
+    document.querySelector('.container_dash_CPU').style.display = "none";
+    document.querySelector('.container_dash_DISCO').style.display = "none";
+    document.querySelector('.container_dash_rede').style.display = "none";
+   }
+
+
+   function verCPU() {
+    document.querySelector('.container_dash_RAM').style.display = "none";
+    document.querySelector('.container_dash_CPU').style.display = "block";
+    document.querySelector('.container_dash_DISCO').style.display = "none";
+    document.querySelector('.container_dash_rede').style.display = "none";
+   }
+
+
+   function verDISCO() {
+    document.querySelector('.container_dash_RAM').style.display = "none";
+    document.querySelector('.container_dash_CPU').style.display = "none";
+    document.querySelector('.container_dash_DISCO').style.display = "block";
+    document.querySelector('.container_dash_rede').style.display = "none";
+   }
+
+
+    var teste = 0
+
+    document.getElementById('open_btn').addEventListener('click', function () {
+
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
+        this.classList.toggle('rodar');
+
+        if (teste == 0) {
+            document.getElementById('nomeLog').style.display = "block";
+            teste = 1
+        } else {
+            document.getElementById('nomeLog').style.display = "none";
+            teste = 0
+        }
+
+    });
+
+    function sair() {
+        window.location.href = "index.html";
+    }
+
+
+
+function quantidadeLocalidade(idLocalidadeAtual) {
+    fetch("/localidades/quantidadeLocalidade", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idLocalidadeServer: idLocalidadeAtual,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+                    quantidade_servidores = json[0].quantidade_servidores;
+
+                    document.getElementById("qtd_servidores_rede").innerHTML = `${quantidade_servidores}`;
+                    document.getElementById("qtd_servidores_mem").innerHTML = `${quantidade_servidores}`;
+                    document.getElementById("qtd_servidores_disco").innerHTML = `${quantidade_servidores}`;
+                    document.getElementById("qtd_servidores_cpu").innerHTML = `${quantidade_servidores}`;
+             
+                });
+            } else {
+                console.error("Houve um erro na requisição");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao tentar buscar os dados do usuário:", erro);
+        });
+
+    return false;
+}
+
+//------------------------------------------------------------ CPU  ------------------------------------------------------------------------------------
+let graficoCPU; 
+let proximaAtualizacao;
+
+function porcentagemUsoCPULocalidade(idLocalidadeAtual) {
+    fetch("/localidades/porcentagemUsoCPULocalidade", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idLocalidadeServer: idLocalidadeAtual,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+        
+
+
+                    var media_cpu = json[0].media_uso_cpu
+        
+                    var media_cpu = media_cpu.substring(0,2);
+            
+                    document.getElementById("porcentagem_cpu").innerHTML = `${media_cpu}%`;
+                });
+            } else {
+                console.error("Houve um erro na requisição");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao tentar buscar os dados do usuário:", erro);
+        });
+
+    return false;
+}
+
+function qtdEmAlertaCPULocalidade(idLocalidadeAtual) {
+
+fetch("/localidades/qtdEmAlertaCPULocalidade", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        idLocalidadeServer: idLocalidadeAtual,
+    }),
+})
+    .then(function (resposta) {
+        if (resposta.ok) {
+            
+            if (resposta.json.length == 0) {
+                var quantidade_maquinas_com_problema = 0
+            }else{
+                resposta.json().then(function (json) {
+                var quantidade_maquinas_com_problema = json[0].quantidade_maquinas_com_problema});
+            }
+
+            document.getElementById("qtd_problema_cpu").innerHTML = `${quantidade_maquinas_com_problema}`;
+            
+        } else {
+            console.error("Houve um erro na requisição");
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro ao tentar buscar os dados do usuário:", erro);
+    });
+
+return false;
+}
+
+function usoCPUPorMaquinaLocalidade(idLocalidadeAtual) {
+    if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
+    }
+
+    fetch("/localidades/usoCPUPorMaquinaLocalidade", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idLocalidadeServer: idLocalidadeAtual,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+                    plotarGraficoCPU1(json);
+                });
+            } else {
+                console.error("Houve um erro na requisição");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao tentar buscar os dados do usuário:", erro);
+        });
+
+    return false;
+}
+
+function plotarGraficoCPU1(dados) {
+    const labels = dados.map(d => d.nome_maquina);
+    const valoresCPU = dados.map(d => d.uso_cpu);
+
+    const ctx4 = document.getElementById('myChart4').getContext('2d');
+
+    if (graficoCPU) {
+        // Atualiza os dados do gráfico existente
+        graficoCPU.data.labels = labels;
+        graficoCPU.data.datasets[0].data = valoresCPU;
+        graficoCPU.update();
+    } else {
+        // Cria o gráfico apenas uma vez
+        graficoCPU = new Chart(ctx4, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Uso de CPU por Máquina da Localidade',
+                    data: valoresCPU,
+                    borderWidth: 1,
+                    backgroundColor: '#320E3B',
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Uso de CPU (%)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Máquinas'
+                        }
+                    }
+                }
+            }
+        });
+    }
+     setTimeout(() => atualizarGrafico(idLocalidadeAtual,graficoCPU), 2000);
+}
+
+function atualizarGrafico(idLocalidadeAtual,graficoCPU) {
+    setTimeout(() =>usoCPUPorMaquinaLocalidade(idLocalidadeAtual),porcentagemUsoCPULocalidade(idLocalidadeAtual), 2000);
+}
+
+
+let proximaAtualizacaoLinha;
+setTimeout(() =>  obterDadosGrafico(idLocalidadeAtual), 2000);
+function obterDadosGrafico(idLocalidadeAtual) {
+    if (proximaAtualizacaoLinha != undefined) {
+        clearTimeout(proximaAtualizacaoLinha);
+    }
+
+    fetch(`/localidades/usoCPUTempo/${idLocalidadeAtual}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGrafico(resposta, idLocalidadeAtual);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+function plotarGrafico(resposta, idLocalidadeAtual) {
+    console.log('Iniciando a plotagem do gráfico...');
+
+    // Organiza os dados por máquina
+    let maquinas = {};
+    resposta.forEach((registro) => {
+        if (!maquinas[registro.nome_maquina]) {
+            maquinas[registro.nome_maquina] = {
+                labels: [],
+                data: []
+            };
+        }
+        maquinas[registro.nome_maquina].labels.push(registro.hora_captura);
+        maquinas[registro.nome_maquina].data.push(registro.uso_cpu);
+    });
+
+    // Configura os datasets para o gráfico
+    let datasets = [];
+    for (const [nome, valores] of Object.entries(maquinas)) {
+        datasets.push({
+            label: nome,
+            data: valores.labels.map((label, index) => ({ x: new Date(label), y: valores.data[index] })),
+            borderColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`, // Cor aleatória
+            fill: false,
+        });
+    }
+
+    const dados = {
+        datasets: datasets
+    };
+
+    const config = {
+        type: 'line',
+        data: dados,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'minute',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Hora da Captura'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Uso de CPU (%)'
+                    },
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    };
+
+    // Adiciona o gráfico à página
+    let myChart5 = new Chart(
+        document.getElementById(`myChart5`),
+        config
+    );
+
+    setTimeout(() => atualizarGraficoLinha(maquinas, myChart5, idLocalidadeAtual), 2000);
+}
+
+function atualizarGraficoLinha(maquinas, myChart5, idLocalidadeAtual) {
+
+
+    fetch(`/localidades/tempo-real/${sessionStorage.LOCALIDADE_SELECIONADA}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novosDados) {
+                    console.log(`Dados recebidos para atualização: ${JSON.stringify(novosDados)}`);
+
+                    novosDados.forEach((novoRegistro) => {
+                        const maquina = maquinas[novoRegistro.nome_maquina];
+
+                        if (maquina && novoRegistro.hora_captura !== maquina.labels[maquina.labels.length - 1]) {
+                            maquina.labels.shift(); // Remove o mais antigo
+                            maquina.labels.push(novoRegistro.hora_captura);
+
+                            maquina.data.shift(); // Remove o mais antigo
+                            maquina.data.push(novoRegistro.uso_cpu);
+                        }
+                    });
+
+                    // Atualiza os dados no gráfico
+                    myChart5.data.datasets.forEach((dataset) => {
+                        const maquina = maquinas[dataset.label];
+                        if (maquina) {
+                            dataset.data = maquina.labels.map((label, index) => ({
+                                x: new Date(label),
+                                y: maquina.data[index]
+                            }));
+                        }
+                    });
+
+                    myChart5.update();
+
+                    // Altere o tempo de atualização conforme necessário
+                    proximaAtualizacaoLinha = setTimeout(() => atualizarGraficoLinha(maquinas, myChart5, idLocalidadeAtual), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                proximaAtualizacaoLinha = setTimeout(() => atualizarGraficoLinha(maquinas, myChart5, idLocalidadeAtual), 2000);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+// ------------------------------------------------------------ RAM ------------------------------------------------------------------------------------
+
+let graficoMem; 
+let proximaAtualizacaoMem;
+
+function porcentagemUsoMemoriaLocalidade(idLocalidadeAtual) {
+    fetch("/localidades/porcentagemUsoMemoriaLocalidade", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idLocalidadeServer: idLocalidadeAtual,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+        
+                   
+                    var media_uso_memoria = json[0].media_uso_memoria
+                    var media_uso_memoria = media_uso_memoria.substring(0,2);
+                    document.getElementById("porcentagem_uso_memoria").innerHTML = `${media_uso_memoria}%`;
+                });
+            } else {
+                console.error("Houve um erro na requisição");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao tentar buscar os dados do usuário:", erro);
+        });
+
+    return false;
+}
+  
+function qtdEmAlertaMemoriaLocalidade(idLocalidadeAtual) {
+
+fetch("/localidades/qtdEmAlertaMemoriaLocalidade", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        idLocalidadeServer: idLocalidadeAtual,
+    }),
+})
+    .then(function (resposta) {
+        if (resposta.ok) {
+            
+            if (resposta.json.length == 0) {
+                var quantidade_maquinas_com_problema = 0
+            }else{
+                resposta.json().then(function (json) {
+                var quantidade_maquinas_com_problema = json[0].quantidade_maquinas_com_problema});
+            }
+
+            document.getElementById("qtd_problema_disco").innerHTML = `${quantidade_maquinas_com_problema}`;
+            
+        } else {
+            console.error("Houve um erro na requisição");
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro ao tentar buscar os dados do usuário:", erro);
+    });
+
+return false;
+}
+
+function usoMemoriaPorMaquinaLocalidade(idLocalidadeAtual) {
+    if (proximaAtualizacaoMem != undefined) {
+        clearTimeout(proximaAtualizacaoMem);
+    }
+
+    fetch("/localidades/usoMemoriaPorMaquinaLocalidade", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idLocalidadeServer: idLocalidadeAtual,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+                    plotarGraficoMemoria1(json);
+                });
+            } else {
+                console.error("Houve um erro na requisição");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao tentar buscar os dados do usuário:", erro);
+        });
+
+    return false;
+}
+
+
+function plotarGraficoMemoria1(dados) {
+    const labels = dados.map(d => d.nome_maquina);
+    const valoresRAM = dados.map(d => d.uso_memoria);
+
+    const ctx2 = document.getElementById('myChart2').getContext('2d');
+
+    if (graficoMem) {
+        // Atualiza os dados do gráfico existente
+        graficoMem.data.labels = labels;
+        graficoMem.data.datasets[0].data = valoresRAM;
+        graficoMem.update();
+    } else {
+        // Cria o gráfico apenas uma vez
+        graficoMem = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Uso de RAM por Máquina da Localidade',
+                    data: valoresRAM,
+                    borderWidth: 1,
+                    backgroundColor: '#320E3B',
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Uso de RAM (%)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Máquinas'
+                        }
+                    }
+                }
+            }
+        });
+    }
+     setTimeout(() => atualizarGraficoRam(idLocalidadeAtual,graficoMem), 2000);
+}
+
+function atualizarGraficoRam(idLocalidadeAtual,graficoMem) {
+    setTimeout(() =>usoMemoriaPorMaquinaLocalidade(idLocalidadeAtual), porcentagemUsoMemoriaLocalidade(idLocalidadeAtual), 2000);
+}
+
+
+let proximaAtualizacaoLinhaRam;
+setTimeout(() =>  obterDadosGraficoRam(idLocalidadeAtual), 2000);
+function obterDadosGraficoRam(idLocalidadeAtual) {
+    if (proximaAtualizacaoLinhaRam != undefined) {
+        clearTimeout(proximaAtualizacaoLinhaRam);
+    }
+
+    fetch(`/localidades/usoMemoriaTempo/${idLocalidadeAtual}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGraficoMemoria(resposta, idLocalidadeAtual);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+function plotarGraficoMemoria(resposta, idLocalidadeAtual) {
+    console.log('Iniciando a plotagem do gráfico...');
+
+    // Organiza os dados por máquina
+    let maquinas = {};
+    resposta.forEach((registro) => {
+        if (!maquinas[registro.nome_maquina]) {
+            maquinas[registro.nome_maquina] = {
+                labels: [],
+                data: []
+            };
+        }
+        maquinas[registro.nome_maquina].labels.push(registro.hora_captura);
+        maquinas[registro.nome_maquina].data.push(registro.uso_memoria);
+    });
+
+    // Configura os datasets para o gráfico
+    let datasets = [];
+    for (const [nome, valores] of Object.entries(maquinas)) {
+        datasets.push({
+            label: nome,
+            data: valores.labels.map((label, index) => ({ x: new Date(label), y: valores.data[index] })),
+            borderColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`, // Cor aleatória
+            fill: false,
+        });
+    }
+
+    const dados = {
+        datasets: datasets
+    };
+
+    const config = {
+        type: 'line',
+        data: dados,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'minute',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Hora da Captura'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Uso de RAM (%)'
+                    },
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    };
+
+    // Adiciona o gráfico à página
+    let myChart3 = new Chart(
+        document.getElementById(`myChart3`),
+        config
+    );
+
+    setTimeout(() => atualizarGraficoLinhaRam(maquinas, myChart3, idLocalidadeAtual), 2000);
+}
+
+function atualizarGraficoLinhaRam(maquinas, myChart3, idLocalidadeAtual) {
+
+
+    fetch(`/localidades/tempo-real-ram/${sessionStorage.LOCALIDADE_SELECIONADA}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novosDados) {
+                    console.log(`Dados recebidos para atualização: ${JSON.stringify(novosDados)}`);
+
+                    novosDados.forEach((novoRegistro) => {
+                        const maquina = maquinas[novoRegistro.nome_maquina];
+
+                        if (maquina && novoRegistro.hora_captura !== maquina.labels[maquina.labels.length - 1]) {
+                            maquina.labels.shift(); // Remove o mais antigo
+                            maquina.labels.push(novoRegistro.hora_captura);
+
+                            maquina.data.shift(); // Remove o mais antigo
+                            maquina.data.push(novoRegistro.uso_memoria);
+                        }
+                    });
+
+                    // Atualiza os dados no gráfico
+                    myChart3.data.datasets.forEach((dataset) => {
+                        const maquina = maquinas[dataset.label];
+                        if (maquina) {
+                            dataset.data = maquina.labels.map((label, index) => ({
+                                x: new Date(label),
+                                y: maquina.data[index]
+                            }));
+                        }
+                    });
+
+                    myChart3.update();
+
+                    // Altere o tempo de atualização conforme necessário
+                    proximaAtualizacaoLinha = setTimeout(() => atualizarGraficoLinhaRam(maquinas, myChart3, idLocalidadeAtual), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                proximaAtualizacaoLinha = setTimeout(() => atualizarGraficoLinhaRam(maquinas, myChart3, idLocalidadeAtual), 2000);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+// ------------------------------------------------------------ DISCO (Elysium) ------------------------------------------------------------------------------------
+
+let graficoDisco; 
+let proximaAtualizacaoDisco;
+
+function porcentagemUsoDiscoLocalidade(idLocalidadeAtual) {
+    fetch("/localidades/porcentagemUsoDiscoLocalidade", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idLocalidadeServer: idLocalidadeAtual,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+        
+                   
+                    var media_uso_disco = json[0].media_uso_disco
+                    var media_uso_disco = media_uso_disco.substring(0,3);
+
+                    document.getElementById("porcentagem_uso_disco").innerHTML = `${media_uso_disco} GBs`;
+                });
+            } else {
+                console.error("Houve um erro na requisição");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao tentar buscar os dados do usuário:", erro);
+        });
+
+    return false;
+}
+
+
+function qtdEmAlertaDiscoLocalidade(idLocalidadeAtual) {
+
+fetch("/localidades/qtdEmAlertaDiscoLocalidade", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        idLocalidadeServer: idLocalidadeAtual,
+    }),
+})
+    .then(function (resposta) {
+        if (resposta.ok) {
+            
+            if (resposta.json.length == 0) {
+                var quantidade_maquinas_com_problema = 0
+            }else{
+                resposta.json().then(function (json) {
+                var quantidade_maquinas_com_problema = json[0].quantidade_maquinas_com_problema});
+            }
+
+            document.getElementById("qtd_problema_memoria").innerHTML = `${quantidade_maquinas_com_problema}`;
+            
+        } else {
+            console.error("Houve um erro na requisição");
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro ao tentar buscar os dados do usuário:", erro);
+    });
+
+return false;
+}
+
+function usoDiscoPorMaquinaLocalidade(idLocalidadeAtual) {
+    if (proximaAtualizacaoDisco != undefined) {
+        clearTimeout(proximaAtualizacaoDisco);
+    }
+
+    fetch("/localidades/usoDiscoPorMaquinaLocalidade", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idLocalidadeServer: idLocalidadeAtual,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+                    plotarGraficoDisco1(json);
+                });
+            } else {
+                console.error("Houve um erro na requisição");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao tentar buscar os dados do usuário:", erro);
+        });
+
+    return false;
+}
+
+
+function plotarGraficoDisco1(dados) {
+    const labels = dados.map(d => d.nome_maquina);
+    const valoresDisco = dados.map(d => d.uso_disco);
+
+    const ctx6 = document.getElementById('myChart6').getContext('2d');
+
+    if (graficoDisco) {
+        // Atualiza os dados do gráfico existente
+        graficoDisco.data.labels = labels;
+        graficoDisco.data.datasets[0].data = valoresDisco;
+        graficoDisco.update();
+    } else {
+        // Cria o gráfico apenas uma vez
+        graficoDisco = new Chart(ctx6, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Disco Livre por Máquina da Localidade',
+                    data: valoresDisco,
+                    borderWidth: 1,
+                    backgroundColor: '#320E3B',
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Espaço de Disco Livre (GBs)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Máquinas'
+                        }
+                    }
+                }
+            }
+        });
+    }
+     setTimeout(() => atualizarGraficoDisco(idLocalidadeAtual,graficoDisco), 2000);
+}
+
+function atualizarGraficoDisco(idLocalidadeAtual,graficoDisco) {
+    setTimeout(() =>usoDiscoPorMaquinaLocalidade(idLocalidadeAtual), porcentagemUsoDiscoLocalidade(idLocalidadeAtual), 2000);
+}
+
+// ------------------------------------------------------------ REDE ------------------------------------------------------------------------------------
+
+let graficoRede; 
+let proximaAtualizacaoRede;
+
+function porcentagemPerdaPacotesLocalidade(idLocalidadeAtual) {
+    fetch("/localidades/porcentagemPerdaPacotesLocalidade", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idLocalidadeServer: idLocalidadeAtual,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+        
+                   
+                    var media_perda_pacotes = json[0].media_perda_pacotes
+                    var media_perda_pacotes = media_perda_pacotes.substring(0,2);
+
+
+                    document.getElementById("porcentagem_perda_pacotes").innerHTML = `${media_perda_pacotes}%`;
+                });
+            } else {
+                console.error("Houve um erro na requisição");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao tentar buscar os dados do usuário:", erro);
+        });
+
+    return false;
+}
+
+function usoBandaLocalidade(idLocalidadeAtual) {
+    fetch("/localidades/usoBandaLocalidade", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idLocalidadeServer: idLocalidadeAtual,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+        
+                   
+                    var media_banda = json[0].media_banda
+                    var media_banda = media_banda.substring(0,3);
+
+
+                    document.getElementById("uso_banda").innerHTML = `${media_banda} Mpbs`;
+                });
+            } else {
+                console.error("Houve um erro na requisição");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao tentar buscar os dados do usuário:", erro);
+        });
+
+    return false;
+}
+
+
+function usoBandaPorMaquinaLocalidade(idLocalidadeAtual) {
+    if (proximaAtualizacaoRede != undefined) {
+        clearTimeout(proximaAtualizacaoRede);
+    }
+
+    fetch("/localidades/usoBandaPorMaquinaLocalidade", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idLocalidadeServer: idLocalidadeAtual,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+                    plotarGraficoRede1(json);
+                });
+            } else {
+                console.error("Houve um erro na requisição");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao tentar buscar os dados do usuário:", erro);
+        });
+
+    return false;
+}
+
+function plotarGraficoRede1(dados) {
+    const labels = dados.map(d => d.nome_maquina);
+    const valoresRede = dados.map(d => d.uso_banda);
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    if (graficoRede) {
+        // Atualiza os dados do gráfico existente
+        graficoRede.data.labels = labels;
+        graficoRede.data.datasets[0].data = valoresRede;
+        graficoRede.update();
+    } else {
+        // Cria o gráfico apenas uma vez
+        graficoRede = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Taxa de uso de Banda Larga por Máquina da Localidade',
+                    data: valoresRede,
+                    borderWidth: 1,
+                    backgroundColor: '#320E3B',
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Uso de Banda Larga (Mpbs)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Máquinas'
+                        }
+                    }
+                }
+            }
+        });
+    }
+     setTimeout(() => atualizarGraficoRede(idLocalidadeAtual,graficoRede), 2000);
+}
+
+function atualizarGraficoRede(idLocalidadeAtual,graficoDisco) {
+    setTimeout(() =>usoBandaPorMaquinaLocalidade(idLocalidadeAtual), porcentagemPerdaPacotesLocalidade(idLocalidadeAtual),usoBandaLocalidade(idLocalidadeAtual), 2000);
+}
+
+let proximaAtualizacaoLinhaRede;
+setTimeout(() =>  obterDadosGraficoRede(idLocalidadeAtual), 2000);
+function obterDadosGraficoRede(idLocalidadeAtual) {
+    if (proximaAtualizacaoLinhaRede != undefined) {
+        clearTimeout(proximaAtualizacaoLinhaRede);
+    }
+
+    fetch(`/localidades/usoRedeTempo/${idLocalidadeAtual}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGraficoRede(resposta, idLocalidadeAtual);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+function plotarGraficoRede(resposta, idLocalidadeAtual) {
+    console.log('Iniciando a plotagem do gráfico...');
+
+    // Organiza os dados por máquina
+    let maquinas = {};
+    resposta.forEach((registro) => {
+        if (!maquinas[registro.nome_maquina]) {
+            maquinas[registro.nome_maquina] = {
+                labels: [],
+                data: []
+            };
+        }
+        maquinas[registro.nome_maquina].labels.push(registro.hora_captura);
+        maquinas[registro.nome_maquina].data.push(registro.uso_banda);
+    });
+
+    // Configura os datasets para o gráfico
+    let datasets = [];
+    for (const [nome, valores] of Object.entries(maquinas)) {
+        datasets.push({
+            label: nome,
+            data: valores.labels.map((label, index) => ({ x: new Date(label), y: valores.data[index] })),
+            borderColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`, // Cor aleatória
+            fill: false,
+        });
+    }
+
+    const dados = {
+        datasets: datasets
+    };
+
+    const config = {
+        type: 'line',
+        data: dados,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'minute',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Hora da Captura'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Uso de Banda Larga (Mpbs)'
+                    },
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    };
+
+    // Adiciona o gráfico à página
+    let myChart1 = new Chart(
+        document.getElementById(`myChart1`),
+        config
+    );
+
+    setTimeout(() => atualizarGraficoLinhaRede(maquinas, myChart1, idLocalidadeAtual), 2000);
+}
+
+
+function atualizarGraficoLinhaRede(maquinas, myChart1, idLocalidadeAtual) {
+
+
+fetch(`/localidades/tempo-real-rede/${sessionStorage.LOCALIDADE_SELECIONADA}`, { cache: 'no-store' })
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novosDados) {
+                console.log(`Dados recebidos para atualização: ${JSON.stringify(novosDados)}`);
+
+                novosDados.forEach((novoRegistro) => {
+                    const maquina = maquinas[novoRegistro.nome_maquina];
+
+                    if (maquina && novoRegistro.hora_captura !== maquina.labels[maquina.labels.length - 1]) {
+                        maquina.labels.shift(); // Remove o mais antigo
+                        maquina.labels.push(novoRegistro.hora_captura);
+
+                        maquina.data.shift(); // Remove o mais antigo
+                        maquina.data.push(novoRegistro.uso_banda);
+                    }
+                });
+
+                // Atualiza os dados no gráfico
+                myChart1.data.datasets.forEach((dataset) => {
+                    const maquina = maquinas[dataset.label];
+                    if (maquina) {
+                        dataset.data = maquina.labels.map((label, index) => ({
+                            x: new Date(label),
+                            y: maquina.data[index]
+                        }));
+                    }
+                });
+
+                myChart1.update();
+
+                // Altere o tempo de atualização conforme necessário
+                proximaAtualizacaoLinha = setTimeout(() => atualizarGraficoLinhaRede(maquinas, myChart1, idLocalidadeAtual), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            proximaAtualizacaoLinha = setTimeout(() => atualizarGraficoLinhaRede(maquinas, myChart1, idLocalidadeAtual), 2000);
+        }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
+
+
+
+
+
+function visualizarMaquinas() {
+    var instrucao = "";
+
+    instrucao = "SELECT maquina.idMaquina, maquina.nomeMaquina, maquina.modeloCPU, maquina.capacidadeRAM, maquina.disco, maquina.MACAdress, localidade.nomeLocalidade AS localidade FROM maquina INNER JOIN localidade ON maquina.fkLocalidadeMaquina = localidade.idLocalidade WHERE fkLocalidadeMaquina = " + idLocalidadeAtual + ";";
+
+    fetch("/empresas/visualizarMaquinas", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ instrucaoServer: instrucao }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var containers = document.querySelectorAll(".container_menor");
+                    containers.forEach((container) => {
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhuma máquina encontrada.";
+                        container.appendChild(mensagem);
+                    });
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    // Seleciona todas as divs com classe "container_menor"
+                    var containers = document.querySelectorAll(".container_menor");
+
+                    // Limpa todos os containers antes de adicionar novos itens
+                    containers.forEach((container) => {
+                        container.innerHTML = ""; // Limpa o conteúdo
+                        container.classList.add("container_menor_lista"); // Adiciona estilo principal
+                    });
+
+                    containers.forEach((container) => {
+                        for (let i = 0; i < resposta.length; i++) {
+                            let tupla = resposta[i];
+
+                            // Criando o elemento principal do item
+                            var itemMaquina = document.createElement("div");
+                            itemMaquina.className = "item_maquina";
+
+                            // Título do item
+                            var titulo = document.createElement("div");
+                            titulo.className = "item_maquina_titulo";
+                            titulo.innerHTML = `${tupla.nomeMaquina} - ${tupla.localidade}`;
+                            itemMaquina.appendChild(titulo);
+
+                            // Informações do item
+                            var infos = [
+                                `ID: ${tupla.idMaquina}`,
+                                `Modelo CPU: ${tupla.modeloCPU}`,
+                                `Capacidade RAM: ${tupla.capacidadeRAM} GB`,
+                                `Disco: ${tupla.disco} GB`,
+                                `MAC: ${tupla.MACAdress}`,
+                            ];
+
+                            infos.forEach((info) => {
+                                var infoDiv = document.createElement("div");
+                                infoDiv.className = "item_maquina_info";
+                                infoDiv.innerHTML = info;
+                                itemMaquina.appendChild(infoDiv);
+                            });
+
+                            // Adiciona o item à lista
+                            container.appendChild(itemMaquina);
+                        }
+                    });
+                });
+            } else {
+                throw "Houve um erro na API!";
+            }
+        })
+        .catch(function (resposta) {
+            console.error(resposta);
+        });
+}
+
+
+
+</script>

@@ -12,7 +12,7 @@ def main(): # Função principal, fiz assim por questão de organização
     time.sleep(2.5)
 
     psutilMAC = ps.net_if_addrs()
-    wifi = psutilMAC['Wi-Fi']
+    wifi = psutilMAC['Ethernet']
     enderecoMAC = wifi[0].address
     print('Endereço MAC capturado pelo psutil',enderecoMAC)
 
@@ -67,14 +67,14 @@ def main(): # Função principal, fiz assim por questão de organização
 def montaQueryMAC(enderecoMAC):
     return ("INSERT INTO maquina (MACAdress) VALUES ('{}')").format(enderecoMAC)
 
-def montaQueryCPU(idMaquina,porcentagemCpu, data):
-    return (" insert into captura values (null, '{}', 1, 1, '{}', '{}');").format(idMaquina,porcentagemCpu, data)
+def montaQueryCPU(idMaquina, porcentagemCpu, data):
+    return ("INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES ('{}', 1, 1, '{}', false, '{}');").format(idMaquina, porcentagemCpu, data)
 
-def montaQueryMEM(idMaquina,porcentagemMemoria, data):
-    return ("insert into captura values (null, '{}', 2, 2, '{}', '{}');").format(idMaquina,porcentagemMemoria, data)
+def montaQueryMEM(idMaquina, porcentagemMemoria, data):
+    return ("INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES ('{}', 2, 2, '{}', false, '{}');").format(idMaquina, porcentagemMemoria, data)
 
-def montaQueryDISK(idMaquina,DiscoLivre, data):
-    return ("insert into captura values (null, '{}', 3, 3, '{}', '{}');").format(idMaquina,DiscoLivre, data)
+def montaQueryDISK(idMaquina, DiscoLivre, data):
+    return ("INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES ('{}', 3, 3, '{}', false, '{}');").format(idMaquina, DiscoLivre, data)
 
 def buscaQueryMAC (enderecoMAC):
     return("select * from maquina where MACAdress = '{}';").format(enderecoMAC)
@@ -86,7 +86,7 @@ def buscaQueryIdmaquina (enderecoMAC):
 def executarQuery(script): # Função responsável por inserir os dados no banco, recebe uma query SQL qualquer como parâmetro e a executa, usando as credenciais específicas
      config = {
        'user': 'root',
-       'password': 'bonacelli',
+       'password': 'Senha123',
        'host': 'localhost',
        'database': 'logGuard'
      }

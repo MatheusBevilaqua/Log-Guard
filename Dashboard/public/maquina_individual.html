@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogGuard - Dashboard</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/partials/SideBar.css">
+  <link rel="stylesheet" href="./maquina_individual.css">
+  <script src="js/sessao.js"></script>
+  <script src="js/timer.js"></script>
+  <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@latest"></script>
+
+</head>
+
+<body>
+   <section class="page-dash">
+    <nav id="sidebar">
+      <div id="sidebar_content">
+
+        <li class="side_itemLog active" style="cursor: none;">
+          <a>
+            <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+            <span class="item-description">
+              <b style="color: #442BB3; padding-left: 15px;"> Log Guard </b>
+            </span>
+          </a>
+        </li>
+
+
+        <div id="user">
+          <p id="user_infos">
+            <span style="color: black;" class="item-descriptionAtivo"> Olá,
+              <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                Jon Doe
+              </span>
+            </span>
+            <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+              Descrição
+            </span>
+          </p>
+        </div>
+
+        <ul id="side_items">
+
+
+          <li class="side_item ">
+            <a href="dashboard_ADM.html">
+              <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+              <span class="item-description">
+                <b> Visão Geral </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="relatorios.html">
+              <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Relatórios </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="gerenciar-maquina.html">
+              <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Empresas </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="gerenciar-usuario-func.html">
+              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Usuários </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="gerenciar-usuario-func.html">
+              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> FeedBacks </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item active">
+            <a href="dash_Gerenciamento_Operacao.html">
+              <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
+              <span class="item-descriptionAtivo">
+                <b style="color: aliceblue;"> Operações </b>
+              </span>
+            </a>
+          </li>
+
+          <!-- <li>
+            <div class="counter"><span id="counter" style="color: black;">00:00:00</span></div>
+          </li> -->
+
+
+
+          <li class="side_item">
+            <a href="feedback.html">
+              <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+              <span class="item-descriptionAtivo">
+                <b> feedback </b>
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <div class="counter"><span id="counter" style="color: black;">00:00:00</span></div>
+          </li>
+
+        </ul>
+
+        <button id="open_btn">
+          <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+        </button>
+      </div>
+
+      <div id="logout">
+        <button id="logout_btn" onclick="sair()">
+          <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+          <span class="item-description">
+            Sair
+          </span>
+        </button>
+      </div>
+    </nav>
+
+    <div style="width: 100%; margin: 16px; overflow: auto;"> <!--DIV AQUI Ó-->
+      <!-- Seção de KPIs -->
+      <div style="margin: 20px;">
+        <h1 style="color: black; font-weight: bold;">Uso dos Componentes</h1>
+        <p style="color: black; font-size: 18px;">ID Máquina: <span id="IdDaMaquina"  style="color: black; font-size: 18px;"></span></p>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon">%</div>
+          <div class="kpi-info">
+            <h3>Uso Do Disco limite recomendado: 80%</h3>
+            <h3>Uso atual</h3>
+            <p class="value" id="KPIDisc">Carregando...</p>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">📊</div>
+          <div class="kpi-info">
+            <h3>Uso da CPU limite recomendado:65%-70%</h3>
+            <h3>Uso atual</h3>
+            <p class="value" id="KpiCPU">Carregando...</p>
+
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">📈</div>
+          <div class="kpi-info">
+            <h3>Uso da RAM limite recomendado:70%</h3>
+            <h3>Uso atual</h3>
+            <p class="value" id="KpiRAM">Carregando...</p>
+
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- Seção de Gráficos -->
+      <div class="charts-row">
+        <!-- Gráfico de Alertas - CPU -->
+        <div class="chart-box">
+          <div class="chart-header">
+            <h3 style="color: black;">Uso - CPU</h3>
+          </div>
+          <canvas id="cpuAlertsChart"></canvas>
+        </div>
+
+        <!-- Gráfico de Alertas - Rede -->
+        <div class="chart-box">
+          <div class="chart-header">
+            <h3 style="color: black;">Uso - Rede</h3>
+            <h3 style="color: black;">Uso limite recomendado: 100 Mbps</h3>
+    
+          </div>
+          <canvas id="redeAlertsChart"></canvas>
+        </div>
+
+
+        <!-- Modal -->
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Bem-vindo ao Modal!</h2>
+            <p>Este é um modal de exemplo.</p>
+          </div>
+        </div>
+      </div>
+      </section>
+
+</body>
+
+</html>
+
+<script>
+  var teste = 0;
+  var chartInstance = null; // Variável para armazenar a instância do gráfico
+  var idMaquina = sessionStorage.getItem("MaquinaCarol");
+  document.getElementById('IdDaMaquina').innerHTML = idMaquina
+  var idMaquina = sessionStorage.getItem("MaquinaCarol");
+  document.getElementById('IdDaMaquina').innerHTML = idMaquina
+
+  document.getElementById('open_btn').addEventListener('click', function () {
+    document.getElementById('sidebar').classList.toggle('open-sidebar');
+    this.classList.toggle('rodar');
+
+    if (teste == 0) {
+      document.getElementById('nomeLog').style.display = "block";
+      teste = 1;
+    } else {
+      document.getElementById('nomeLog').style.display = "none";
+      teste = 0;
+    }
+  });
+
+  function sair() {
+    window.location.href = "index.html";
+  }
+
+  async function atualizarKPIs() {
+    try {
+      const response = await fetch('/maquina_individualRota/metricas');
+      if (response.ok) {
+        const metricas = await response.json();
+        console.log("Métricas recebidas:", metricas);
+
+        metricas.forEach((metrica) => {
+          const { fkRecursoCaptura, registro } = metrica;
+          const registroArredondado = parseFloat(registro).toFixed(1);
+
+          switch (fkRecursoCaptura) {
+            case 1: // CPU
+              document.getElementById("KpiCPU").textContent = `${registroArredondado}%`;
+              break;
+            case 2: // RAM
+              document.getElementById("KpiRAM").textContent = `${registroArredondado}%`;
+              break;
+            case 3: // Uso de Disco
+              document.getElementById("KPIDisc").textContent = `${registroArredondado}%`;
+              break;
+            default:
+              console.warn("Recurso desconhecido:", fkRecursoCaptura);
+          }
+        });
+      } else {
+        console.error("Erro ao buscar métricas:", response.statusText);
+      }
+    } catch (erro) {
+      console.error("Erro na requisição de métricas:", erro);
+    }
+  }
+
+  setInterval(atualizarKPIs, 5000);
+  atualizarKPIs();
+
+  async function atualizarGraficoCPU() {
+    try {
+      const response = await fetch(`/maquina_individualRota/metrics`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          idMaquina: idMaquina ? idMaquina : '11'
+        })
+      });
+      if (response.ok) {
+        const metricas = await response.json();
+
+        // Formatar a data para mostrar hora, minuto e segundo (HH:mm:ss)
+        const labels = metricas.map(metrica => {
+          const dataObj = new Date(metrica.dtCriacaoCaptura); // Criando um objeto Date
+          const horas = dataObj.getHours().toString().padStart(2, '0');  // Hora com 2 dígitos
+          const minutos = dataObj.getMinutes().toString().padStart(2, '0'); // Minutos com 2 dígitos
+          const segundos = dataObj.getSeconds().toString().padStart(2, '0'); // Segundos com 2 dígitos
+          return `${horas}:${minutos}:${segundos}`; // Retorna o horário no formato "HH:mm:ss"
+        });
+
+        const valores = metricas.map(metrica => metrica.registro);
+
+        // Inverter a ordem para garantir que o mais recente fique à direita
+        labels.reverse();
+        valores.reverse();
+
+        // Se o gráfico já existe, apenas atualiza os dados
+        if (chartInstance) {
+          chartInstance.data.labels = labels; // Atualiza os rótulos (labels)
+          chartInstance.data.datasets[0].data = valores; // Atualiza os dados do gráfico
+          chartInstance.update(); // Atualiza o gráfico
+        } else {
+          // Caso não exista, cria um novo gráfico
+          const ctx = document.getElementById('cpuAlertsChart').getContext('2d');
+          chartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Uso de CPU (%)',
+                data: valores,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.1
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Hora'
+                  }
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: 'Uso (%)'
+                  },
+                  min: 0,
+                  max: 100,
+                  stepSize: 10
+                }
+              },
+              plugins: {
+                annotation: {
+                  annotations: {
+                    line: {
+                      type: 'line',
+                      xMin: 0,
+                      xMax: labels.length - 1,
+                      yMin: 70,
+                      yMax: 70,
+                      borderColor: 'red',
+                      borderWidth: 2,
+                      borderDash: [10, 5]
+                    }
+                  }
+                }
+              }
+            }
+          });
+        }
+      } else {
+        console.error("Erro ao buscar métricas:", response.statusText);
+      }
+    } catch (erro) {
+      console.error("Erro na requisição de métricas:", erro);
+    }
+  }
+
+  setInterval(atualizarGraficoCPU, 2000);
+  atualizarGraficoCPU();
+  
+  async function fetchNetworkData() {
+  try {
+    const response = await fetch('/maquina_individualRota/metricasrede');
+    console.log("Fetch de /api/metricas-rede executado, status:", response.status);
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Dados recebidos para o gráfico de rede:", data);
+
+      // Formatar as datas para mostrar apenas HH:mm:ss
+      let labels = data.map(item => {
+        const dataObj = new Date(item.dtCriacaoCaptura); // Cria um objeto Date
+        const horas = dataObj.getHours().toString().padStart(2, '0'); // Hora com 2 dígitos
+        const minutos = dataObj.getMinutes().toString().padStart(2, '0'); // Minutos com 2 dígitos
+        const segundos = dataObj.getSeconds().toString().padStart(2, '0'); // Segundos com 2 dígitos
+        return `${horas}:${minutos}:${segundos}`; // Retorna no formato HH:mm:ss
+      });
+
+      let valores = data.map(item => item.registro);
+
+      // Inverter a ordem para garantir que o mais recente fique à direita
+      labels.reverse();
+      valores.reverse();
+
+      // Criar ou atualizar o gráfico
+      const ctx = document.getElementById('redeAlertsChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Uso de Rede (Mbps)',
+            data: valores,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            fill: true,
+            tension: 0.1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Hora'
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Uso (Mbps)'
+              },
+              min: 0,
+              max: 100,
+              stepSize: 10
+            }
+          }
+        }
+      });
+    } else {
+      console.error("Erro ao buscar métricas de rede:", response.statusText);
+    }
+  } catch (erro) {
+    console.error("Erro na requisição de métricas de rede:", erro);
+  }
+}
+
+
+setInterval(fetchNetworkData, 2000);
+fetchNetworkData();
+
+</script>

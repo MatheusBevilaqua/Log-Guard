@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogGuard - Dashboard</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/partials/SideBar.css">
+    <link rel="stylesheet" href="css/pages/gerenciar-localidade.css">
+    <script src="js/sessao.js"></script>
+    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+</head>
+
+
+<body onload="validarCargo();validarSessao();visualizarLocalidades()">
+
+    </div>
+    <section class="page-dash">
+        <nav id="sidebar">
+            <div id="sidebar_content">
+    
+              <li class="side_itemLog active" style="cursor: none;">
+                <a>
+                  <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+                  <span class="item-description">
+                    <b style="color: #442BB3; padding-left: 15px;"> Log Guard </b>
+                  </span>
+                </a>
+              </li>
+    
+    
+              <div id="user">
+                <p id="user_infos">
+                  <span style="color: black;" class="item-descriptionAtivo"> Olá,
+                    <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                      Jon Doe
+                    </span>
+                  </span>
+                  <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+                    Lorem Ipsum
+                  </span>
+                </p>
+              </div>
+    
+              <ul id="side_items">
+    
+    
+                <li class="side_item ">
+                  <a href="dashboard_ADM.html">
+                    <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                    <span class="item-description">
+                      <b > Visão Geral </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="relatoriosadm.html">
+                    <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Relatórios </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="gerenciar-maquina.html">
+                    <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Servidores </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="gerenciar-usuario-func.html">
+                    <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Funcionários </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="dash_Operacao_Adm.html">
+                    <i> <img src="img/engrenagem_Operacao.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b > Operações </b>
+                    </span>
+                  </a>
+                </li>
+                
+                <li class="side_item active">
+                  <a href="gerenciar-localidade.html">
+                    <i> <img src="img/nuvembranca.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b style="color: aliceblue;"> Localidades </b>
+                    </span>
+                  </a>
+                </li>
+    
+    
+              <button id="open_btn">
+                <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+              </button>
+            </div>
+    
+            <div id="logout">
+              <button id="logout_btn" onclick="sair()">
+                <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+                <span class="item-description">
+                  Sair
+                </span>
+              </button>
+            </div>
+          </nav>
+
+
+
+            <div class="maingerenpage">
+                <div class="head-funcionarios-gerenc">
+                    <h1>Gerenciar Localidades:</h1>
+                </div>
+                <!-- <div class="dash-geren">
+                    <div class="titulos-geren">
+                        <div class="coluna-geren">ID</div>
+                        <div class="coluna-geren">Localidade</div>
+                        <div class="coluna-geren">Qtd. de Máquinas</div>
+                        
+                    </div>
+                    <div class="linha-geren">
+                        <img src="./img/Line1cadastro.png" alt="">
+                    </div>
+                    <div class="geren-dados" id="geren-dados">
+
+                    </div>
+                </div> -->
+                <div class="metricas-loc">
+
+
+                    <div class="dash-loc" >
+    
+                        <div class="titulos-loc" style="display: flex; flex-direction: row;">
+                            <div class="coluna-loc">ID</div>
+                            <div class="coluna-loc" >Nome</div>
+                            <div class="coluna-loc">Endereço</div>
+                            <div class="coluna-loc">CEP</div>
+                            <div class="coluna-loc">Quantidade de Máquinas</div>
+                        </div>
+                        <div class="linha-loc">
+                            <img src="./img/Line1cadastro.png" alt="">
+                        </div>
+                        <div class="dash-loc">
+                            <div id="dash-loc"></div>
+                        </div>
+                    </div>
+    
+                </div>
+
+                <div class="botoes-geren" style="margin-top: 50px;">
+                    <!-- <button onclick="editar_maquina()" class="edit-geren">Editar</button> -->
+                    <button onclick="cadastrar_maquina()" class="cad-geren">Cadastrar Nova Localidade</button>
+                </div>
+            </div>
+
+            <div class="Editargeren">
+                <div class="Editar-geren-segundo">
+                    <div class="Editar-geren-botoes">
+                        <button onclick="cancelar_editar()" class="cancelar-geren">X</button>
+                    </div>
+                </div>
+                <div class="Editar-geren-primeiro">
+                    <h1>Alterar as configurações da Localidade:</h1>
+                    <div class="configuracoes-servidores">
+                    <div class="divisorias-titulos-maquinas-1">
+                        <div class="titulos-maquina-atribuicao">
+                            <p>Nome do Datacenter</p>
+                        </div>
+                        <input placeholder="Ex: Datacenter 01 (Sede)" type="text" id="input_alterar_nome">
+
+                        <div class="titulos-maquina-atribuicao">
+                            <p>CEP</p>
+                        </div>
+                        <input placeholder="Ex: XXXXX-XXX" type="text" id="input_alterar_cep">
+
+                        <div class="titulos-maquina-atribuicao">
+                            <p>Rua</p>
+                        </div>
+                        <input placeholder="Ex: Avenida Paulista, 123" type="text" id="input_alterar_rua">
+                    </div>
+                    <div class="divisorias-titulos-maquinas-2">
+                        <div class="titulos-maquina-atribuicao">
+                            <p>banda larga da localidade:</p>
+                        </div>
+                        <input placeholder="Ex: 300 Mbps" type="text" id="input_alterar_banda">
+
+                        <div class="titulos-maquina-atribuicao">
+                            <p>Parâmetro de Perda de Pacotes</p>
+                        </div>
+                        <input placeholder="Ex: 5.0%" type="text" id="input_alterar_Pacotes">
+                    </div>
+                </div>
+                </div>
+
+                <img src="./img/Line1cadastro.png" class="line1-geren" alt="">
+                <div class="editar-geren-titulodelet">
+                    <h1>Gerenciar Localidades:</h1>
+                </div>
+                <div class="Editar-geren-botao-delete">
+                    <button onclick="confirmar_editar()" class="confirmar-geren">Confirmar Configurações</button>
+                    <button onclick="VerLocalidade()" class="confirmar-geren">Ver localidade</button>
+                    <button onclick="excluir_editar()" class="excluir-geren">Excluir Localidade</button>
+                </div>
+            </div>
+
+            <div class="Cadastrargeren">
+                <h1>Cadastrar nova Localidade:</h1>
+                <div class="cadastrar-geren-primeiro">
+                    <div class="divisorias-maquinas-1">
+                        <p>Nome da Localidade</p>
+                        <input placeholder="Ex: Datacenter 01 (Sede)" type="text" id="nome_input">
+                        <p>CEP</p>
+                        <input placeholder="Ex: XXXXX-XXX" type="text" id="CEP_input">
+                        <p>Rua</p>
+                        <input placeholder="Ex: Avenida Paulista, 123" type="text" id="rua_input">
+                    </div>
+                    <div class="divisorias-maquinas-2">
+                        <p>banda larga da localidade:</p>
+                        <input placeholder="Ex: 300 Mbps " type="number" id="banda_larga_input">
+                        <p>Parâmetro de Perda de Pacotes:</p>
+                        <input placeholder="Ex: 7%" type="number" id="pacotes_input">
+                    </div>
+
+                </div>
+                <div class="cadastrar-geren-terceiro">
+                    <button onclick="confirmar_cadastrar()" class="confirmar-geren">Confirmar Configurações</button>
+                    <button onclick="cancelar_cadastrar()" class="cancelar-geren">X</button>
+                </div>
+            </div>
+            </div>
+            <dialog class="dialogodefiltromaquina">
+                <div class="dialogodefiltromaquinatitulo">
+                    <h2>Filtrar por</h2>
+                    <div class="Editarbotaofechar">
+                        <button onclick="cancelar_filtro()" class="cancelarfiltro">X</button>
+                    </div>
+                </div>
+                <div class="regiaocentrofiltros">
+                    <div class="regiaocentrofiltros-particao1">
+
+                        <div class="particao1-inputselect">
+                            <p>Localidade</p>
+                            <select name="select1">
+                                <option value="valor0" disabled selected>Selecione a localidade</option>
+                                <option value="valor1">Datacenter 1</option>
+                                <option value="valor2">Datacenter 2</option>
+                            </select>
+                        </div>
+
+                        <div class="particao1-inputselect">
+                            <p>Tipo de CPU</p>
+                            <select name="select2">
+                                <option value="valor0" disabled selected>Selecione o tipo</option>
+                                <option value="valor1">T2 MEDIUM</option>
+                                <option value="valor2">T2 LARGE</option>
+                            </select>
+                        </div>
+
+                        <div class="particao1-inputselect">
+                            <p>Máquinas atribuidas ao funcionário</p>
+                            <select name="select2">
+                                <option value="valor0" disabled selected>Selecione o usuário</option>
+                                <option value="valor1">Jhonatan</option>
+                                <option value="valor2">Fabrício</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="regiaocentrofiltros-particao2">
+                        <div class="particao1-inputselect">
+                            <p>Selecione a opção de filtro</p> <select id="select2" onchange="selectFiltro()">
+                                <option id="valor0" value="valor0" disabled selected>Selecione o filtro</option>
+                                <option id="valor1" value="valor1">ID Máquina</option>
+                                <option id="valor2" value="valor2">Nome da máquina</option>
+                                <option id="valor3" value="valor3">Quantidade de alertas</option>
+                            </select>
+                        </div>
+                        <div class="particao-maquinafiltro-1" style="display: none;">
+                            <div class="particao2-inputitulo">
+                                <p>ID Máquina</p>
+                            </div>
+                            <div class="particao2-grupocheckbox">
+                                <div class="particao2-inputcheckbox"> <input id="check1" type="checkbox">
+                                    <p id="check1-label">Crescente</p>
+                                </div>
+                                <div class="particao2-inputcheckbox"> <input id="check2" type="checkbox">
+                                    <p id="check2-label">Decrescente</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="particao-maquinafiltro-2" style="display: none;">
+                            <div class="particao2-inputitulo">
+                                <p>Nome da máquina</p>
+                            </div>
+                            <div class="particao2-grupocheckbox">
+                                <div class="particao2-inputcheckbox"> <input id="check3" type="checkbox">
+                                    <p id="check3-label">de A até Z</p>
+                                </div>
+                                <div class="particao2-inputcheckbox"> <input id="check4" type="checkbox">
+                                    <p id="check4-label">de Z até A</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="particao-maquinafiltro-3" style="display: none;">
+                            <div class="particao2-inputitulo">
+                                <p>Quantidade de alertas</p>
+                            </div>
+                            <div class="particao2-grupocheckbox">
+                                <div class="particao2-inputcheckbox"> <input id="check5" type="checkbox">
+                                    <p id="check5-label">Crescente</p>
+                                </div>
+                                <div class="particao2-inputcheckbox"> <input id="check6" type="checkbox">
+                                    <p id="check6-label">Decrescente</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filtro-botao-confirmar">
+                            <button onclick="confirmar_filtrar()" class="confirmarfiltro">Filtrar</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </dialog>
+        </section>
+
+
+
+</body>
+
+</html>
+
+<script>
+
+function selectFiltro() {
+    var select = document.getElementById('select2');
+    var valor = select.value;
+
+
+    document.querySelector('.particao-maquinafiltro-1').style.display = "none";
+    document.querySelector('.particao-maquinafiltro-2').style.display = "none";
+    document.querySelector('.particao-maquinafiltro-3').style.display = "none";
+
+    if (valor === "valor1") {
+        document.querySelector('.particao-maquinafiltro-1').style.display = "block";
+    } else if (valor === "valor2") {
+        document.querySelector('.particao-maquinafiltro-2').style.display = "block";
+    } else if (valor === "valor3") {
+        document.querySelector('.particao-maquinafiltro-3').style.display = "block";
+    }
+}
+
+
+    function filtrarpormaquina() {
+        document.querySelector('.maingerenpage').style.filter = "blur(5px)";
+        document.querySelector('.dialogodefiltromaquina').style.display = "block";
+    }
+
+    document.getElementById('open_btn').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
+    });
+
+    function sair() {
+        window.location.href = "index.html";
+    }
+    var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO
+    var idMaquina = ""
+
+    function confirmar_editar() {
+        // temporario
+        document.querySelector('.maingerenpage').style.filter = "blur(0px)";
+        document.querySelector('.Editargeren').style.display = "none";
+        {
+            var r = confirm("Tem certeza que deseja alterar esta Localidade?");
+            if (r == true) {
+                editarMaquina();
+            } else {
+                alert("Algo deu errado na alteração de perfil!");
+            }
+        }
+    }
+
+
+
+    function cancelar_editar() {
+        document.querySelector('.maingerenpage').style.filter = "blur(0px)";
+        document.querySelector('.Editargeren').style.display = "none";
+    }
+
+    function cancelar_filtro() {
+        document.querySelector('.maingerenpage').style.filter = "blur(0px)";
+        document.querySelector('.dialogodefiltromaquina').style.display = "none";
+    }
+
+    function excluir_editar() {
+        var r = confirm("Tem certeza que deseja excluir esta Localidade?");
+        if (r == true) {
+            deletarMaquina()
+            window.location.reload(true); //reload na página
+        }
+    }
+
+    function confirmar_cadastrar() {
+
+
+        var nomeLocalidadeVAR = nome_input.value;
+        var CEPVAR = CEP_input.value;
+        var ruaVAR = rua_input.value;
+        var bandaVAR = banda_larga_input.value;
+        var param_pacotesVAR = pacotes_input.value;
+
+
+
+        if (
+            nomeLocalidadeVAR == "" ||
+            CEPVAR == "" ||
+            ruaVAR == "" ||
+            bandaVAR == "" ||
+            param_pacotesVAR == ""
+        ) {
+            alert("Todos os campos dever ser preenchidos!")
+            return false;
+        } else {
+
+            fetch("/localidades/cadastrarLocalidade", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+
+                    nomeLocalidadeServer: nomeLocalidadeVAR,
+                    CEPLocalidadeServer: CEPVAR,
+                    ruaServer: ruaVAR,
+                    bandaLargaServer: bandaVAR,
+                    parametroPacotesServer: param_pacotesVAR,
+                    fkEmpresaLocalidadeServer: sessionStorage.EMPRESA_USUARIO
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+
+                        alert("CADASTRO EXECUTADO!")
+                        window.location.reload(true); //reload na página
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+
+                });
+
+            return false;
+        }
+        // temporario
+        document.querySelector('.maingerenpage').style.filter = "blur(0px)";
+        document.querySelector('.Cadastrargeren').style.display = "none";
+    }
+
+    function cancelar_cadastrar() {
+        document.querySelector('.maingerenpage').style.filter = "blur(0px)";
+        document.querySelector('.Cadastrargeren').style.display = "none";
+    }
+
+
+    function cadastrar_maquina() {
+        document.querySelector('.maingerenpage').style.filter = "blur(5px)";
+        document.querySelector('.Cadastrargeren').style.display = "block";
+
+    }
+    // function publicar_relatorio() {
+    //     document.querySelector('.maingerenpage').style.filter = "blur(5px)";
+    //     document.querySelector('.Cadastrargeren').style.display = "block";
+
+    // }
+    function visualizarLocalidades() {
+
+        fetch("/localidades/visualizarLocalidades", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idEmpresaUsuarioServer: idEmpresaUsuario
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    if (resposta.status == 204) {
+                        var lista = document.getElementById("dash-loc");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhuma localidade encontrada."
+                        throw "Nenhum resultado encontrado!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                        var lista = document.getElementById("dash-loc");
+
+
+                        for (let i = 0; i < resposta.length; i++) {
+
+                            let tupla = resposta[i];
+                            var divLista = document.createElement("div");
+                            var divId = document.createElement("div");
+                            var divLocalidade = document.createElement("div");
+                            var divEndereco = document.createElement("div");
+                            var divEndereco1 = document.createElement("div");
+                            var divQtd = document.createElement("div");
+                        
+
+                            divLista.className = "dados-loc";
+                            divId.className = "coluna-loc coluna-func-id";
+                            divLocalidade.className = "coluna-loc coluna-func-divLocalidade";
+                            divEndereco.className = "coluna-loc coluna-func-Endereco";
+                            divEndereco1.className = "coluna-loc coluna-func-Endereco";
+                            divQtd.className = "coluna-loc coluna-func-Qtd";
+    
+
+                            divId.innerHTML = i + 1;
+                            divLocalidade.innerHTML = tupla.localidade;
+                            divEndereco.innerHTML = tupla.rua_localidade;
+                            divEndereco1.innerHTML = tupla.cep_localidade;
+                            divQtd.innerHTML = tupla.quantidade_maquinas;
+    
+                            divLista.appendChild(divId);
+                            divLista.appendChild(divLocalidade);
+                            divLista.appendChild(divEndereco);
+                            divLista.appendChild(divEndereco1);
+                            divLista.appendChild(divQtd);
+                           
+
+                            let debounceTimeout;
+                            divLista.addEventListener("click", function () {
+                                if (debounceTimeout) {
+                                    clearTimeout(debounceTimeout);
+                                }
+
+                                debounceTimeout = setTimeout(function () {
+                                    gerenciarLocalidade(tupla.id_localidade);
+                                }, 200);
+                            });
+
+
+                            lista.appendChild(divLista);
+                        }
+
+                    });
+                } else {
+                    throw ('Houve um erro na API!');
+                }
+            }).catch(function (resposta) {
+                console.error(resposta);
+            });
+    }
+
+    id_localidade = "";
+
+    function gerenciarLocalidade(idLocalidadeSelecionada) {
+
+        id_localidade = idLocalidadeSelecionada
+
+        fetch("/localidades/exibirDadosEdicaoLocalidade", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idLocalidadeServer: idLocalidadeSelecionada,
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (json) {
+
+                
+                        let nomeLocalidadeEdicao = json.nomeLocalidade;
+                        let CEPlocalidadeEdicao = json.CEP_localidade;
+                        let RuaLocalidadeEdicao = json.rua_localidade;
+                        let bandaEdicao = json.parametro_taxa_uso_bl;
+                        let PerdaPacotesEdicao = json.parametro_perda_pacotes;
+
+                        
+                        document.getElementById("input_alterar_nome").value = nomeLocalidadeEdicao;
+                        document.getElementById("input_alterar_cep").value = CEPlocalidadeEdicao;
+                        document.getElementById("input_alterar_rua").value = RuaLocalidadeEdicao;
+                        document.getElementById("input_alterar_banda").value = bandaEdicao;
+                        document.getElementById("input_alterar_Pacotes").value = PerdaPacotesEdicao;
+
+
+                        document.querySelector('.maingerenpage').style.filter = "blur(5px)";
+                        document.querySelector('.Editargeren').style.display = "block";
+
+
+                    });
+                } else {
+                    console.error("Houve um erro na requisição");
+                }
+            })
+            .catch(function (erro) {
+                console.error("Erro ao tentar buscar os dados do usuário:", erro);
+            });
+
+        return false;
+    }
+
+    function deletarMaquina() {
+        alert("Localidade deletada com sucesso!");
+
+        fetch("/localidades/deletarLocalidade", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id_localidadeServer: id_localidade,
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (json) {
+                        console.log("Localidade deletada com sucesso:", json);
+                        verUsuarios();
+                    });
+                } else {
+                    console.error("Houve um erro na requisição");
+                }
+            })
+            .catch(function (erro) {
+                console.error("Erro ao tentar deletar a máquina:", erro);
+            });
+
+        return false;
+    }
+    function editarMaquina() {
+
+        var nomeLocalidadeVAR = input_alterar_nome.value;
+        var CEPVAR = input_alterar_cep.value;
+        var ruaVAR = input_alterar_rua.value;
+        var bandaVAR = input_alterar_banda.value;
+        var PacotesVAR = input_alterar_Pacotes.value;
+
+        if (
+            nomeLocalidadeVAR == "" ||
+            CEPVAR == "" ||
+            ruaVAR == "" ||
+            bandaVAR == "" ||
+            PacotesVAR == ""
+        ) {
+            alert("Todos os campos dever ser preenchidos!")
+            return false;
+        } else {
+
+
+            console.log("Dados a serem enviados:", {
+                nomeLocalidadeServer: nomeLocalidadeVAR,
+                CEPServer: CEPVAR,
+                ruaServer: ruaVAR,
+                bandaServer: bandaVAR,
+                PacotesServer: PacotesVAR,
+            });
+            fetch("/localidades/editarLocalidades", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idLocalidadeServer: id_localidade,
+                    nomeLocalidadeServer: nomeLocalidadeVAR,
+                    CEPServer: CEPVAR,
+                    ruaServer: ruaVAR,
+                    bandaServer: bandaVAR,
+                    PacotesServer: PacotesVAR,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("Status da resposta:", resposta.status);
+                    if (resposta.ok) {
+
+                        resposta.json().then(function (json) {
+                            console.log("Localidade atualizada com sucesso:", json);
+                            alert("Localidade alterada com sucesso!");
+                            window.location.reload(true);
+                        });
+                    } else {
+                        resposta.text().then(function (texto) {
+                            console.error("Erro na resposta:", texto);
+                        });
+                    }
+                })
+                .catch(function (erro) {
+                    console.error("Erro ao tentar alterar os dados da Localidade:", erro);
+                });
+        }
+    }
+
+    function VerLocalidade() {
+        sessionStorage.LOCALIDADE_SELECIONADA = id_localidade
+        window.location.href = `/dashboard_datacenter.html?id=${encodeURIComponent(id_localidade)}`;
+    }
+
+
+</script>

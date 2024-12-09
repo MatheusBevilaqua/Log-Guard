@@ -195,8 +195,8 @@ function exibirDadosEdicaoUsuario(req, res) {
             res.json({
                 nomeUsuario: resultado[0].nomeUsuario,
                 emailUsuario: resultado[0].emailUsuario,
-                tipoPerfilUsuario: resultado[0].tipoPerfilUsuario,
-                senhaUsuario: resultado[0].senhaUsuario
+                senhaUsuario: resultado[0].senhaUsuario,
+                tipoPerfilUsuario: resultado[0].tipoPerfilUsuario
             });
         } else {
             res.status(204).send("Nenhum resultado encontrado!");
@@ -281,128 +281,6 @@ function cadastrarnovouser(req, res) {
     }
 }
 
-function getMaquinasDataRAM(req, res) {
-    var idEmpresaUsuario = req.body.idEmpresaUsuarioServer;
-
-    usuarioModel.getMaquinasDataRAM(idEmpresaUsuario).then(function (resultado) {
-        if (resultado.length > 0) {
-            let maquinasMap = {};
-
-            resultado.forEach(row => {
-                console.log('Processando linha:', row);
-                let nomeMaquina = row.nomeMaquina;
-                let dataCaptura = new Date(row.dtCriacaoCaptura).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-
-                if (!maquinasMap[nomeMaquina]) {
-                    maquinasMap[nomeMaquina] = [];
-                }
-                maquinasMap[nomeMaquina].push({
-                    x: dataCaptura,
-                    y: parseFloat(row.registro)
-                });
-            });
-
-            let series = Object.keys(maquinasMap).map(maquina => ({
-                name: maquina,
-                data: maquinasMap[maquina]
-            }));
-
-            console.log('Dados processados para o gráfico RAM:', series);
-            res.status(200).json(series);
-        } else {
-            console.log("Nenhum resultado encontrado!");
-            res.status(204).send("Nenhum resultado encontrado!");
-        }
-    }).catch(function (erro) {
-        console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-
-
-
-
-function getMaquinasDataCPU(req, res) {
-    var idEmpresaUsuario = req.body.idEmpresaUsuarioServer;
-
-    usuarioModel.getMaquinasDataCPU(idEmpresaUsuario).then(function (resultado) {
-        if (resultado.length > 0) {
-            let maquinasMap = {};
-
-            resultado.forEach(row => {
-                let nomeMaquina = row.nomeMaquina;
-                let dataCaptura = new Date(row.dtCriacaoCaptura).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-
-                if (!maquinasMap[nomeMaquina]) {
-                    maquinasMap[nomeMaquina] = {};
-                }
-                if (!maquinasMap[nomeMaquina][dataCaptura]) {
-                    maquinasMap[nomeMaquina][dataCaptura] = { total: 0, count: 0 };
-                }
-                maquinasMap[nomeMaquina][dataCaptura].total += parseFloat(row.registro);
-                maquinasMap[nomeMaquina][dataCaptura].count += 1;
-            });
-
-            let series = Object.keys(maquinasMap).map(maquina => ({
-                name: maquina,
-                data: Object.keys(maquinasMap[maquina]).map(data => ({
-                    x: data,
-                    y: parseFloat((maquinasMap[maquina][data].total / maquinasMap[maquina][data].count).toFixed(2))
-                }))
-            }));
-
-            console.log('Dados processados para o gráfico CPU:', series);
-            res.status(200).json(series);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!");
-        }
-    }).catch(function (erro) {
-        console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-
-function getMaquinasDataREDE(req, res) {
-    var idEmpresaUsuario = req.body.idEmpresaUsuarioServer;
-
-    usuarioModel.getMaquinasDataREDE(idEmpresaUsuario).then(function (resultado) {
-        if (resultado.length > 0) {
-            let maquinasMap = {};
-
-            resultado.forEach(row => {
-                let nomeMaquina = row.nomeMaquina;
-                let dataCaptura = new Date(row.dtCriacaoCaptura).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-
-                if (!maquinasMap[nomeMaquina]) {
-                    maquinasMap[nomeMaquina] = {};
-                }
-                if (!maquinasMap[nomeMaquina][dataCaptura]) {
-                    maquinasMap[nomeMaquina][dataCaptura] = { total: 0, count: 0 };
-                }
-                maquinasMap[nomeMaquina][dataCaptura].total += parseFloat(row.registro);
-                maquinasMap[nomeMaquina][dataCaptura].count += 1;
-            });
-
-            let series = Object.keys(maquinasMap).map(maquina => ({
-                name: maquina,
-                data: Object.keys(maquinasMap[maquina]).map(data => ({
-                    x: data,
-                    y: parseFloat((maquinasMap[maquina][data].total / maquinasMap[maquina][data].count).toFixed(2))
-                }))
-            }));
-
-            console.log('Dados processados para o gráfico REDE:', series);
-            res.status(200).json(series);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!");
-        }
-    }).catch(function (erro) {
-        console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
 
 
 
@@ -421,7 +299,5 @@ module.exports = {
     editarusuario, 
     cadastrarnovouser,
     visualizarMaquinas,
-    getMaquinasDataRAM,
-    getMaquinasDataCPU,
-    getMaquinasDataREDE
-}
+
+};

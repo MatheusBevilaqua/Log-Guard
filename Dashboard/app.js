@@ -15,6 +15,7 @@ var HOST_APP = process.env.APP_HOST;
 
 var app = express();
 
+var admRouter = require("./src/routes/adm")
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
@@ -23,7 +24,14 @@ var aquariosRouter = require("./src/routes/aquarios");
 var empresasRouter = require("./src/routes/empresas");
 var relatoriosRouter = require("./src/routes/relatorios");
 var tarefasRouter = require("./src/routes/tarefas");
+<<<<<<< HEAD
 var uxRouter = require("./src/routes/ux");
+=======
+var localidadeRouter = require("./src/routes/localidades");
+var operacaoRouter = require("./src/routes/operacao");
+var matheusRouter = require("./src/routes/matheusgrafico")
+var carolRouter = require("./src/routes/maquina_individualRota")
+>>>>>>> f84f9911dfcd695f2545256c11946f696e862daa
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,13 +41,22 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
+app.use("/adm", admRouter);
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
 app.use("/relatorios", relatoriosRouter)
+<<<<<<< HEAD
 app.use("/tarefas", tarefasRouter)
 app.use("/ux", uxRouter)
+=======
+app.use("/tarefas", tarefasRouter);
+app.use("/localidades", localidadeRouter);
+app.use("/operacao", operacaoRouter);
+app.use("/matheusgrafico", matheusRouter)
+app.use("/maquina_individualRota", carolRouter)
+>>>>>>> f84f9911dfcd695f2545256c11946f696e862daa
 
 app.listen(PORTA_APP, function () {
     console.log(`

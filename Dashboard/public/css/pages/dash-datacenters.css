@@ -1,0 +1,217 @@
+.div_filtro_ger_datacenter {
+    background-color: rebeccapurple;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.div_filtro_componente_datacenter {
+    background-color: transparent;
+    color: black;
+    padding: 0;
+    font-size: 20px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.container_top {
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    width: 80%;
+    height: 5%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
+    margin-left: 3%;
+    transition: margin-left 0.5s ease;
+}
+
+.container_maior {
+    width: 59%;
+    height: 100%;
+    display: flex;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
+    margin-left: calc(10px + 5px);
+    transition: margin-left 0.5s ease;
+    flex-direction: column;
+}
+
+.container_menor {
+    width: 20%;
+    height: 100%;
+    display: block;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
+    margin-left: calc(10px + 5px);
+    transition: 0.5s ease;
+}
+
+.page-dash {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.container_dash_rede .container_dash_RAM .container_dash_CPU .container_dash_DISCO {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    margin-left: 5%;
+}
+
+.container_dash_rede .container_dash_RAM .container_dash_CPU .container_dash_DISCO  {
+    width: 100%;
+}
+
+.container_interno {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    margin-left: 3%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    color: black;
+    width: 40px;
+    height: 40px;
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 20px;
+}
+
+
+.primeiro_grafico {
+    background-color: green;
+}
+
+.segundo_grafico {
+    height: 30%;
+}
+
+.container_indicadores {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    width: 100%;
+    align-items: stretch;
+    gap: 15px;
+}
+
+.titulo_indicador{
+    font-size: 130%;
+    color: black;
+    font-weight: 500;
+}
+
+.indicador_rede{
+    margin: 1%;
+}
+
+.titulo_indicador_ram{
+    font-size: 120%;
+    color: black;
+    font-weight: 500;
+}
+
+.div_indicador{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.h3_indicador{
+    font-size: 160%;
+    color: black;
+}
+.container_kpi,
+.container_info_servidores {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(225, 223, 228);
+    border-radius: 8px;
+    
+}
+
+.segundo_grafico {
+    margin-top: 2%;
+}
+
+.graficos {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 5px;
+}
+
+.primeiro_grafico,
+.segundo_grafico {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 40%;
+    background-color: lightgray;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_menor_lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 100%; /* Limita a altura para que caiba na div */
+    overflow-y: auto; /* Adiciona rolagem vertical quando necessário */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Estilo para cada item da lista */
+.item_maquina {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.item_maquina:hover {
+    transform: scale(1.02); /* Animação ao passar o mouse */
+}
+
+/* Estilo para as informações dentro de cada item */
+.item_maquina_info {
+    font-size: 14px;
+    color: #333;
+    margin: 5px 0;
+    word-wrap: break-word; /* Permite quebrar texto longo */
+}
+
+/* Estilo para o título de cada item */
+.item_maquina_titulo {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}

@@ -57,6 +57,15 @@ font-size: larger;
     border-radius: 20px;
 }
 
+.displayAdm{
+    display: block;
+}
+
+
+.displayComum{
+    display: none;
+}
+
 #user_infos{
     display: flex;
     width: fit-content;

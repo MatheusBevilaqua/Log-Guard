@@ -18,3 +18,7 @@ document.addEventListener("click", function(event) {
         navMenu.classList.remove("active");
     }
 });
+
+
+  
+  

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogGuard - Dashboard</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/partials/SideBar.css">
+    <link rel="shortcut icon" type="images/png" href="../../public/svg/iceberg-icon.svg">
+    <script src="./js/sessao.js"></script>
+
+</head>
+
+<body style="background-color: #e3e3e3; color: black;" onload="atualizarFeed();validarCargo();validarSessao()">
+
+    <section class="page-dash">
+        <nav id="sidebar">
+            <div id="sidebar_content">
+    
+              <li class="side_itemLog active" style="cursor: none;">
+                <a>
+                  <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+                  <span class="item-description">
+                    <b style="color: #442BB3; padding-left: 15px;"> Log Guard </b>
+                  </span>
+                </a>
+              </li>
+    
+    
+              <div id="user">
+                <p id="user_infos">
+                  <span style="color: black;" class="item-descriptionAtivo"> Olá,
+                    <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                      Jon Doe
+                    </span>
+                  </span>
+                  <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+                    Lorem Ipsum
+                  </span>
+                </p>
+              </div>
+    
+              <ul id="side_items">
+    
+    
+                <li class="side_item">
+                  <a href="dashboard_ADM.html">
+                    <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                    <span class="item-description">
+                      <b> Visão Geral </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item active">
+                  <a href="relatoriosadm.html">
+                    <i> <img src="./img/icon-cnpjBranco.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b style="color: aliceblue;"> Relatórios </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="gerenciar-maquina.html">
+                    <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Servidores </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="gerenciar-usuario-func.html">
+                    <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Funcionários </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="dash_Operacao_Adm.html">
+                    <i> <img src="img/engrenagem_Operacao.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b > Operações </b>
+                    </span>
+                  </a>
+                </li>
+
+                <li class="side_item">
+                    <a href="gerenciar-localidade.html">
+                      <i> <img src="img/nuvem.png" class="nav-dash-icon"> </i>
+                      <span class="item-description">
+                        <b > Localidades </b>
+                      </span>
+                    </a>
+                  </li>
+    
+    
+              <button id="open_btn">
+                <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+              </button>
+            </div>
+    
+            <div id="logout">
+              <button id="logout_btn" onclick="sair()">
+                <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+                <span class="item-description">
+                  Sair
+                </span>
+              </button>
+            </div>
+          </nav>
+
+        <div class="main-relatorios-page">
+
+            <h1 style="color: #442BB3;">Todos os relatórios</h1>
+            <div class="div-results">
+
+                <div id="feed_container" class="feed-container"></div>
+
+                <button onclick='escrever_relatorio()' class="cad-func">Escrever relatório</button>
+                <button onclick='relatorio_IA()' class="cadIA">Relatório IA</button>
+
+            </div>
+        </div>
+
+    </section>
+    <div class="publicar-relatorio">
+        <div id="form_postagem" class="Editar-func-primeiro-relatorio">
+            <h1>Publicar Relatório</h1>
+            <br>
+            <div class="ttt-relatorios">
+                <h5>Título do relatório</h5>
+            </div>
+            <input placeholder="Ex: Diversos erros em um curto período de tempo." name="titulo" id="titulo"
+                maxlength="100" type="text">
+            <div class="ttt-relatorios">
+                <h5>Descrição (máximo de 250 caracteres)</h5>
+            </div>
+            <textarea class="TextoAreaa" id="textarea_descricao" maxlength="250" rows="13"></textarea>
+
+            <div class="select-func-relatorio">
+                <select id="select_status">
+                    <option selected value="#" disabled>Selecionar Status</option>
+                    <option value="EMERGÊNCIA">EMERGÊNCIA</option>
+                    <option value="ALERTA">ALERTA</option>
+                    <option value="NORMAL">NORMAL</option>
+
+                </select>
+
+            </div>
+            <!-- <img src="./img/Line1cadastro.png" alt=""> -->
+
+        </div>
+
+        <!-- <img src="./img/Line1cadastro.png" class="linhacad"> -->
+        <div class="cadastrar-func-terceiro">
+            <button onclick="publicar()" class="cad-func" style="background-color: #442BB3;">Publicar</button>
+            <button onclick="cancelar_relatorio()" style="margin-left: 10px;" class="cancelar-relatorio">X</button>
+        </div>
+        <!-- <img src="./img/Line1cadastro.png" class="linhacad2"> -->
+    </div>
+    <div class="editar-relatorio">
+        <div class="Editar-func-primeiro-relatorio">
+            <h1>Editar um Relatorio</h1>
+            <div class="Editar-func-primeiro-relatorio">
+                <label>
+                    Descrição (máximo de 250 caracteres):
+                    <br>
+                    <textarea class="TextoAreaE" id="textoPublicar" maxlength="250" rows="13"></textarea>
+                </label>
+
+
+                <div class="cadastrar-func-terceiro">
+                    <button style="background-color: #442BB3;" class="cad-func" onclick="editar()">Confirmar
+                        Edição</button>
+                    <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cancelar-relatorio">X</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="deletar-relatorio">
+        <div class="Editar-func-primeiro-relatorio">
+            <h1>Deletar Relatorio</h1>
+            <div class="Editar-func-primeiro-relatorio">
+
+                <div class="cadastrar-func-terceiro">
+                    <button style="background-color: #442BB3;" class="relatorio-btn onclick=" onclick="confirmar_deletar()">Confirmar
+                        Deleção</button>
+                    <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cancelar-relatorio">X</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script>
+
+    document.getElementById('open_btn').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
+    });
+
+     document.getElementById('open_btnComum').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
+    });
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
+    var tipoPerfilUsuario = b_usuario.innerHTML = sessionStorage.TIPO_USUARIO;
+
+    function sair() {
+        window.location.href = "index.html";
+    }
+
+    function relatorio_IA() {
+
+        window.location = href = "http://localhost:3000"
+
+    }
+
+    function verifica_User() {
+
+        if (tipoPerfilUsuario != "ADMINISTRADOR") {
+
+            document.querySelector('.cadIA').style.display = "none";
+            document.getElementById('sidebar_contentComum').style.display = "block";
+            document.getElementById('sidebar_content').style.display = "none";
+
+        }else{
+
+            document.getElementById('sidebar_contentComum').style.display = "none";
+
+
+        }
+
+    }
+
+    function escrever_relatorio() {
+        document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
+        document.querySelector('.publicar-relatorio').style.display = "block";
+
+    }
+
+    function cancelar_relatorio() {
+        document.querySelector('.main-relatorios-page').style.filter = "none";
+        document.querySelector('.publicar-relatorio').style.display = "none";
+
+    }
+
+    function cancelar_edicao() {
+        document.querySelector('.main-relatorios-page').style.filter = "none";
+        document.querySelector('.editar-relatorio').style.display = "none";
+        document.querySelector('.deletar-relatorio').style.display = "none";
+
+    }
+
+    function publicar() {
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var idUsuarioEmpresa = sessionStorage.EMPRESA_USUARIO;
+
+        var tituloVar = document.getElementById('titulo').value;
+        var descricaoVar = document.getElementById('textarea_descricao').value;
+        var statusVar = document.getElementById('select_status').value
+
+        var corpo = {
+            idEmpresaUsuario: idUsuarioEmpresa,
+            titulo: tituloVar,
+            descricao: descricaoVar,
+            status: statusVar
+        }
+
+        console.log(corpo)
+
+        if (tituloVar == null || descricaoVar == null || statusVar == 'Selecionar Status') {
+            alert('Erro: Campos obrigatórios não preenchidos');
+            return;
+        }
+
+        fetch(`/relatorios/publicar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso!");
+                window.location = "relatorios.html";
+                limparFormulario();
+                finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+
+        });
+
+        return false;
+
+    }
+
+    function editar_relatorio(idrelatorio) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idrelatorio;
+        console.log("cliquei em editar - " + idrelatorio);
+        document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
+        document.querySelector('.editar-relatorio').style.display = "block";
+    }
+
+    function deletar(idrelatorio) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idrelatorio;
+        console.log("cliquei em deletar - " + idrelatorio);
+        document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
+        document.querySelector('.deletar-relatorio').style.display = "block";
+    }
+
+    function editar() {
+        var desc = textoPublicar.value
+        if (desc == '') {
+            alert('Erro: Campo obrigatório não preenchidos');
+            return;
+        }
+        fetch(`/relatorios/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descricao: textoPublicar.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post atualizado com sucesso!");
+                window.location = "relatoriosadm.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+
+    function confirmar_deletar() {
+        fetch(`/relatorios/deletar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post deletado com sucesso!");
+                window.location = "relatoriosadm.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function atualizarFeed() {
+
+        fetch("/relatorios/listar").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var relatorio = document.createElement("span");
+                    relatorio.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(relatorio);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var relatorio = resposta[i];
+                        var data = new Date(relatorio.data);
+                        console.log(data)
+                        var ano = data.getFullYear();
+                        console.log(ano)
+                        var mes = data.getMonth() + 1;
+                        var mes = data.getMonth() + 1;
+                        console.log(mes)
+                        var dia = data.getDate();
+                        console.log(dia)
+                        var data = dia + "/" + mes + "/" + ano
+                        var data = dia + "/" + mes + "/" + ano
+                        if (relatorio.fkEmpresaRelatorio == sessionStorage.EMPRESA_USUARIO) {
+                            if (relatorio.fkUsuarioRelatorio == sessionStorage.ID_USUARIO) {
+
+
+                                var divrelatorio = document.createElement("div");
+                                var spanID = document.createElement("span");
+                                var spanTitulo = document.createElement("span");
+                                var spanNome = document.createElement("span");
+                                var spanData = document.createElement("span")
+                                var spanSituacao = document.createElement("span")
+                                var divDescricao = document.createElement("div");
+                                var divButtons = document.createElement("div");
+                                var divButtons = document.createElement("div");
+                                var btnEditar = document.createElement("button");
+                                var btnDeletar = document.createElement("button");
+
+
+
+                                spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b>";
+                                spanNome.innerHTML = "Autor: <b>" + relatorio.nomeUsuario + "</b> ";
+                                spanData.innerHTML = "Data de criação: <b>" + data + "</b> <br><br>";
+                                spanSituacao.innerHTML = "Status: <b>" + relatorio.statusRelatorio + "</b> <br><br>";
+                                divDescricao.innerHTML = "Descrição: <b>" + relatorio.texto + "</b>";
+                                btnEditar.innerHTML = "Editar";
+                                btnDeletar.innerHTML = "Deletar";
+
+
+                                divrelatorio.className = "relatorio";
+                                spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
+                                spanSituacao.className = "relatorio-situacao"
+                                spanNome.className = "relatorio-nome";
+                                spanData.className = "relatorio-situacao"
+                                spanTitulo.className = "relatorio-titulo";
+                                divDescricao.className = "relatorio-descricao";
+
+                                divButtons.className = "div-buttons"
+
+
+                                btnEditar.className = "relatorio-btn-editar"
+                                btnEditar.id = "btnEditar" + relatorio.idrelatorio;
+                                btnEditar.setAttribute("onclick", `editar_relatorio(${relatorio.idrelatorio})`);
+
+                                btnDeletar.className = "relatorio-btn-deletar"
+                                btnDeletar.id = "btnDeletar" + relatorio.idrelatorio;
+                                btnDeletar.setAttribute("onclick", `deletar(${relatorio.idrelatorio})`);
+
+
+
+
+                                divrelatorio.appendChild(spanID);
+                                divrelatorio.appendChild(spanNome);
+                                divrelatorio.appendChild(spanData);
+
+                                divrelatorio.appendChild(spanTitulo);
+                                divrelatorio.appendChild(spanSituacao);
+                                divrelatorio.appendChild(divDescricao);
+                                divrelatorio.appendChild(divButtons);
+                                divButtons.appendChild(btnEditar);
+                                divButtons.appendChild(btnDeletar);
+                                feed.appendChild(divrelatorio);
+                            } else {
+
+
+                                var divrelatorio = document.createElement("div");
+                                var spanID = document.createElement("span");
+                                var spanTitulo = document.createElement("span");
+                                var spanNome = document.createElement("span");
+                                var spanData = document.createElement("span")
+                                var spanSituacao = document.createElement("div");
+                                var divDescricao = document.createElement("div");
+                                var divButtons = document.createElement("div");
+
+
+
+                                spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b>";
+                                spanNome.innerHTML = "Autor: <b>" + relatorio.nomeUsuario + "</b> ";
+                                spanData.innerHTML = "Data de criação: <b>" + data + "</b> <br><br>";
+                                spanSituacao.innerHTML = "Status: <b>" + relatorio.statusRelatorio + "</b> <br><br>";
+                                divDescricao.innerHTML = "Descrição: <b>" + relatorio.texto + "</b>";
+
+
+                                divrelatorio.className = "relatorio";
+                                spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
+                                spanNome.className = "relatorio-nome";
+                                spanData.className = "relatorio-nome"
+                                spanSituacao.className = "relatorio-situacao";
+                                spanTitulo.className = "relatorio-titulo";
+                                divDescricao.className = "relatorio-descricao";
+
+
+
+                                divrelatorio.appendChild(spanID);
+                                divrelatorio.appendChild(spanNome);
+                                divrelatorio.appendChild(spanData);
+                                divrelatorio.appendChild(spanTitulo);
+                                divrelatorio.appendChild(spanSituacao);
+                                divrelatorio.appendChild(divDescricao);
+                                divrelatorio.appendChild(divButtons);
+
+                                feed.appendChild(divrelatorio);
+
+                            }
+                        }
+                    }
+
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+
+        });
+    }
+
+</script>

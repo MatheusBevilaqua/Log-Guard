@@ -258,8 +258,15 @@ def buscaQueryParams():
 def executarQuery(script): # Função responsável por inserir os dados no banco, recebe uma query SQL qualquer como parâmetro e a executa, usando as credenciais específicas
      config = {
        'user': 'root',
+<<<<<<< HEAD
        'password': 'bonacelli',
        'host': 'localhost',
+=======
+       'password': 'Namavi05',
+       'host': 'localhost',
+       'password': 'ca2006rol',
+       'host': 'container-banco',
+>>>>>>> f84f9911dfcd695f2545256c11946f696e862daa
        'database': 'logGuard'
      }
 

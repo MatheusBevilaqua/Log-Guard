@@ -91,41 +91,8 @@ function cadastrarnovouser(idEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsu
     return database.executar(instrucaoSql);
 }
 
-function getMaquinasDataRAM(idEmpresaUsuario) {
-    var instrucaoSql = `
-        SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
-        FROM maquina m 
-        JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 2
-        ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
 
-function getMaquinasDataCPU(idEmpresaUsuario) {
-    var instrucaoSql = `
-        SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
-        FROM maquina m 
-        JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 1
-        ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
 
-function getMaquinasDataREDE(idEmpresaUsuario) {
-    var instrucaoSql = `
-        SELECT m.nomeMaquina, c.registro, c.dtCriacaoCaptura 
-        FROM maquina m 
-        JOIN captura c ON m.idMaquina = c.fkMaquinaCaptura 
-        WHERE m.fkEmpresaMaquina = ${idEmpresaUsuario} AND c.fkRecursoCaptura = 4
-        ORDER BY m.nomeMaquina, c.dtCriacaoCaptura;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
 
 module.exports = {
     autenticar,
@@ -141,7 +108,4 @@ module.exports = {
     editarusuario,
     cadastrarnovouser,
     visualizarMaquinas,
-    getMaquinasDataRAM,
-    getMaquinasDataCPU,
-    getMaquinasDataREDE
 };

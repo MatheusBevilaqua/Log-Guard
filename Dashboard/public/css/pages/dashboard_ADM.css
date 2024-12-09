@@ -62,83 +62,15 @@
         display: flex;
         width: 100%;
         height: 11%;
-        background-color: #FFFFFF;
         border-radius: 20px;
         gap: 10px;
         align-items: center;
 
-        .sessao1-adm_frame1 {
-            display: flex;
-            width: 90%;
-            height: 85%;
-            background-color: #E0E0E0;
-            border-radius: 20px;
-            margin-left: 1%;
 
-            .sessao1-adm_frame1_texto {
-                display: flex;
-                width: 100%;
-                height: 100%;
-                flex-direction: column;
-                justify-content: space-evenly;
-                align-items: center;
-
-                >p {
-                    color: #000;
-                    font-size: 16px;
-                }
-
-                .sessao1-adm_frame1_texto_semana {
-                    display: flex;
-                    width: 100%;
-                    flex-direction: row;
-                    justify-content: space-evenly;
-
-
-                    .sessao1-adm_frame1_texto_semana_p1 {
-                        color: #7c7c7c;
-                        font-size: 14px;
-                    }
-                }
-
-
-
-                .sessao1-adm_frame1_texto_semana_p2 {
-                    color: #3d3d3d;
-                    font-size: 14px;
-                }
-
-                .sessao1-adm_frame1_texto_semana_p3 {
-                    color: #0f0f0f;
-                    font-size: 14px;
-                }
-            }
-        }
-
-    }
-
-    .sessao1-adm_frame2 {
-        display: flex;
-        width: 90%;
-        height: 78%;
-        background-color: #E0E0E0;
-        border-radius: 20px;
-        align-items: center;
-
-
-    }
-
-    .sessao1-adm_frame3 {
-        display: flex;
-        width: 90%;
-        height: 85%;
-        background-color: #E0E0E0;
-        border-radius: 20px;
-        margin-right: 1%;
-
-        >p {
-            color: #000;
-            font-size: 16px;
+        >h1 {
+            color: #442BB3;
+            font-size: 35px;
+            margin-left: 23px;
         }
     }
 }
@@ -160,22 +92,12 @@
         background-color: #FFFFFF;
         border-radius: 20px;
         flex-direction: column;
+        padding: 10px;
+        gap: 30px;
+        align-items: center;
 
-        .sessao2-adm_frame1-titulo {
-            display: flex;
-            width: 98%;
-            height: 14%;
-            background-color: #E0E0E0;
-            border-radius: 20px;
-            margin: 1%;
-            margin-top: 7px;
-            align-items: center;
-            justify-content: center;
-
-            >p {
-                color: #000;
-                font-size: 18px;
-            }
+        >p {
+            color: black;
         }
     }
 
@@ -287,6 +209,12 @@
     color: #4932bb;
     cursor: pointer;
     background-color: #d3d3d3;
+    align-items: center;
+
+    >p {
+        font-size: 30px;
+        color: #000000;
+    }
 }
 
 .sessao-adm-pointer-disco-sessao2,
@@ -296,6 +224,8 @@
 .sessao-adm-pointer-cpu-sessao3,
 .sessao-adm-pointer-ram-sessao3 {
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
 
     >p {
         color: #d3d3d3;
@@ -303,8 +233,6 @@
 }
 
 
-
-/* modais */
 
 .sessao-adm-modal-todos {
     display: none;
@@ -316,88 +244,170 @@
     background-color: #ffffff26;
     z-index: 999;
     backdrop-filter: blur(4px);
-
-
-    .sessao-adm-modal-card {
-        display: none;
-        position: fixed;
-        height: 70%;
-        width: 70%;
-        left: 22%;
-        top: 16%;
-        background-color: #ffffff;
-        box-shadow: 0px 0px 19px 0px #6d6d6d;
-
-        .sessao-adm-modal-alertas {
-            display: none;
-            height: 100%;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-
-            > p {
-                color: black;
-                margin-bottom: 20px;
-            }
-
-            table {
-                height: 70%;
-                width: 70%;
-            }
-            
-            table, th, td {
-                border: 1px solid black;
-                color: black;
-                align-items: center;
-              }
-
-            td {
-                padding-left: 6px;
-            }
-            
-        }
-
-        .sessao-adm-modal-riscos {
-            display: none;
-            height: 100%;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-
-            > p {
-                color: black;
-                margin-bottom: 20px;
-            }
-
-            table {
-                height: 70%;
-                width: 70%;
-            }
-            
-            table, th, td {
-                border: 1px solid black;
-                color: black;
-                align-items: center;
-              }
-        }
-
-        .sessao-adm-modal-analises {
-            display: none;
-            height: 100%;
-            width: 100%;
-
-            
-        }
-
-    }
-
+    align-items: center;
+    justify-content: center;
 }
 
+.sessao-adm-modal-card {
+    display: none;
+    flex-direction: column;
+    height: 60%;
+    width: 55%;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 19px 0px #6d6d6d;
+    align-items: center;
+    justify-content: center;
+    overflow-y: unset;
+    overflow-x: unset;
+}
+
+.sessao-adm-pointer-rede-sessao3 {
+    height: 70%;
+    width: 10%;
+    max-width: 10%;
+    border-radius: 10px;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    background-color: #d3d3d3;
+    align-items: center;
+}
+
+
+.sessao-adm-pointer-cpu-sessao3 {
+    height: 70%;
+    width: 10%;
+    max-width: 10%;
+    border-radius: 10px;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    background-color: #442BB3;
+    align-items: center;
+    color: white;
+}
+
+.sessao-adm-pointer-ram-sessao3 {
+    height: 70%;
+    width: 10%;
+    max-width: 10%;
+    border-radius: 10px;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    background-color: #d3d3d3;
+    align-items: center;
+}
+
+.sessao-adm-pointer-disco-sessao2 {
+    height: 75%;
+    width: 15%;
+    max-width: 10%;
+    border-radius: 10px;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    background-color: #d3d3d3;
+    align-items: center;
+    justify-content: center;
+}
+
+.sessao-adm-pointer-cpu-sessao2 {
+    height: 75%;
+    width: 15%;
+    max-width: 10%;
+    border-radius: 10px;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    background-color: #442BB3;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.sessao-adm-pointer-ram-sessao2 {
+    height: 75%;
+    width: 15%;
+    max-width: 10%;
+    border-radius: 10px;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    background-color: #d3d3d3;
+    align-items: center;
+    justify-content: center;
+}
+
+.sessao-adm-modal-alertas,
+.sessao-adm-modal-riscos,
+.sessao-adm-modal-analises {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 90%;
+    display: none;
+}
+
+.sessao-adm-modal-alertas p,
+.sessao-adm-modal-riscos p {
+    color: black;
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+
+.sessao-adm-modal-alertas table,
+.sessao-adm-modal-riscos table {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.sessao-adm-modal-riscos th,
+.sessao-adm-modal-alertas th {
+    height: 20px;
+}
+
+.sessao-adm-modal-alertas th,
+.sessao-adm-modal-alertas td,
+.sessao-adm-modal-riscos th,
+.sessao-adm-modal-riscos td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+.sessao-adm-modal-alertas th,
+.sessao-adm-modal-riscos th {
+    background-color: #f2f2f2;
+    color: black;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+.sessao-adm-modal-alertas td,
+.sessao-adm-modal-riscos td {
+    padding-left: 6px;
+    color: #000;
+}
+
+.sessao-adm-modal-card .sessao-adm-cancelar {
+    align-self: flex-end;
+    margin: 10px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+
 .sessao-adm-cancelar {
-    position: absolute;
-    top: 10px;
+    position: relative;
+    top: 18px;
     right: 10px;
     background-color: #442BB3;
     border: none;
@@ -423,7 +433,7 @@
 
 
 .sessao-adm-chartram-dado {
-    display: block;
+    display: none;
     width: 100%;
     height: 100%;
 }
@@ -431,13 +441,13 @@
 .sessao-adm-chartrede-dado {
     display: none;
     width: 100%;
-    height: 70%;
+    height: 100%;
 }
 
 .sessao-adm-chartcpu-dado {
-    display: none;
+    display: flex;
     width: 100%;
-    height: 70%;
+    height: 100%;
 }
 
 
@@ -460,4 +470,109 @@
     pointer-events: none;
 }
 
+.histogramChart {
+    display: none;
+}
 
+.sessao-adm-modal-alertas-table {
+    display: flex;
+    width: 70%;
+    height: 71%;
+    overflow-y: auto;
+    overflow-x: none;
+    margin-left: 16%;
+}
+
+.sessao1-adm_frame1 {
+    display: flex;
+    width: 100%;
+    height: 25%;
+    background-color: #E0E0E0;
+    border-radius: 20px;
+}
+
+.sessao1-adm_frame1_texto {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    >p {
+        color: #000;
+        font-size: 16px;
+    }
+
+    .sessao1-adm_frame1_texto_semana {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+
+        #sessao-2dias-antes {
+            color: #7c7c7c;
+            font-size: 16px;
+        }
+
+    }
+
+
+
+    #sessao-1dias-antes {
+        color: #3d3d3d;
+        font-size: 17px;
+    }
+
+    #sessao-hoje {
+        color: #0f0f0f;
+        font-size: 18px;
+    }
+}
+
+.sessao1-adm_frame2 {
+    display: flex;
+    width: 100%;
+    height: 25%;
+    background-color: #E0E0E0;
+    border-radius: 20px;
+    align-items: center;
+
+
+}
+
+.sessao1-adm_frame3 {
+    display: flex;
+    width: 100%;
+    height: 25%;
+    background-color: #E0E0E0;
+    border-radius: 20px;
+
+    >p {
+        color: #000;
+        font-size: 16px;
+    }
+}
+
+.probabilityChartCPU {
+    display: flex;
+    width: 70%;
+    height: 75%;
+}
+
+.probabilityChartRAM {
+    display: none;
+    width: 70%;
+    height: 75%;
+}
+
+.probabilityChartDISCO {
+    display: none;
+    width: 70%;
+    height: 75%;
+}
+
+.tspan {
+    color: black;
+}

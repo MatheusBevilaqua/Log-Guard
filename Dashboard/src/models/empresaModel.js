@@ -42,7 +42,7 @@ function excluir_editar(){
   return database.executar(instrucaoSql);
 }
 function confirmar_cadastrar(fkEmpresaMaquina,nomeMaquina,modeloCPU,capacidadeRAM,disco,localidade,MACAdress){
-  var instrucaoSql = `INSERT INTO maquina VALUES (default,'${fkEmpresaMaquina}',null,'${nomeMaquina}', '${modeloCPU}', '${capacidadeRAM}', '${disco}', '${localidade}','${MACAdress}')`;
+  var instrucaoSql = `INSERT INTO maquina VALUES (default,'${fkEmpresaMaquina}','${nomeMaquina}', '${modeloCPU}', '${capacidadeRAM}', '${disco}', '${localidade}','${MACAdress}')`;
   return database.executar(instrucaoSql);
 } 
 function visualizarMaquinas(instrucaoSql) {
@@ -55,11 +55,11 @@ function deletarMaquina(idMaquina) {
 }
 
 function exibirDadosEdicaoMaquina(idMaquina) {
-  var instrucaoSql = `SELECT * FROM maquina WHERE idMaquina = '${idMaquina}';`;
+  var instrucaoSql = `SELECT maquina.idMaquina, maquina.nomeMaquina, maquina.modeloCPU, maquina.capacidadeRAM,maquina.disco, maquina.MACAdress, localidade.nomeLocalidade AS localidade FROM maquina INNER JOIN localidade ON maquina.fkLocalidadeMaquina = localidade.idLocalidade WHERE idMaquina = ${idMaquina}`;
   return database.executar(instrucaoSql)
 }
-function editarMaquina(idMaquina,nomeMaquina,modeloCPU,capacidadeRAM,disco,localidade) {
-  var instrucaoSql = `UPDATE maquina SET nomeMaquina = '${nomeMaquina}', modeloCPU = '${modeloCPU}', capacidadeRAM  = '${capacidadeRAM }',disco = '${disco}',localidade = '${localidade}' WHERE idMaquina = '${idMaquina}';`;
+function editarMaquina(idMaquina,nomeMaquina,modeloCPU,capacidadeRAM,disco) {
+  var instrucaoSql = `UPDATE maquina SET nomeMaquina = '${nomeMaquina}', modeloCPU = '${modeloCPU}', capacidadeRAM  = '${capacidadeRAM }',disco = '${disco}' WHERE idMaquina = '${idMaquina}';`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }

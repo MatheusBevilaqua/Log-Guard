@@ -9,10 +9,12 @@
   <link rel="stylesheet" href="css/partials/SideBar.css">
   <link rel="stylesheet" href="css/pages/dash_Gerenciamento_Operacao.css">
   <script src="js/sessao.js"></script>
+  <script src="js/timer.js"></script>
+
   <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body>
+<body onload="validarCargo();validarSessao()">
   <section class="page-dash">
     <nav id="sidebar">
       <div id="sidebar_content">
@@ -21,7 +23,7 @@
           <a>
             <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
             <span class="item-description">
-              <b style="color: #442BB3; margin-left: 15px;"> Log Guard </b>
+              <b style="color: #442BB3; padding-left: 15px;"> Log Guard </b>
             </span>
           </a>
         </li>
@@ -43,11 +45,11 @@
         <ul id="side_items">
 
 
-          <li class="side_item ">
-            <a href="dashboard_ADM.html">
+          <li class="side_item">
+            <a href="dashboardFuncionario.html">
               <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
               <span class="item-description">
-                <b> Visão Geral </b>
+                <b > Visão Geral </b>
               </span>
             </a>
           </li>
@@ -61,43 +63,16 @@
             </a>
           </li>
 
-          <li class="side_item">
-            <a href="gerenciar-maquina.html">
-              <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> Empresas </b>
-              </span>
-            </a>
-          </li>
-
-          <li class="side_item">
-            <a href="gerenciar-usuario-func.html">
-              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> Usuários </b>
-              </span>
-            </a>
-          </li>
-
-          <li class="side_item">
-            <a href="gerenciar-usuario-func.html">
-              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> FeedBacks </b>
-              </span>
-            </a>
-          </li>
-
-
           <li class="side_item active">
             <a href="dash_Gerenciamento_Operacao.html">
               <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
-              <span class="item-descriptionAtivo">
+              <span class="item-description">
                 <b style="color: aliceblue;"> Operações </b>
               </span>
             </a>
           </li>
 
+<<<<<<< HEAD
           <li class="side_item">
             <a href="feedback.html">
               <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
@@ -123,6 +98,8 @@
             </a>
           </li>
         </ul>
+=======
+>>>>>>> f84f9911dfcd695f2545256c11946f696e862daa
 
         <button id="open_btn">
           <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
@@ -143,7 +120,7 @@
       <h1> Tarefas do dia</h1>
 
       <div class="add-task-form">
-        <input type="text" id="newTaskInput" placeholder="Digite a nova tarefa">
+        <input type="text" id="newTaskInput" placeholder="Digite a nova tarefa"  maxlength="12">
         <select id="taskPriority">
           <option value="#" disabled selected> Importância </option>
           <option value="essencial">Essencial</option>
@@ -151,7 +128,7 @@
           <option value="desejavel">Desejável</option>
         </select>
         <button onclick="addTask()" class="botao_trello">Adicionar Tarefa</button>
-        <button onclick="contabilizaTarefas()" class="botao_trello">Contabilizar Tarefas</button>
+        <!-- <button onclick="contabilizaTarefas()" class="botao_trello">Contabilizar Tarefas</button> -->
       </div>
 
 
@@ -186,7 +163,6 @@
 </html>
 
 <script>
-
   var teste = 0
 
   document.getElementById('open_btn').addEventListener('click', function () {
@@ -207,38 +183,6 @@
 </script>
 
 <!-- PARTE DO TIMER -------------------------------------------------------------------------------------------------------------- -->
-<script>
-  function allowDrop(event) {
-    event.preventDefault();
-  }
-
-  function drag(event) {
-    event.dataTransfer.setData("text", event.target.id);
-  }
-
-  function drop(event) {
-    event.preventDefault();
-    const data = event.dataTransfer.getData("text");
-    const task = document.getElementById(data);
-    event.target.appendChild(task);
-  }
-
-  function allowDrop(event) {
-    event.preventDefault();
-  }
-
-  function drag(event) {
-    event.dataTransfer.setData("text", event.target.id);
-  }
-
-  function drop(event) {
-    event.preventDefault();
-    const data = event.dataTransfer.getData("text");
-    const task = document.getElementById(data);
-    event.target.appendChild(task);
-  }
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -250,6 +194,7 @@
   // Inicia a contagem de tempo para o gráfico de linha
   setInterval(updateCounter, 1000);
 </script>
+
 <script>
   // Variáveis para rastrear o tempo e o gráfico
   let seconds = 0, minutes = 0, hours = 0, minuteCounter = 0;
@@ -283,81 +228,36 @@
   });
 
   // Função para carregar o tempo e o progresso do gráfico do localStorage
-  function loadTimeAndGraph() {
-    const savedTime = localStorage.getItem('timerTime');
-    const savedMinutes = localStorage.getItem('minuteCounter');
-    const savedGraphData = localStorage.getItem('graphData');
+// Função para carregar o estado salvo do gráfico
+function loadGraphData() {
+  const savedGraphData = localStorage.getItem('graphData');
+  const savedMinutes = localStorage.getItem('minuteCounter');
 
-    // Carrega o tempo salvo
-    if (savedTime) {
-      const [savedHours, savedMinutes, savedSeconds] = savedTime.split(':').map(Number);
-      hours = savedHours;
-      minutes = savedMinutes;
-      seconds = savedSeconds;
-    } else {
-      hours = 0;
-      minutes = 0;
-      seconds = 0;
-    }
+  // Inicializa o contador de minutos e os dados do gráfico
+  minuteCounter = savedMinutes ? Number(savedMinutes) : 0;
 
-    // Carrega o contador de minutos para o gráfico
-    minuteCounter = savedMinutes ? Number(savedMinutes) : 0;
-
-    // Carrega os dados do gráfico do localStorage, se houver
-    if (savedGraphData) {
-      const graphData = JSON.parse(savedGraphData);
-      lineChart.data.labels = graphData.labels;
-      lineChart.data.datasets[0].data = graphData.data;
-      lineChart.update();
-    }
-    updateDisplay();
+  if (savedGraphData) {
+    const graphData = JSON.parse(savedGraphData);
+    lineChart.data.labels = graphData.labels;
+    lineChart.data.datasets[0].data = graphData.data;
+    lineChart.update();
   }
+}
 
-  // Função para iniciar o temporizador e atualizar o gráfico
-  function startTimer() {
-    loadTimeAndGraph(); // Carrega o progresso salvo
-    if (!timerInterval) {
-      timerInterval = setInterval(updateCounter, 1000); // Atualiza a cada segundo
-    }
-  }
+// Função para exibir e atualizar o gráfico
+function updateGraph() {
+  // Adiciona um novo ponto ao gráfico
+  lineChart.data.labels.push(minuteCounter); // Adiciona o minuto ao eixo X
+  lineChart.data.datasets[0].data.push(minuteCounter); // Adiciona o valor no eixo Y
+  lineChart.update();
 
-  // Função para atualizar o contador e o gráfico a cada segundo
-  function updateCounter() {
-    seconds++;
-    if (seconds === 60) {
-      seconds = 0;
-      minutes++;
-      minuteCounter++;
-
-      // Adiciona um novo ponto ao gráfico a cada minuto completo
-      lineChart.data.labels.push(minuteCounter); // Adiciona o minuto passado ao eixo X
-      lineChart.data.datasets[0].data.push(minuteCounter); // Adiciona o valor no eixo Y
-      lineChart.update(); // Atualiza o gráfico
-
-      // Salva o progresso do gráfico e o contador de minutos
-      localStorage.setItem('minuteCounter', minuteCounter);
-      localStorage.setItem('graphData', JSON.stringify({
-        labels: lineChart.data.labels,
-        data: lineChart.data.datasets[0].data
-      }));
-    }
-    if (minutes === 60) {
-      minutes = 0;
-      hours++;
-    }
-    updateDisplay();
-    localStorage.setItem('timerTime', `${hours}:${minutes}:${seconds}`); // Salva o tempo atualizado
-  }
-
-  // Atualiza o display do tempo
-  function updateDisplay() {
-    const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    document.getElementById("counter").textContent = formattedTime;
-  }
-
-  // Chama startTimer ao carregar a página
-  window.onload = startTimer;
-
+  // Salva os dados do gráfico no localStorage
+  localStorage.setItem('minuteCounter', minuteCounter);
+  localStorage.setItem('graphData', JSON.stringify({
+    labels: lineChart.data.labels,
+    data: lineChart.data.datasets[0].data
+  }));
+}
 
 </script>
 
@@ -365,7 +265,37 @@
 
 <!-- PARTE DO TRELLO -------------------------------------------------------------------------------------------------------------- -->
 <script>
+  function allowDrop(event) {
+    event.preventDefault();
+  }
 
+  function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+
+  function drop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData("text");
+    const task = document.getElementById(data);
+    event.target.appendChild(task);
+  }
+
+  function allowDrop(event) {
+    event.preventDefault();
+  }
+
+  function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+
+  function drop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData("text");
+    const task = document.getElementById(data);
+    event.target.appendChild(task);
+  }
+</script>
+<script>
   function addTask() {
     const taskText = document.getElementById("newTaskInput").value;
     const taskPriority = document.getElementById("taskPriority").value;
@@ -510,27 +440,27 @@
   }
 
   // Configuração do gráfico de tarefas
-  const taskCtx = document.getElementById('taskChart').getContext('2d');
-  const taskChart = new Chart(taskCtx, {
-    type: 'bar',
-    data: {
-      labels: ['A Fazer', 'Andamento', 'Concluído'],
-      datasets: [{
-        label: 'Quantidade de Tarefas',
-        data: [0, 0, 0],
-        backgroundColor: ['rgb(106, 90, 205)', 'rgb(79, 29, 126)', 'rgb(138, 43, 226)']
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: { display: true, text: 'Quantidade de Tarefas' }
-        }
-      }
-    }
-  });
+  // const taskCtx = document.getElementById('taskChart').getContext('2d');
+  // const taskChart = new Chart(taskCtx, {
+  //   type: 'bar',
+  //   data: {
+  //     labels: ['A Fazer', 'Andamento', 'Concluído'],
+  //     datasets: [{
+  //       label: 'Quantidade de Tarefas',
+  //       data: [0, 0, 0],
+  //       backgroundColor: ['rgb(106, 90, 205)', 'rgb(79, 29, 126)', 'rgb(138, 43, 226)']
+  //     }]
+  //   },
+  //   options: {
+  //     responsive: true,
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true,
+  //         title: { display: true, text: 'Quantidade de Tarefas' }
+  //       }
+  //     }
+  //   }
+  // });
 
   // Adiciona o evento de atualização do gráfico de tarefas nas colunas
   document.querySelectorAll('.column').forEach(column => {
@@ -571,6 +501,8 @@
 
 
   function contabilizaTarefas() {
+
+    alert("ESTOU NA FUNC")
 
     let qtdTarefasImportantes = 0;
     let qtdTarefasDesejaveis = 0;
@@ -631,19 +563,171 @@
     return false;
   }
 
+// Salva o estado das atividades em sessionStorage
+function saveTasks() {
+    const columns = ["todo", "inprogress", "done"];
+    const tasks = [];
+
+    columns.forEach(columnId => {
+        const column = document.getElementById(columnId);
+        if (column) {
+            const columnTasks = Array.from(column.getElementsByClassName("task")).map(task => ({
+                id: task.id,
+                text: task.querySelector(".task-text").textContent,
+                priority: task.querySelector(".task-priority").textContent,
+                status: columnId
+            }));
+            tasks.push(...columnTasks);
+        }
+    });
+
+    sessionStorage.setItem("tasks", JSON.stringify(tasks));
+
+    
+}
+
+// Salva tarefas no localStorage
+function saveTasks() {
+    const columns = ["todo", "inprogress", "done"];
+    const tasks = [];
+
+    columns.forEach(columnId => {
+        const column = document.getElementById(columnId);
+        if (column) {
+            const columnTasks = Array.from(column.getElementsByClassName("task")).map(task => ({
+                id: task.id,
+                text: task.querySelector(".task-text").textContent,
+                priority: task.querySelector(".task-priority").textContent,
+                status: columnId
+            }));
+            tasks.push(...columnTasks);
+        }
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// Restaura tarefas do localStorage
+function loadTasks() {
+    const savedTasks = JSON.parse(localStorage.getItem("tasks"));
+    if (savedTasks) {
+        savedTasks.forEach(({ id, text, priority, status }) => {
+            const task = document.createElement("div");
+            task.className = "task";
+            task.draggable = true;
+            task.ondragstart = drag;
+            task.id = id;
+
+            const taskContent = document.createElement("div");
+            taskContent.className = "task-content";
+
+            const taskTextElement = document.createElement("span");
+            taskTextElement.textContent = text;
+            taskTextElement.className = "task-text";
+
+            const taskPriorityElement = document.createElement("span");
+            taskPriorityElement.textContent = priority;
+            taskPriorityElement.className = `task-priority ${priority}`;
+            taskPriorityElement.onclick = () => editPriority(taskPriorityElement);
+
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "delete-button";
+            deleteButton.textContent = "X";
+            deleteButton.onclick = function () {
+                deleteTask(task.id);
+            };
+
+            taskContent.appendChild(taskTextElement);
+            taskContent.appendChild(deleteButton);
+            taskContent.appendChild(taskPriorityElement);
+            task.appendChild(taskContent);
+
+            document.getElementById(status).appendChild(task);
+        });
+    }
+}
+
+// Salva dados do gráfico no localStorage
+function saveTaskChartData() {
+    const todoCount = document.getElementById("todo").getElementsByClassName("task").length;
+    const inProgressCount = document.getElementById("inprogress").getElementsByClassName("task").length;
+    const doneCount = document.getElementById("done").getElementsByClassName("task").length;
+
+    const chartData = [todoCount, inProgressCount, doneCount];
+    localStorage.setItem("taskChartData", JSON.stringify(chartData));
+}
+
+// Restaura dados do gráfico do localStorage
+function loadTaskChartData() {
+    const savedData = JSON.parse(localStorage.getItem("taskChartData"));
+    if (savedData) {
+        taskChart.data.datasets[0].data = savedData;
+        taskChart.update();
+    }
+}
+
+// Atualiza o gráfico e salva o estado
+function updateTaskChart() {
+    const todoCount = document.getElementById("todo").getElementsByClassName("task").length;
+    const inProgressCount = document.getElementById("inprogress").getElementsByClassName("task").length;
+    const doneCount = document.getElementById("done").getElementsByClassName("task").length;
+
+    taskChart.data.datasets[0].data = [todoCount, inProgressCount, doneCount];
+    taskChart.update();
+
+    saveTaskChartData();
+}
+
+// Configuração inicial do gráfico
+const taskCtx = document.getElementById('taskChart').getContext('2d');
+const taskChart = new Chart(taskCtx, {
+    type: 'bar',
+    data: {
+        labels: ['A Fazer', 'Andamento', 'Concluído'],
+        datasets: [{
+            label: 'Quantidade de Tarefas',
+            data: [0, 0, 0],
+            backgroundColor: ['rgb(106, 90, 205)', 'rgb(79, 29, 126)', 'rgb(138, 43, 226)']
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: { display: true, text: 'Quantidade de Tarefas' }
+            }
+        }
+    }
+});
+
+// Eventos para carregar e salvar ao mudar de página
+window.onload = () => {
+    loadTasks(); // Restaurar tarefas
+    loadTaskChartData(); // Restaurar gráfico
+};
+
+window.addEventListener("beforeunload", () => {
+    saveTasks(); // Salvar tarefas
+    saveTaskChartData(); // Salvar gráfico
+});
+
+
 
 </script>
 
 <!-- BOTÃO DE SAIR -------------------------------------------------------------------------------------------------------------- -->
 <script>
-  function sair() {
+    function sair() {
+    // Limpa os dados do gráfico e do contador
     localStorage.removeItem('timerTime'); // Limpa o tempo armazenado
-    // Ação de logout
+    localStorage.removeItem('minuteCounter'); // Limpa o contador de minutos
+    localStorage.removeItem('graphData'); // Limpa os dados do gráfico
 
-
+    // Redireciona para a página de login ou inicial
     var url = "index.html";
-    window.open(url, "_self")
-
-  } 
+    window.open(url, "_self");
+}
+startTimer()
 </script>
 <!-- CONTABILIZADOR DE TAREFAS -------------------------------------------------------------------------------------------------------------- -->
