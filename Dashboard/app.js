@@ -23,6 +23,7 @@ var aquariosRouter = require("./src/routes/aquarios");
 var empresasRouter = require("./src/routes/empresas");
 var relatoriosRouter = require("./src/routes/relatorios");
 var tarefasRouter = require("./src/routes/tarefas");
+var uxRouter = require("./src/routes/ux");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,6 +39,7 @@ app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
 app.use("/relatorios", relatoriosRouter)
 app.use("/tarefas", tarefasRouter)
+app.use("/ux", uxRouter)
 
 app.listen(PORTA_APP, function () {
     console.log(`

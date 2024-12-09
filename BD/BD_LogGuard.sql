@@ -1,23 +1,28 @@
+DROP DATABASE logGuard;
 CREATE DATABASE logGuard;
 USE logGuard;
+
 CREATE TABLE empresa(
 idEmpresa INT PRIMARY KEY auto_increment,
 nomeEmpresa VARCHAR(225),
 emailInstitucional VARCHAR(225),
 emailResponsavel VARCHAR(225),
 cnpj CHAR(18),
-cep CHAR(9)
+cep CHAR(9),
+statusEmpresa varchar(7),
+paramCPU DOUBLE,
+paramMEM DOUBLE,
+paramHD DOUBLE,
+paramBL DOUBLE,
+dtCadastroEmpresa DATE
 );
 
 CREATE VIEW visualizar_empresas AS SELECT * FROM empresa;
 
-insert into empresa VALUES(default,'LOG GUARD', 'log.guard@sptech.school','log.guard@sptech.school','10101010101010','101010101');
-
-INSERT INTO empresa (nomeEmpresa, emailInstitucional, emailResponsavel) 
-VALUES 
-('Empresa A', 'contato@empresaa.com', 'responsavelA@empresaa.com'),
-('Empresa B', 'contato@empresab.com', 'responsavelB@empresab.com'),
-('Empresa C', 'contato@empresac.com', 'responsavelC@empresac.com');
+insert into empresa VALUES(default,'LOG GUARD', 'log.guard@sptech.school','log.guard@sptech.school','10101010101010','101010101','ATIVO',65.0, 75.0,80.0,100.0);
+insert into empresa VALUES(default, 'Empresa A', 'contato@empresaa.com', 'responsavelA@empresaa.com','10101010101010','101010101','INATIVO',65.0, 75.0,80.0,100.0);
+insert into empresa VALUES(default,'Empresa B', 'contato@empresab.com', 'responsavelB@empresab.com','10101010101010','101010101','ATIVO',75.0, 85.0,90.0,200.0);
+insert into empresa VALUES(default,'Empresa C', 'contato@empresac.com', 'responsavelC@empresac.com','10101010101010','101010101','ATIVO',75.0, 85.0,90.0,200.0);
 
 CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY auto_increment,
@@ -163,6 +168,18 @@ statusRelatorio VARCHAR(10),
 CONSTRAINT CHK_STATUS CHECK (statusRelatorio ='EMERGÊNCIA' OR statusRelatorio ='ALERTA' OR statusRelatorio ='NORMAL')
 );
 
+CREATE TABLE feedback(
+idFeedback INT PRIMARY KEY auto_increment,
+fkEmpresaFeedback INT,
+FOREIGN KEY Feedback(fkEmpresaFeedback) REFERENCES empresa(idEmpresa),
+fkUsuarioFeedback INT,
+FOREIGN KEY (fkUsuarioFeedback) REFERENCES usuario(idUsuario),
+titulo VARCHAR(255),
+texto VARCHAR(255),
+dtCriacaoFeedback DATETIME default current_timestamp,
+statusFeedback VARCHAR(50)
+);
+
 CREATE TABLE recurso(
 idRecurso INT PRIMARY KEY auto_increment,
 nomeRecurso VARCHAR(45)
@@ -200,4 +217,8 @@ tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
 
-
+create table Log (
+idLog INT primary key auto_increment,
+funcionalidade varchar(50),
+pagina varchar(50)
+);

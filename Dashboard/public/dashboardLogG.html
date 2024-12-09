@@ -2,148 +2,417 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogGuard - Dashboard</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="css/partials/SideBar.css">
-    <script src="js/sessao.js"></script>
-    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogGuard - Dashboard</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="css/partials/SideBar.css">
+  <script src="js/sessao.js"></script>
+  <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
-<body>
-    <section class="page-dash">
-        <nav id="sidebar">
-            <div id="sidebar_content">
-                <div class="side_item active">
-                    <a>
-                        <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon"
-                                style="height: 40px; width: 40px;"></i>
-                        <span class="item-descriptionAtivo" id="nomeLog">
-                            <b style="color: white; padding-left: 10px;"> LOGGUARD </b>
-                        </span>
-                    </a>
-                </div>
-                <div id="user">
-                    <p id="user_infos">
-                        <span style="color: black;" class="item-descriptionAtivo"> Olá,
-                            <span style="color: #442BB3;" class="item-description" id="b_usuario">
-                                Jon Doe
-                            </span>
-                        </span>
-                        <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
-                            Lorem Ipsum
-                        </span>
-                    </p>
+<body onload="totais(), Funcionalidades(), atualizarFeed()">
+  <section class="page-dash">
+    <nav id="sidebar">
+      <div id="sidebar_content">
 
-                </div>
-
-                <ul id="side_items">
+        <li class="side_itemLog active" style="cursor: none;">
+          <a>
+            <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+            <span class="item-description">
+              <b style="color: #442BB3; margin-left: 15px;"> Log Guard </b>
+            </span>
+          </a>
+        </li>
 
 
-                    <li class="side_item active">
-                        <a href="dashboard_ADM.html">
-                            <i> <img src="./img/olhoBranco.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                            <span class="item-descriptionAtivo">
-                                <b style="color: aliceblue;"> Visão Geral </b>
-                            </span>
-                        </a>
-                    </li>
+        <div id="user">
+          <p id="user_infos">
+            <span style="color: black;" class="item-descriptionAtivo"> Olá,
+              <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                Jon Doe
+              </span>
+            </span>
+            <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+              Lorem Ipsum
+            </span>
+          </p>
+        </div>
 
-                    <li class="side_item">
-                        <a href="relatorios.html">
-                            <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
-                            <span class="item-description">
-                                <b> Relatórios </b>
-                            </span>
-                        </a>
-                    </li>
+        <ul id="side_items">
 
-                    <li class="side_item">
-                        <a href="gerenciar-maquina.html">
-                            <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
-                            <span class="item-description">
-                                <b> Empresas </b>
-                            </span>
-                        </a>
-                    </li>
 
-                    <li class="side_item">
-                        <a href="gerenciar-usuario-func.html">
-                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-                            <span class="item-description">
-                                <b> Usuários </b>
-                            </span>
-                        </a>
-                    </li>
+          <li class="side_item ">
+            <a href="dashboard_ADM.html">
+              <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+              <span class="item-description">
+                <b> Visão Geral </b>
+              </span>
+            </a>
+          </li>
 
-                    <li class="side_item">
-                        <a href="gerenciar-usuario-func.html">
-                            <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-                            <span class="item-description">
-                                <b> FeedBacks </b>
-                            </span>
-                        </a>
-                    </li>
+          <li class="side_item">
+            <a href="relatorios.html">
+              <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Relatórios </b>
+              </span>
+            </a>
+          </li>
 
-                    <li class="side_item">
-                        <a href="#">
-                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                            <span class="item-description">
-                                <b> Ajuda </b>
-                            </span>
-                        </a>
-                    </li>
+          <li class="side_item">
+            <a href="gerenciar-maquina.html">
+              <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Empresas </b>
+              </span>
+            </a>
+          </li>
 
-                    <!-- <li class="side_item"> 
-                        <a href="#">
-                            <i class="fa-solid fa-gear"></i>
-                            <span class="item-description"> 
-                                <b> </b>
-                            </span>    
-                        </a>
-                    </li> -->
-                </ul>
+          <li class="side_item">
+            <a href="gerenciar-usuario-func.html">
+              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Funcionários </b>
+              </span>
+            </a>
+          </li>
 
-                <button id="open_btn">
-                    <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
-                </button>
+          <li class="side_item active">
+            <a href="dash_Gerenciamento_Operacao.html">
+              <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
+              <span class="item-descriptionAtivo">
+                <b style="color: aliceblue;"> Operações </b>
+              </span>
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="feedback.html">
+              <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+              <span class="item-descriptionAtivo">
+                <b> Feedback </b>
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <button id="open_btn">
+          <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+        </button>
+      </div>
+
+      <div id="logout">
+        <button id="logout_btn" onclick="sair()">
+          <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+          <span class="item-description">
+            Sair
+          </span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="main-relatorios-page">
+      <h1>Visão geral</h1>
+      <div class="box-dos-graficos1" style="margin-bottom: 170px; display: flex; flex-direction: row;">
+        <div style="display: flex; flex-direction: column;">
+          <div id="box-consumo" class="grafico-consumo-componentes"
+            style="display: flex; width: 600px; margin-left: 5px;">
+            <h3 style="color: black;">Funcionalidades mais utilizadas</h3>
+          </div>
+
+          <div class="box-consumo" style="border-radius: 10px; width: 750px; height: 400px;">
+            <div class="box-mychart">
+              <canvas id="funcionalidades" width="560" height="280"></canvas>
             </div>
-
-            <div id="logout">
-                <button id="logout_btn" onclick="sair()">
-                    <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
-                    <span class="item-description">
-                        Sair
-                    </span>
-                </button>
+          </div>
+          <div class="div-results" style="height: 350px; width: 700px; margin-right: 20px;">
+            <h3 style="color: black;">Todos os FeedBacks</h3>
+            <div
+              style="width: 700px; height: 300px; padding: 10px; background-color: white; border-radius: 10px; margin-right: 110px;">
+              <div id="feed_container" class="feed-container" style="height: 250px;"></div>
             </div>
-        </nav>
-    </section>
+          </div>
+
+
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin-left: 50px; ">
+          <div id="box-consumo" class="grafico-consumo-componentes"
+            style="display: flex; flex-direction: row; width: 600px; margin-left: 5px; border-radius: 10px; background-color: #442BB3; align-items: center; padding: 20px; margin-top: 120px;">
+            <h3 style="margin-right: 10px;">Quantidade de Empresas: </h3>
+            <h3><span id="qtdEmp">1000</span></h3>
+          </div>
+
+          <div id="box-consumo" class="grafico-consumo-componentes"
+            style="display: flex; flex-direction: row; width: 600px; margin-left: 5px; border-radius: 10px; background-color: #442BB3; align-items: center; padding: 20px; margin-top: 10px;">
+            <h3 style="margin-right: 10px;">Quantidade de usuários: </h3>
+            <h3><span id="qtdFun">1000</span></h3>
+          </div>
+
+          <div id="box-consumo" class="grafico-consumo-componentes"
+            style="display: flex; flex-direction: column; width: 600px; margin-left: 5px; border-radius: 10px; background-color: #442BB3; align-items: center; padding: 20px; margin-top: 10px;">
+            <h3 style="margin-right: 10px;">Tipo de feedback mais feito: </h3>
+            <h3><span id="maisFeedback">1000</span></h3>
+          </div>
+
+          <div id="box-consumo" class="grafico-consumo-componentes"
+            style="display: flex; flex-direction: row; width: 600px; margin-left: 5px; border-radius: 10px; background-color: #442BB3; align-items: center; padding: 20px; margin-top: 10px;">
+            <h3 style="margin-right: 10px;">Quantidade de usuários: </h3>
+            <h3><span id="qtdFun">1000</span></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
+    b_usuario.innerHTML = sessionStorage.TIPO_USUARIO;
+
+    function Funcionalidades() {
+
+      fetch(`/ux/Funcionalidades`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+
+            plotarGraficoFuncionalidade(resposta);
+
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    function countFeedback() {
+
+      fetch(`/ux/countFeedback`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    function totais() {
+
+      fetch(`/ux/totais`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            qtdEmp.innerHTML = resposta[0].Totais
+            qtdFun.innerHTML = resposta[1].Totais
+
+            console.log('1; ', resposta[0])
+            console.log('2; ', resposta[1])
+
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+
+    function plotarGraficoFuncionalidade(resposta) {
+
+      console.log('iniciando plotagem do gráfico...');
+
+
+      let labels = ['Funcionalidades Relatório'];
+
+
+      let dados = {
+        labels: labels,
+        datasets: [{
+          label: 'Editar',
+          data: [],
+          fill: false,
+          backgroundColor: ['#442BB3']
+
+        },
+        {
+          label: 'Deletar Relatório',
+          data: [],
+          fill: false,
+          backgroundColor: ['#442BB3']
+
+        },
+        {
+          label: 'Escrever Relatório',
+          data: [],
+          fill: false,
+          backgroundColor: ['#442BB3']
+
+        },
+        {
+          label: 'Relatório por I.A',
+          data: [],
+          fill: false,
+          backgroundColor: ['#442BB3']
+
+        }
+        ]
+      };
+      console.log('----------------------------------------------')
+      console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+      console.log('Ta aqui ó', resposta)
+      dados.datasets[3].data.push(resposta[0].countFuncionalidade);
+      dados.datasets[1].data.push(resposta[1].countFuncionalidade);
+      dados.datasets[2].data.push(resposta[2].countFuncionalidade);
+      dados.datasets[0].data.push(resposta[3].countFuncionalidade);
+
+
+      console.log('----------------------------------------------')
+      console.log('O gráfico será plotado com os respectivos valores:')
+      console.log('Labels:')
+      console.log(labels)
+      console.log('Dados:')
+      console.log(dados.datasets)
+      console.log('----------------------------------------------')
+
+
+      const config = {
+        type: 'bar',
+        data: dados,
+      };
+
+
+      let myChart = new Chart(
+        document.getElementById(`funcionalidades`),
+        config
+      );
+    }
+  </script>
 </body>
 
 </html>
 
 <script>
 
-    var teste = 0
+  var teste = 0
 
-    document.getElementById('open_btn').addEventListener('click', function () {
+  document.getElementById('open_btn').addEventListener('click', function () {
 
-        document.getElementById('sidebar').classList.toggle('open-sidebar');
-        this.classList.toggle('rodar');
+    document.getElementById('sidebar').classList.toggle('open-sidebar');
+    this.classList.toggle('rodar');
 
-        if (teste == 0) {
-            document.getElementById('nomeLog').style.display = "block";
-            teste = 1
-        } else {
-            document.getElementById('nomeLog').style.display = "none";
-            teste = 0
+    if (teste == 0) {
+      document.getElementById('nomeLog').style.display = "block";
+      teste = 1
+    } else {
+      document.getElementById('nomeLog').style.display = "none";
+      teste = 0
+    }
+
+  });
+
+  function sair() {
+    window.location.href = "index.html";
+  }
+
+  function atualizarFeed() {
+
+    fetch("/ux/listar").then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          var feed = document.getElementById("feed_container");
+          var relatorio = document.createElement("span");
+          relatorio.innerHTML = "Nenhum resultado encontrado."
+          feed.appendChild(relatorio);
+          throw "Nenhum resultado encontrado!!";
         }
 
-    });
+        resposta.json().then(function (resposta) {
+          console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-    function sair() {
-        window.location.href = "index.html";
-    }
+          var feed = document.getElementById("feed_container");
+          feed.innerHTML = "";
+          for (let i = 0; i < resposta.length; i++) {
+            var relatorio = resposta[i];
+            var data = new Date(relatorio.data);
+            console.log(data)
+            var ano = data.getFullYear();
+            console.log(ano)
+            var mes = data.getMonth() + 1;
+            var mes = data.getMonth() + 1;
+            console.log(mes)
+            var dia = data.getDate();
+            console.log(dia)
+            var data = dia + "/" + mes + "/" + ano
+            var data = dia + "/" + mes + "/" + ano
+
+            var divrelatorio = document.createElement("div");
+            var spanID = document.createElement("span");
+            var spanTitulo = document.createElement("span");
+            var spanNome = document.createElement("span");
+            var spanData = document.createElement("span")
+            var spanSituacao = document.createElement("div");
+            var divDescricao = document.createElement("div");
+            var divButtons = document.createElement("div");
+
+
+
+            spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b>";
+            spanNome.innerHTML = "Autor: <b>" + relatorio.nomeUsuario + "</b> ";
+            spanData.innerHTML = "Data de criação: <b>" + data + "</b> <br><br>";
+            spanSituacao.innerHTML = "Status: <b>" + relatorio.statusFeedback + "</b> <br><br>";
+            divDescricao.innerHTML = "Descrição: <b>" + relatorio.texto + "</b>";
+
+
+            divrelatorio.className = "relatorio";
+            spanTitulo.id = "inputNumero" + relatorio.idFeedback;
+            spanNome.className = "relatorio-item";
+            spanData.className = "relatorio-item"
+            spanSituacao.className = "relatorio-item";
+            spanTitulo.className = "relatorio-item";
+            divDescricao.className = "relatorio-item";
+
+
+
+            divrelatorio.appendChild(spanID);
+            divrelatorio.appendChild(spanNome);
+            divrelatorio.appendChild(spanData);
+            divrelatorio.appendChild(spanTitulo);
+            divrelatorio.appendChild(spanSituacao);
+            divrelatorio.appendChild(divDescricao);
+            divrelatorio.appendChild(divButtons);
+
+            feed.appendChild(divrelatorio);
+
+          }
+
+        });
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+
+    });
+  }
+
 </script>

@@ -1,13 +1,5 @@
 var empresaModel = require("../models/empresaModel");
 
-function buscarPorCnpj(req, res) {
-  var cnpj = req.query.cnpj;
-
-  empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
-    res.status(200).json(resultado);
-  });
-}
-
 // ARRUMAR O LISTAR------------------------------------
 function listar(req, res) {
   empresaModel.listar().then((resultado) => {
@@ -23,12 +15,56 @@ function buscarPorId(req, res) {
   });
 }
 
+function buscarPorCnpj(req, res) {
+  var cnpj = req.query.cnpj;
+
+  empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
+
+function editar(req, res) {
+    var id = req.params.id;  // Usar req.params.id para pegar o ID da URL
+    var nome = req.body.nomeServer; 
+    var emailInstitucional = req.body.emailInstServer;
+    var emailResponsavel = req.body.emailRespServer;
+    var cnpj = req.body.cnpjServer;
+    var cep = req.body.cepServer;
+
+    var cpu = req.body.paramCPUServer;
+    var hd = req.body.paramHDServer;
+    var mem = req.body.paramMEMServer;
+    var bl = req.body.paramBLServer;
+
+    console.log('AQUI', req.body);
+
+    empresaModel.editar(id, nome, emailInstitucional, emailResponsavel, cnpj, cep, cpu, hd, mem, bl)
+        .then(function (resultado) {
+            res.json(resultado);
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+
+
 function cadastrar(req, res) {
+  console.log
   var nome = req.body.nomeServer; 
-  var EmailInstitucional = req.body.emailInstServer;
+  var emailInstitucional = req.body.emailInstServer;
   var emailResponsavel = req.body.emailRespServer;
   var cnpj = req.body.cnpjServer;
   var cep = req.body.cepServer;
+
+  var cpu = req.body.paramCPUServer;
+  var hd = req.body.paramHDServer;
+  var mem = req.body.paramMEMServer;
+  var bl = req.body.paramBLServer;
+
+  { console.log("Dados recebidos:", req.body)
 
   empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
     if (resultado.length > 0) {
@@ -36,11 +72,12 @@ function cadastrar(req, res) {
         .status(401)
         .json({ mensagem: `A empresa com o cnpj ${cnpj} já existe` });
     } else {
-      empresaModel.cadastrar(nome, EmailInstitucional, emailResponsavel, cnpj, cep).then((resultado) => {
+      empresaModel.cadastrar(nome, emailInstitucional, emailResponsavel, cnpj, cep, cpu, hd, mem, bl).then((resultado) => {
         res.status(201).json(resultado);
       });
     }
   });
+}
 }
 //Gerenciamento de máquinas
 // function confirmar_editar(req, res){
@@ -73,6 +110,21 @@ var MACAdress = req.body.MACAdressServer;
 
 function visualizarEmpresas(req, res) {
   empresaModel.visualizarEmpresas().then(function (resultado) {
+      if (resultado.length > 0) {
+          res.status(200).json(resultado);
+      } else {
+          res.status(204).send("Nenhum resultado encontrado!")
+      }
+  }).catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+  });
+
+}
+
+function visualizarParams(req, res) {
+  empresaModel.visualizarParams().then(function (resultado) {
       if (resultado.length > 0) {
           res.status(200).json(resultado);
       } else {
@@ -170,7 +222,7 @@ module.exports = {
   visualizarMaquinas,
   deletarMaquina,
   exibirDadosEdicaoMaquina,
-  editarMaquina
-  // confirmar_editar,
+  editarMaquina,
+  editar  // confirmar_editar,
   // excluir_editar
 };

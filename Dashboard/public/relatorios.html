@@ -18,7 +18,7 @@
     <section class="page-dash">
 
         <nav id="sidebar">
-            
+
             <div id="sidebar_contentComum">
                 <div id="user">
                     <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg"
@@ -82,14 +82,13 @@
                     </li> -->
                 </ul>
 
-                
                 <button id="open_btnComum">
                     <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
                 </button>
 
             </div>
 
-            
+
 
             <div id="sidebar_content">
                 <div id="user">
@@ -263,7 +262,8 @@
             <div class="Editar-func-primeiro-relatorio">
 
                 <div class="cadastrar-func-terceiro">
-                    <button style="background-color: #442BB3;" class="relatorio-btn onclick=" onclick="confirmar_deletar()">Confirmar
+                    <button style="background-color: #442BB3;" class="relatorio-btn onclick="
+                        onclick="confirmar_deletar()">Confirmar
                         Deleção</button>
                     <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cancelar-relatorio">X</button>
                 </div>
@@ -275,11 +275,15 @@
 </body>
 <script>
 
+var funcionalidadeGlobal = ""
+    sessionStorage.PAGINA_ATUAL = 'relatorios'
+    var paginaAtual = sessionStorage.PAGINA_ATUAL = 'relatorios'
+
     document.getElementById('open_btn').addEventListener('click', function () {
         document.getElementById('sidebar').classList.toggle('open-sidebar');
     });
 
-     document.getElementById('open_btnComum').addEventListener('click', function () {
+    document.getElementById('open_btnComum').addEventListener('click', function () {
         document.getElementById('sidebar').classList.toggle('open-sidebar');
     });
 
@@ -293,6 +297,9 @@
 
     function relatorio_IA() {
 
+        sessionStorage.BOTAO_CLICADO = 'Relatorio por I.A'
+        inserir();
+        funcionalidadeGlobal = sessionStorage.BOTAO_CLICADO = 'Relatorio por I.A'
         window.location = href = "http://localhost:3000"
 
     }
@@ -305,16 +312,15 @@
             document.getElementById('sidebar_contentComum').style.display = "block";
             document.getElementById('sidebar_content').style.display = "none";
 
-        }else{
-
+        } else {
             document.getElementById('sidebar_contentComum').style.display = "none";
-
-
         }
 
     }
 
     function escrever_relatorio() {
+        funcionalidadeGlobal = sessionStorage.BOTAO_CLICADO = 'Escrever Relatorio'
+        inserir();
         document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
         document.querySelector('.publicar-relatorio').style.display = "block";
 
@@ -334,6 +340,9 @@
     }
 
     function publicar() {
+
+        funcionalidadeGlobal = sessionStorage.BOTAO_CLICADO = 'Publicar'
+
 
         var idUsuario = sessionStorage.ID_USUARIO;
         var idUsuarioEmpresa = sessionStorage.EMPRESA_USUARIO;
@@ -369,6 +378,7 @@
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso!");
                 window.location = "relatorios.html";
+                inserir();
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
@@ -385,7 +395,47 @@
 
     }
 
+    function inserir() {
+    var funcionalidade = funcionalidadeGlobal;
+    var pagina = paginaAtual;
+
+    var corpo = {
+        funcionalidade: funcionalidade,
+        pagina: pagina
+    };
+
+    console.log('Cheguei no inserir', corpo);
+
+    fetch(`/ux/inserir`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(corpo)
+    }).then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            console.log('funcionou')
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw new Error("Houve um erro ao tentar realizar a inserção! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log("#ERRO:", resposta);
+    });
+
+    return false;
+}
+
+
+
     function editar_relatorio(idrelatorio) {
+
+        funcionalidadeGlobal = sessionStorage.BOTAO_CLICADO = 'Editar Relatorio'
+        inserir();
+
         sessionStorage.ID_POSTAGEM_EDITANDO = idrelatorio;
         console.log("cliquei em editar - " + idrelatorio);
         document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
@@ -393,6 +443,10 @@
     }
 
     function deletar(idrelatorio) {
+
+        funcionalidadeGlobal = sessionStorage.BOTAO_CLICADO = 'Deletar Relatorio'
+        inserir();
+
         sessionStorage.ID_POSTAGEM_EDITANDO = idrelatorio;
         console.log("cliquei em deletar - " + idrelatorio);
         document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
@@ -400,6 +454,10 @@
     }
 
     function editar() {
+
+        funcionalidadeGlobal = sessionStorage.BOTAO_CLICADO = 'Editar relatorio'
+
+
         var desc = textoPublicar.value
         if (desc == '') {
             alert('Erro: Campo obrigatório não preenchidos');
@@ -416,6 +474,7 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
+                inserir();
                 window.alert("Post atualizado com sucesso!");
                 window.location = "relatorios.html"
             } else if (resposta.status == 404) {
@@ -439,6 +498,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso!");
+                inserir();
                 window.location = "relatorios.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
@@ -452,148 +512,148 @@
 
     function atualizarFeed() {
 
-        fetch("/relatorios/listar").then(function (resposta) {
-            if (resposta.ok) {
-                if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var relatorio = document.createElement("span");
-                    relatorio.innerHTML = "Nenhum resultado encontrado."
-                    feed.appendChild(relatorio);
-                    throw "Nenhum resultado encontrado!!";
-                }
+fetch("/relatorios/listar").then(function (resposta) {
+    if (resposta.ok) {
+        if (resposta.status == 204) {
+            var feed = document.getElementById("feed_container");
+            var relatorio = document.createElement("span");
+            relatorio.innerHTML = "Nenhum resultado encontrado."
+            feed.appendChild(relatorio);
+            throw "Nenhum resultado encontrado!!";
+        }
 
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+        resposta.json().then(function (resposta) {
+            console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var relatorio = resposta[i];
-                        var data = new Date(relatorio.data);
-                        console.log(data)
-                        var ano = data.getFullYear();
-                        console.log(ano)
-                        var mes = data.getMonth() + 1;
-                        var mes = data.getMonth() + 1;
-                        console.log(mes)
-                        var dia = data.getDate();
-                        console.log(dia)
-                        var data = dia + "/" + mes + "/" + ano
-                        var data = dia + "/" + mes + "/" + ano
-                        if (relatorio.fkEmpresaRelatorio == sessionStorage.EMPRESA_USUARIO) {
-                            if (relatorio.fkUsuarioRelatorio == sessionStorage.ID_USUARIO) {
-
-
-                                var divrelatorio = document.createElement("div");
-                                var spanID = document.createElement("span");
-                                var spanTitulo = document.createElement("span");
-                                var spanNome = document.createElement("span");
-                                var spanData = document.createElement("span")
-                                var spanSituacao = document.createElement("span")
-                                var divDescricao = document.createElement("div");
-                                var divButtons = document.createElement("div");
-                                var divButtons = document.createElement("div");
-                                var btnEditar = document.createElement("button");
-                                var btnDeletar = document.createElement("button");
+            var feed = document.getElementById("feed_container");
+            feed.innerHTML = "";
+            for (let i = 0; i < resposta.length; i++) {
+                var relatorio = resposta[i];
+                var data = new Date(relatorio.data);
+                console.log(data)
+                var ano = data.getFullYear();
+                console.log(ano)
+                var mes = data.getMonth() + 1;
+                var mes = data.getMonth() + 1;
+                console.log(mes)
+                var dia = data.getDate();
+                console.log(dia)
+                var data = dia + "/" + mes + "/" + ano
+                var data = dia + "/" + mes + "/" + ano
+                if (relatorio.fkEmpresaRelatorio == sessionStorage.EMPRESA_USUARIO) {
+                    if (relatorio.fkUsuarioRelatorio == sessionStorage.ID_USUARIO) {
 
 
-
-                                spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b>";
-                                spanNome.innerHTML = "Autor: <b>" + relatorio.nomeUsuario + "</b> ";
-                                spanData.innerHTML = "Data de criação: <b>" + data + "</b> <br><br>";
-                                spanSituacao.innerHTML = "Status: <b>" + relatorio.statusRelatorio + "</b> <br><br>";
-                                divDescricao.innerHTML = "Descrição: <b>" + relatorio.texto + "</b>";
-                                btnEditar.innerHTML = "Editar";
-                                btnDeletar.innerHTML = "Deletar";
-
-
-                                divrelatorio.className = "relatorio";
-                                spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
-                                spanSituacao.className = "relatorio-situacao"
-                                spanNome.className = "relatorio-nome";
-                                spanData.className = "relatorio-situacao"
-                                spanTitulo.className = "relatorio-titulo";
-                                divDescricao.className = "relatorio-descricao";
-
-                                divButtons.className = "div-buttons"
-
-
-                                btnEditar.className = "relatorio-btn-editar"
-                                btnEditar.id = "btnEditar" + relatorio.idrelatorio;
-                                btnEditar.setAttribute("onclick", `editar_relatorio(${relatorio.idrelatorio})`);
-
-                                btnDeletar.className = "relatorio-btn-deletar"
-                                btnDeletar.id = "btnDeletar" + relatorio.idrelatorio;
-                                btnDeletar.setAttribute("onclick", `deletar(${relatorio.idrelatorio})`);
+                        var divrelatorio = document.createElement("div");
+                        var spanID = document.createElement("span");
+                        var spanTitulo = document.createElement("span");
+                        var spanNome = document.createElement("span");
+                        var spanData = document.createElement("span")
+                        var spanSituacao = document.createElement("span")
+                        var divDescricao = document.createElement("div");
+                        var divButtons = document.createElement("div");
+                        var divButtons = document.createElement("div");
+                        var btnEditar = document.createElement("button");
+                        var btnDeletar = document.createElement("button");
 
 
 
-
-                                divrelatorio.appendChild(spanID);
-                                divrelatorio.appendChild(spanNome);
-                                divrelatorio.appendChild(spanData);
-
-                                divrelatorio.appendChild(spanTitulo);
-                                divrelatorio.appendChild(spanSituacao);
-                                divrelatorio.appendChild(divDescricao);
-                                divrelatorio.appendChild(divButtons);
-                                divButtons.appendChild(btnEditar);
-                                divButtons.appendChild(btnDeletar);
-                                feed.appendChild(divrelatorio);
-                            } else {
+                        spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b>";
+                        spanNome.innerHTML = "Autor: <b>" + relatorio.nomeUsuario + "</b> ";
+                        spanData.innerHTML = "Data de criação: <b>" + data + "</b> <br><br>";
+                        spanSituacao.innerHTML = "Status: <b>" + relatorio.statusRelatorio + "</b> <br><br>";
+                        divDescricao.innerHTML = "Descrição: <b>" + relatorio.texto + "</b>";
+                        btnEditar.innerHTML = "Editar";
+                        btnDeletar.innerHTML = "Deletar";
 
 
-                                var divrelatorio = document.createElement("div");
-                                var spanID = document.createElement("span");
-                                var spanTitulo = document.createElement("span");
-                                var spanNome = document.createElement("span");
-                                var spanData = document.createElement("span")
-                                var spanSituacao = document.createElement("div");
-                                var divDescricao = document.createElement("div");
-                                var divButtons = document.createElement("div");
+                        divrelatorio.className = "relatorio";
+                        spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
+                        spanSituacao.className = "relatorio-situacao"
+                        spanNome.className = "relatorio-nome";
+                        spanData.className = "relatorio-situacao"
+                        spanTitulo.className = "relatorio-titulo";
+                        divDescricao.className = "relatorio-descricao";
+
+                        divButtons.className = "div-buttons"
 
 
+                        btnEditar.className = "relatorio-btn-editar"
+                        btnEditar.id = "btnEditar" + relatorio.idrelatorio;
+                        btnEditar.setAttribute("onclick", `editar_relatorio(${relatorio.idrelatorio})`);
 
-                                spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b>";
-                                spanNome.innerHTML = "Autor: <b>" + relatorio.nomeUsuario + "</b> ";
-                                spanData.innerHTML = "Data de criação: <b>" + data + "</b> <br><br>";
-                                spanSituacao.innerHTML = "Status: <b>" + relatorio.statusRelatorio + "</b> <br><br>";
-                                divDescricao.innerHTML = "Descrição: <b>" + relatorio.texto + "</b>";
-
-
-                                divrelatorio.className = "relatorio";
-                                spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
-                                spanNome.className = "relatorio-nome";
-                                spanData.className = "relatorio-nome"
-                                spanSituacao.className = "relatorio-situacao";
-                                spanTitulo.className = "relatorio-titulo";
-                                divDescricao.className = "relatorio-descricao";
+                        btnDeletar.className = "relatorio-btn-deletar"
+                        btnDeletar.id = "btnDeletar" + relatorio.idrelatorio;
+                        btnDeletar.setAttribute("onclick", `deletar(${relatorio.idrelatorio})`);
 
 
 
-                                divrelatorio.appendChild(spanID);
-                                divrelatorio.appendChild(spanNome);
-                                divrelatorio.appendChild(spanData);
-                                divrelatorio.appendChild(spanTitulo);
-                                divrelatorio.appendChild(spanSituacao);
-                                divrelatorio.appendChild(divDescricao);
-                                divrelatorio.appendChild(divButtons);
 
-                                feed.appendChild(divrelatorio);
+                        divrelatorio.appendChild(spanID);
+                        divrelatorio.appendChild(spanNome);
+                        divrelatorio.appendChild(spanData);
 
-                            }
-                        }
+                        divrelatorio.appendChild(spanTitulo);
+                        divrelatorio.appendChild(spanSituacao);
+                        divrelatorio.appendChild(divDescricao);
+                        divrelatorio.appendChild(divButtons);
+                        divButtons.appendChild(btnEditar);
+                        divButtons.appendChild(btnDeletar);
+                        feed.appendChild(divrelatorio);
+                    } else {
+
+
+                        var divrelatorio = document.createElement("div");
+                        var spanID = document.createElement("span");
+                        var spanTitulo = document.createElement("span");
+                        var spanNome = document.createElement("span");
+                        var spanData = document.createElement("span")
+                        var spanSituacao = document.createElement("div");
+                        var divDescricao = document.createElement("div");
+                        var divButtons = document.createElement("div");
+
+
+
+                        spanTitulo.innerHTML = "Título: <b>" + relatorio.titulo + "</b>";
+                        spanNome.innerHTML = "Autor: <b>" + relatorio.nomeUsuario + "</b> ";
+                        spanData.innerHTML = "Data de criação: <b>" + data + "</b> <br><br>";
+                        spanSituacao.innerHTML = "Status: <b>" + relatorio.statusRelatorio + "</b> <br><br>";
+                        divDescricao.innerHTML = "Descrição: <b>" + relatorio.texto + "</b>";
+
+
+                        divrelatorio.className = "relatorio";
+                        spanTitulo.id = "inputNumero" + relatorio.idrelatorio;
+                        spanNome.className = "relatorio-nome";
+                        spanData.className = "relatorio-nome"
+                        spanSituacao.className = "relatorio-situacao";
+                        spanTitulo.className = "relatorio-titulo";
+                        divDescricao.className = "relatorio-descricao";
+
+
+
+                        divrelatorio.appendChild(spanID);
+                        divrelatorio.appendChild(spanNome);
+                        divrelatorio.appendChild(spanData);
+                        divrelatorio.appendChild(spanTitulo);
+                        divrelatorio.appendChild(spanSituacao);
+                        divrelatorio.appendChild(divDescricao);
+                        divrelatorio.appendChild(divButtons);
+
+                        feed.appendChild(divrelatorio);
+
                     }
-
-
-                });
-            } else {
-                throw ('Houve um erro na API!');
+                }
             }
-        }).catch(function (resposta) {
-            console.error(resposta);
+
 
         });
+    } else {
+        throw ('Houve um erro na API!');
     }
+}).catch(function (resposta) {
+    console.error(resposta);
+
+});
+}
 
 </script>

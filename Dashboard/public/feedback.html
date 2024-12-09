@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-image: url("public/css/pages/fundo-home.png");
+    }
+
+    .contrato_caixa {
+        background-color: white;
+        border-radius: 20px;
+        width: 500px;
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+</style>
+
+<body>
+
+    <form action="https://api.staticforms.xyz/submit" method="post">
+
+        <section id="page-cadastro-ind">
+            <div class="father-cadastro-ind2">
+                <div class="cadastro-child-form">
+                    <div class="cadastro-ind-form">
+                        <div class="cadastro-form-titulo">
+                            <h2 class="bold black-text text-center">Feedback</h2>
+                            <p class="black-text"><br><br> insira as informações do feedback </p>
+                        </div>
+
+                        <!-- NOME DO USUÁRIO ---------------------------------------------------------------------------------------------------- -->
+                        <label class="login-form-box">
+                            <span class="icon">
+                                <img src="./svg/icon-building.svg" alt="">
+                            </span>
+                            <input type="text" class="login-form-input black-text"
+                                placeholder="Digite o titulo do feedback" name="name" id="titulo" />
+                        </label>
+
+                        <label class="login-form-box">
+                            <span class="icon">
+                                <img src="./svg/icon-building.svg" alt="">
+                            </span>
+                            <select type="text" class="login-form-input black-text" name="name" id="select_status">
+                                <option value="#" selected>Selecione um tipo de feedback</option>
+                                <option value="Exibir">Dados não são exibidos</option>
+                                <option value="Usuarios">Problemas com usuários</option>
+                                <option value="Horas">Problemas com Contagem de Horas</option>
+                                <option value="Relatorio">Problemas ao enviar um relatório</option>
+                                <option value="Outros">Outros problemas</option>
+                                <option value="Elogio">Elogio</option>
+                            </select>
+                        </label>
+                        <!-- EMAIL DO USUÁRIO ---------------------------------------------------------------------------------------------------- -->
+
+                        <label class="login-form-box">
+                            <input type="text" style="height: 100px;" class="login-form-input black-text"
+                                placeholder="Descrição do feedback" name="email" id="textarea_descricao" />
+                        </label>
+
+                        <div class="login-form-btn">
+                            <button class="login-btn boal" onclick="publicarFeedback()">Enviar Feedback</button>
+                        </div>
+                    </div>
+                </div>
+    </form>
+
+    <div class="login-child-content">
+        <div class="login-content">
+            <div class="content-logo-text-end">
+                <img class="content-logo" src="./img/logo_vetorizada5.png" alt="">
+            </div>
+            <h1 class="text-center">Reduzindo riscos, aumentando a confiança.</h1>
+        </div>
+    </div>
+    </div>
+
+    <input type="hidden" name="accessKey" value="54fd681b-61d4-49e8-9fd6-3df43599c2a3">
+    <input type="hidden" name="redirectTo" value="http://127.0.0.1:5500/public/index.html">
+
+    </form>
+    </div>
+
+
+</body>
+
+</html>
+<script>
+
+   
+
+    function publicarFeedback() {
+
+        funcionalidadeGlobal = sessionStorage.BOTAO_CLICADO = 'Enviar FeedBack'
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var idUsuarioEmpresa = sessionStorage.EMPRESA_USUARIO;
+
+        var titulovar = document.getElementById('titulo').value;
+        var descricaoVar = document.getElementById('textarea_descricao').value;
+        var statusVar = document.getElementById('select_status').value
+
+        var corpo = {
+            idEmpresaUsuario: idUsuarioEmpresa,
+            titulo: titulovar,
+            descricao: descricaoVar,
+            status: statusVar
+        }
+
+        console.log(corpo)
+
+        if (titulovar == null || descricaoVar == null || statusVar == 'Selecionar Status') {
+            alert('Erro: Campos obrigatórios não preenchidos');
+            return;
+        }
+
+        fetch(`/relatorios/publicarFeedback/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+            console.log("resposta: ", resposta);
+            if (resposta.ok) {
+                inserir();
+                window.alert("Post realizado com sucesso!");
+                
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+
+        });
+
+        return false;
+
+    }
+
+    var funcionalidadeGlobal = ""
+    sessionStorage.PAGINA_ATUAL = 'feedback'
+    var paginaAtualGlobal = sessionStorage.PAGINA_ATUAL = 'feedback'
+
+    function inserir() {
+    var funcionalidade = funcionalidadeGlobal;
+    var pagina = paginaAtualGlobal;
+
+    var corpo = {
+        funcionalidade: funcionalidade,
+        pagina: pagina
+    };
+
+    console.log('Cheguei no inserir', corpo);
+
+    fetch(`/ux/inserir`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(corpo)
+    }).then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            window.alert("Insert!");
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw new Error("Houve um erro ao tentar realizar a inserção! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log("#ERRO:", resposta);
+    });
+
+    return false;
+}
+
+
+</script>

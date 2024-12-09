@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro-LogGuard</title>   
+  <title>Cadastro-LogGuard</title>
   <!-- <link rel="stylesheet" href="css/pages/style.css"> -->
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
@@ -15,718 +15,1121 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <style>
-  body {
-    background-image: url(img/fundo-home.png);
-    background-size: cover;
-    padding-top: 0;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  body {
-    background-image: url(img/fundo-home.png);
-    background-size: cover;
-    padding-top: 0;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  dialog::backdrop {
-    background-color: rgb(0 0 0 / .5);
-  }
-
-  dialog {
-    border: none;
-    border-radius: .5rem;
-    box-shadow: 0 0 1em rgb(0 0 0 / .5);
-    width: 70%;
-    height: 60%;
-    position: fixed;
-    /* Faz o dialog ficar relativo à tela */
-    top: 50%;
-    /* Centraliza verticalmente */
-    left: 50%;
-    /* Centraliza horizontalmente */
-    transform: translate(-50%, -50%);
-    /* Ajusta o ponto de ancoragem para o centro */
-    padding: 1rem;
-    background-color: #E3E3E3;
-    overflow: unset;
-  }
-
-  .caixa_lista::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  .caixa_lista::-webkit-scrollbar-thumb {
-    background-color: #442BB3;
-    border-radius: 5px;
-  }
-
-  .caixa_lista {
-    width: 100%;
-    height: 70%;
-    overflow: auto;
-  }
-
-  dialog p {
-    color: black;
-  }
-
-  dialog button {
-    color: white;
-    /* width: 20%; */
-    /* background-color: #442BB3;  */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    margin-top: 5%;
-    font-family: "Sora", sans-serif;
-    width: 30%;
-    height: 7%;
-    border: none;
-    cursor: pointer;
-
-    border-radius: 10px;
-    background: var(--purple-blue);
-  }
-
-  dialog h4 {
-    font-family: "Sora", sans-serif;
-    color: black;
-    font-size: medium;
-  }
-
-  .lista {
-    border-radius: 5%;
-    background-color: white;
-    text-align: left;
-  }
-
-  .botao_listar {
-    border: none;
-  }
-
-  .titulos-empresa {
-    color: black;
-    align-items: baseline;
-    display: grid;
-    grid-template-columns: 6% 35% 37% 13%;
-    flex-direction: row;
-    width: 100%;
-    padding-right: 13%;
-    justify-content: space-between;
-    height: 10%;
-  }
-
-  .coluna-func {
-    display: flex;
-    color: black;
-    width: 60px;
-    height: 10px;
-    margin-left: 40px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .dash-func {
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    border-radius: 20px;
-  }
-
-  .dados-func {
-    display: grid;
-    grid-template-columns: 6% 35% 36% 15%;
-    height: 90px;
-    margin-top: 20px;
-  }
-
-  .func-dados {
-    flex-direction: column;
-    width: 99%;
-    height: 100%;
-    overflow: auto;
-  }
-
-  .olho {
-  cursor: pointer;
-  left: 380px;
-  position: absolute;
-  width: 20px;
-}
 
 </style>
 
-<body >
+<body onload="verEmpresas()">
 
   <!-- <section id="page-cadastro-ind"> -->
   <!-- Cadastro de Empresa -->
+  <!DOCTYPE html>
+  <html lang="pt-br">
 
-  <div class="cad_container painel-direito-ativo">
-    <div class="cad_container__form cad_container--logIn">
-      <!-- FIM TESTE ------------------------------------------------------------------------------------------------------ -->
-      <form action="#" class="form" id="form1">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogGuard - Dashboard</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/partials/SideBar.css">
+    <script src="js/sessao.js"></script>
+    <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
+  </head>
 
-        <div class="father-cadastro-ind">
-          <div class="cadastro-child-form">
-            <div class="cadastro-ind-form">
-              <div class="cadastro-form-titulo">
+  <body>
+    <section class="page-dash">
+      <nav id="sidebar">
+        <div id="sidebar_content">
 
-
-
-                <h2 class="bold black-text text-center">Cadastro - <button id="opener"
-                    onclick="listarEmpresa(); verEmpresas()" class="botao_listar"> <b style="color: blueviolet;">
-                      Empresa </b> </button> </h2>
-
-
-                <!-- DIALOG LISTA DE EMPRESAS -------------------------------------------------------------------------------------------------------- -->
-
-                <dialog>
-                  <p> Lista de Empresas</p>
-                  <div class="caixa_lista">
-
-                    <div class="dash-func">
-                      <div class="titulos-empresa">
-                        <div class="coluna-func">
-                          <p> ID </p>
-                        </div>
-                        <div class="coluna-func">
-                          <p> Nome </p>
-                        </div>
-                        <div class="coluna-func">
-                          <p>E-Mail do Responsável</p>
-                        </div>
-                        <div class="coluna-func">
-                          <p> CNPJ </p>
-                        </div>
-                      </div>
-                      <div class="linha-func">
-                        <img src="./img/Line1cadastro.png" alt="">
-                      </div>
-                      <div class="dash-empresa">
-                        <div id="dash-func"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <button> Fechar </button>
-                </dialog>
-
-              </div>
+          <li class="side_itemLog active" style="cursor: none;">
+            <a>
+              <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+              <span class="item-description">
+                <b style="color: #442BB3; padding-left: 15px;"> Log Guard </b>
+              </span>
+            </a>
+          </li>
 
 
-              <!-- CADASTRO DE EMPRESA -------------------------------------------------------------------------------------------------------- -->
-              <label class="login-form-box">
-                <span class="icon">
-                  <img src="./svg/icon-building.svg" alt="">
+          <div id="user">
+            <p id="user_infos">
+              <span style="color: black;" class="item-descriptionAtivo"> Olá,
+                <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                  Jon Doe
                 </span>
-                <input type="text" class="login-form-input black-text" placeholder="Nome da empresa" autocomplete="off"
-                  id="nomeEmpresa_Input" />
-              </label>
+              </span>
+              <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+                Lorem Ipsum
+              </span>
+            </p>
+          </div>
 
-              <!-- <label class="login-form-box">
-                <span class="icon">
-                  <img src="./svg/icon-building.svg" alt="">
+          <ul id="side_items">
+
+
+            <li class="side_item ">
+              <a href="dashboard_ADM.html">
+                <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                <span class="item-description">
+                  <b> Visão Geral </b>
                 </span>
-                <input type="text" class="login-form-input black-text" placeholder="CNPJ" autocomplete="off"
-                  id="cnpj_Input" />
-              </label> -->
+              </a>
+            </li>
 
-              <label class="login-form-box" id="cnpjForm" for="cnpj">
-                <span class="icon">
-                  <img src="./svg/icon-building.svg" alt="">
+            <li class="side_item">
+              <a href="relatorios.html">
+                <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                <span class="item-description">
+                  <b> Relatórios </b>
                 </span>
-                <input type="text" class="login-form-input black-text" placeholder="CNPJ" autocomplete="off"
-                  id="cnpj_Input" />
-              </label>
+              </a>
+            </li>
 
-
-              <label class="login-form-box">
-                <span class="icon">
-                  <img src="./svg/icon-building.svg" alt="">
+            <li class="side_item">
+              <a href="gerenciar-maquina.html">
+                <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                <span class="item-description">
+                  <b> Empresas </b>
                 </span>
-                <input type="text" class="login-form-input black-text" placeholder="CEP" autocomplete="off"
-                  id="cep_Input"/>
-              </label>
-        
+              </a>
+            </li>
 
-              <label class="login-form-box">
-                <span class="icon">
-                  <img src="./svg/gmail-icon.svg" alt="">
+            <li class="side_item">
+              <a href="gerenciar-usuario-func.html">
+                <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                <span class="item-description">
+                  <b> Funcionários </b>
                 </span>
-                <input type="text" class="login-form-input black-text" placeholder="Email do responsável"
-                  autocomplete="off" id="emailRes_Input" />
-              </label>
+              </a>
+            </li>
 
-
-              <label class="login-form-box">
-                <span class="icon">
-                  <img src="./svg/gmail-icon.svg" alt="">
+            <li class="side_item active">
+              <a href="dash_Gerenciamento_Operacao.html">
+                <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
+                <span class="item-descriptionAtivo">
+                  <b style="color: aliceblue;"> Operações </b>
                 </span>
-                <input type="text" class="login-form-input black-text" placeholder="Email institucional"
-                  autocomplete="off" id="emailInst_Input" />
-              </label>
+              </a>
+            </li>
 
-              <div class="login-form-btn">
-                <button onclick="cadastrarEmpresa()" class="login-btn boal">Cadastrar</button>
-              </div>
+            <li class="side_item">
+              <a href="feedback.html">
+                <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                <span class="item-descriptionAtivo">
+                  <b> feedback </b>
+                </span>
+              </a>
+            </li>
+          </ul>
 
-              <div class="login-link-exit">
-                <img style="width: 10px; margin-right: 5px;" src="./svg/trian-icon.svg" alt="">
-                <a href="index.html" class="little-text">Página Inicial</a>
-              </div>
+
+          <button id="open_btn">
+            <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+          </button>
+        </div>
+
+        <div id="logout">
+          <button id="logout_btn" onclick="sair()">
+            <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+            <span class="item-description">
+              Sair
+            </span>
+          </button>
+        </div>
+      </nav>
 
 
+      <div class="main-relatorios-page">
+
+        <h1>Todas as empresas</h1>
+        <div
+          style="width: 1500px; padding: 10px; background-color: rgb(255, 255, 255); height: 750px; border-radius: 10px;">
+          <div class="div-results" style="border: 1px, 0, #442BB3; height: 750px;">
+
+            <div id="feed_container" style="overflow-x: hidden; height: 700px ;" class="feed-container"></div>
+            <div class="login-form-btn" style="display:flex; padding-left: 150px;  padding-top: 60px; width:1800px; ">
+              <button onclick="cadastrarEmpresaModal()" class="cad-func"
+                style="display: flex;  padding: 10px; width: fit-content; height: fit-content;">Cadastrar
+                Empresa</button>
             </div>
           </div>
-        </div>
-      </form>
-    </div>
 
-    <!-- Cadastro de Usuário -->
-    <div class="cad_container__form cad_container--cadastro">
-      <form action="#" class="form" id="form2">
-
-        <div class="father-cadastro-ind">
-          <div class="cadastro-child-form">
-            <div class="cadastro-ind-form">
-              <div class="cadastro-form-titulo">
-
-                <h2 class="bold black-text text-center">Cadastro -
-                  <b style="color: blueviolet;"> Usuário </b>
-              </div>
-
-              <label class="login-form-box">
-                <span class="icon">
-                  <img src="./svg/icon-building.svg" alt="">
-                </span>
-                <input type="text" class="login-form-input black-text" placeholder="Nome do usuário" autocomplete="off"
-                  id="input_nomeUsuario" />
-              </label>
-
-              <label class="login-form-box">
-                <span class="icon">
-                  <img src="./svg/icon-building.svg" alt="">
-                </span>
-
-                <select class="login-form-input black-text" id="lista_select">
-                  <option value="#" disabled selected>Selecione uma empresa</option>
-                </select>
-              </label>
-
-              <label class="login-form-box">
-                <span class="icon">
-                  <img src="./svg/gmail-icon.svg" alt="">
-                </span>
-                <input type="text" class="login-form-input black-text" placeholder="Email do usuário" autocomplete="off"
-                  id="input_emailUsuario" />
-              </label>
-
-              <label class="login-form-box">
-                <span class="icon">
-                  <img src="./svg/key-icon.svg" alt="">
-                </span>
-                <input type="password" class="login-form-input black-text" placeholder="Senha" autocomplete="off"
-                  id="input_senhaUsuario" />
-                  <img src="https://cdn0.iconfinder.com/data/icons/ui-icons-pack/100/ui-icon-pack-14-512.png" id="olho" class="olho">
-              </label>
-
-              <label class="login-form-box">
-                <span class="icon">
-                  <img src="./svg/key-icon.svg    " alt="">
-                </span>
-                <input type="password" class="login-form-input black-text" placeholder="Confirme a senha"
-                  autocomplete="off" id="input_confirmarSenha" />
-                  <img src="https://cdn0.iconfinder.com/data/icons/ui-icons-pack/100/ui-icon-pack-14-512.png" id="olho2" class="olho">
-
-              </label>
-
-
-              <div class="login-form-btn">
-                <button class="login-btn boal" onclick="cadastrarUsuario()">Cadastrar</button>
-
-              </div>
-
-              <div class="login-link-exit">
-                <img style="width: 10px; margin-right: 5px;" src="./svg/trian-icon.svg" alt="">
-                <a href="index.html" class="little-text">Página Inicial</a>
-              </div>
-
-
-            </div>
-          </div>
-        </div>
-
-      </form>
-    </div>
-    <!-- cad_sobreposicao -->
-    <div class="cad_container__cad_sobreposicao">
-      <div class="cad_sobreposicao">
-
-        <div class="cad_sobreposicao__panel cad_sobreposicao--esquerdo">
-          <!-- PRÓXIMO -->
-          <button class="cad_btn1" id="login"></button>
-        </div>
-
-        <div class="cad_sobreposicao__panel cad_sobreposicao--right">
-          <!-- VOLTAR -->
-          <button class="cad_btn2" id="cadastro"></button>
         </div>
 
       </div>
-    </div>
-  </div>
 
-  <!-- <div class="cad_espaco"></div> -->
+      <!-- 
+      <div class="pagina" style="padding-left: 20px; flex-direction: column; padding-top: 25px; padding-bottom: 5px;">
+        <div style="width: 1750px; height: 700px; padding-left: 10px; color: black;">
+          <h1 style="color: black;">Listar Empresas </h1>
 
-  <!-- </section> -->
+          <div class="dash-func">
+            <div class="titulos-empresa">
+              <div class="coluna-func">
+                <p> ID </p>
+              </div>
+              <div class="coluna-func">
+                <p> Nome </p>
+              </div>
+              <div class="coluna-func">
+                <p>E-Mail do Responsável</p>
+              </div>
+              <div class="coluna-func">
+                <p> CNPJ </p>
+              </div>
+            </div>
+            <div class="linha-func">
+              <img src="./img/Line1cadastro.png" alt="">
+            </div>
+            <div class="dash-empresa">
+              <div id="dash-func"></div>
+            </div>
+          </div> -->
 
-</body>
-
-</html>
-
-
-<style>
-</style>
-
-<script>
-
-  window.onload = listar()
-
-  const logincad_Btn = document.getElementById("login");
-  const cadastrocad_Btn = document.getElementById("cadastro");
-  const Form1 = document.getElementById("form1");
-  const Form2 = document.getElementById("form2");
-  const cad_container = document.querySelector(".cad_container");
-
-  logincad_Btn.addEventListener("click", () => {
-    cad_container.classList.remove("painel-direito-ativo");
-  });
-
-  cadastrocad_Btn.addEventListener("click", () => {
-    cad_container.classList.add("painel-direito-ativo");
-  });
-
-  Form1.addEventListener("submit", (e) => e.preventDefault());
-  Form2.addEventListener("submit", (e) => e.preventDefault());
-
-  //Header
-  const menuSlide = () => {
-    const menuIcon = document.querySelector(".menu-icon");
-    const navLinks = document.querySelector(".nav-links");
-    const navLinksInner = document.querySelectorAll(".nav-links li");
-
-    //menu-icon click event
-    menuIcon.addEventListener("click", () => {
-      //toggle active class
-      navLinks.classList.toggle("menu-active");
-
-      //animate navLinks
-      navLinksInner.forEach((li, index) => {
-        if (li.style.animation) {
-          li.style.animation = "";
-        } else {//toggle for menu-icon animation
-          li.style.animation = `navLinkAnime 0.5s ease forwards ${index / 7 + 0.3
-            }s`;
-        }
-      });
-
-      //toggle for menu-icon animation
-      menuIcon.classList.toggle("span-anime");
-    });
-  };
-
-  menuSlide();
-
-  function listarEmpresa() {
-    const modal = document.querySelector("dialog")
-    const buttonClose = document.querySelector("dialog button")
-    modal.showModal()
-    buttonClose.onclick = function () {
-      modal.close()
-    }
-  }
+      </div>
+      </div>
+      <!-- FIM TESTE ------------------------------------------------------------------------------------------------------ -->
+      <form action="#" class="cadastrar-empresa" id="form1">
 
 
-
-  function cadastrarEmpresa() {
-
-    var nomeVar = nomeEmpresa_Input.value;
-    var cnpjVar = cnpj_Input.value;
-    var cepVar = cep_Input.value;
-    var emailRespVar = emailRes_Input.value;
-    var emailInstVar = emailInst_Input.value;
+        <h2 class="bold black-text text-center">Cadastrar nova <b style="color: blueviolet;">
+            Empresa </b></h2>
+        </div>
 
 
+        <!-- CADASTRO DE EMPRESA -------------------------------------------------------------------------------------------------------- -->
+        <div style="flex-direction: row;">
+          <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cancelar-relatorio">X</button>
+
+          <div style="flex-direction: column;">
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="text" class="login-form-input black-text" placeholder="Nome da empresa" autocomplete="off"
+                id="nomeEmpresa_Input" />
+            </label>
 
 
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      cnpjVar == "" ||
-      cepVar == "" ||
-      emailRespVar == "" ||
-      emailInstVar == ""
-    ) {
-      alert("Todos os campos dever ser preenchidos!")
-      return false;
-    } else {
+            <label class="login-form-box" id="cnpjForm" for="cnpj">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="text" class="login-form-input black-text" placeholder="CNPJ" autocomplete="off"
+                id="cnpj_Input" />
+            </label>
 
-      fetch("/empresas/cadastrar", {
-        method: "POST",
+
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="text" class="login-form-input black-text" placeholder="CEP" autocomplete="off"
+                id="cep_Input" />
+            </label>
+
+
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/gmail-icon.svg" alt="">
+              </span>
+              <input type="text" class="login-form-input black-text" placeholder="Email do responsável"
+                autocomplete="off" id="emailRes_Input" />
+            </label>
+
+
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/gmail-icon.svg" alt="">
+              </span>
+              <input type="text" class="login-form-input black-text" placeholder="Email institucional"
+                autocomplete="off" id="emailInst_Input" />
+            </label>
+          </div>
+
+
+          <div style="flex-direction: column; padding-top: 10px;">
+
+            <h3 class="bold black-text">Definir <b style="color: blueviolet;">
+                Parâmetros </b>
+              <h5>(Utilizando pontos; exemplo: 80.00)</h5>
+            </h3>
+
+
+            <!-- CADASTRO DE EMPRESA -------------------------------------------------------------------------------------------------------- -->
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="number" class="login-form-input black-text" placeholder="Uso de CPU (porcentagem limite)"
+                autocomplete="off" id="paramCPU_Input" />
+            </label>
+
+            <!-- <label class="login-form-box">
+                    <span class="icon">
+                      <img src="./svg/icon-building.svg" alt="">
+                    </span>
+                    <input type="text" class="login-form-input black-text" placeholder="CNPJ" autocomplete="off"
+                      id="cnpj_Input" />
+                  </label> -->
+
+            <label class="login-form-box" id="cnpjForm" for="cnpj">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="number" class="login-form-input black-text" placeholder="Uso de Memória (porcentagem limite)"
+                autocomplete="off" id="paramMEM_Input" />
+            </label>
+
+
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="number" class="login-form-input black-text"
+                placeholder="Uso de Disco (quantos GigaBytes devem restar para estar em alerta)" autocomplete="off"
+                id="paramHD_Input" />
+            </label>
+
+
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/gmail-icon.svg" alt="">
+              </span>
+              <input type="number" class="login-form-input black-text"
+                placeholder="Uso de BandaLarga (MegaBytes por segundo)" autocomplete="off" id="paramBL_Input" />
+            </label>
+
+            <div class="login-form-btn" style="padding-top: 10px; width: 900px; margin-left: 720px;">
+              <button onclick="cadastrarEmpresa()" class="cad-func" style="padding: 5px;">Cadastrar</button>
+            </div>
+
+          </div>
+        </div>
+
+
+        </div>
+        </div>
+        </div>
+      </form>
+
+      <form action="#" class="detalhar-empresa" id="form1">
+
+
+        <h2 class="bold black-text text-center">Detalhes da <b style="color: blueviolet;">
+            Empresa </b></h2>
+        </div>
+
+
+        <!-- Detalhes DE EMPRESA -------------------------------------------------------------------------------------------------------- -->
+        <div style="flex-direction: row;">
+          <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cancelar-relatorio">X</button>
+
+          <div style="flex-direction: column;">
+            <label class="login-form-span">
+
+              <span type="text" class="login-form-input black-text">
+                Nome Da empresa: <span id="nomeEmpresa_Span" class="metrica"> nome</span>
+              </span>
+            </label>
+
+
+            <label class="login-form-span">
+
+              <span type="text" class="login-form-input black-text">
+                CNPJ: <span id="Cnpj_Span" class="metrica"> CNPJ</span>
+              </span>
+            </label>
+
+
+            <label class="login-form-span">
+
+              <span type="text" class="login-form-input black-text">
+                CEP: <span id="Cep_Span" class="metrica">CEP</span>
+              </span>
+            </label>
+
+            <label class="login-form-span">
+
+              <span type="text" class="login-form-input black-text">
+                Email responsável: <span id="emailResponsavel_Span" class="metrica">Email Resp</span>
+              </span>
+            </label>
+            <label class="login-form-span">
+
+              <span type="text" class="login-form-input black-text">
+                Email Institucional: <span id="emailInstitucional_Span" class="metrica">Email Inst</span>
+              </span>
+            </label>
+          </div>
+
+
+          <div style="flex-direction: column; padding-top: 10px;">
+
+            <h3 class="bold black-text"><b style="color: blueviolet;">
+                Parâmetros </b>
+
+            </h3>
+
+
+            <!-- CADASTRO DE EMPRESA -------------------------------------------------------------------------------------------------------- -->
+
+            <label class="login-form-span">
+              <span type="text" class="login-form-input black-text">
+                Uso de CPU (porcentagem limite): <span id="cpuLimite_Span" style="padding-left: 10px ;" class="metrica">
+                  teste</span>%
+              </span>
+            </label>
+
+            <label class="login-form-span">
+              <span type="text" style="padding-right: 20px;" class="login-form-input black-text">
+                Uso de memória (porcentagem limite): <span id="memLimite_Span" class="metrica"> teste</span>%
+              </span>
+            </label>
+
+            <label class="login-form-span">
+              <span type="text" style="padding-right: 20px;" class="login-form-input black-text">
+                Uso de Disco (quantos GigaBytes devem restar para estar em alerta): <span id="diskLimite_Span"
+                  class="metrica"> teste</span>%
+              </span>
+            </label>
+
+            <label class="login-form-span">
+              <span type="text" style="padding-right: 20px;" class="login-form-input black-text">
+                Uso de BandaLarga (MegaBytes por segundo): <span id="blLimite_Span" class="metrica"> teste</span>MB
+              </span>
+            </label>
+
+            <div
+              style="display: flex;  flex-direction: row; height: fit-content;  padding-top: 10px; width: 900px; margin-left: 450px;">
+
+              <button onclick="deletarEmpresa()" class="del-empresa" style="padding: 5px; margin-right: 10px;">Inativar
+                Empresa</button>
+
+              <button onclick="deletarEmpresa()" class="atv-empresa" style="padding: 5px; margin-right: 10px;">Ativar
+                Empresa</button>
+
+              <button onclick="editarEmpresa()" class="cad-func" style="padding: 5px;">Editar Empresa</button>
+
+
+            </div>
+
+          </div>
+        </div>
+
+
+        </div>
+        </div>
+        </div>
+      </form>
+
+      </div>
+      </div>
+
+      <div class="deletar-relatorio">
+        <div class="Editar-func-primeiro-relatorio">
+          <h1>Deseja mudar o Status dessa empresa?</h1>
+          <div class="Editar-func-primeiro-relatorio">
+
+            <div class="cadastrar-func-terceiro">
+              <button style="background-color: #442BB3;" class="relatorio-btn"
+                onclick="confirmar_deletar()">Confirmar</button>
+              <button onclick="cancelar_delecao()" style="margin-left: 10px;" class="cancelar-relatorio">X</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <form action="#" class="editar-empresa" id="form1">
+
+
+        <h2 class="bold black-text text-center">Editar <b style="color: blueviolet;">
+            Empresa </b></h2>
+        </div>
+
+
+        <!-- EDITAR DE EMPRESA -------------------------------------------------------------------------------------------------------- -->
+        <div style="flex-direction: row;">
+          <button onclick="cancelar_edicao()" style="margin-left: 10px;" class="cancelar-relatorio">X</button>
+
+          <div style="flex-direction: column;">
+
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="text" class="login-form-input black-text" placeholder="Nome da empresa" autocomplete="off"
+                id="nomeEmpresa_Input_Edit" />
+            </label>
+
+
+            <label class="login-form-box" id="cnpjForm" for="cnpj">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="text" class="login-form-input black-text" placeholder="CNPJ" autocomplete="off"
+                id="cnpj_Input_Edit" />
+            </label>
+
+
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="text" class="login-form-input black-text" placeholder="CEP" autocomplete="off"
+                id="cep_Input_Edit" />
+            </label>
+
+
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/gmail-icon.svg" alt="">
+              </span>
+              <input type="text" class="login-form-input black-text" placeholder="Email do responsável"
+                autocomplete="off" id="emailRes_Input_Edit" />
+            </label>
+
+
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/gmail-icon.svg" alt="">
+              </span>
+              <input type="text" class="login-form-input black-text" placeholder="Email institucional"
+                autocomplete="off" id="emailInst_Input_Edit" />
+            </label>
+          </div>
+
+
+          <div style="flex-direction: column; padding-top: 10px;">
+
+            <h3 class="bold black-text">Editar <b style="color: blueviolet;">
+                Parâmetros </b>
+              <h5>(Utilizando pontos; exemplo: 80.00)</h5>
+            </h3>
+
+            <!-- EDITAR DE EMPRESA -------------------------------------------------------------------------------------------------------- -->
+
+            </span>%
+            </span>
+            </label>
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="number" class="login-form-input black-text" placeholder="Uso de CPU (porcentagem limite)"
+                autocomplete="off" id="paramCPU_Input_Edit" />
+            </label>
+
+
+            <label class="login-form-box" id="cnpjForm" for="cnpj">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="number" class="login-form-input black-text" placeholder="Uso de Memória (porcentagem limite)"
+                autocomplete="off" id="paramMEM_Input_Edit" />
+            </label>
+
+
+
+            </label>
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/icon-building.svg" alt="">
+              </span>
+              <input type="number" class="login-form-input black-text"
+                placeholder="Uso de Disco (quantos GigaBytes devem restar para estar em alerta)" autocomplete="off"
+                id="paramHD_Input_Edit" />
+            </label>
+
+
+            <label class="login-form-box">
+              <span class="icon">
+                <img src="./svg/gmail-icon.svg" alt="">
+              </span>
+              <input type="number" class="login-form-input black-text"
+                placeholder="Uso de BandaLarga (MegaBytes por segundo)" autocomplete="off" id="paramBL_Input_Edit" />
+            </label>
+
+            <div class="login-form-btn" style="padding-top: 10px; width: 900px; margin-left: 720px;">
+              <button onclick="editar()" class="cad-func" style="padding: 5px;">Confirmar Edição</button>
+            </div>
+
+          </div>
+        </div>
+
+
+        </div>
+        </div>
+        </div>
+      </form>
+
+    </section>
+  </body>
+
+  </html>
+  <script>
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
+    var tipoPerfilUsuario = b_usuario.innerHTML = sessionStorage.TIPO_USUARIO;
+
+    function editar() {
+    var IdEmpresaVar = sessionStorage.getItem("ID_EMPRESA_EDITANDO");
+    var nomeVar = nomeEmpresa_Input_Edit.value;
+    var cnpjVar = cnpj_Input_Edit.value;
+    var cepVar = cep_Input_Edit.value;
+    var emailRespVar = emailRes_Input_Edit.value;
+    var emailInstVar = emailInst_Input_Edit.value;
+    var paramBL = paramBL_Input_Edit.value;
+    var paramCPU = paramCPU_Input_Edit.value;
+    var paramHD = paramHD_Input_Edit.value;
+    var paramMEM = paramMEM_Input_Edit.value;
+
+    console.log('Id da empresa', IdEmpresaVar)
+
+    fetch(`/empresa/editar/${IdEmpresaVar}`, {
+        method: "PUT",
         headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
+            IdEmpresaServer: IdEmpresaVar,
+            nomeServer: nomeVar,
+            cnpjServer: cnpjVar,
+            cepServer: cepVar,
+            emailRespServer: emailRespVar,
+            emailInstServer: emailInstVar,
+            paramBLServer: paramBL,
+            paramCPUServer: paramCPU,
+            paramMEMServer: paramMEM,
+            paramHDServer: paramHD,
+        })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            window.alert("Post atualizado com sucesso!");
+            window.location = "relatorios.html";
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
 
+
+    window.onload = listar()
+
+    function cadastrarEmpresaModal() {
+      document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
+      document.querySelector('.cadastrar-empresa').style.display = "block";
+
+    }
+
+    function editarEmpresa(idEmpresa) {
+      document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
+      document.querySelector('.editar-empresa').style.display = "block";
+
+      var busca = idEmpresa - 1
+
+      var IdEmpresaVar = sessionStorage.getItem("ID_EMPRESA_EDITANDO");
+
+
+
+
+
+    }
+
+    function cadastrarEmpresaModal() {
+      document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
+      document.querySelector('.cadastrar-empresa').style.display = "block";
+
+    }
+
+    function deletarEmpresa(idEmpresa) {
+
+      document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
+      document.querySelector('.deletar-relatorio').style.display = "block";
+      document.querySelector('.detalhar-empresa').style.display = "none";
+    }
+
+    function cancelar_delecao() {
+      document.querySelector('.main-relatorios-page').style.filter = "none";
+      document.querySelector('.deletar-relatorio').style.display = "none";
+      document.querySelector('.detalhar-empresa').style.display = "block";
+
+    }
+
+    function cancelar_edicao() {
+      document.querySelector('.main-relatorios-page').style.filter = "none";
+      document.querySelector('.cadastrar-empresa').style.display = "none";
+      document.querySelector('.deletar-relatorio').style.display = "none";
+      document.querySelector('.detalhar-empresa').style.display = "none";
+      document.querySelector('.editar-empresa').style.display = "none";
+
+
+    }
+
+    const logincad_Btn = document.getElementById("login");
+    const cadastrocad_Btn = document.getElementById("cadastro");
+    const Form1 = document.getElementById("form1");
+    const Form2 = document.getElementById("form2");
+    const cad_container = document.querySelector(".cad_container");
+
+    logincad_Btn.addEventListener("click", () => {
+      cad_container.classList.remove("painel-direito-ativo");
+    });
+
+    cadastrocad_Btn.addEventListener("click", () => {
+      cad_container.classList.add("painel-direito-ativo");
+    });
+
+    Form1.addEventListener("submit", (e) => e.preventDefault());
+    Form2.addEventListener("submit", (e) => e.preventDefault());
+
+    //Header
+    const menuSlide = () => {
+      const menuIcon = document.querySelector(".menu-icon");
+      const navLinks = document.querySelector(".nav-links");
+      const navLinksInner = document.querySelectorAll(".nav-links li");
+
+      //menu-icon click event
+      menuIcon.addEventListener("click", () => {
+        //toggle active class
+        navLinks.classList.toggle("menu-active");
+
+        //animate navLinks
+        navLinksInner.forEach((li, index) => {
+          if (li.style.animation) {
+            li.style.animation = "";
+          } else {//toggle for menu-icon animation
+            li.style.animation = `navLinkAnime 0.5s ease forwards ${index / 7 + 0.3
+              }s`;
+          }
+        });
+
+        //toggle for menu-icon animation
+        menuIcon.classList.toggle("span-anime");
+      });
+    };
+
+    menuSlide();
+
+    function cadastrarEmpresa() {
+      var nomeVar = nomeEmpresa_Input.value;
+      var cnpjVar = cnpj_Input.value;
+      var cepVar = cep_Input.value;
+      var emailRespVar = emailRes_Input.value;
+      var emailInstVar = emailInst_Input.value;
+      var paramBL = paramBL_Input.value;
+      var paramCPU = paramCPU_Input.value;
+      var paramHD = paramHD_Input.value;
+      var paramMEM = paramMEM_Input.value;
+
+
+
+      if (
+        nomeVar == "" ||
+        cnpjVar == "" ||
+        cepVar == "" ||
+        emailRespVar == "" ||
+        emailInstVar == "" ||
+        paramBL == "" ||
+        paramCPU == "" ||
+        paramMEM == "" ||
+        paramHD == ""
+      ) {
+        alert("Todos os campos devem ser preenchidos!");
+        return false;
+      } else {
+        const dadosEmpresa = {
           nomeServer: nomeVar,
           cnpjServer: cnpjVar,
           cepServer: cepVar,
           emailRespServer: emailRespVar,
-          emailInstServer: emailInstVar
+          emailInstServer: emailInstVar,
+          paramBLServer: paramBL,
+          paramCPUServer: paramCPU,
+          paramMEMServer: paramMEM,
+          paramHDServer: paramHD,
+        };
 
-        }),
-      })
-        .then(function (resposta) {
-          console.log("resposta: ", resposta);
+        console.log("Dados da empresa a serem enviados:", dadosEmpresa);
 
-          if (resposta.ok) {
-
-            alert("CADASTRO EXECUTADO!")
-            location.reload()
-
-          } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
-          }
+        fetch("/empresas/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(dadosEmpresa)
         })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
+          .then(function (resposta) {
+            console.log("Resposta recebida:", resposta);
 
-        });
-
-      return false;
-    }
-  }
-
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            lista_select.innerHTML += `<option value=${empresa.idEmpresa}>${empresa.nomeEmpresa}</option>`;
+            if (resposta.ok) {
+              return resposta.json();
+            }
+            throw new Error("Houve um erro ao tentar realizar o cadastro!");
+          })
+          .then(function (data) {
+            alert("CADASTRO EXECUTADO!");
+            console.log("Dados retornados pelo servidor:", data);
+            window.location.reload();
+          })
+          .catch(function (error) {
+            console.error("Erro:", error);
           });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
 
-  function cadastrarUsuario() {
-
-    var nomeUsuarioVar = input_nomeUsuario.value;
-    var emailUsuarioVar = input_emailUsuario.value;
-    var senhaUsuarioVar = input_senhaUsuario.value;
-    var empresaUsuarioVar = lista_select.value;
-    var tipoUsuarioVar = "ADMINISTRADOR";
-
-
-    // Verificando se há algum campo em branco
-    if (
-      nomeUsuarioVar == "" ||
-      emailUsuarioVar == "" ||
-      senhaUsuarioVar == "" ||
-      empresaUsuarioVar == "#" && (senhaUsuarioVar != input_confirmarSenha)
-    ) {
-      alert("Todos os campos dever ser preenchidos!")
-      return false;
-    } else {
-
-      fetch("/usuarios/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-
-          nomeUsuarioServer: nomeUsuarioVar,
-          emailUsuarioServer: emailUsuarioVar,
-          senhaUsuarioServer: senhaUsuarioVar,
-          empresaUsuarioServer: empresaUsuarioVar,
-          tipoUsuariosServer: tipoUsuarioVar
-
-        }),
-      })
-        .then(function (resposta) {
-          console.log("resposta: ", resposta);
-
-          if (resposta.ok) {
-
-            alert("CADASTRO EXECUTADO!")
-
-          } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
-          }
-        })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-
-        });
-
-      return false;
-    }
-  }
-
-
-  function verEmpresas() {
-
-    fetch("/empresas/visualizarEmpresas").then(function (resposta) {
-      if (resposta.ok) {
-        if (resposta.status == 204) {
-          var lista = document.getElementById("dash-func");
-          var mensagem = document.createElement("span");
-          mensagem.innerHTML = "Nenhuma empresa encontrada."
-          lista.appendChild(mensagem);
-          throw "Nenhuma resultada encontrada!!";
-        }
-
-        resposta.json().then(function (resposta) {
-          console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-          var lista = document.getElementById("dash-func");
-
-
-          // var divTitulos = document.createElement("div")
-          // var divTituloId = document.createElement("div");
-          // var divTituloNome = document.createElement("div");
-          // var divTituloEmail = document.createElement("div");
-          // var divTituloCNPJ = document.createElement("div");
-
-          // divTitulos.className = "titulos-func";
-          // divTituloId.className = "coluna-func";
-          // divTituloNome.className = "coluna-func";
-          // divTituloEmail.className = "coluna-func";
-          // divTituloCNPJ.className = "coluna-func";
-
-
-          // divTituloId.innerHTML = "ID";
-          // divTituloNome.innerHTML = "NOME DA EMPRESA";
-          // divTituloEmail.innerHTML = "EMAIL DO RESPONSÁVEL";
-          // divTituloCNPJ.innerHTML = "CNPJ";
-
-
-          // lista.appendChild(divTitulos)
-
-          for (let i = 0; i < resposta.length; i++) {
-
-            var tupla = resposta[i];
-            var divLista = document.createElement("div");
-            var divId = document.createElement("div");
-            var divnome = document.createElement("div");
-            var divEmail = document.createElement("div");
-            var divCNPJ = document.createElement("div");
-
-            divLista.className = "dados-func";
-            divId.className = "coluna-func";
-            divnome.className = "coluna-func";
-            divEmail.className = "coluna-func";
-            divCNPJ.className = "coluna-func";
-
-            divId.innerHTML = tupla.idEmpresa;
-            divnome.innerHTML = tupla.nomeEmpresa;
-            divEmail.innerHTML = tupla.emailResponsavel;
-            divCNPJ.innerHTML = tupla.cnpj;
-
-            divLista.appendChild(divId);
-            divLista.appendChild(divnome);
-            divLista.appendChild(divEmail);
-            divLista.appendChild(divCNPJ);
-            lista.appendChild(divLista);
-          }
-
-        });
-      } else {
-        throw ('Houve um erro na API!');
+        return false;
       }
-    }).catch(function (resposta) {
-      console.error(resposta);
+    }
+
+
+    var listaEmpresa = ""
+
+
+    var listaNome = ""
+    var listaCep = ""
+    var listaCnpj = ""
+    var listaEmailResp = ""
+    var listaEmailInst = ""
+    var listaStatus = ""
+
+    var listaParamCPU = ""
+    var listaParamMEM = ""
+    var listaParamDISK = ""
+    var listaParamBL = ""
+
+
+    function verEmpresas() {
+
+      fetch("/empresas/visualizarEmpresas").then(function (resposta) {
+        if (resposta.ok) {
+          if (resposta.status == 204) {
+            var lista = document.getElementById("dash-func");
+            var mensagem = document.createElement("span");
+            mensagem.innerHTML = "Nenhuma empresa encontrada."
+            lista.appendChild(mensagem);
+            throw "Nenhuma resultada encontrada!!";
+          }
+
+          resposta.json().then(function (resposta) {
+            console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+            listaEmpresa = JSON.stringify(resposta);
+
+            if (typeof listaEmpresa === 'string') {
+              try {
+                var letEmpresa = JSON.parse(listaEmpresa);
+                listaEmpresa = letEmpresa;
+                console.log(listaEmpresa);
+              } catch (error) { console.error("Erro ao parsear JSON:", error); }
+            } else {
+              console.error("listaEmpresa não é uma string JSON:", listaEmpresa);
+            }
+
+            listaEmpresa = letEmpresa
+
+            let letNome = listaEmpresa.map(item => item.nomeEmpresa)
+            let letCep = listaEmpresa.map(item => item.cep)
+            let letCnpj = listaEmpresa.map(item => item.cnpj)
+            let letEmailResp = listaEmpresa.map(item => item.emailResponsavel)
+            let letEmailInst = listaEmpresa.map(item => item.emailInstitucional)
+
+            let letParamCPU = listaEmpresa.map(item => item.paramCPU);
+            let letParamMEM = listaEmpresa.map(item => item.paramMEM);
+            let letParamDISK = listaEmpresa.map(item => item.paramHD);
+            let letParamBL = listaEmpresa.map(item => item.paramBL);
+
+            console.log('Banda larga: ', letParamBL)
+            console.log('CPU: ', letParamCPU)
+            console.log('HD: ', letParamDISK)
+            console.log('MEM: ', letParamMEM)
+
+            let letStatus = listaEmpresa.map(item => item.statusEmpresa)
+
+            listaNome = letNome
+            listaCep = letCep
+            listaCnpj = letCnpj
+            listaEmailResp = letEmailResp
+            listaEmailInst = letEmailInst
+
+            listaParamCPU = letParamCPU
+            listaParamMEM = letParamMEM
+            listaParamDISK = letParamDISK
+            listaParamBL = letParamBL
+
+            listaStatus = letStatus
+
+            var feed = document.getElementById("feed_container");
+            feed.innerHTML = "";
+            for (let i = 0; i < resposta.length; i++) {
+              var empresa = resposta[i];
+
+              var data = new Date(empresa.dtCadastroEmpresa);
+              console.log(data);
+
+              var ano = data.getFullYear();
+              console.log(ano);
+
+              var mes = String(data.getMonth() + 1).padStart(2, '0'); // Garantir dois dígitos
+              console.log(mes);
+
+              var dia = String(data.getDate()).padStart(2, '0'); // Garantir dois dígitos
+              console.log(dia);
+
+              var dataFormatada = dia + "/" + mes + "/" + ano;
+              console.log("Data formatada:", dataFormatada);
+
+
+              var divrelatorio = document.createElement("div");
+              var spanID = document.createElement("span");
+              var spanTitulo = document.createElement("span");
+              var spanNome = document.createElement("span");
+              var spanData = document.createElement("span")
+              var spanSituacao = document.createElement("span")
+              var spanCep = document.createElement("span")
+              var spanCnpj = document.createElement("span")
+              var divDescricao = document.createElement("div");
+              var divButtons = document.createElement("div");
+              var btnDetalhes = document.createElement("button");
+
+              spanTitulo.innerHTML = "Email do responsável: <b>" + empresa.emailResponsavel + "</b>";
+              spanNome.innerHTML = "Nome da empresa: <b>" + empresa.nomeEmpresa + "</b> ";
+              spanData.innerHTML = "Data de Ingresso: <b>" + dataFormatada + "</b> <br><br>";
+              spanSituacao.innerHTML = "Status: <b>" + empresa.statusEmpresa + "</b> <br><br>";
+              btnDetalhes.innerHTML = "Visualizar empresa";
+              spanCnpj.innerHTML = "Cnpj: <b>" + empresa.cnpj + "</b>";
+              spanCep.innerHTML = "Cep: <b>" + empresa.cep + "</b>";
+
+              divrelatorio.className = "empresa";
+              spanTitulo.id = "inputNumero" + empresa.idEmpresa;
+              spanSituacao.className = "relatorio-itens"
+              spanNome.className = "relatorio-itens";
+              spanData.className = "relatorio-itens"
+              spanTitulo.className = "relatorio-itens";
+              spanCep.className = "relatorio-itens"
+              spanCnpj.className = "relatorio-itens";
+              divDescricao.className = "relatorio-itens";
+
+              divButtons.className = "div-buttons"
+
+              btnDetalhes.className = "relatorio-btn-editar"
+              btnDetalhes.id = "btnDetalhes" + empresa.idEmpresa;
+              btnDetalhes.setAttribute("onclick", `detalhar_empresa(${empresa.idEmpresa})`);
+
+              divrelatorio.appendChild(spanID);
+              divrelatorio.appendChild(spanNome);
+              divrelatorio.appendChild(spanData);
+
+              divrelatorio.appendChild(spanTitulo);
+              divrelatorio.appendChild(divDescricao);
+              divrelatorio.appendChild(spanCep);
+              divrelatorio.appendChild(spanCnpj);
+
+              divrelatorio.appendChild(spanSituacao);
+              divrelatorio.appendChild(divButtons);
+              divButtons.appendChild(btnDetalhes);
+              feed.appendChild(divrelatorio);
+
+            }
+          });
+        } else {
+          throw ('Houve um erro na API!');
+        }
+      }).catch(function (resposta) {
+        console.error(resposta);
+      });
+    }
+
+
+    function detalhar_empresa(idEmpresa) {
+      console.log("cliquei em detalhar - ID: " + idEmpresa);
+      busca = idEmpresa - 1
+      document.querySelector('.main-relatorios-page').style.filter = "blur(5px)";
+      document.querySelector('.detalhar-empresa').style.display = "block";
+
+      if (listaStatus[busca] == 'ATIVO') {
+        document.querySelector('.del-empresa').style.display = "block";
+        document.querySelector('.atv-empresa').style.display = "none";
+      } else {
+        document.querySelector('.del-empresa').style.display = "none";
+        document.querySelector('.atv-empresa').style.display = "block";
+      }
+
+      sessionStorage.ID_POSTAGEM_EDITANDO = idEmpresa;
+
+
+      nomeEmpresa_Span.innerHTML = listaNome[busca]
+      Cep_Span.innerHTML = listaCep[busca]
+      Cnpj_Span.innerHTML = listaCnpj[busca]
+      emailResponsavel_Span.innerHTML = listaEmailResp[busca]
+      emailInstitucional_Span.innerHTML = listaEmailInst[busca]
+
+      cpuLimite_Span.innerHTML = listaParamCPU[busca]
+      diskLimite_Span.innerHTML = listaParamDISK[busca]
+      memLimite_Span.innerHTML = listaParamMEM[busca]
+      blLimite_Span.innerHTML = listaParamBL[busca]
+
+      // Definindo valores pré-prontos nos inputs usando JavaScript
+      document.getElementById('nomeEmpresa_Input_Edit').value = `${listaNome[busca]}`;
+      document.getElementById('cnpj_Input_Edit').value = `${listaCnpj[busca]}`;
+      document.getElementById('cep_Input_Edit').value = `${listaCep[busca]}`;
+      document.getElementById('emailRes_Input_Edit').value = `${listaEmailResp[busca]}`;
+      document.getElementById('emailInst_Input_Edit').value = `${listaEmailInst[busca]}`;
+      document.getElementById('paramBL_Input_Edit').value = `${listaParamBL[busca]}`;
+      document.getElementById('paramCPU_Input_Edit').value = `${listaParamCPU[busca]}`;
+      document.getElementById('paramHD_Input_Edit').value = `${listaParamDISK[busca]}`;
+      document.getElementById('paramMEM_Input_Edit').value = `${listaParamMEM[busca]}`;
+
+      console.log('Valor da input', teste)
+
+      document.getElementById('nomeEmpresa_Input_Edit').placeholder = `${listaNome[busca]}`;
+      document.getElementById('cnpj_Input_Edit').placeholder = `${listaCnpj[busca]}`;
+      document.getElementById('cep_Input_Edit').placeholder = `${listaCep[busca]}`;
+      document.getElementById('emailRes_Input_Edit').placeholder = `${listaEmailResp[busca]}`;
+      document.getElementById('emailInst_Input_Edit').placeholder = `${listaEmailInst[busca]}`;
+      document.getElementById('paramBL_Input_Edit').placeholder = `${listaParamBL[busca]}`;
+      document.getElementById('paramCPU_Input_Edit').placeholder = `${listaParamCPU[busca]}`;
+      document.getElementById('paramHD_Input_Edit').placeholder = `${listaParamDISK[busca]}`;
+      document.getElementById('paramMEM_Input_Edit').placeholder = `${listaParamMEM[busca]}`;
+
+
+
+
+    }
+
+  </script>
+
+  <script>
+
+
+    var teste = 0
+
+    document.getElementById('open_btn').addEventListener('click', function () {
+
+      document.getElementById('sidebar').classList.toggle('open-sidebar');
+      this.classList.toggle('rodar');
+
+      if (teste == 0) {
+        document.getElementById('nomeLog').style.display = "block";
+        teste = 1
+      } else {
+        document.getElementById('nomeLog').style.display = "none";
+        teste = 0
+      }
+
     });
-  }
-</script>
 
-<script> 
-  document.getElementById('olho').addEventListener('mousedown', function() {
-  document.getElementById('input_senhaUsuario').type = 'text';
-});
+    function sair() {
+      window.location.href = "index.html";
+    }
 
-document.getElementById('olho').addEventListener('mouseup', function() {
-  document.getElementById('input_senhaUsuario').type = 'password';
-});
+    document.getElementById('olho').addEventListener('mousedown', function () {
+      document.getElementById('input_senhaUsuario').type = 'text';
+    });
 
-// Para que o password não fique exposto apos mover a imagem.
-document.getElementById('olho').addEventListener('mousemove', function() {
-  document.getElementById('input_senhaUsuario').type = 'password';
-});
+    document.getElementById('olho').addEventListener('mouseup', function () {
+      document.getElementById('input_senhaUsuario').type = 'password';
+    });
+
+    // Para que o password não fique exposto apos mover a imagem.
+    document.getElementById('olho').addEventListener('mousemove', function () {
+      document.getElementById('input_senhaUsuario').type = 'password';
+    });
 
 
 
-document.getElementById('olho2').addEventListener('mousedown', function() {
-  document.getElementById('input_confirmarSenha').type = 'text';
-});
+    document.getElementById('olho2').addEventListener('mousedown', function () {
+      document.getElementById('input_confirmarSenha').type = 'text';
+    });
 
-document.getElementById('olho2').addEventListener('mouseup', function() {
-  document.getElementById('input_confirmarSenha').type = 'password';
-});
+    document.getElementById('olho2').addEventListener('mouseup', function () {
+      document.getElementById('input_confirmarSenha').type = 'password';
+    });
 
-// Para que o password não fique exposto apos mover a imagem.
-document.getElementById('olho2').addEventListener('mousemove', function() {
-  document.getElementById('input_confirmarSenha').type = 'password';
-});
-</script>
+    // Para que o password não fique exposto apos mover a imagem.
+    document.getElementById('olho2').addEventListener('mousemove', function () {
+      document.getElementById('input_confirmarSenha').type = 'password';
+    });
+  </script>
 
-<script> 
-  document.getElementById('cnpj_Input').addEventListener('input', function(e) {
-	var value = e.target.value;
-	var rawValue = value.replace(/\D/g, ''); // Remove tudo que não é número
+  <script>
+    document.getElementById('cnpj_Input').addEventListener('input', function (e) {
+      var value = e.target.value;
+      var rawValue = value.replace(/\D/g, ''); // Remove tudo que não é número
 
-	// Verifica se o CNPJ tem 15 dígitos e se o primeiro dígito é '0'
-	if (rawValue.length === 15 && rawValue.startsWith('0')) {
-		// Verifica se, ao remover o '0', o restante é um CNPJ válido
-		var potentialCNPJ = rawValue.substring(1);
-		// Atualiza rawValue para o CNPJ sem o '0' inicial
-		if (validaCNPJ(potentialCNPJ)) rawValue = potentialCNPJ;
-	}
+      // Verifica se o CNPJ tem 15 dígitos e se o primeiro dígito é '0'
+      if (rawValue.length === 15 && rawValue.startsWith('0')) {
+        // Verifica se, ao remover o '0', o restante é um CNPJ válido
+        var potentialCNPJ = rawValue.substring(1);
+        // Atualiza rawValue para o CNPJ sem o '0' inicial
+        if (validaCNPJ(potentialCNPJ)) rawValue = potentialCNPJ;
+      }
 
-	var cnpjPattern = rawValue
-					.replace(/^(\d{2})(\d)/, '$1.$2') // Adiciona ponto após o segundo dígito
-					.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3') // Adiciona ponto após o quinto dígito
-					.replace(/\.(\d{3})(\d)/, '.$1/$2') // Adiciona barra após o oitavo dígito
-					.replace(/(\d{4})(\d)/, '$1-$2') // Adiciona traço após o décimo segundo dígito
-					.replace(/(-\d{2})\d+?$/, '$1'); // Impede a entrada de mais de 14 dígitos
-	e.target.value = cnpjPattern;
-});
-</script>
-<script>
-document.getElementById("cep_Input").addEventListener("input", function (e) {
-            let cep = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+      var cnpjPattern = rawValue
+        .replace(/^(\d{2})(\d)/, '$1.$2') // Adiciona ponto após o segundo dígito
+        .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3') // Adiciona ponto após o quinto dígito
+        .replace(/\.(\d{3})(\d)/, '.$1/$2') // Adiciona barra após o oitavo dígito
+        .replace(/(\d{4})(\d)/, '$1-$2') // Adiciona traço após o décimo segundo dígito
+        .replace(/(-\d{2})\d+?$/, '$1'); // Impede a entrada de mais de 14 dígitos
+      e.target.value = cnpjPattern;
+    });
 
-            // Limita o número de dígitos a 8
-            if (cep.length > 8) {
-                cep = cep.slice(0, 8);
-            }
+    document.getElementById('cnpj_Input_Edit').addEventListener('input', function (e) {
+      var value = e.target.value;
+      var rawValue = value.replace(/\D/g, ''); // Remove tudo que não é número
 
-            // Adiciona o traço depois dos cinco primeiros dígitos
-            if (cep.length > 5) {
-                cep = cep.slice(0, 5) + "-" + cep.slice(5);
-            }
+      // Verifica se o CNPJ tem 15 dígitos e se o primeiro dígito é '0'
+      if (rawValue.length === 15 && rawValue.startsWith('0')) {
+        // Verifica se, ao remover o '0', o restante é um CNPJ válido
+        var potentialCNPJ = rawValue.substring(1);
+        // Atualiza rawValue para o CNPJ sem o '0' inicial
+        if (validaCNPJ(potentialCNPJ)) rawValue = potentialCNPJ;
+      }
 
-            // Atualiza o valor do campo com a máscara aplicada
-            e.target.value = cep;
-        });
-</script>
+      var cnpjPattern = rawValue
+        .replace(/^(\d{2})(\d)/, '$1.$2') // Adiciona ponto após o segundo dígito
+        .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3') // Adiciona ponto após o quinto dígito
+        .replace(/\.(\d{3})(\d)/, '.$1/$2') // Adiciona barra após o oitavo dígito
+        .replace(/(\d{4})(\d)/, '$1-$2') // Adiciona traço após o décimo segundo dígito
+        .replace(/(-\d{2})\d+?$/, '$1'); // Impede a entrada de mais de 14 dígitos
+      e.target.value = cnpjPattern;
+    });
+  </script>
+  <script>
+    document.getElementById("cep_Input").addEventListener("input", function (e) {
+      let cep = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+
+      // Limita o número de dígitos a 8
+      if (cep.length > 8) {
+        cep = cep.slice(0, 8);
+      }
+
+      // Adiciona o traço depois dos cinco primeiros dígitos
+      if (cep.length > 5) {
+        cep = cep.slice(0, 5) + "-" + cep.slice(5);
+      }
+
+      // Atualiza o valor do campo com a máscara aplicada
+      e.target.value = cep;
+    });
+
+    document.getElementById("cep_Input_Edit").addEventListener("input", function (e) {
+      let cep = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+
+      // Limita o número de dígitos a 8
+      if (cep.length > 8) {
+        cep = cep.slice(0, 8);
+      }
+
+      // Adiciona o traço depois dos cinco primeiros dígitos
+      if (cep.length > 5) {
+        cep = cep.slice(0, 5) + "-" + cep.slice(5);
+      }
+
+      // Atualiza o valor do campo com a máscara aplicada
+      e.target.value = cep;
+    });
+  </script>

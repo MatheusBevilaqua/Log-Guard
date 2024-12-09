@@ -8,7 +8,7 @@
 /* Barra lateral */
 .nav-dash {
     background-color: #ffffff;
-    color: white;
+    color: rgb(0, 0, 0);
     width: 220px;
     padding: 20px;
     display: flex;

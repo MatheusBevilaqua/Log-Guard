@@ -16,6 +16,10 @@ router.post("/publicar/:idUsuario", function (req, res) {
     relatorioController.publicar(req, res);
 });
 
+router.post("/publicarFeedback/:idUsuario", function (req, res) {
+    relatorioController.publicarFeedback(req, res);
+});
+
 router.put("/editar/:idrelatorio", function (req, res) {
     relatorioController.editar(req, res);
 });

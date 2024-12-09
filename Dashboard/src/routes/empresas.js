@@ -24,6 +24,9 @@ router.get("/visualizarEmpresas", function(req,res){
   empresaController.visualizarEmpresas(req, res);
 })
 
+router.put('/editar/:id', empresaController.editar);
+
+
 router.post("/confirmar_cadastrar", function (req, res) {
   empresaController.confirmar_cadastrar(req, res);
 });

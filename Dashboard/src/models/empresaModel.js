@@ -18,24 +18,25 @@ function buscarPorCnpj(cnpj) {
   return database.executar(instrucaoSql);
 }
 
-function cadastrar(nomeEmpresa,EmailInstitucional,emailResponsavel,cnpj,cep ) {
-  var instrucaoSql = `INSERT INTO empresa VALUES (null, '${nomeEmpresa}', '${EmailInstitucional}', '${emailResponsavel}', '${cnpj}', '${cep}')`;
+function editar(id, nome,emailInstitucional,emailResponsavel,cnpj,cep, cpu, bl, hd, mem ){
+
+   var instrucaoSql = ` UPDATE empresa SET nomeEmpresa = '${nome}', emailInstitucional = '${emailInstitucional}', emailResponsavel = '${emailResponsavel}', cnpj = '${cnpj}', cep = '${cep}', statusEmpresa = 'ATIVO', paramCPU = ${cpu}, paramMEM = ${mem}, paramHD = ${hd}, paramBL = ${bl} WHERE idEmpresa = ${id}; `;
+   return database.executar(instrucaoSql)
+}
+
+function cadastrar(nome,emailInstitucional,emailResponsavel,cnpj,cep, cpu, bl, hd, mem ) {
+  var instrucaoSql = `INSERT INTO empresa VALUES (null, '${nome}', '${emailInstitucional}', '${emailResponsavel}', '${cnpj}', '${cep}','ATIVO', ${cpu}, ${mem}, ${hd}, ${bl}, default)`;
 
   return database.executar(instrucaoSql);
 }
 
 
 function visualizarEmpresas() {
-  var instrucaoSql = `SELECT * FROM visualizar_empresas;`;
+  var instrucaoSql = `SELECT * FROM empresa;`;
   return database.executar(instrucaoSql);
 }
 
 
-// Gerenciamento de máquina
-function confirmar_editar(){
-  var instrucaoSql = `SELECT * FROM empresa`;
-  return database.executar(instrucaoSql);
-}
 function excluir_editar(){
   var instrucaoSql =`SELECT * FROM empresa`;
   return database.executar(instrucaoSql);
@@ -62,7 +63,7 @@ function editarMaquina(idMaquina,nomeMaquina,modeloCPU,capacidadeRAM,disco,local
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar,visualizarEmpresas, confirmar_editar, excluir_editar, confirmar_cadastrar,visualizarMaquinas,deletarMaquina,exibirDadosEdicaoMaquina,editarMaquina};
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar,visualizarEmpresas, editar, excluir_editar, confirmar_cadastrar,visualizarMaquinas,deletarMaquina,exibirDadosEdicaoMaquina,editarMaquina};
 
 
 

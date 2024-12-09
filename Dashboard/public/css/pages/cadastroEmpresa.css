@@ -11,10 +11,29 @@
 
 }
 
+.del-empresa {
+  width: 20%;
+  height: 35px;
+  border-radius: 20px;
+  background-color: #b32b2b;
+  color: white;
+  border: none;
+  margin-left: 20px;
+}
+
+.atv-empresa {
+  width: 20%;
+  height: 35px;
+  border-radius: 20px;
+  background-color: #4cd733;
+  color: white;
+  border: none;
+}
+
+
 .father-cadastro-ind2 {
     width: 100vw;
     height: 100vh;
-    
     display: flex;
 }
 .father-cadastro-ind {
@@ -40,6 +59,76 @@
         justify-content: center;
         align-items: center;
     }
+}
+
+.cadastrar-empresa{
+
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-30%, -50%); 
+    width: 900px; 
+    height: fit-content;
+    background-color: #FFF;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; 
+    align-content: center;
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 0px 4px 39.4px 19px rgba(0, 0, 0, 0.36);
+
+  }
+
+  .editar-empresa{
+
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-30%, -50%); 
+    width: 900px; 
+    height: fit-content;
+    background-color: #FFF;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; 
+    align-content: center;
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 0px 4px 39.4px 19px rgba(0, 0, 0, 0.36);
+
+  }
+
+
+  .detalhar-empresa{
+
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-30%, -50%); 
+    width: 900px; 
+    height: fit-content;
+    background-color: #FFF;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; 
+    align-content: center;
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 0px 4px 39.4px 19px rgba(0, 0, 0, 0.36);
+
+  }
+
+.formNone{
+
+    display: none;
+
 }
 
 /* //-- ESTILIZANDO FORMULARIO DE CADASTRO --// */
@@ -109,9 +198,11 @@
   }
 
   .login-form-btn{
-    width: 100%;
+    width: 40%;
     max-height: 50px;
     height: 100%;
+    align-self: center;
+    justify-self: center;
 }
 
 .login-child-content{
@@ -164,3 +255,181 @@
     border-radius: 10px;
     background: white;
 }
+
+body {
+    background-image: url(img/fundo-home.png);
+    background-size: cover;
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  body {
+    background-image: url(img/fundo-home.png);
+    background-size: cover;
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  dialog::backdrop {
+    background-color: rgb(0 0 0 / .5);
+  }
+
+  dialog {
+    display: block;
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 0 0 1em rgb(0 0 0 / .5);
+    width: 70%;
+    height: 60%;
+    position: fixed;
+    /* Faz o dialog ficar relativo à tela */
+    top: 50%;
+    /* Centraliza verticalmente */
+    left: 50%;
+    /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%);
+    /* Ajusta o ponto de ancoragem para o centro */
+    padding: 1rem;
+    background-color: #E3E3E3;
+    overflow: unset;
+  }
+
+  .caixa_lista::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .caixa_lista::-webkit-scrollbar-thumb {
+    background-color: #442BB3;
+    border-radius: 5px;
+  }
+
+  .caixa_lista {
+    width: 100%;
+    height: 70%;
+    overflow: auto;
+  }
+
+  dialog p {
+    color: black;
+  }
+
+  dialog button {
+    /* width: 20%; */
+    /* background-color: #442BB3;  */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 5%;
+    font-family: "Sora", sans-serif;
+    width: 30%;
+    height: 7%;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    background: var(--purple-blue);
+  }
+
+  dialog h4 {
+    font-family: "Sora", sans-serif;
+    color: black;
+    font-size: medium;
+  }
+
+  .lista {
+    border-radius: 5%;
+    background-color: white;
+    text-align: left;
+  }
+
+  .botao_listar {
+    border: none;
+  }
+
+  .titulos-empresa {
+    color: black;
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: 6% 35% 37% 13%;
+    flex-direction: row;
+    width: 100%;
+    padding-right: 13%;
+    justify-content: space-between;
+    height: 10%;
+  }
+
+  .metrica{
+
+    color: black;
+    margin-right : 5px;
+
+  }
+
+  .empresa {
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    align-content: stretch;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    border: 3px solid  #442BB3;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+    color: black;
+
+  }
+
+  .login-form-span {
+    width: 100%;
+    justify-content: end;
+    border-radius: 6px;
+    padding: 10px;
+    background: var(--dark-white);
+  }
+
+  .coluna-func {
+    display: flex;
+    color: black;
+    width: 60px;
+    height: 10px;
+    margin-left: 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .coluna-func p{
+    color: black;
+  }
+
+  .dash-func {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    border-radius: 20px;
+  }
+
+  .dados-func {
+    display: grid;
+    grid-template-columns: 5% 30% 30% 10%;
+    height: 90px;
+    margin-top: 20px;
+  }
+
+  .func-dados {
+    flex-direction: column;
+    width: 99%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .olho {
+    cursor: pointer;
+    left: 380px;
+    position: absolute;
+    width: 20px;
+  }
