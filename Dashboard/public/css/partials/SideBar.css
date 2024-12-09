@@ -31,21 +31,22 @@ main{
 }
 
 #sidebar_content{
-    padding: 12px;
+    padding: 5px;
 }
 
 #user_infos{
 
-    padding-left: 10px;
-    margin-top: 20px;
-    font-size: larger;
+padding-left: 35px;
 
+margin-top: 20px;
+
+font-size: larger;
 }
 
 #user{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0px;
     margin-bottom: 24px;
 }
 
@@ -56,8 +57,18 @@ main{
     border-radius: 20px;
 }
 
+.displayAdm{
+    display: block;
+}
+
+
+.displayComum{
+    display: none;
+}
+
 #user_infos{
     display: flex;
+    width: fit-content;
     flex-direction: column;
 }
 
@@ -81,25 +92,30 @@ main{
 
 .side_itemLog {
     border-radius: 8px;
-    padding: 14px;
     cursor: none;
 }
 
 .side_item.active {
+    display: flex;
     background-color: #442BB3;
     color: white;
     pointer-events: none;
     display: flex;
-    /* flex-direction: column; */
-    gap: 8px;
+    align-self: center;
     /* list-style: none; */
+}
+
+.side_item i{
+    
+    padding-left: 30px;
+    padding-right: 30px;
+
 }
 
 .side_itemLog.active {
     background-color: #ffffff;
     border-radius: 8px;
-    padding: 20px;
-    padding-left: 15px;
+    gap: 8px;
     pointer-events: none;
 }
 

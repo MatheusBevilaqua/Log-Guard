@@ -12,8 +12,7 @@
 
 </head>
 
-<body style="background-color: #e3e3e3; color: black;"
-    onload="atualizarFeed();validarCargo();validarSessao(), verifica_User()">
+<body style="background-color: #e3e3e3; color: black;" onload="atualizarFeed();validarCargo();validarSessao()">
 
     <section class="page-dash">
         <nav id="sidebar">
@@ -46,7 +45,7 @@
     
     
                 <li class="side_item">
-                  <a href="dashboardFuncionario.html">
+                  <a href="dashboard_ADM.html">
                     <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
                     <span class="item-description">
                       <b> Visão Geral </b>
@@ -55,7 +54,7 @@
                 </li>
     
                 <li class="side_item active">
-                  <a href="relatorios.html">
+                  <a href="relatoriosadm.html">
                     <i> <img src="./img/icon-cnpjBranco.png" class="nav-dash-icon"> </i>
                     <span class="item-description">
                       <b style="color: aliceblue;"> Relatórios </b>
@@ -64,7 +63,25 @@
                 </li>
     
                 <li class="side_item">
-                  <a href="dash_Gerenciamento_Operacao.html">
+                  <a href="gerenciar-maquina.html">
+                    <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Servidores </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="gerenciar-usuario-func.html">
+                    <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Funcionários </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="dash_Operacao_Adm.html">
                     <i> <img src="img/engrenagem_Operacao.png" class="nav-dash-icon"> </i>
                     <span class="item-description">
                       <b > Operações </b>
@@ -87,8 +104,6 @@
               </button>
             </div>
           </nav>
-            </div>
-
 
         <div class="main-relatorios-page">
 
@@ -320,7 +335,7 @@
 
             if (resposta.ok) {
                 window.alert("Post atualizado com sucesso!");
-                window.location = "relatorios.html"
+                window.location = "relatoriosadm.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -342,7 +357,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso!");
-                window.location = "relatorios.html"
+                window.location = "relatoriosadm.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
