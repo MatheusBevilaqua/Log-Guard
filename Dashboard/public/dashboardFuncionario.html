@@ -13,7 +13,7 @@
   <script src="js/timer.js"></script>
 </head>
 
-<body onload="validarCargo(); validarSessao(); visualizarMaquinas(); buscarCritico(); buscarComponentes()">
+<body onload="validarCargo(); validarSessao(); visualizarMaquinas(); buscarCritico(); buscarComponentes(); listar();">
   <section class="page-dash">
     <nav id="sidebar">
       <div id="sidebar_content">
@@ -140,19 +140,23 @@
 
           <div class="box-dos-graficos1">
             <div id="box-consumo" class="grafico-consumo-componentes">
-              <h2>Gráfico de consumo de componentes por dia</h2>
+              <h2>Gráfico de consumo dos componentes</h2>
             </div>
-
             <div class="box-consumo">
+
+
               <select name="escolha_componente" id="escolha_componente">
                 <option value="escolha_select" disabled>Escolha outro componente</option>
                 <option value="cpu_select" selected>CPU</option>
                 <option value="ram_select">RAM</option>
                 <option value="disco_select">Disco</option>
               </select>
+
+
               <div class="box-mychart">
                 <canvas id="barChart" style="width: 500px;"></canvas>
               </div>
+
             </div>
           </div>
           <!-- listagens -->
@@ -201,61 +205,6 @@
 
   var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
   var idMaquina = "";
-
-  // Passo 2: Configurar os Dados do Gráfico
-function Grafico() {
-  const ctx = document.getElementById("barChart").getContext("2d");
-  const data = {
-    labels: [
-      "Sexta",
-      "Sabado",
-      "Domingo",
-    ],
-    datasets: [
-      {
-        label: "Consumo",
-        data: [80, 72, 60],
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1,
-      },
-    ],
-  };
-  
-  // Passo 3: Configurar o Gráfico
-  const config = {
-    type: "bar",
-    data: data,
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-    plugins: [
-      {
-        beforeDraw: (chart, args, options) => {
-          const ctx = chart.ctx;
-          const xAxis = chart.scales.x;
-          const yAxis = chart.scales.y;
-          const ablineY = 3; // Defina a posição da linha de referência
-          
-          ctx.save();
-          ctx.beginPath();
-          ctx.moveTo(xAxis.left, yAxis.getPixelForValue(ablineY));
-          ctx.lineTo(xAxis.right, yAxis.getPixelForValue(ablineY));
-          ctx.strokeStyle = "red";
-          ctx.stroke();
-          ctx.restore();
-        },
-      },
-    ],
-  };
-  
-  // Passo 4: Criar o Gráfico
-  new Chart(ctx, config);
-}
   
   // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- // 
   
@@ -464,15 +413,140 @@ function Grafico() {
       });
   }
 
+  // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------  //
+
+function listar() {
+fetch('/matheusgrafico/grafico', { cache: 'no-store' }).then(function (response) {
+  if (response.ok) {
+    response.json().then(function (resposta) {
+      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+      resposta.reverse();
+
+      plotarGrafico(resposta);
+    });
+  } else {
+    console.error('Nenhum dado encontrado ou erro na API');
+  }
+})
+  .catch(function (error) {
+    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+  });
+}
+
+function plotarGrafico(resposta) {
+console.log('iniciando plotagem do gráfico...');
+
+if (resposta && resposta.length >= 3 && resposta[0] && resposta[1] && resposta[2]) {
+  resposta.sort((a, b) => b.score - a.score);
+
+  let labels = resposta.map((item, index) => `Ranking ${index + 1}`);
+
+  let dados = {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Uso de componente',
+        data: [],
+        fill: false,
+        borderColor: '#FFFFFF',
+        backgroundColor: '#FFFFFF',
+        borderWidth: 2,
+        pointBackgroundColor: '#FFFFFF',
+      }
+    ]
+  };
+
+  console.log('----------------------------------------------');
+  console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":');
+  console.log(resposta);
+
+  resposta.forEach(item => {
+    dados.datasets[0].data.push(item.score);
+  });
+
+  console.log('----------------------------------------------');
+  console.log('O gráfico será plotado com os respectivos valores:');
+  console.log('Labels:');
+  console.log(labels);
+  console.log('Dados:');
+  console.log(dados.datasets);
+  console.log('----------------------------------------------');
+
+  const config = {
+    type: 'bar',
+    data: dados,
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: '#FFFFFF',
+          },
+        },
+        x: {
+          ticks: {
+            color: '#FFFFFF',
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: '#FFFFFF',
+          },
+        },
+        tooltip: {
+          bodyColor: '#FFFFFF',
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        }
+      }
+    }
+  };
+
+  // Criando o gráfico
+  let myChart = new Chart(document.getElementById('barra'), config);
+} else {
+  console.error('Dados da resposta inválidos ou incompletos:', resposta);
+}
+}
+
   function sair() {
     window.location.href = "index.html";
   }
 </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- PARTE DO TIMER -------------------------------------------------------------------------------------------------------------- -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
 <script>
   // Adiciona o evento de atualização do gráfico de tarefas nas colunas
   document.querySelectorAll('.column').forEach(column => {

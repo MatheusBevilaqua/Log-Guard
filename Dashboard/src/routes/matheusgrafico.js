@@ -17,8 +17,8 @@ router.post("/buscarComponentes", function (req, res) {
   matheusgraficoController.buscarComponentes(req, res);
 })
 
-router.post("/Grafico", function (req, res) {
-  matheusgraficoController.Grafico(req, res);
+router.post("/grafico", function (req, res) {
+  matheusgraficoController.grafico(req, res);
 })
 
 module.exports = router;

@@ -83,7 +83,7 @@ function buscarComponentes(idEmpresaMaquina) {
 }
 
 
-function Grafico() {
+function grafico() {
     var instrucaoSql = `SELECT    
     recurso.nomeRecurso,
     SUM(captura.registro) AS quantidade_uso 
@@ -103,11 +103,12 @@ function Grafico() {
     GROUP BY 
     recurso.nomeRecurso;
     `
+    return database.executar(instrucaoSql)
 }
 
 module.exports = {
     visualizarMaquinas,
     buscarCritico,
     buscarComponentes,
-    Grafico
+    grafico
 }
