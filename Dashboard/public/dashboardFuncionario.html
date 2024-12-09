@@ -1,188 +1,193 @@
 <!DOCTYPE html>
 <html lang="ptbr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Visão Geral Analista</title>
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="css/partials/SideBar.css" />
-    <script src="js/sessao.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link
-      rel="shortcut icon"
-      type="imagex/png"
-      href="./img/logo_vetorizada6.png"
-    />
-  </head>
 
-  <body
-    onload="validarCargo(); validarSessao(); visualizarMaquinas(); buscarCritico(); buscarComponentes()"
-  >
-    <section class="page-dash">
-      <nav id="sidebar">
-        <div id="sidebar_content">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visão Geral Analista</title>
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="css/partials/SideBar.css" />
+  <script src="js/sessao.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png" />
+  <script src="./js/timer.js"></script>
 
-<<<<<<< HEAD
-<body onload="validarCargo(); validarSessao(); visualizarMaquinas(); buscarCritico(); buscarComponentes(); listar();">
+</head>
+
+<body onload="validarCargo(); validarSessao(); visualizarMaquinas(); buscarCritico(); buscarComponentes();">
   <section class="page-dash">
     <nav id="sidebar">
-      <div id="sidebar_content"> 
+      <div id="sidebar_content">
+
+        <li class="side_itemLog active" style="cursor: none;">
+          <a>
+            <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+            <span class="item-description">
+              <b style="color: #442BB3; padding-left: 15px;"> Log Guard </b>
+            </span>
+          </a>
+        </li>
+
+
         <div id="user">
-          <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg"
-            id="user_avatar" alt="Avatar" />
-=======
-          <li class="side_itemLog active" style="cursor: none;">
-            <a>
-              <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+          <p id="user_infos">
+            <span style="color: black;" class="item-descriptionAtivo"> Olá,
+              <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                Jon Doe
+              </span>
+            </span>
+            <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+              Lorem Ipsum
+            </span>
+          </p>
+        </div>
+
+        <ul id="side_items">
+
+
+          <li class="side_item active">
+            <a href="dashboardFuncionario.html">
+              <i> <img src="./img/olhoBranco.png" class="nav-dash-icon" style="width: 25px;"> </i>
               <span class="item-description">
-                <b style="color: #442BB3; padding-left: 15px;"> Log Guard </b>
+                <b style="color: aliceblue;"> Visão Geral </b>
               </span>
             </a>
           </li>
->>>>>>> e1705c0ed33904edc2797740ffd3e6c4bf50e2ba
 
-
-          <div id="user">
-            <p id="user_infos">
-              <span style="color: black;" class="item-descriptionAtivo"> Olá,
-                <span style="color: #442BB3;" class="item-description" id="b_usuario">
-                  Jon Doe
-                </span>
+          <li class="side_item ">
+            <a href="relatorios.html">
+              <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Relatórios </b>
               </span>
-              <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
-                Lorem Ipsum
+            </a>
+          </li>
+
+          <li class="side_item">
+            <a href="dash_Gerenciamento_Operacao.html">
+              <i> <img src="img/engrenagem_Operacao.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
+                <b> Operações </b>
               </span>
-            </p>
-          </div>
-
-          <ul id="side_items">
-
-
-            <li class="side_item active">
-              <a href="dashboardFuncionario.html">
-                <i> <img src="./img/olhoBranco.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                <span class="item-description">
-                  <b style="color: aliceblue;"> Visão Geral </b>
-                </span>
-              </a>
-            </li>
-
-            <li class="side_item">
-              <a href="relatorios.html">
-                <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
-                <span class="item-description">
-                  <b> Relatórios </b>
-                </span>
-              </a>
-            </li>
-
-
-            <li class="side_item">
-              <a href="dash_Gerenciamento_Operacao.html">
-                <i> <img src="img/engrenagem_Operacao.png" class="nav-dash-icon"> </i>
-                <span class="item-description">
-                  <b > Operações </b>
-                </span>
-              </a>
-            </li>
+            </a>
+          </li>
 
 
           <button id="open_btn">
             <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
           </button>
+      </div>
+
+      <div id="logout">
+        <button id="logout_btn" onclick="sair()">
+          <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+          <span class="item-description">
+            Sair
+          </span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="main-dash-funcionarios">
+      <div class="alerta-funcionario">
+        <h3>
+          Quantidade de irregularidades por componente (todas as máquinas):
+        </h3>
+        <div class="tempo-real-func" id="tempo-real-func">
+
+        </div>
+      </div>
+
+      <div class="div-grafico-funcionario">
+        <div class="barra-titulo-funcionario">
+          <a href="#box-consumo">
+            ← Visualizar consumo de componentes por dia</a>
+          <a href="#maquinas-risco">
+            ← Visualizar servidores em estado crítico</a>
+          <a href="#listagem-logs"> ← Visualizar Logs</a>
         </div>
 
-        <div id="logout">
-          <button id="logout_btn" onclick="sair()">
-            <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
-            <span class="item-description">
-              Sair
-            </span>
-          </button>
-        </div>
-      </nav>
+        <div class="div-todos-graficos-func">
+          <div class="box-dos-graficos2">
+            <div id="maquinas-risco" class="grafico-consumo-componentes">
+              <h2>Servidores em estado Crítico</h2>
+              <h4 style="color: #bdbabb">
+                servidores que estão com o uso de componentes perto de sua
+                capacidade total (nas últimas 24hrs)
+              </h4>
+            </div>
 
-      <div class="main-dash-funcionarios">
-        <div class="alerta-funcionario">
-          <h3>
-            Quantidade de irregularidades por componente (todas as máquinas):
-          </h3>
-          <div class="tempo-real-func" id="tempo-real-func">
-            <!-- <p><b>CPUs:</b></p> <p class="red"><b class="cpuprob">1</b> <b> / </b><b class="cpugeral">2 </b></p> 
-                    <p><b>|</b></p>
-                    <p><b>RAMs:</b></p> <p class="red"><b class="ramprob"></b> <b> / </b><b class="ramgeral"></b></p> 
-                    <p><b>|</b></p> 
-                    <p><b>DISCO(s):</b></p> <p class="green"><b class="discoprob"> </b><b> / </b><b class="discogeral"></b></p>
-                    <p><b>|</b></p> 
-                    <p><b>REDE(s):</b></p> <p class="red"><b class="rede"> </b><b>mbyts</b></p> -->
-          </div>
-        </div>
+            <div id="div-listas-funcionario" class="div-listas-funcionario">
+              <div class="dash-func-risco">
+                <div class="dash-func-riscos">
+                  <div class="titulos-func-maquinasrisco">
+                    <div class="coluna-func">ID</div>
+                    <div class="coluna-func">Máquina</div>
+                    <div class="coluna-func">Localidade</div>
+                    <div class="coluna-func">Componente irregular</div>
+                    <div class="coluna-func">Uso do Componente (%)</div>
+                    <div class="coluna-func">Data Captura</div>
+                  </div>
 
-        <div class="div-grafico-funcionario">
-          <div class="barra-titulo-funcionario">
-            <a href="#box-consumo">
-              ← Visualizar consumo de componentes por dia</a
-            >
-            <a href="#maquinas-risco">
-              ← Visualizar servidores em estado crítico</a
-            >
-            <a href="#listagem-logs"> ← Visualizar Logs</a>
-          </div>
-
-          <div class="div-todos-graficos-func">
-            <div class="box-dos-graficos2">
-              <div id="maquinas-risco" class="grafico-consumo-componentes">
-                <h2>Servidores em estado Crítico</h2>
-                <h4 style="color: #bdbabb">
-                  servidores que estão com o uso de componentes perto de sua
-                  capacidade total
-                </h4>
-              </div>
-
-              <div id="div-listas-funcionario" class="div-listas-funcionario">
-                <div class="dash-func-risco">
-                  <div class="dash-func-riscos">
-                    <div class="titulos-func-maquinasrisco">
-                      <div class="coluna-func">ID</div>
-                      <div class="coluna-func">Máquina</div>
-                      <div class="coluna-func">Localidade</div>
-                      <div class="coluna-func">Componente irregular</div>
-                      <div class="coluna-func">Uso do Componente</div>
-                    </div>
-
-                    <div class="linha-func">
-                      <img src="./img/Line1cadastro.png" alt="" />
-                      <div
-                        class="geren-dados-risco"
-                        id="geren-dados-risco"
-                      ></div>
-                    </div>
+                  <div class="linha-func">
+                    <img src="./img/Line1cadastro.png" alt="" />
+                    <div class="geren-dados-risco" id="geren-dados-risco"></div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-<<<<<<< HEAD
           <div class="box-dos-graficos1">
             <div id="box-consumo" class="grafico-consumo-componentes">
               <h2>Gráfico de consumo dos componentes</h2>
             </div>
             <div class="box-consumo">
-
-
-              <select name="escolha_componente" id="escolha_componente">
-                <option value="escolha_select" disabled>Escolha outro componente</option>
-                <option value="cpu_select" selected>CPU</option>
-                <option value="ram_select">RAM</option>
-                <option value="disco_select">Disco</option>
-              </select>
-
-
-              <div class="box-mychart">
-                <canvas id="barChart" style="width: 500px;"></canvas>
-              </div>
-
+              <canvas id="meuBarplot"></canvas>
             </div>
+            <script>
+              document.addEventListener('DOMContentLoaded', (event) => {
+                const ctx = document.getElementById('meuBarplot').getContext('2d');
+
+                // Dados para o gráfico
+                const dados = {
+                  labels: ['CPU', 'RAM', 'Disco'],
+                  datasets: [{
+                    label: 'Uso de Componente',
+                    data: [60, 45, 60],
+                    backgroundColor: [
+                      'rgba(#696969)',
+                      'rgba(#696969)',
+                      'rgba(#696969)',
+
+                    ],
+                    borderColor: [
+                      'rgba(#696969)',
+                      'rgba(#696969)',
+                      'rgba(#696969)',
+                    ],
+                    borderWidth: 1
+                  }]
+                };
+
+                // Configurações do gráfico
+                const opcoes = {
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  }
+                };
+
+                // Criando o gráfico de barras
+                new Chart(ctx, {
+                  type: 'bar',
+                  data: dados,
+                  options: opcoes
+                });
+              });
+            </script>
+
           </div>
           <!-- listagens -->
           <div class="box-dos-graficos3">
@@ -211,117 +216,17 @@
                 </div>
 
                 <div class="geren-dados-logs" id="geren-dados-logs"></div>
-=======
-            <div class="box-dos-graficos1">
-              <div id="box-consumo" class="grafico-consumo-componentes">
-                <h2>Gráfico de consumo de componentes por dia</h2>
->>>>>>> e1705c0ed33904edc2797740ffd3e6c4bf50e2ba
               </div>
 
-              <div class="box-consumo">
-                <div class="box-mychart">
-                  <canvas id="barChart" style="width: 500px;"></canvas>
-                </div>
-              </div>
             </div>
-            <!-- Script para o Chart.js -->
-            <script>
-              // Passo 2: Configurar os Dados do Gráfico
-              const ctx = document.getElementById("barChart").getContext("2d");
-              const data = {
-                labels: [
-                  "Domingo",
-                  "Segunda",
-                  "Terça",
-                  "Quarta",
-                  "Quinta",
-                  "Sexta",
-                  "Sabado",
-                ],
-                datasets: [
-                  {
-                    label: "Alertas",
-                    data: [4, 1, 8, 1, 3, 2, 0],
-                    backgroundColor: "rgba(75, 192, 192, 0.2)",
-                    borderColor: "rgba(75, 192, 192, 1)",
-                    borderWidth: 1,
-                  },
-                ],
-              };
 
-              // Passo 3: Configurar o Gráfico
-              const config = {
-                type: "bar",
-                data: data,
-                options: {
-                  scales: {
-                    y: {
-                      beginAtZero: true,
-                    },
-                  },
-                },
-                plugins: [
-                  {
-                    beforeDraw: (chart, args, options) => {
-                      const ctx = chart.ctx;
-                      const xAxis = chart.scales.x;
-                      const yAxis = chart.scales.y;
-                      const ablineY = 3; // Defina a posição da linha de referência
-
-                      ctx.save();
-                      ctx.beginPath();
-                      ctx.moveTo(xAxis.left, yAxis.getPixelForValue(ablineY));
-                      ctx.lineTo(xAxis.right, yAxis.getPixelForValue(ablineY));
-                      ctx.strokeStyle = "red";
-                      ctx.stroke();
-                      ctx.restore();
-                    },
-                  },
-                ],
-              };
-
-              // Passo 4: Criar o Gráfico
-              new Chart(ctx, config);
-            </script>
-
-            <!-- listagens -->
-            <div class="box-dos-graficos3">
-              <div id="listagem-logs" class="grafico-consumo-componentes">
-                <h2>Log's Máquinas em risco</h2>
-                <h4 style="color: #bdbabb">
-                  Listagem das máquinas que ficaram em estado de risco (nas
-                  últimas 72hrs)
-                </h4>
-              </div>
-
-              <div
-                id="div-listas-funcionario-2"
-                class="div-listas-funcionario-2"
-              >
-                <div class="dash-func-logs">
-                  <div class="titulos-func-logsfunc">
-                    <div class="coluna-gerente">ID</div>
-                    <div class="coluna-gerente">Nome</div>
-                    <div class="coluna-gerente">CPU</div>
-                    <div class="coluna-gerente">RAMs</div>
-                    <div class="coluna-gerente">Disco</div>
-                    <div class="coluna-gerente">Localidade</div>
-                    <div class="coluna-gerente">Endereço MAC</div>
-                  </div>
-
-                  <div class="linha-geren">
-                    <hr />
-                  </div>
-
-                  <div class="geren-dados-logs" id="geren-dados-logs"></div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-    </section>
-  </body>
+    </div>
+  </section>
+</body>
+
 </html>
 <script>
   document.getElementById("open_btn").addEventListener("click", function () {
@@ -330,13 +235,8 @@
 
   var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
   var idMaquina = "";
-<<<<<<< HEAD
-  
   // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- // 
-  
-=======
 
->>>>>>> e1705c0ed33904edc2797740ffd3e6c4bf50e2ba
   function buscarComponentes() {
     fetch("/matheusgrafico/buscarComponentes", {
       method: "POST",
@@ -378,8 +278,6 @@
                     <p><b>RAMs:</b></p> <p class="red"><b class="ramprob">${registro.RAM_acima_parametro}</b> <b> / </b><b class="ramgeral">${registro.totalRAM}</b></p> 
                     <p><b>|</b></p> 
                     <p><b>DISCO(s):</b></p> <p class="green"><b class="discoprob">${registro.Disco_acima_parametro}</b><b> / </b><b class="discogeral">${registro.totalDisco}</b></p>
-                    <p><b>|</b></p> 
-                    <p><b>REDE(s):</b></p> <p class="red"><b class="rede"> </b><b>mbyts</b></p>
                         `;
               }
             }
@@ -431,6 +329,7 @@
               var divLocalidade = document.createElement("div");
               var divComponente = document.createElement("div");
               var divRegistros = document.createElement("div");
+              var divdtCaptura = document.createElement("div");
 
               divLista.className = "geren-dados-riscos";
               divId.className = "coluna-func";
@@ -438,18 +337,21 @@
               divLocalidade.className = "coluna-func";
               divComponente.className = "coluna-func";
               divRegistros.className = "coluna-func";
+              divdtCaptura.className = "coluna-func";
 
               divId.innerHTML = tupla.idMaquina;
               divnome.innerHTML = tupla.nomeMaquina;
               divLocalidade.innerHTML = tupla.localidade;
               divComponente.innerHTML = tupla.Componente;
               divRegistros.innerHTML = tupla.Registros;
+              divdtCaptura.innerHTML = tupla.dtCaptura;
 
               divLista.appendChild(divId);
               divLista.appendChild(divnome);
               divLista.appendChild(divLocalidade);
               divLista.appendChild(divComponente);
               divLista.appendChild(divRegistros);
+              divLista.appendChild(divdtCaptura);
 
               lista.appendChild(divLista);
             }
@@ -500,8 +402,8 @@
               var divCPU = document.createElement("div");
               var divRAM = document.createElement("div");
               var divDisco = document.createElement("div");
-              var divnomeLocalidade = document.createElement("div");
-              var divMAC = document.createElement("div");
+              var divlocalidade = document.createElement("div");
+              var divdtCaptura = document.createElement("div");
 
               divLista.className = "geren-dados-item";
               divId.className = "coluna-geren-item";
@@ -509,24 +411,24 @@
               divCPU.className = "coluna-geren-item";
               divRAM.className = "coluna-geren-item";
               divDisco.className = "coluna-geren-item";
-              divnomeLocalidade.className = "coluna-geren-item";
-              divMAC.className = "coluna-geren-item";
+              divlocalidade.className = "coluna-geren-item";
+              divdtCaptura.className = "coluna-geren-item";
 
               divId.innerHTML = tupla.idMaquina;
               divnome.innerHTML = tupla.nomeMaquina;
               divCPU.innerHTML = tupla.modeloCPU;
               divRAM.innerHTML = tupla.capacidadeRAM;
               divDisco.innerHTML = tupla.disco;
-              divnomeLocalidade.innerHTML = tupla.nomelocalidade;
-              divMAC.innerHTML = tupla.MACAdress;
+              divlocalidade.innerHTML = tupla.localidade;
+              divdtCaptura.innerHTML = tupla.dtCaptura;
 
               divLista.appendChild(divId);
               divLista.appendChild(divnome);
               divLista.appendChild(divCPU);
               divLista.appendChild(divRAM);
               divLista.appendChild(divDisco);
-              divLista.appendChild(divnomeLocalidade);
-              divLista.appendChild(divMAC);
+              divLista.appendChild(divlocalidade);
+              divLista.appendChild(divdtCaptura);
 
               lista.appendChild(divLista);
             }
@@ -541,214 +443,7 @@
   }
 
   // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------  //
-
-function listar() {
-fetch('/matheusgrafico/grafico', { cache: 'no-store' }).then(function (response) {
-  if (response.ok) {
-    response.json().then(function (resposta) {
-      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-      resposta.reverse();
-
-      plotarGrafico(resposta);
-    });
-  } else {
-    console.error('Nenhum dado encontrado ou erro na API');
-  }
-})
-  .catch(function (error) {
-    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-  });
-}
-
-function plotarGrafico(resposta) {
-console.log('iniciando plotagem do gráfico...');
-
-if (resposta && resposta.length >= 3 && resposta[0] && resposta[1] && resposta[2]) {
-  resposta.sort((a, b) => b.score - a.score);
-
-  let labels = resposta.map((item, index) => `Ranking ${index + 1}`);
-
-  let dados = {
-    labels: labels,
-    datasets: [
-      {
-        label: 'Uso de componente',
-        data: [],
-        fill: false,
-        borderColor: '#FFFFFF',
-        backgroundColor: '#FFFFFF',
-        borderWidth: 2,
-        pointBackgroundColor: '#FFFFFF',
-      }
-    ]
-  };
-
-  console.log('----------------------------------------------');
-  console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":');
-  console.log(resposta);
-
-  resposta.forEach(item => {
-    dados.datasets[0].data.push(item.score);
-  });
-
-  console.log('----------------------------------------------');
-  console.log('O gráfico será plotado com os respectivos valores:');
-  console.log('Labels:');
-  console.log(labels);
-  console.log('Dados:');
-  console.log(dados.datasets);
-  console.log('----------------------------------------------');
-
-  const config = {
-    type: 'bar',
-    data: dados,
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            color: '#FFFFFF',
-          },
-        },
-        x: {
-          ticks: {
-            color: '#FFFFFF',
-          },
-        },
-      },
-      plugins: {
-        legend: {
-          labels: {
-            color: '#FFFFFF',
-          },
-        },
-        tooltip: {
-          bodyColor: '#FFFFFF',
-          backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        }
-      }
-    }
-  };
-
-  // Criando o gráfico
-  let myChart = new Chart(document.getElementById('barra'), config);
-} else {
-  console.error('Dados da resposta inválidos ou incompletos:', resposta);
-}
-}
-
   function sair() {
     window.location.href = "index.html";
   }
 </script>
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- PARTE DO TIMER -------------------------------------------------------------------------------------------------------------- -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  // Adiciona o evento de atualização do gráfico de tarefas nas colunas
-  document.querySelectorAll('.column').forEach(column => {
-    column.addEventListener('drop', updateTaskChart);
-  });
-
-  // Inicia a contagem de tempo para o gráfico de linha
-  setInterval(updateCounter, 1000);
-</script>
-
-<script>
-  // Variáveis para rastrear o tempo e o gráfico
-  let seconds = 0, minutes = 0, hours = 0, minuteCounter = 0;
-  let timerInterval;
-
-  // Configuração do gráfico de linha
-  const lineCtx = document.getElementById('lineChart').getContext('2d');
-  const lineChart = new Chart(lineCtx, {
-    type: 'line',
-    data: {
-      labels: [], // Armazena os minutos passados no eixo X
-      datasets: [{
-        label: 'Minutos Decorridos',
-        data: [], // Armazena os dados do eixo Y (por exemplo, quantidade de minutos)
-        borderColor: 'rgb(68, 43, 179)',
-        borderWidth: 2,
-        fill: false
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          title: { display: true, text: 'Tempo (em minutos)' }
-        },
-        y: {
-          title: { display: true, text: 'Minutos' }
-        }
-      }
-    }
-  });
-
-  // Função para carregar o tempo e o progresso do gráfico do localStorage
-// Função para carregar o estado salvo do gráfico
-function loadGraphData() {
-  const savedGraphData = localStorage.getItem('graphData');
-  const savedMinutes = localStorage.getItem('minuteCounter');
-
-  // Inicializa o contador de minutos e os dados do gráfico
-  minuteCounter = savedMinutes ? Number(savedMinutes) : 0;
-
-  if (savedGraphData) {
-    const graphData = JSON.parse(savedGraphData);
-    lineChart.data.labels = graphData.labels;
-    lineChart.data.datasets[0].data = graphData.data;
-    lineChart.update();
-  }
-}
-
-// Função para exibir e atualizar o gráfico
-function updateGraph() {
-  // Adiciona um novo ponto ao gráfico
-  lineChart.data.labels.push(minuteCounter); // Adiciona o minuto ao eixo X
-  lineChart.data.datasets[0].data.push(minuteCounter); // Adiciona o valor no eixo Y
-  lineChart.update();
-
-  // Salva os dados do gráfico no localStorage
-  localStorage.setItem('minuteCounter', minuteCounter);
-  localStorage.setItem('graphData', JSON.stringify({
-    labels: lineChart.data.labels,
-    data: lineChart.data.datasets[0].data
-  }));
-}
-
-</script>
-=======
->>>>>>> e1705c0ed33904edc2797740ffd3e6c4bf50e2ba

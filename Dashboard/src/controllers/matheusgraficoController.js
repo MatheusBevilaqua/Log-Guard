@@ -51,10 +51,10 @@ var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
         });
     }
 
-    function grafico(req, res) {
+    function listar(req, res) {
         var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
 
-        matheusgraficoModel.grafico(idEmpresaMaquina).then(function (resultado) {
+        matheusgraficoModel.listar(idEmpresaMaquina).then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {
@@ -72,6 +72,5 @@ var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
     module.exports = {
       visualizarMaquinas,
       buscarCritico,
-      buscarComponentes,
-      grafico
+      buscarComponentes
 }

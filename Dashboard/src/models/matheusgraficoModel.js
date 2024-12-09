@@ -7,8 +7,8 @@ function visualizarMaquinas(idEmpresaMaquina) {
     m.modeloCPU, 
     m.capacidadeRAM, 
     m.disco, 
-    l.nomeLocalidade, 
-    m.MACAdress
+    l.nomeLocalidade AS localidade, 
+    DATE_FORMAT(c.dtCriacaoCaptura, '%d-%m-%Y %H:%i') AS dtCaptura
 FROM 
     maquina m
 JOIN 
@@ -17,36 +17,44 @@ JOIN
     captura c ON c.fkMaquinaCaptura = m.idMaquina
 WHERE 
     c.dtCriacaoCaptura >= NOW() - INTERVAL 3 DAY
-    AND m.fkEmpresaMaquina = ${idEmpresaMaquina};`
+    AND m.fkEmpresaMaquina = ${idEmpresaMaquina};
+`
 
     return database.executar(instrucaoSql);
 }
 
 function buscarCritico(idEmpresaMaquina) {
-    var instrucaoSql = `
-     SELECT 
+    var instrucaoSql = `SELECT 
     m.idMaquina, 
     m.nomeMaquina, 
     l.nomeLocalidade AS localidade, 
     r.nomeRecurso AS Componente,
-    c.registro AS Registros
-    FROM 
+    FORMAT(c.registro, 0) AS Registros,
+    DATE_FORMAT(c.dtCriacaoCaptura, '%d-%m-%Y %H:%i') AS dtCaptura
+FROM 
     maquina m
-    JOIN 
+JOIN 
     localidade l ON m.fkLocalidadeMaquina = l.idLocalidade
-    JOIN 
-    maquinaRecurso mr ON m.idMaquina = mr.idMaquinaRecurso
-    JOIN 
+JOIN 
     captura c ON m.idMaquina = c.fkMaquinaCaptura
-    JOIN 
-    recurso r ON mr.fkrecurso = r.idRecurso
-    WHERE 
-    m.fkEmpresaMaquina = ${idEmpresaMaquina}
-    AND(
-        (mr.fkrecurso = 1 AND mr.parametro > 65.0) OR
-        (mr.fkrecurso = 2 AND mr.parametro > 70.0) OR
-        (mr.fkrecurso = 3 AND mr.parametro > 80.0)
-    );`
+JOIN 
+    recurso r ON c.fkRecursoCaptura = r.idRecurso
+JOIN 
+    maquinaRecurso mr ON c.fkMaquinaRecursoCaptura = mr.idMaquinaRecurso
+WHERE 
+    c.dtCriacaoCaptura >= NOW() - INTERVAL 3 DAY
+    AND m.fkEmpresaMaquina = ${idEmpresaMaquina}
+    AND (
+        (mr.fkrecurso = 1 AND mr.parametro >= 65.0) OR
+        (mr.fkrecurso = 2 AND mr.parametro >= 70.0) OR
+        (mr.fkrecurso = 3 AND mr.parametro >= 80.0)
+    )
+    AND c.dtCriacaoCaptura = (
+        SELECT MAX(c2.dtCriacaoCaptura)
+        FROM captura c2
+        WHERE c2.fkMaquinaCaptura = c.fkMaquinaCaptura
+    );
+    `
     return database.executar(instrucaoSql)
 }
 
@@ -74,24 +82,21 @@ function buscarComponentes(idEmpresaMaquina) {
 }
 
 
-function grafico() {
+function listar() {
     var instrucaoSql = `SELECT    
     recurso.nomeRecurso,
-    SUM(captura.registro) AS quantidade_uso 
-    FROM 
+    FORMAT(AVG(captura.registro), 0) AS media_uso
+FROM 
     captura
-    
-    JOIN 
+JOIN 
     recurso ON captura.fkRecursoCaptura = recurso.idRecurso
-    
-    JOIN 
+JOIN 
     maquina ON captura.fkMaquinaCaptura = maquina.idMaquina
-    
-    JOIN 
+JOIN 
     empresa ON maquina.fkEmpresaMaquina = empresa.idEmpresa
-    WHERE 
-    empresa.idEmpresa = 3 -- Substitua 3 pelo ID da empresa desejada
-    GROUP BY 
+WHERE 
+    empresa.idEmpresa = ${idEmpresaMaquina}
+GROUP BY 
     recurso.nomeRecurso;
     `
     return database.executar(instrucaoSql)
@@ -100,6 +105,5 @@ function grafico() {
 module.exports = {
     visualizarMaquinas,
     buscarCritico,
-    buscarComponentes,
-    grafico
+    buscarComponentes
 }
