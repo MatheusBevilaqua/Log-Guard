@@ -252,12 +252,12 @@
     border-radius: 70px;
     padding: 10px 0;
     font-size: 19px;
-
+    cursor: pointer;
 }
 
 .resposta-IA {
 
-    width: 70vw;
+    width: 55vw;
     height: fit-content;
     color: #333;
     padding-top: 30px;
