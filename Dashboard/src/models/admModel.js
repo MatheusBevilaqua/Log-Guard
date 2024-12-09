@@ -147,8 +147,42 @@ function getProbabilidadeDISCO() {
     return database.executar(instrucaoSql);
 }
 
+function getParametrosRiscoRAM() {
+    var instrucaoSql = `
+        SELECT fkrecurso, parametro
+        FROM maquinaRecurso
+        WHERE fkrecurso = 2;
+    `;
+    console.log("Executando SQL: \n", instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function getParametrosRiscoCPU() {
+    var instrucaoSql = `
+        SELECT fkrecurso, parametro
+        FROM maquinaRecurso
+        WHERE fkrecurso = 1;
+    `;
+    console.log("Executando SQL: \n", instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function getParametrosRiscoREDE() {
+    var instrucaoSql = `
+        SELECT fkrecurso, parametro
+        FROM maquinaRecurso
+        WHERE fkrecurso = 4;  -- Apenas para Rede
+    `;
+    console.log("Executando SQL: \n", instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 
 module.exports = {
+    getParametrosRiscoREDE,
+    getParametrosRiscoCPU,
+    getParametrosRiscoRAM,
     getProbabilidadeRAM,
     getProbabilidadeDISCO,
     getProbabilidadeCPU,

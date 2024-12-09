@@ -82,6 +82,7 @@ VALUES
 (3, 'Funcionario 9B', 'funcionario9b@empresab.com', 'senha123', 'ADMINISTRADOR'),
 (3, 'Funcionario 10B', 'funcionario10b@empresab.com', 'senha123', 'COMUM');
 
+select * from usuario where fkEmpresaUsuario = 3;
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -213,7 +214,7 @@ tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
 
-SELECT * FROM CAPTURA;
+SELECT * FROM MAQUINA;
 
 CREATE TABLE tarefa(
 idTarefa INT PRIMARY KEY auto_increment,
@@ -222,6 +223,24 @@ FOREIGN KEY (fkUsuarioTarefa) REFERENCES usuario(idUsuario),
 qtdDesejavel INT,
 qtdImportante INT, 
 qtdEssencial INT
+);
+
+insert into tarefa values 
+(default, 16, 15, 5, 30),
+(default, 17, 26, 15, 10);
+
+insert into tarefa values 
+(default, 20, 11, 19, 32),
+(default, 22, 20, 17, 14),
+(default, 23, 23, 20, 17),
+(default, 25, 30, 12, 20);
+
+CREATE TABLE ProbabilidadeRiscos (
+idProbabilidade INT PRIMARY KEY auto_increment,
+dataRegistro DATE,
+fkRecurso INT,
+probabilidade DECIMAL(5,2),
+FOREIGN KEY (fkRecurso) REFERENCES recurso(idRecurso)
 );
 
 SELECT * FROM tarefa;
@@ -277,4 +296,16 @@ WHERE
     c.tem_problema = TRUE 
     AND m.fkEmpresaMaquina = 3
     AND c.dtCriacaoCaptura >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+    
 
+
+
+
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (9, 2, 2, 70,1, '2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (8, 2, 2, 20,1, '2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (7, 1, 1, 40,1, '2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (6, 1, 1, 80,1, '2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 4, 1, 100,1, '2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 4, 2, 20,1,'2024-12-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 3, 1, 100,1, '2024-09-07 10:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 3, 2, 20,1,'2024-12-07 10:00:00');

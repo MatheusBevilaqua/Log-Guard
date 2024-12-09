@@ -1,46 +1,54 @@
-//CONFIGURAR COM OS SELECTS DO BANCO DE DADOS
 var database = require("../database/config");
-function buscarMedidasCPU() {
+
+function buscarMetricas() {
     var instrucaoSql = `
-  LECT idCaptura, registro 
-FROM captura 
-WHERE fkMaquinaRecursoCaptura = 1 
-ORDER BY idCaptura DESC 
-LIMIT 5;
-`
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    console.log(instrucaoSql);
+        SELECT c.fkRecursoCaptura, c.registro
+        FROM captura as c
+        INNER JOIN (
+            SELECT fkRecursoCaptura, MAX(dtCriacaoCaptura) AS ultimaData
+            FROM captura
+            WHERE fkRecursoCaptura IN (1, 2, 7)
+            GROUP BY fkRecursoCaptura
+        ) sub ON c.fkRecursoCaptura = sub.fkRecursoCaptura AND c.dtCriacaoCaptura = sub.ultimaData;
+    `;
+    console.log("Executando instrução SQL: \n" + instrucaoSql);
+    console.warn("Retorno database: " + database.executar(instrucaoSql));
     return database.executar(instrucaoSql);
 }
 
+var database = require("../database/config");
 
-function tempoRealCPU(){
-    instrucaoSql = `
-    SELECT
-    AVG(valorRegistro) as CPU,
-    FORMAT(dataRegistro, 'HH:mm') AS intervalo_tempo,
-    MAX(Servidor.nome) as nome_servidor
-FROM
-    Registro
-JOIN
-    Componente ON fkComponente = idComponente
-JOIN
-    Servidor ON fkServidor = idServidor
-JOIN
-    Salas ON fkSalas = idSalas 
-WHERE
-    fkTipoComponente = 1 AND idServidor = 12
-GROUP BY
-    FORMAT(dataRegistro, 'HH:mm')
-ORDER BY
-    FORMAT(dataRegistro, 'HH:mm') DESC;
-    `
+function buscarMetrics() {
+    var instrucaoSql = `
+        SELECT c.fkRecursoCaptura, c.registro, c.dtCriacaoCaptura
+        FROM captura AS c
+        WHERE c.fkRecursoCaptura = 1
+        ORDER BY c.dtCriacaoCaptura DESC
+        LIMIT 10;
+    `;
     console.log("Executando instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+var database = require("../database/config");
+
+// Função para buscar métricas de rede
+function buscarMetricasRede() {
+    var instrucaoSql = `
+        SELECT c.fkRecursoCaptura, c.registro, c.dtCriacaoCaptura
+        FROM captura AS c
+        WHERE c.fkRecursoCaptura = 4  -- Recurso de Rede
+        ORDER BY c.dtCriacaoCaptura DESC
+        LIMIT 10;
+    `;
+    console.log("Executando instrução SQL para métricas de rede: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 
 module.exports = {
-    buscarMedidasCPU,
-    tempoRealCPU
-}
+    buscarMetricas,
+    buscarMetrics,
+    buscarMetricasRede
+};
+

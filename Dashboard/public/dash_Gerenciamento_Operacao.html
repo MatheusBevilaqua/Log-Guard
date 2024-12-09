@@ -14,7 +14,7 @@
   <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body>
+<body onload="validarCargo();validarSessao()">
   <section class="page-dash">
     <nav id="sidebar">
       <div id="sidebar_content">
@@ -23,7 +23,7 @@
           <a>
             <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
             <span class="item-description">
-              <b style="color: #442BB3; margin-left: 15px;"> Log Guard </b>
+              <b style="color: #442BB3; padding-left: 15px;"> Log Guard </b>
             </span>
           </a>
         </li>
@@ -45,11 +45,11 @@
         <ul id="side_items">
 
 
-          <li class="side_item ">
+          <li class="side_item">
             <a href="dashboardFuncionario.html">
               <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
               <span class="item-description">
-                <b> Visão Geral </b>
+                <b > Visão Geral </b>
               </span>
             </a>
           </li>
@@ -63,58 +63,15 @@
             </a>
           </li>
 
-          <li class="side_item">
-            <a href="gerenciar-maquina.html">
-              <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> Empresas </b>
-              </span>
-            </a>
-          </li>
-
-          <li class="side_item">
-            <a href="gerenciar-usuario-func.html">
-              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> Usuários </b>
-              </span>
-            </a>
-          </li>
-
-          <li class="side_item">
-            <a href="gerenciar-usuario-func.html">
-              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> FeedBacks </b>
-              </span>
-            </a>
-          </li>
-
-
           <li class="side_item active">
             <a href="dash_Gerenciamento_Operacao.html">
               <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
-              <span class="item-descriptionAtivo">
+              <span class="item-description">
                 <b style="color: aliceblue;"> Operações </b>
               </span>
             </a>
           </li>
 
-          <li>
-            <div class="counter"><span id="counter" style="color: black;">00:00:00</span></div>
-          </li>
-
-
-
-          <li class="side_item">
-            <a href="#">
-              <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
-              <span class="item-description">
-                <b> Ajuda </b>
-              </span>
-            </a>
-          </li>
-        </ul>
 
         <button id="open_btn">
           <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>

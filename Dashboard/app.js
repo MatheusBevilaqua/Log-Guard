@@ -27,6 +27,7 @@ var tarefasRouter = require("./src/routes/tarefas");
 var localidadeRouter = require("./src/routes/localidades");
 var operacaoRouter = require("./src/routes/operacao");
 var matheusRouter = require("./src/routes/matheusgrafico")
+var carolRouter = require("./src/routes/maquina_individualRota")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -46,6 +47,7 @@ app.use("/tarefas", tarefasRouter);
 app.use("/localidades", localidadeRouter);
 app.use("/operacao", operacaoRouter);
 app.use("/matheusgrafico", matheusRouter)
+app.use("/maquina_individualRota", carolRouter)
 
 app.listen(PORTA_APP, function () {
     console.log(`

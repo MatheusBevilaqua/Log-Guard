@@ -12,95 +12,97 @@
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<!-- <body onload="validarCargo();validarSessao();verUsuarios(); totalfunc(); totaladms(); totalanalista(); verMaquinas(), filtrarCargo"> -->
+<body onload="validarCargo();validarSessao();verUsuarios(); totalfunc(); totaladms(); totalanalista(); verMaquinas(), filtrarCargo()">
     <section class="page-dash">
         <nav id="sidebar">
             <div id="sidebar_content">
-                <div id="user">
-                    <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg"
-                        id="user_avatar" alt="Avatar">
-
-                    <p id="user_infos">
-                        <span class="item-description" id="b_usuario">
-                        </span>
-                        <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
-                            Lorem Ipsum
-                        </span>
-                    </p>
-
-                </div>
-
-                <ul id="side_items">
-                    <li class="side_item active">
-                        <a style="cursor: auto;">
-                            <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon"
-                                    style="height: 40px; width: 40px;"></i>
-                            <span class="item-description">
-                                <b style="color: white;"> LOG GUARD </b>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="side_item">
-                        <a href="dashboard_ADM.html">
-                            <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                            <span class="item-description">
-                                <b> Visão Geral </b>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="side_item">
-                        <a href="relatorios.html">
-                            <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
-                            <span class="item-description">
-                                <b> Relatórios </b>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="side_item">
-                        <a href="gerenciar-maquina.html">
-                            <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
-                            <span class="item-description">
-                                <b> Máquinas </b>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="side_item">
-                        <a href="gerenciar-usuario-func.html">
-                            <i> <img src="./img/icon-manBranco.png" class="nav-dash-icon"> </i>
-                            <span class="item-description">
-                                <b> Funcionários </b>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="side_item">
-                        <a href="#">
-                            <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
-                            <span class="item-description">
-                                <b> Ajuda </b>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-
-                <button id="open_btn">
-                    <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
-                </button>
-            </div>
-
-            <div id="logout">
-                <button id="logout_btn" onclick="sair()">
-                    <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
-                    <span class="item-description">
-                        Sair
+    
+              <li class="side_itemLog active" style="cursor: none;">
+                <a>
+                  <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+                  <span class="item-description">
+                    <b style="color: #442BB3; padding-left: 15px;"> Log Guard </b>
+                  </span>
+                </a>
+              </li>
+    
+    
+              <div id="user">
+                <p id="user_infos">
+                  <span style="color: black;" class="item-descriptionAtivo"> Olá,
+                    <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                      Jon Doe
                     </span>
-                </button>
+                  </span>
+                  <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+                    Lorem Ipsum
+                  </span>
+                </p>
+              </div>
+    
+              <ul id="side_items">
+    
+    
+                <li class="side_item">
+                  <a href="dashboard_ADM.html">
+                    <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                    <span class="item-description">
+                      <b > Visão Geral </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="relatorios.html">
+                    <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Relatórios </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="gerenciar-maquina.html">
+                    <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b> Empresas </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item active">
+                  <a href="gerenciar-usuario-func.html">
+                    <i> <img src="./img/icon-manBranco.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b style="color: aliceblue;" > Funcionários </b>
+                    </span>
+                  </a>
+                </li>
+    
+                <li class="side_item">
+                  <a href="dash_Operacao_Adm.html">
+                    <i> <img src="img/engrenagem_Operacao.png" class="nav-dash-icon"> </i>
+                    <span class="item-description">
+                      <b > Operações </b>
+                    </span>
+                  </a>
+                </li>
+    
+    
+              <button id="open_btn">
+                <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+              </button>
             </div>
-        </nav>
+    
+            <div id="logout">
+              <button id="logout_btn" onclick="sair()">
+                <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+                <span class="item-description">
+                  Sair
+                </span>
+              </button>
+            </div>
+          </nav>
 
         <section class="page-dash-func">
 
@@ -198,7 +200,7 @@
             <div class="mainfuncpage">
                 <div class="head-funcionarios-gerenc">
 
-                    <h1>Gerenciar Funcionários:</h1>
+                    <h1 style="color: #442BB3;">Gerenciar Funcionários:</h1>
 
                     <button onclick="filtrarporfunc()" class="botao-filtro">Filtrar </button>
 
@@ -276,9 +278,6 @@
 
                 </div>
                 <div class="editar-func-titulodelet">
-                </div>
-                <div class="Editar-func-botao-editar">
-                    <button onclick="atribuicao_maquina_gefunc()" class="editar-func">Atribuição de Máquinas</button>
                 </div>
                 <!-- <img src="./img/Line1cadastro.png" class="linhacad"> -->
                 <div class="Editar-func-botao-delete">
@@ -501,11 +500,6 @@
         } else {
             alert("Algo deu errado na alteração de perfil!");
         }
-    }
-
-    function atribuicao_maquina_gefunc() {
-        document.querySelector('.Editarfunc').style.filter = "blur(5px)";
-        document.querySelector('.Editaratribuicaofunc').style.display = "block";
     }
 
 

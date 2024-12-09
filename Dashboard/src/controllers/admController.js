@@ -272,11 +272,65 @@ function getProbabilidadeDISCO(req, res) {
         });
 }
 
+function getParametrosRiscoRAM(req, res) {
+    admModel.getParametrosRiscoRAM()
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                const parametros = {
+                    ram: resultado.find(param => param.fkrecurso === 2).parametro
+                };
+                res.status(200).json(parametros);
+            } else {
+                res.status(404).send("Nenhum parâmetro de risco encontrado.");
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro ao buscar parâmetros de risco:", erro);
+            res.status(500).json(erro);
+        });
+}
 
+function getParametrosRiscoCPU(req, res) {
+    admModel.getParametrosRiscoCPU()
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                const parametros = {
+                    cpu: resultado.find(param => param.fkrecurso === 1).parametro
+                };
+                res.status(200).json(parametros);
+            } else {
+                res.status(404).send("Nenhum parâmetro de risco encontrado.");
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro ao buscar parâmetros de risco:", erro);
+            res.status(500).json(erro);
+        });
+}
 
+function getParametrosRiscoREDE(req, res) {
+    admModel.getParametrosRiscoREDE()
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                const parametros = {
+                    rede: resultado.find(param => param.fkrecurso === 4).parametro
+                };
+                res.status(200).json(parametros);
+            } else {
+                res.status(404).send("Nenhum parâmetro de risco encontrado.");
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro ao buscar parâmetros de risco:", erro);
+            res.status(500).json(erro);
+        });
+}
 
 
 module.exports = {
+    getParametrosRiscoREDE,
+    getParametrosRiscoCPU,
+    getParametrosRiscoRAM,
     getProbabilidadeDISCO,
     getProbabilidadeRAM,
     getProbabilidadeCPU,

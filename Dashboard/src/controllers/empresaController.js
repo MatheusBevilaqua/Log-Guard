@@ -42,13 +42,7 @@ function cadastrar(req, res) {
     }
   });
 }
-//Gerenciamento de máquinas
-// function confirmar_editar(req, res){
 
-// }
-// function excluir_editar(req, res){
-
-// }
 function confirmar_cadastrar(req, res){
 var fkEmpresaMaquina = req.body.fkEmpresaMaquinaServer;
 var nomeMaquina = req.body.nomeMaquinaServer;
@@ -171,6 +165,4 @@ module.exports = {
   deletarMaquina,
   exibirDadosEdicaoMaquina,
   editarMaquina
-  // confirmar_editar,
-  // excluir_editar
 };

@@ -1,14 +1,17 @@
 var express = require("express");
 var router = express.Router();
+var maquinaInd = require("../controllers/maquina_individualController");
 
-router.get("/ultimasCPU/", function (req, res) {
-    medidaController.buscarMedidasCPU(req, res);
+router.get("/metricas", function (req, res) {
+    maquinaInd.buscarUltimasMetricas(req, res);
 });
 
-router.get("/tempoRealCPU/", function (req, res) {
-    medidaController.tempoRealCPU(req, res);
+router.get("/metrics", function (req, res) {
+    maquinaInd.buscarUltimasMetrics(req, res);
 });
 
-
+router.get("/metricasrede", function (req, res) {
+    maquinaInd.buscarUltimasMetricasRede(req, res);
+});
 
 module.exports = router;

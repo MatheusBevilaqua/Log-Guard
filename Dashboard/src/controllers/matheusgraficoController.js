@@ -17,41 +17,61 @@ var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
     });
   }
 
-function buscarComponentes(req, res) {
-    var CPU = req.body.cpuSrever;
+  
+  function buscarCritico(req, res) {
+      var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
+      
+      matheusgraficoModel.buscarCritico(idEmpresaMaquina).then(function (resultado) {
+          if (resultado.length > 0) {
+              res.status(200).json(resultado);
+            } else {
+              res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+          console.log(erro);
+          console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+          res.status(500).json(erro.sqlMessage);
+        });
+    }
+    
+    function buscarComponentes(req, res) {
 
-    matheusgraficoModel.buscarComponentes( ).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
+        var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
 
-function buscarCritico(req, res) {
+        matheusgraficoModel.buscarComponentes(idEmpresaMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
 
-    var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
+    function grafico(req, res) {
+        var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
 
-    matheusgraficoModel.buscarCritico(idEmpresaMaquina).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
+        matheusgraficoModel.grafico(idEmpresaMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
 
-  module.exports = {
-    // buscarComponentes,
-    buscarCritico,
-    visualizarMaquinas
+
+
+    module.exports = {
+      visualizarMaquinas,
+      buscarCritico,
+      buscarComponentes,
+      grafico
 }

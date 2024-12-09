@@ -237,157 +237,186 @@ function formatarDadosAlertas(dados) {
 //ram
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('adm/getMaquinasDataRAM', {
-        method: 'POST',
+    fetch('adm/getParametrosRiscoRAM', {
+        method: 'GET', // Mudando para GET
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            idEmpresaUsuarioServer: idEmpresaUsuario
-        })
+        }
     }).then(response => response.json())
-        .then(data => {
-            console.log('Dados recebidos do servidor:', data);
+        .then(parametros => {
+            console.log('Parâmetros recebidos do servidor:', parametros);
 
-            var optionsRAM = {
-                chart: {
-                    height: 190,
-                    width: 1210,
-                    type: 'heatmap',
+            fetch('adm/getMaquinasDataRAM', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                series: data,
-                plotOptions: {
-                    heatmap: {
-                        shadeIntensity: 0.5,
-                        colorScale: {
-                            ranges: [
-                                {
-                                    from: 0,
-                                    to: 38,
-                                    name: 'Baixo',
-                                    color: '#a69cd6'
-                                },
-                                {
-                                    from: 38,
-                                    to: 70,
-                                    name: 'Médio',
-                                    color: '#7265b3'
-                                },
-                                {
-                                    from: 70,
-                                    to: 90,
-                                    name: 'Alto',
-                                    color: '#442BB3'
-                                },
-                                {
-                                    from: 90,
-                                    to: 100,
-                                    name: 'Muito Alto',
-                                    color: '#2b1f64'
-                                }
-                            ]
-                        }
+                body: JSON.stringify({
+                    idEmpresaUsuarioServer: idEmpresaUsuario
+                })
+            }).then(response => response.json())
+                .then(data => {
+                    console.log('Dados recebidos do servidor:', data);
+
+                    function getRanges(parametro) {
+                        return [
+                            { from: 0, to: parametro * 0.5, name: 'Baixo', color: '#a69cd6' },
+                            { from: parametro * 0.5, to: parametro * 0.75, name: 'Médio', color: '#7265b3' },
+                            { from: parametro, to: parametro + 10, name: 'Alto', color: '#442BB3' },
+                            { from: parametro + 10, to: 100, name: 'Muito Alto', color: '#2b1f64' }
+                        ];
                     }
-                },
-                xaxis: {
-                    type: 'category',
-                },
-                tooltip: {
-                    theme: 'dark'
-                },
-                legend: {
-                    show: true,
-                    position: 'bottom',
-                    horizontalAlign: 'center',
-                }
-            };
 
-            var chartRAM = new ApexCharts(document.querySelector("#chartRAM"), optionsRAM);
-            chartRAM.render();
+                    var parametroRAM = parametros.ram;
+                    var rangesRAM = getRanges(parametroRAM);
+
+                    var optionsRAM = {
+                        chart: {
+                            height: 190,
+                            width: 1210,
+                            type: 'heatmap',
+                        },
+                        series: data,
+                        plotOptions: {
+                            heatmap: {
+                                shadeIntensity: 0.5,
+                                colorScale: {
+                                    ranges: rangesRAM
+                                }
+                            }
+                        },
+                        xaxis: {
+                            type: 'category',
+                        },
+                        tooltip: {
+                            theme: 'dark',
+                            y: {
+                                formatter: function (val) {
+                                    return val + '%';
+                                }
+                            }
+                        },
+                        legend: {
+                            show: true,
+                            position: 'bottom',
+                            horizontalAlign: 'center',
+                        }
+                    };
+
+                    var chartRAM = new ApexCharts(document.querySelector("#chartRAM"), optionsRAM);
+                    chartRAM.render();
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar os dados:', error);
+                });
         })
         .catch(error => {
-            console.error('Erro ao carregar os dados:', error);
+            console.error('Erro ao carregar os parâmetros de risco:', error);
         });
 });
 
 
+//ram
 
 
 
-//cpu
+
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('adm/getMaquinasDataCPU', {
-        method: 'POST',
+    fetch('adm/getParametrosRiscoCPU', {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            idEmpresaUsuarioServer: idEmpresaUsuario
-        })
+        }
     }).then(response => response.json())
-        .then(data => {
-            console.log('Dados recebidos do servidor:', data);
+        .then(parametros => {
+            console.log('Parâmetros recebidos do servidor:', parametros);
 
-            var optionsCPU = {
-                chart: {
-                    height: 200,
-                    width: 1210,
-                    type: 'heatmap',
+            fetch('adm/getMaquinasDataCPU', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                series: data,
-                plotOptions: {
-                    heatmap: {
-                        shadeIntensity: 0.5,
-                        colorScale: {
-                            ranges: [
-                                {
-                                    from: 0,
-                                    to: 38,
-                                    name: 'Baixo',
-                                    color: '#a69cd6'
-                                },
-                                {
-                                    from: 38,
-                                    to: 70,
-                                    name: 'Médio',
-                                    color: '#7265b3'
-                                },
-                                {
-                                    from: 70,
-                                    to: 90,
-                                    name: 'Alto',
-                                    color: '#442BB3'
-                                },
-                                {
-                                    from: 90,
-                                    to: 100,
-                                    name: 'Muito Alto',
-                                    color: '#2b1f64'
-                                }
-                            ]
-                        }
+                body: JSON.stringify({
+                    idEmpresaUsuarioServer: idEmpresaUsuario
+                })
+            }).then(response => response.json())
+                .then(data => {
+                    console.log('Dados recebidos do servidor:', data);
+
+                    function getRanges(parametro) {
+                        return [
+                            { from: 0, to: parametro * 0.5, name: 'Baixo', color: '#a69cd6' },
+                            { from: parametro * 0.5, to: parametro * 0.75, name: 'Médio', color: '#7265b3' },
+                            { from: parametro, to: parametro + 10, name: 'Alto', color: '#442BB3' },
+                            { from: parametro + 10, to: 100, name: 'Muito Alto', color: '#2b1f64' }
+                        ];
                     }
-                },
-                xaxis: {
-                    type: 'category',
-                },
-                tooltip: {
-                    theme: 'dark'
-                },
-                legend: {
-                    show: true,
-                    position: 'right',
-                    horizontalAlign: 'center'
-                }
-            };
 
-            var chartCPU = new ApexCharts(document.querySelector("#chartCPU"), optionsCPU);
-            chartCPU.render();
+                    var parametroCPU = parametros.cpu;
+                    var rangesCPU = getRanges(parametroCPU);
+
+                    var optionsCPU = {
+                        chart: {
+                            height: 200,
+                            width: 1210,
+                            type: 'heatmap',
+                        },
+                        series: data,
+                        plotOptions: {
+                            heatmap: {
+                                shadeIntensity: 0.5,
+                                colorScale: {
+                                    ranges: rangesCPU
+                                },
+                                dataLabels: {
+                                    enabled: true,
+                                    formatter: function (val) {
+                                        return val;
+                                    },
+                                    style: {
+                                        colors: ['#fff']
+                                    }
+                                }
+                            }
+                        },
+                        xaxis: {
+                            type: 'category',
+                        },
+                        yaxis: {
+                            labels: {
+                                formatter: function (val) {
+                                    return val;
+                                }
+                            }
+                        },
+                        tooltip: {
+                            theme: 'dark',
+                            y: {
+                                formatter: function (val) {
+                                    return val + '%';
+                                }
+                            }
+                        },
+                        legend: {
+                            show: true,
+                            position: 'right',
+                            horizontalAlign: 'center'
+                        }
+                    };
+
+                    var chartCPU = new ApexCharts(document.querySelector("#chartCPU"), optionsCPU);
+                    chartCPU.render();
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar os dados:', error);
+                });
         })
         .catch(error => {
-            console.error('Erro ao carregar os dados:', error);
+            console.error('Erro ao carregar os parâmetros de risco:', error);
         });
 });
+
+
 //cpu
 
 
@@ -395,78 +424,100 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //rede
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('adm/getMaquinasDataREDE', {
-        method: 'POST',
+    fetch('adm/getParametrosRiscoREDE', {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            idEmpresaUsuarioServer: idEmpresaUsuario
-        })
+        }
     }).then(response => response.json())
-        .then(data => {
-            console.log('Dados recebidos do servidor:', data);
+        .then(parametros => {
+            console.log('Parâmetros recebidos do servidor:', parametros);
 
-            var optionsREDE = {
-                chart: {
-                    height: 188,
-                    width: 1200,
-                    type: 'heatmap',
+            fetch('adm/getMaquinasDataREDE', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                series: data,
-                plotOptions: {
-                    heatmap: {
-                        shadeIntensity: 0.5,
-                        colorScale: {
-                            ranges: [
-                                {
-                                    from: 0,
-                                    to: 38,
-                                    name: 'Baixo',
-                                    color: '#a69cd6'
-                                },
-                                {
-                                    from: 38,
-                                    to: 70,
-                                    name: 'Médio',
-                                    color: '#7265b3'
-                                },
-                                {
-                                    from: 70,
-                                    to: 90,
-                                    name: 'Alto',
-                                    color: '#442BB3'
-                                },
-                                {
-                                    from: 90,
-                                    to: 100,
-                                    name: 'Muito Alto',
-                                    color: '#2b1f64'
-                                }
-                            ]
-                        }
+                body: JSON.stringify({
+                    idEmpresaUsuarioServer: idEmpresaUsuario
+                })
+            }).then(response => response.json())
+                .then(data => {
+                    console.log('Dados recebidos do servidor:', data);
+
+                    function getRanges(parametro) {
+                        return [
+                            { from: 0, to: parametro * 0.5, name: 'Baixo', color: '#a69cd6' },
+                            { from: parametro * 0.5, to: parametro * 0.75, name: 'Médio', color: '#7265b3' },
+                            { from: parametro, to: parametro + 10, name: 'Alto', color: '#442BB3' },
+                            { from: parametro + 10, to: 100, name: 'Muito Alto', color: '#2b1f64' }
+                        ];
                     }
-                },
-                xaxis: {
-                    type: 'category',
-                },
-                tooltip: {
-                    theme: 'dark'
-                },
-                legend: {
-                    show: true,
-                    position: 'right',
-                    horizontalAlign: 'center'
-                }
-            };
 
-            var chartREDE = new ApexCharts(document.querySelector("#chartREDE"), optionsREDE);
-            chartREDE.render();
+                    var parametroREDE = parametros.rede;
+                    var rangesREDE = getRanges(parametroREDE);
+
+                    var optionsREDE = {
+                        chart: {
+                            height: 188,
+                            width: 1200,
+                            type: 'heatmap',
+                        },
+                        series: data,
+                        plotOptions: {
+                            heatmap: {
+                                shadeIntensity: 0.5,
+                                colorScale: {
+                                    ranges: rangesREDE
+                                },
+                                dataLabels: {
+                                    enabled: true,
+                                    formatter: function (val) {
+                                        return val + '%';
+                                    },
+                                    style: {
+                                        colors: ['#fff']
+                                    }
+                                }
+                            }
+                        },
+                        xaxis: {
+                            type: 'category',
+                        },
+                        yaxis: {
+                            labels: {
+                                formatter: function (val) {
+                                    return val;
+                                }
+                            }
+                        },
+                        tooltip: {
+                            theme: 'dark',
+                            y: {
+                                formatter: function (val) {
+                                    return val + '%';
+                                }
+                            }
+                        },
+                        legend: {
+                            show: true,
+                            position: 'right',
+                            horizontalAlign: 'center'
+                        }
+                    };
+
+                    var chartREDE = new ApexCharts(document.querySelector("#chartREDE"), optionsREDE);
+                    chartREDE.render();
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar os dados:', error);
+                });
         })
         .catch(error => {
-            console.error('Erro ao carregar os dados:', error);
+            console.error('Erro ao carregar os parâmetros de risco:', error);
         });
 });
+
 //rede
 
 

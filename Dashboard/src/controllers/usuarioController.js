@@ -193,7 +193,10 @@ function exibirDadosEdicaoUsuario(req, res) {
     usuarioModel.exibirDadosEdicaoUsuario(idUsuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.json({
-                nomeUsuario: resultado[0].nomeUsuario
+                nomeUsuario: resultado[0].nomeUsuario,
+                emailUsuario: resultado[0].emailUsuario,
+                senhaUsuario: resultado[0].senhaUsuario,
+                tipoPerfilUsuario: resultado[0].tipoPerfilUsuario
             });
         } else {
             res.status(204).send("Nenhum resultado encontrado!");

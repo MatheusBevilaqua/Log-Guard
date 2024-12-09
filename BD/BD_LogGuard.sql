@@ -236,6 +236,27 @@ qtdImportante INT,
 qtdEssencial INT
 );
 
+insert into tarefa values 
+(default, 16, 15, 5, 30),
+(default, 17, 26, 15, 10);
+
+insert into tarefa values 
+(default, 20, 11, 19, 32),
+(default, 22, 20, 17, 14),
+(default, 23, 23, 20, 17),
+(default, 25, 30, 12, 20);
+
+CREATE TABLE ProbabilidadeRiscos (
+idProbabilidade INT PRIMARY KEY auto_increment,
+dataRegistro DATE,
+fkRecurso INT,
+probabilidade DECIMAL(5,2),
+FOREIGN KEY (fkRecurso) REFERENCES recurso(idRecurso)
+);
+
+SELECT * FROM tarefa;
+
+
 SELECT * FROM captura;
 
 CREATE VIEW view_tarefasUsuarios AS
@@ -318,15 +339,31 @@ FROM (
 ) AS capturaMaisRecente
 GROUP BY capturaMaisRecente.fkLocalidadeMaquina;
 
-SELECT * FROM media_uso_cpu_localidade WHERE id_localidade = 5;
+
+CREATE VIEW media_uso_memoria_localidade AS
 SELECT 
-    COUNT(*) AS quantidade_servidores
-FROM 
-    maquina
-WHERE 
-    fkLocalidadeMaquina = 1;
-    
-    
+    capturaMaisRecente.fkLocalidadeMaquina AS id_localidade,
+    AVG(capturaMaisRecente.registro) AS media_uso_memoria
+FROM (
+    SELECT 
+        m.fkLocalidadeMaquina,  
+        captura.registro 
+    FROM   
+        maquina m 
+    JOIN 
+        captura ON m.idMaquina = captura.fkMaquinaCaptura 
+    WHERE
+        captura.fkRecursoCaptura = 2 
+        AND captura.dtCriacaoCaptura = ( 
+            SELECT MAX(c.dtCriacaoCaptura) 
+            FROM captura c 
+            WHERE c.fkMaquinaCaptura = m.idMaquina 
+            AND c.fkRecursoCaptura = 2
+        )
+) AS capturaMaisRecente
+GROUP BY capturaMaisRecente.fkLocalidadeMaquina;
+
+SELECT * FROM media_uso_memoria_localidade WHERE id_localidade = 5;
     
     
     CREATE VIEW maquinas_com_problema_cpu_por_localidade AS
@@ -346,6 +383,109 @@ WHERE
 GROUP BY 
     m.fkLocalidadeMaquina;
 
-SELECT * FROM maquinas_com_problema_cpu_por_localidade WHERE id_localidade = 5;
+CREATE VIEW maquinas_com_problema_memoria_por_localidade AS
+SELECT 
+    m.fkLocalidadeMaquina AS id_localidade,
+    COUNT(DISTINCT m.idMaquina) AS quantidade_maquinas_com_problema
+FROM 
+    maquina m
+JOIN 
+    captura c ON m.idMaquina = c.fkMaquinaCaptura
+JOIN 
+    maquinaRecurso mr ON mr.fkrecurso = c.fkRecursoCaptura
+WHERE 
+    c.dtCriacaoCaptura >= NOW() - INTERVAL 1 DAY 
+    AND c.tem_problema = 1  
+    AND c.fkRecursoCaptura = 2 
+GROUP BY 
+    m.fkLocalidadeMaquina;
+    
+    CREATE VIEW media_uso_disco_localidade AS
+SELECT 
+    capturaMaisRecente.fkLocalidadeMaquina AS id_localidade,
+    AVG(capturaMaisRecente.registro) AS media_uso_disco
+FROM (
+    SELECT 
+        m.fkLocalidadeMaquina,  
+        captura.registro 
+    FROM   
+        maquina m 
+    JOIN 
+        captura ON m.idMaquina = captura.fkMaquinaCaptura 
+    WHERE
+        captura.fkRecursoCaptura = 3 
+        AND captura.dtCriacaoCaptura = ( 
+            SELECT MAX(c.dtCriacaoCaptura) 
+            FROM captura c 
+            WHERE c.fkMaquinaCaptura = m.idMaquina 
+            AND c.fkRecursoCaptura = 3
+        )
+) AS capturaMaisRecente
+GROUP BY capturaMaisRecente.fkLocalidadeMaquina;
+
+
+CREATE VIEW maquinas_com_problema_disco_por_localidade AS
+SELECT 
+    m.fkLocalidadeMaquina AS id_localidade,
+    COUNT(DISTINCT m.idMaquina) AS quantidade_maquinas_com_problema
+FROM 
+    maquina m
+JOIN 
+    captura c ON m.idMaquina = c.fkMaquinaCaptura
+JOIN 
+    maquinaRecurso mr ON mr.fkrecurso = c.fkRecursoCaptura
+WHERE 
+    c.dtCriacaoCaptura >= NOW() - INTERVAL 1 DAY 
+    AND c.tem_problema = 1  
+    AND c.fkRecursoCaptura = 3 
+GROUP BY 
+    m.fkLocalidadeMaquina;
+
+CREATE VIEW media_perda_pacotes_localidade AS
+SELECT 
+    capturaMaisRecente.fkLocalidadeMaquina AS id_localidade,
+    AVG(capturaMaisRecente.registro) AS media_perda_pacotes
+FROM (
+    SELECT 
+        m.fkLocalidadeMaquina,  
+        captura.registro 
+    FROM   
+        maquina m 
+    JOIN 
+        captura ON m.idMaquina = captura.fkMaquinaCaptura 
+    WHERE
+        captura.fkRecursoCaptura = 5 
+        AND captura.dtCriacaoCaptura = ( 
+            SELECT MAX(c.dtCriacaoCaptura) 
+            FROM captura c 
+            WHERE c.fkMaquinaCaptura = m.idMaquina 
+            AND c.fkRecursoCaptura = 5
+        )
+) AS capturaMaisRecente
+GROUP BY capturaMaisRecente.fkLocalidadeMaquina;
+
+
+CREATE VIEW media_banda_localidade AS
+SELECT 
+    capturaMaisRecente.fkLocalidadeMaquina AS id_localidade,
+    AVG(capturaMaisRecente.registro) AS media_banda
+FROM (
+    SELECT 
+        m.fkLocalidadeMaquina,  
+        captura.registro 
+    FROM   
+        maquina m 
+    JOIN 
+        captura ON m.idMaquina = captura.fkMaquinaCaptura 
+    WHERE
+        captura.fkRecursoCaptura = 4 
+        AND captura.dtCriacaoCaptura = ( 
+            SELECT MAX(c.dtCriacaoCaptura) 
+            FROM captura c 
+            WHERE c.fkMaquinaCaptura = m.idMaquina 
+            AND c.fkRecursoCaptura = 4
+        )
+) AS capturaMaisRecente
+GROUP BY capturaMaisRecente.fkLocalidadeMaquina;
 
 

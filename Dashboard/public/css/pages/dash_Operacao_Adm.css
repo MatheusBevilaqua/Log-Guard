@@ -3,3 +3,94 @@
     color: #442BB3;
     font-family: "Sora", sans-serif;
 }
+
+.me1-func {
+    display: flex;
+    width: 260px;
+    ;
+    height: 150px;
+    background-color: #442BB3;
+    border-radius: 20px;
+    color: white;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    top: 100px;
+    z-index: 1;
+    padding-top: 20px;
+  }
+
+
+  .modal {
+    display: none;
+    /* Escondido por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Fundo semitransparente */
+  }
+
+  .modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Estilo do pop-up */
+.popup {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+  /* Conteúdo do pop-up */
+  .popupContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 80vw;
+    height: 70vh;
+    text-align: center;
+    margin-top: 10%;
+  }
+
+  /* Botão de fechar */
+  .closePopup {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+  }
