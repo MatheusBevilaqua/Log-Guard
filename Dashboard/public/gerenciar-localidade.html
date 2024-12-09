@@ -200,8 +200,8 @@
                 </div>
                 <div class="Editar-geren-botao-delete">
                     <button onclick="confirmar_editar()" class="confirmar-geren">Confirmar Configurações</button>
+                    <button onclick="VerLocalidade()" class="confirmar-geren">Ver localidade</button>
                     <button onclick="excluir_editar()" class="excluir-geren">Excluir Localidade</button>
-                    <button onclick="TESTE()" class="excluir-geren">TESTE</button>
                 </div>
             </div>
 
@@ -705,7 +705,7 @@ function selectFiltro() {
         }
     }
 
-    function TESTE() {
+    function VerLocalidade() {
         sessionStorage.LOCALIDADE_SELECIONADA = id_localidade
         window.location.href = `/dashboard_datacenter.html?id=${encodeURIComponent(id_localidade)}`;
     }

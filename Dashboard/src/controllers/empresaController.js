@@ -62,11 +62,11 @@ var MACAdress = req.body.MACAdressServer;
   if (resultado.length > 0) {
     res
       .status(401)
-      .json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
+      .json({ mensagem: `a Maquina com o nome ${nomeMaquina} já existe` });
   } else {
-    empresaModel.cadastrar(fkEmpresaMaquina,nomeMaquina, nomeMaquina,modeloCPU,capacidadeRAM,disco,localidade,MACAdress).then((resultado) => {
+ 
       res.status(201).json(resultado);
-    });
+
   }
 });
 }

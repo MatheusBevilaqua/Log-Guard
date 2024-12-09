@@ -12,7 +12,7 @@ def main(): # Função principal, fiz assim por questão de organização
     time.sleep(2.5)
 
     psutilMAC = ps.net_if_addrs()
-    wifi = psutilMAC['Wi-Fi']
+    wifi = psutilMAC['Ethernet']
     enderecoMAC = wifi[0].address
     print('Endereço MAC capturado pelo psutil',enderecoMAC)
 
@@ -86,7 +86,7 @@ def buscaQueryIdmaquina (enderecoMAC):
 def executarQuery(script): # Função responsável por inserir os dados no banco, recebe uma query SQL qualquer como parâmetro e a executa, usando as credenciais específicas
      config = {
        'user': 'root',
-       'password': '1234',
+       'password': 'Senha123',
        'host': 'localhost',
        'database': 'logGuard'
      }
