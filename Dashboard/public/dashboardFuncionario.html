@@ -353,6 +353,9 @@
               divLista.appendChild(divRegistros);
               divLista.appendChild(divdtCaptura);
 
+              divLista.addEventListener("click", () => { TESTECAROL(tupla.idMaquina) });
+
+              
               lista.appendChild(divLista);
             }
           });
@@ -445,5 +448,9 @@
   // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------  //
   function sair() {
     window.location.href = "index.html";
+  }
+  function TESTECAROL(idMaquinaCarol) {
+      sessionStorage.setItem("MaquinaCarol", idMaquinaCarol);
+      window.location.href = `/maquina_individual.html?id=${encodeURIComponent(idMaquinaCarol)}`;
   }
 </script>

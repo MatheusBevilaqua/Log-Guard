@@ -222,6 +222,20 @@ tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
 
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 2, 2, 70,1, '2024-12-08 23:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 2, 2, 80,1, '2024-12-09 01:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 2, 2, 86,1, '2024-12-09 02:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 2, 2, 90,1, '2024-12-09 03:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 2, 2, 91,1, '2024-12-09 04:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 2, 2, 92,1, '2024-12-09 05:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 2, 2, 87,1, '2024-12-09 06:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 1, 1, 40,1, '2024-12-09 06:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 4, 1, 100,1, '2024-12-09 06:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 4, 2, 20,1, '2024-12-09 06:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 3, 1, 100,1, '2024-12-09 06:00:00');
+INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (13, 3, 2, 20,1, '2024-12-09 06:00:00');
+
+
 insert into captura values (default, 13, 1,1,35,0,'2024-12-08 10:40:00');
 
 SELECT * FROM captura;

@@ -7,7 +7,7 @@ function buscarMetricas() {
         INNER JOIN (
             SELECT fkRecursoCaptura, MAX(dtCriacaoCaptura) AS ultimaData
             FROM captura
-            WHERE fkRecursoCaptura IN (1, 2, 7)
+            WHERE fkRecursoCaptura IN (1, 2, 3)
             GROUP BY fkRecursoCaptura
         ) sub ON c.fkRecursoCaptura = sub.fkRecursoCaptura AND c.dtCriacaoCaptura = sub.ultimaData;
     `;
@@ -18,11 +18,11 @@ function buscarMetricas() {
 
 var database = require("../database/config");
 
-function buscarMetrics() {
+function buscarMetrics(idMaquina) {
     var instrucaoSql = `
         SELECT c.fkRecursoCaptura, c.registro, c.dtCriacaoCaptura
         FROM captura AS c
-        WHERE c.fkRecursoCaptura = 1
+        WHERE c.fkRecursoCaptura = 1 and c.fkMaquinaCaptura = ${idMaquina}
         ORDER BY c.dtCriacaoCaptura DESC
         LIMIT 10;
     `;
@@ -51,4 +51,3 @@ module.exports = {
     buscarMetrics,
     buscarMetricasRede
 };
-

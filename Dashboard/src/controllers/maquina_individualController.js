@@ -17,7 +17,7 @@ function buscarUltimasMetricas(req, res) {
 var medidaModel = require("../models/maquina_individualModel");
 
 function buscarUltimasMetrics(req, res) {
-    medidaModel.buscarMetrics().then(function(resultado) {
+    medidaModel.buscarMetrics(req.body.idMaquina).then(function(resultado) {
         if (resultado.length > 0) {
             // Retorna as métricas de CPU para o front-end
             res.status(200).json(resultado);

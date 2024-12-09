@@ -6,7 +6,7 @@ router.get("/metricas", function (req, res) {
     maquinaInd.buscarUltimasMetricas(req, res);
 });
 
-router.get("/metrics", function (req, res) {
+router.post("/metrics", function (req, res) {
     maquinaInd.buscarUltimasMetrics(req, res);
 });
 
