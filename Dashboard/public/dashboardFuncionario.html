@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="ptbr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visão Geral Analista</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="css/partials/SideBar.css" />
+    <script src="js/sessao.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="shortcut icon"
+      type="imagex/png"
+      href="./img/logo_vetorizada6.png"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Visão Geral Analista</title>
-  <link rel="stylesheet" href="./css/main.css" />
-  <link rel="stylesheet" href="css/partials/SideBar.css" />
-  <script src="js/sessao.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png" />
-  <script src="js/timer.js"></script>
-</head>
+  <body
+    onload="validarCargo(); validarSessao(); visualizarMaquinas(); buscarCritico(); buscarComponentes()"
+  >
+    <section class="page-dash">
+      <nav id="sidebar">
+        <div id="sidebar_content">
 
+<<<<<<< HEAD
 <body onload="validarCargo(); validarSessao(); visualizarMaquinas(); buscarCritico(); buscarComponentes(); listar();">
   <section class="page-dash">
     <nav id="sidebar">
@@ -20,124 +30,139 @@
         <div id="user">
           <img src="https://apexensino.com.br/wp-content/uploads/2019/02/iStock-1017296544-1024x683.jpg"
             id="user_avatar" alt="Avatar" />
+=======
+          <li class="side_itemLog active" style="cursor: none;">
+            <a>
+              <i><img src="img/logo_roxa.png" class="nav-dash-icon" style="height: 90px; width: 90px;"></i>
+              <span class="item-description">
+                <b style="color: #442BB3; padding-left: 15px;"> Log Guard </b>
+              </span>
+            </a>
+          </li>
+>>>>>>> e1705c0ed33904edc2797740ffd3e6c4bf50e2ba
 
-          <p id="user_infos">
-            <span class="item-description" id="b_usuario"> </span>
-            <span class="item-description" id="cargo_usuario" style="color: #442bb3">
-              Lorem Ipsum
+
+          <div id="user">
+            <p id="user_infos">
+              <span style="color: black;" class="item-descriptionAtivo"> Olá,
+                <span style="color: #442BB3;" class="item-description" id="b_usuario">
+                  Jon Doe
+                </span>
+              </span>
+              <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
+                Lorem Ipsum
+              </span>
+            </p>
+          </div>
+
+          <ul id="side_items">
+
+
+            <li class="side_item active">
+              <a href="dashboardFuncionario.html">
+                <i> <img src="./img/olhoBranco.png" class="nav-dash-icon" style="width: 25px;"> </i>
+                <span class="item-description">
+                  <b style="color: aliceblue;"> Visão Geral </b>
+                </span>
+              </a>
+            </li>
+
+            <li class="side_item">
+              <a href="relatorios.html">
+                <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
+                <span class="item-description">
+                  <b> Relatórios </b>
+                </span>
+              </a>
+            </li>
+
+
+            <li class="side_item">
+              <a href="dash_Gerenciamento_Operacao.html">
+                <i> <img src="img/engrenagem_Operacao.png" class="nav-dash-icon"> </i>
+                <span class="item-description">
+                  <b > Operações </b>
+                </span>
+              </a>
+            </li>
+
+
+          <button id="open_btn">
+            <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+          </button>
+        </div>
+
+        <div id="logout">
+          <button id="logout_btn" onclick="sair()">
+            <i> <img src="img/sair.png" class="nav-dash-icon"> </i>
+            <span class="item-description">
+              Sair
             </span>
-          </p>
+          </button>
+        </div>
+      </nav>
+
+      <div class="main-dash-funcionarios">
+        <div class="alerta-funcionario">
+          <h3>
+            Quantidade de irregularidades por componente (todas as máquinas):
+          </h3>
+          <div class="tempo-real-func" id="tempo-real-func">
+            <!-- <p><b>CPUs:</b></p> <p class="red"><b class="cpuprob">1</b> <b> / </b><b class="cpugeral">2 </b></p> 
+                    <p><b>|</b></p>
+                    <p><b>RAMs:</b></p> <p class="red"><b class="ramprob"></b> <b> / </b><b class="ramgeral"></b></p> 
+                    <p><b>|</b></p> 
+                    <p><b>DISCO(s):</b></p> <p class="green"><b class="discoprob"> </b><b> / </b><b class="discogeral"></b></p>
+                    <p><b>|</b></p> 
+                    <p><b>REDE(s):</b></p> <p class="red"><b class="rede"> </b><b>mbyts</b></p> -->
+          </div>
         </div>
 
-        <ul id="side_items">
-          <li class="side_item active">
-            <a style="cursor: auto">
-              <i><img src="img/logo_vetorizada6.png" class="nav-dash-icon" style="height: 40px; width: 40px" /></i>
-              <span class="item-description">
-                <b style="color: white"> LOG GUARD </b>
-              </span>
-            </a>
-          </li>
+        <div class="div-grafico-funcionario">
+          <div class="barra-titulo-funcionario">
+            <a href="#box-consumo">
+              ← Visualizar consumo de componentes por dia</a
+            >
+            <a href="#maquinas-risco">
+              ← Visualizar servidores em estado crítico</a
+            >
+            <a href="#listagem-logs"> ← Visualizar Logs</a>
+          </div>
 
-          <li class="side_item">
-            <a href="dashboardFuncionario.html">
-              <i>
-                <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px" />
-              </i>
-              <span class="item-description">
-                <b> Visão Geral </b>
-              </span>
-            </a>
-          </li>
+          <div class="div-todos-graficos-func">
+            <div class="box-dos-graficos2">
+              <div id="maquinas-risco" class="grafico-consumo-componentes">
+                <h2>Servidores em estado Crítico</h2>
+                <h4 style="color: #bdbabb">
+                  servidores que estão com o uso de componentes perto de sua
+                  capacidade total
+                </h4>
+              </div>
 
-          <li class="side_item">
-            <a href="relatorios.html">
-              <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon" /> </i>
-              <span class="item-description">
-                <b> Relatórios </b>
-              </span>
-            </a>
-          </li>
+              <div id="div-listas-funcionario" class="div-listas-funcionario">
+                <div class="dash-func-risco">
+                  <div class="dash-func-riscos">
+                    <div class="titulos-func-maquinasrisco">
+                      <div class="coluna-func">ID</div>
+                      <div class="coluna-func">Máquina</div>
+                      <div class="coluna-func">Localidade</div>
+                      <div class="coluna-func">Componente irregular</div>
+                      <div class="coluna-func">Uso do Componente</div>
+                    </div>
 
-          <li class="side_item">
-            <a href="#">
-              <i>
-                <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px" />
-              </i>
-              <span class="item-description">
-                <b> Ajuda </b>
-              </span>
-            </a>
-          </li>
-
-          <li>
-            <div class="counter"><span id="counter" style="color: black;">00:00:00</span></div>
-          </li>
-        </ul>
-
-        <button id="open_btn">
-          <i> <img src="./img/seta-direita.png" class="nav-dash-icon" /> </i>
-        </button>
-      </div>
-
-      <div id="logout">
-        <button id="logout_btn" onclick="sair()">
-          <i> <img src="img/sair.png" class="nav-dash-icon" /> </i>
-          <span class="item-description"> Sair </span>
-        </button>
-      </div>
-    </nav>
-
-    <div class="main-dash-funcionarios">
-      <div class="alerta-funcionario">
-        <h3>
-          Quantidade de irregularidades por componente (todas as máquinas):
-        </h3>
-        <div class="tempo-real-func" id="tempo-real-func">
-
-        </div>
-      </div>
-
-      <div class="div-grafico-funcionario">
-        <div class="barra-titulo-funcionario">
-          <a href="#box-consumo">
-            ← Visualizar consumo de componentes por dia</a>
-          <a href="#maquinas-risco">
-            ← Visualizar servidores em estado crítico</a>
-          <a href="#listagem-logs"> ← Visualizar Logs</a>
-        </div>
-
-        <div class="div-todos-graficos-func">
-          <div class="box-dos-graficos2">
-            <div id="maquinas-risco" class="grafico-consumo-componentes">
-              <h2>Servidores em estado Crítico</h2>
-              <h4 style="color: #bdbabb">
-                servidores que estão com o uso de componentes perto de sua
-                capacidade total (nas últimas 24hrs)
-              </h4>
-            </div>
-
-            <div id="div-listas-funcionario" class="div-listas-funcionario">
-              <div class="dash-func-risco">
-                <div class="dash-func-riscos">
-                  <div class="titulos-func-maquinasrisco">
-                    <div class="coluna-func">ID</div>
-                    <div class="coluna-func">Máquina</div>
-                    <div class="coluna-func">Localidade</div>
-                    <div class="coluna-func">Componente irregular</div>
-                    <div class="coluna-func">Uso do Componente (%)</div>
-                    <div class="coluna-func">Data Captura</div>
-                  </div>
-
-                  <div class="linha-func">
-                    <img src="./img/Line1cadastro.png" alt="" />
-                    <div class="geren-dados-risco" id="geren-dados-risco"></div>
+                    <div class="linha-func">
+                      <img src="./img/Line1cadastro.png" alt="" />
+                      <div
+                        class="geren-dados-risco"
+                        id="geren-dados-risco"
+                      ></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
+<<<<<<< HEAD
           <div class="box-dos-graficos1">
             <div id="box-consumo" class="grafico-consumo-componentes">
               <h2>Gráfico de consumo dos componentes</h2>
@@ -186,17 +211,117 @@
                 </div>
 
                 <div class="geren-dados-logs" id="geren-dados-logs"></div>
+=======
+            <div class="box-dos-graficos1">
+              <div id="box-consumo" class="grafico-consumo-componentes">
+                <h2>Gráfico de consumo de componentes por dia</h2>
+>>>>>>> e1705c0ed33904edc2797740ffd3e6c4bf50e2ba
               </div>
 
+              <div class="box-consumo">
+                <div class="box-mychart">
+                  <canvas id="barChart" style="width: 500px;"></canvas>
+                </div>
+              </div>
             </div>
+            <!-- Script para o Chart.js -->
+            <script>
+              // Passo 2: Configurar os Dados do Gráfico
+              const ctx = document.getElementById("barChart").getContext("2d");
+              const data = {
+                labels: [
+                  "Domingo",
+                  "Segunda",
+                  "Terça",
+                  "Quarta",
+                  "Quinta",
+                  "Sexta",
+                  "Sabado",
+                ],
+                datasets: [
+                  {
+                    label: "Alertas",
+                    data: [4, 1, 8, 1, 3, 2, 0],
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1,
+                  },
+                ],
+              };
 
+              // Passo 3: Configurar o Gráfico
+              const config = {
+                type: "bar",
+                data: data,
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                },
+                plugins: [
+                  {
+                    beforeDraw: (chart, args, options) => {
+                      const ctx = chart.ctx;
+                      const xAxis = chart.scales.x;
+                      const yAxis = chart.scales.y;
+                      const ablineY = 3; // Defina a posição da linha de referência
+
+                      ctx.save();
+                      ctx.beginPath();
+                      ctx.moveTo(xAxis.left, yAxis.getPixelForValue(ablineY));
+                      ctx.lineTo(xAxis.right, yAxis.getPixelForValue(ablineY));
+                      ctx.strokeStyle = "red";
+                      ctx.stroke();
+                      ctx.restore();
+                    },
+                  },
+                ],
+              };
+
+              // Passo 4: Criar o Gráfico
+              new Chart(ctx, config);
+            </script>
+
+            <!-- listagens -->
+            <div class="box-dos-graficos3">
+              <div id="listagem-logs" class="grafico-consumo-componentes">
+                <h2>Log's Máquinas em risco</h2>
+                <h4 style="color: #bdbabb">
+                  Listagem das máquinas que ficaram em estado de risco (nas
+                  últimas 72hrs)
+                </h4>
+              </div>
+
+              <div
+                id="div-listas-funcionario-2"
+                class="div-listas-funcionario-2"
+              >
+                <div class="dash-func-logs">
+                  <div class="titulos-func-logsfunc">
+                    <div class="coluna-gerente">ID</div>
+                    <div class="coluna-gerente">Nome</div>
+                    <div class="coluna-gerente">CPU</div>
+                    <div class="coluna-gerente">RAMs</div>
+                    <div class="coluna-gerente">Disco</div>
+                    <div class="coluna-gerente">Localidade</div>
+                    <div class="coluna-gerente">Endereço MAC</div>
+                  </div>
+
+                  <div class="linha-geren">
+                    <hr />
+                  </div>
+
+                  <div class="geren-dados-logs" id="geren-dados-logs"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-</body>
-
+    </section>
+  </body>
 </html>
 <script>
   document.getElementById("open_btn").addEventListener("click", function () {
@@ -205,9 +330,13 @@
 
   var idEmpresaUsuario = sessionStorage.EMPRESA_USUARIO;
   var idMaquina = "";
+<<<<<<< HEAD
   
   // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- // 
   
+=======
+
+>>>>>>> e1705c0ed33904edc2797740ffd3e6c4bf50e2ba
   function buscarComponentes() {
     fetch("/matheusgrafico/buscarComponentes", {
       method: "POST",
@@ -249,6 +378,8 @@
                     <p><b>RAMs:</b></p> <p class="red"><b class="ramprob">${registro.RAM_acima_parametro}</b> <b> / </b><b class="ramgeral">${registro.totalRAM}</b></p> 
                     <p><b>|</b></p> 
                     <p><b>DISCO(s):</b></p> <p class="green"><b class="discoprob">${registro.Disco_acima_parametro}</b><b> / </b><b class="discogeral">${registro.totalDisco}</b></p>
+                    <p><b>|</b></p> 
+                    <p><b>REDE(s):</b></p> <p class="red"><b class="rede"> </b><b>mbyts</b></p>
                         `;
               }
             }
@@ -300,7 +431,6 @@
               var divLocalidade = document.createElement("div");
               var divComponente = document.createElement("div");
               var divRegistros = document.createElement("div");
-              var divdtCaptura = document.createElement("div");
 
               divLista.className = "geren-dados-riscos";
               divId.className = "coluna-func";
@@ -308,21 +438,18 @@
               divLocalidade.className = "coluna-func";
               divComponente.className = "coluna-func";
               divRegistros.className = "coluna-func";
-              divdtCaptura.className = "coluna-func";
 
               divId.innerHTML = tupla.idMaquina;
               divnome.innerHTML = tupla.nomeMaquina;
               divLocalidade.innerHTML = tupla.localidade;
               divComponente.innerHTML = tupla.Componente;
               divRegistros.innerHTML = tupla.Registros;
-              divdtCaptura.innerHTML = tupla.dtCaptura;
 
               divLista.appendChild(divId);
               divLista.appendChild(divnome);
               divLista.appendChild(divLocalidade);
               divLista.appendChild(divComponente);
               divLista.appendChild(divRegistros);
-              divLista.appendChild(divdtCaptura);
 
               lista.appendChild(divLista);
             }
@@ -373,8 +500,8 @@
               var divCPU = document.createElement("div");
               var divRAM = document.createElement("div");
               var divDisco = document.createElement("div");
-              var divlocalidade = document.createElement("div");
-              var divdtCaptura = document.createElement("div");
+              var divnomeLocalidade = document.createElement("div");
+              var divMAC = document.createElement("div");
 
               divLista.className = "geren-dados-item";
               divId.className = "coluna-geren-item";
@@ -382,24 +509,24 @@
               divCPU.className = "coluna-geren-item";
               divRAM.className = "coluna-geren-item";
               divDisco.className = "coluna-geren-item";
-              divlocalidade.className = "coluna-geren-item";
-              divdtCaptura.className = "coluna-geren-item";
+              divnomeLocalidade.className = "coluna-geren-item";
+              divMAC.className = "coluna-geren-item";
 
               divId.innerHTML = tupla.idMaquina;
               divnome.innerHTML = tupla.nomeMaquina;
               divCPU.innerHTML = tupla.modeloCPU;
               divRAM.innerHTML = tupla.capacidadeRAM;
               divDisco.innerHTML = tupla.disco;
-              divlocalidade.innerHTML = tupla.localidade;
-              divdtCaptura.innerHTML = tupla.dtCaptura;
+              divnomeLocalidade.innerHTML = tupla.nomelocalidade;
+              divMAC.innerHTML = tupla.MACAdress;
 
               divLista.appendChild(divId);
               divLista.appendChild(divnome);
               divLista.appendChild(divCPU);
               divLista.appendChild(divRAM);
               divLista.appendChild(divDisco);
-              divLista.appendChild(divlocalidade);
-              divLista.appendChild(divdtCaptura);
+              divLista.appendChild(divnomeLocalidade);
+              divLista.appendChild(divMAC);
 
               lista.appendChild(divLista);
             }
@@ -515,6 +642,7 @@ if (resposta && resposta.length >= 3 && resposta[0] && resposta[1] && resposta[2
     window.location.href = "index.html";
   }
 </script>
+<<<<<<< HEAD
 
 
 
@@ -622,3 +750,5 @@ function updateGraph() {
 }
 
 </script>
+=======
+>>>>>>> e1705c0ed33904edc2797740ffd3e6c4bf50e2ba
