@@ -52,11 +52,9 @@ var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
     }
 
     function Graficos(req, res) {
-        var usoCPU = req.body.cpuServer;
-        var usoRAM = req.body.ramServer;
-        var usoDisco = req.body.discoServer;
-    
-        matheusgraficoModel.Graficos( ).then(function (resultado) {
+        var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
+
+        matheusgraficoModel.Graficos(idEmpresaMaquina).then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {
@@ -74,6 +72,6 @@ var idEmpresaMaquina = req.body.idEmpresaMaquinaServer;
     module.exports = {
       visualizarMaquinas,
       buscarCritico,
-      buscarComponentes
-    // Graficos
+      buscarComponentes,
+      Graficos
 }
