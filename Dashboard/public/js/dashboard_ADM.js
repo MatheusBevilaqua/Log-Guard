@@ -238,7 +238,7 @@ function formatarDadosAlertas(dados) {
 
 document.addEventListener('DOMContentLoaded', function () {
     fetch('adm/getParametrosRiscoRAM', {
-        method: 'GET', // Mudando para GET
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         }
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         return [
                             { from: 0, to: parametro * 0.5, name: 'Baixo', color: '#a69cd6' },
                             { from: parametro * 0.5, to: parametro * 0.75, name: 'Médio', color: '#7265b3' },
-                            { from: parametro, to: parametro + 10, name: 'Alto', color: '#442BB3' },
+                            { from: parametro * 0.75, to: parametro + 10, name: 'Alto', color: '#442BB3' },
                             { from: parametro + 10, to: 100, name: 'Muito Alto', color: '#2b1f64' }
                         ];
                     }
@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         return [
                             { from: 0, to: parametro * 0.5, name: 'Baixo', color: '#a69cd6' },
                             { from: parametro * 0.5, to: parametro * 0.75, name: 'Médio', color: '#7265b3' },
-                            { from: parametro, to: parametro + 10, name: 'Alto', color: '#442BB3' },
+                            { from: parametro * 0.75, to: parametro + 10, name: 'Alto', color: '#442BB3' },
                             { from: parametro + 10, to: 100, name: 'Muito Alto', color: '#2b1f64' }
                         ];
                     }
@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 dataLabels: {
                                     enabled: true,
                                     formatter: function (val) {
-                                        return val;
+                                        return val + '%';
                                     },
                                     style: {
                                         colors: ['#fff']
@@ -385,7 +385,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         yaxis: {
                             labels: {
                                 formatter: function (val) {
-                                    return val;
+                                    return val + '%';
                                 }
                             }
                         },
@@ -415,6 +415,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Erro ao carregar os parâmetros de risco:', error);
         });
 });
+
 
 
 //cpu
@@ -449,7 +450,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         return [
                             { from: 0, to: parametro * 0.5, name: 'Baixo', color: '#a69cd6' },
                             { from: parametro * 0.5, to: parametro * 0.75, name: 'Médio', color: '#7265b3' },
-                            { from: parametro, to: parametro + 10, name: 'Alto', color: '#442BB3' },
+                            { from: parametro * 0.75, to: parametro + 10, name: 'Alto', color: '#442BB3' },
                             { from: parametro + 10, to: 100, name: 'Muito Alto', color: '#2b1f64' }
                         ];
                     }
@@ -487,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         yaxis: {
                             labels: {
                                 formatter: function (val) {
-                                    return val;
+                                    return val + '%';
                                 }
                             }
                         },
@@ -517,6 +518,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Erro ao carregar os parâmetros de risco:', error);
         });
 });
+
 
 //rede
 
