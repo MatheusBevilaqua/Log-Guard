@@ -112,15 +112,23 @@ button {
     height: 100px;
     width: 100%;
     align-items: stretch;
-    gap: 10px;
+    gap: 15px;
 }
 
 .titulo_indicador{
-    font-size: 140%;
+    font-size: 130%;
+    color: black;
+    font-weight: 500;
+}
+
+.indicador_rede{
+    margin: 1%;
 }
 
 .titulo_indicador_ram{
     font-size: 120%;
+    color: black;
+    font-weight: 500;
 }
 
 .div_indicador{
@@ -130,16 +138,17 @@ button {
 }
 
 .h3_indicador{
-    margin-top: 5%;
     font-size: 160%;
+    color: black;
 }
 .container_kpi,
 .container_info_servidores {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(83, 80, 87);
+    background-color: rgb(225, 223, 228);
     border-radius: 8px;
+    
 }
 
 .segundo_grafico {
@@ -165,3 +174,44 @@ button {
     justify-content: center;
 }
 
+.container_menor_lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 100%; /* Limita a altura para que caiba na div */
+    overflow-y: auto; /* Adiciona rolagem vertical quando necessário */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Estilo para cada item da lista */
+.item_maquina {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.item_maquina:hover {
+    transform: scale(1.02); /* Animação ao passar o mouse */
+}
+
+/* Estilo para as informações dentro de cada item */
+.item_maquina_info {
+    font-size: 14px;
+    color: #333;
+    margin: 5px 0;
+    word-wrap: break-word; /* Permite quebrar texto longo */
+}
+
+/* Estilo para o título de cada item */
+.item_maquina_titulo {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}

@@ -82,7 +82,6 @@ VALUES
 (3, 'Funcionario 9B', 'funcionario9b@empresab.com', 'senha123', 'ADMINISTRADOR'),
 (3, 'Funcionario 10B', 'funcionario10b@empresab.com', 'senha123', 'COMUM');
 
-select * from usuario where fkEmpresaUsuario = 3;
 
 INSERT INTO usuario (fkEmpresaUsuario, nomeUsuario, emailUsuario, senhaUsuario, tipoPerfilUsuario) 
 VALUES 
@@ -108,6 +107,10 @@ parametro_perda_pacotes DOUBLE,
 parametro_taxa_uso_bl DECIMAL (6,3) -- bl é Banda Larga 
 );
 
+select * from localidade;
+
+INSERT INTO localidade VALUES(default, 3, 'Datacenter 1','098765432','rua exemplo', 2.0, 200.00);
+
 CREATE TABLE maquina(
 idMaquina INT PRIMARY KEY auto_increment,
 fkEmpresaMaquina INT,
@@ -117,6 +120,7 @@ modeloCPU VARCHAR(45),
 capacidadeRAM DECIMAL(8,3),
 disco INT,
 fkLocalidadeMaquina INT,
+FOREIGN KEY (fkLocalidadeMaquina) REFERENCES localidade(idLocalidade),
 MACAdress VARCHAR(45)
 ); 
 select * from maquina;
@@ -131,12 +135,12 @@ INSERT INTO maquina (fkEmpresaMaquina, nomeMaquina, modeloCPU, capacidadeRAM, di
 (3, 'Estação Trabalho 01', 'Intel i7 8700', 16.000, 500, 1, '00:1A:2B:3C:4D:5F'),
 (3, 'Estação Trabalho 02', 'AMD Ryzen 5 3600', 16.000, 500, 1, '00:1A:2B:3C:4D:60'),
 (3, 'Servidor Backup', 'Intel Xeon E5', 32.000, 1000, 1, '00:1A:2B:3C:4D:61'),
-(3, 'Estação Design', 'Intel i9 9900K', 32.000, 1000, 2, '00:1A:2B:3C:4D:62'),
-(3, 'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512, 2, '00:1A:2B:3C:4D:63'),
-(3, 'Estação Vendas', 'Intel i5 10400', 8.000, 256, 2, '00:1A:2B:3C:4D:64'),
-(3, 'Estação Financeiro', 'Intel i5 9400', 8.000, 256, 3, '00:1A:2B:3C:4D:65'),
-(3, 'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256, 3, '00:1A:2B:3C:4D:66'),
-(3, 'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, 3, '00:1A:2B:3C:4D:67');
+(3, 'Estação Design', 'Intel i9 9900K', 32.000, 1000, 1, '00:1A:2B:3C:4D:62'),
+(3, 'Estação Marketing', 'AMD Ryzen 7 3700X', 16.000, 512, 1, '00:1A:2B:3C:4D:63'),
+(3, 'Estação Vendas', 'Intel i5 10400', 8.000, 256, 1, '00:1A:2B:3C:4D:64'),
+(3, 'Estação Financeiro', 'Intel i5 9400', 8.000, 256, 1, '00:1A:2B:3C:4D:65'),
+(3, 'Estação RH', 'AMD Ryzen 3 3200G', 8.000, 256, 1, '00:1A:2B:3C:4D:66'),
+(3, 'Notebook Executivo', 'Intel i7 1065G7', 16.000, 512, 1, '00:1A:2B:3C:4D:67');
 
 
 CREATE VIEW view_localidades_maquinas AS
@@ -187,6 +191,7 @@ INSERT INTO recurso VALUES(default, 'Uso de CPU');
 INSERT INTO recurso VALUES(default, 'Uso de RAM');
 INSERT INTO recurso VALUES(default, 'Uso de Disco');
 INSERT INTO recurso VALUES(default, 'Taxa de uso da largura de banda');
+INSERT INTO recurso VALUES(default, 'Perda de Pacotes');
 
 CREATE TABLE maquinaRecurso(
 idMaquinaRecurso INT PRIMARY KEY auto_increment,
@@ -195,10 +200,13 @@ FOREIGN KEY (fkrecurso) REFERENCES recurso(idRecurso),
 parametro DECIMAL (8,5)
 );
 
+
+
 INSERT INTO maquinaRecurso VALUES(default, 1, 65.0);
 INSERT INTO maquinaRecurso VALUES(default, 2, 70.0);
 INSERT INTO maquinaRecurso VALUES(default, 3, 80.0);
 INSERT INTO maquinaRecurso VALUES(default, 4, 100.0);
+INSERT INTO maquinaRecurso VALUES(default, 5, 35.0);
 
 -- MUDAR ISSO PARA TERCEIRA SPRINT, TANTO A TABELA maquinaRecurso quanto a tabela captura pedem fk da máquina. o que acontece se eles forem diferentes?????
 CREATE TABLE captura(
@@ -214,7 +222,10 @@ tem_problema boolean,
 dtCriacaoCaptura DATETIME
 );
 
-SELECT * FROM MAQUINA;
+insert into captura values (default, 13, 1,1,35,0,'2024-12-08 10:40:00');
+
+SELECT * FROM captura;
+
 
 CREATE TABLE tarefa(
 idTarefa INT PRIMARY KEY auto_increment,
@@ -246,6 +257,7 @@ FOREIGN KEY (fkRecurso) REFERENCES recurso(idRecurso)
 SELECT * FROM tarefa;
 
 
+SELECT * FROM captura;
 
 CREATE VIEW view_tarefasUsuarios AS
 SELECT 
@@ -274,34 +286,206 @@ WHERE usuario.fkEmpresaUsuario = 4
 ORDER BY tarefa.qtdEssencial DESC 
 LIMIT 1; 
 
+select * FROM usuario;
 
 SELECT tarefas_essenciais FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC LIMIT 1;
 SELECT total_tarefas FROM view_tarefasUsuarios WHERE id_empresa = 4 ORDER BY tarefas_essenciais DESC;
 
+SELECT usuario_nome as nomeUsuario, tarefas_essenciais as tarefasEssenciais, id_empresa,
+total_tarefas - tarefas_essenciais as outrasTarefas FROM view_tarefasUsuarios 
+WHERE id_empresa = 4;
 
+
+insert into tarefa values 
+(default, 57, 15, 5, 30),
+(default, 58, 26, 15, 10);
+
+insert into tarefa values 
+(default, 59, 11, 19, 32),
+(default, 60, 20, 17, 14),
+(default, 61, 23, 20, 17),
+(default, 62, 30, 12, 20),
+(default, 63, 22, 10, 30),
+(default, 64, 25, 15, 33),
+(default, 65, 20, 12, 45),
+(default, 66, 35, 20, 15);
+
+SELECT maquina.nomeMaquina AS nome_maquina, captura.registro AS uso_cpu FROM maquina JOIN captura ON maquina.idMaquina = captura.fkMaquinaCaptura WHERE maquina.fkLocalidadeMaquina = 5
+AND captura.fkRecursoCaptura = 1 AND captura.dtCriacaoCaptura = (SELECT MAX(c.dtCriacaoCaptura) FROM captura c WHERE c.fkMaquinaCaptura = maquina.idMaquina AND c.fkRecursoCaptura = 1);
+
+select * from maquina;
+
+
+CREATE VIEW media_uso_cpu_localidade AS
 SELECT 
-    c.dtCriacaoCaptura AS Data,
-    m.nomeMaquina AS Máquina,
-    l.nomeLocalidade AS Localidade,
-    r.nomeRecurso AS Componente,
-    c.registro AS Alerta,
-    mr.parametro AS Parametro
-FROM 
-    captura c
-    LEFT JOIN maquina m ON m.idMaquina = c.fkMaquinaCaptura
-    LEFT JOIN localidade l ON l.idLocalidade = m.fkLocalidadeMaquina
-    LEFT JOIN recurso r ON r.idRecurso = c.fkRecursoCaptura
-    LEFT JOIN maquinaRecurso mr ON mr.idMaquinaRecurso = c.fkMaquinaRecursoCaptura
-WHERE 
-    c.tem_problema = TRUE 
-    AND m.fkEmpresaMaquina = 3
-    AND c.dtCriacaoCaptura >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+    capturaMaisRecente.fkLocalidadeMaquina AS id_localidade,
+    AVG(capturaMaisRecente.registro) AS media_uso_cpu
+FROM (
+    SELECT 
+        m.fkLocalidadeMaquina,  
+        captura.registro 
+    FROM   
+        maquina m 
+    JOIN 
+        captura ON m.idMaquina = captura.fkMaquinaCaptura 
+    WHERE
+        captura.fkRecursoCaptura = 1 
+        AND captura.dtCriacaoCaptura = ( 
+            SELECT MAX(c.dtCriacaoCaptura) 
+            FROM captura c 
+            WHERE c.fkMaquinaCaptura = m.idMaquina 
+            AND c.fkRecursoCaptura = 1
+        )
+) AS capturaMaisRecente
+GROUP BY capturaMaisRecente.fkLocalidadeMaquina;
+
+
+CREATE VIEW media_uso_memoria_localidade AS
+SELECT 
+    capturaMaisRecente.fkLocalidadeMaquina AS id_localidade,
+    AVG(capturaMaisRecente.registro) AS media_uso_memoria
+FROM (
+    SELECT 
+        m.fkLocalidadeMaquina,  
+        captura.registro 
+    FROM   
+        maquina m 
+    JOIN 
+        captura ON m.idMaquina = captura.fkMaquinaCaptura 
+    WHERE
+        captura.fkRecursoCaptura = 2 
+        AND captura.dtCriacaoCaptura = ( 
+            SELECT MAX(c.dtCriacaoCaptura) 
+            FROM captura c 
+            WHERE c.fkMaquinaCaptura = m.idMaquina 
+            AND c.fkRecursoCaptura = 2
+        )
+) AS capturaMaisRecente
+GROUP BY capturaMaisRecente.fkLocalidadeMaquina;
+
+SELECT * FROM media_uso_memoria_localidade WHERE id_localidade = 5;
     
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (9, 2, 2, 70,1, '2024-12-07 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (8, 2, 2, 20,1, '2024-12-07 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (7, 1, 1, 40,1, '2024-12-07 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (6, 1, 1, 80,1, '2024-12-07 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 4, 1, 100,1, '2024-12-07 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 4, 2, 20,1,'2024-12-07 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (5, 3, 1, 100,1, '2024-09-07 10:00:00');
-INSERT INTO captura (fkMaquinaCaptura, fkRecursoCaptura, fkMaquinaRecursoCaptura, registro, tem_problema, dtCriacaoCaptura) VALUES (4, 3, 2, 20,1,'2024-12-07 10:00:00');
+    
+    CREATE VIEW maquinas_com_problema_cpu_por_localidade AS
+SELECT 
+    m.fkLocalidadeMaquina AS id_localidade,
+    COUNT(DISTINCT m.idMaquina) AS quantidade_maquinas_com_problema
+FROM 
+    maquina m
+JOIN 
+    captura c ON m.idMaquina = c.fkMaquinaCaptura
+JOIN 
+    maquinaRecurso mr ON mr.fkrecurso = c.fkRecursoCaptura
+WHERE 
+    c.dtCriacaoCaptura >= NOW() - INTERVAL 1 DAY 
+    AND c.tem_problema = 1  
+    AND c.fkRecursoCaptura = 1 
+GROUP BY 
+    m.fkLocalidadeMaquina;
+
+CREATE VIEW maquinas_com_problema_memoria_por_localidade AS
+SELECT 
+    m.fkLocalidadeMaquina AS id_localidade,
+    COUNT(DISTINCT m.idMaquina) AS quantidade_maquinas_com_problema
+FROM 
+    maquina m
+JOIN 
+    captura c ON m.idMaquina = c.fkMaquinaCaptura
+JOIN 
+    maquinaRecurso mr ON mr.fkrecurso = c.fkRecursoCaptura
+WHERE 
+    c.dtCriacaoCaptura >= NOW() - INTERVAL 1 DAY 
+    AND c.tem_problema = 1  
+    AND c.fkRecursoCaptura = 2 
+GROUP BY 
+    m.fkLocalidadeMaquina;
+    
+    CREATE VIEW media_uso_disco_localidade AS
+SELECT 
+    capturaMaisRecente.fkLocalidadeMaquina AS id_localidade,
+    AVG(capturaMaisRecente.registro) AS media_uso_disco
+FROM (
+    SELECT 
+        m.fkLocalidadeMaquina,  
+        captura.registro 
+    FROM   
+        maquina m 
+    JOIN 
+        captura ON m.idMaquina = captura.fkMaquinaCaptura 
+    WHERE
+        captura.fkRecursoCaptura = 3 
+        AND captura.dtCriacaoCaptura = ( 
+            SELECT MAX(c.dtCriacaoCaptura) 
+            FROM captura c 
+            WHERE c.fkMaquinaCaptura = m.idMaquina 
+            AND c.fkRecursoCaptura = 3
+        )
+) AS capturaMaisRecente
+GROUP BY capturaMaisRecente.fkLocalidadeMaquina;
+
+
+CREATE VIEW maquinas_com_problema_disco_por_localidade AS
+SELECT 
+    m.fkLocalidadeMaquina AS id_localidade,
+    COUNT(DISTINCT m.idMaquina) AS quantidade_maquinas_com_problema
+FROM 
+    maquina m
+JOIN 
+    captura c ON m.idMaquina = c.fkMaquinaCaptura
+JOIN 
+    maquinaRecurso mr ON mr.fkrecurso = c.fkRecursoCaptura
+WHERE 
+    c.dtCriacaoCaptura >= NOW() - INTERVAL 1 DAY 
+    AND c.tem_problema = 1  
+    AND c.fkRecursoCaptura = 3 
+GROUP BY 
+    m.fkLocalidadeMaquina;
+
+CREATE VIEW media_perda_pacotes_localidade AS
+SELECT 
+    capturaMaisRecente.fkLocalidadeMaquina AS id_localidade,
+    AVG(capturaMaisRecente.registro) AS media_perda_pacotes
+FROM (
+    SELECT 
+        m.fkLocalidadeMaquina,  
+        captura.registro 
+    FROM   
+        maquina m 
+    JOIN 
+        captura ON m.idMaquina = captura.fkMaquinaCaptura 
+    WHERE
+        captura.fkRecursoCaptura = 5 
+        AND captura.dtCriacaoCaptura = ( 
+            SELECT MAX(c.dtCriacaoCaptura) 
+            FROM captura c 
+            WHERE c.fkMaquinaCaptura = m.idMaquina 
+            AND c.fkRecursoCaptura = 5
+        )
+) AS capturaMaisRecente
+GROUP BY capturaMaisRecente.fkLocalidadeMaquina;
+
+
+CREATE VIEW media_banda_localidade AS
+SELECT 
+    capturaMaisRecente.fkLocalidadeMaquina AS id_localidade,
+    AVG(capturaMaisRecente.registro) AS media_banda
+FROM (
+    SELECT 
+        m.fkLocalidadeMaquina,  
+        captura.registro 
+    FROM   
+        maquina m 
+    JOIN 
+        captura ON m.idMaquina = captura.fkMaquinaCaptura 
+    WHERE
+        captura.fkRecursoCaptura = 4 
+        AND captura.dtCriacaoCaptura = ( 
+            SELECT MAX(c.dtCriacaoCaptura) 
+            FROM captura c 
+            WHERE c.fkMaquinaCaptura = m.idMaquina 
+            AND c.fkRecursoCaptura = 4
+        )
+) AS capturaMaisRecente
+GROUP BY capturaMaisRecente.fkLocalidadeMaquina;
+
+

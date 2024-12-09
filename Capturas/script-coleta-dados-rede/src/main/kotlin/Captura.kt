@@ -1,5 +1,3 @@
-import java.util.Date
-
 class Captura {
     var fkMaquinaCaptura:Int = 0
         private set
@@ -14,8 +12,8 @@ class Captura {
         fkMaquinaCaptura = fkMaquina
     }
 
-    fun setRegistro (registroRede: Double){
-        registro = registroRede
+    fun setRegistro (registroRede: Long){
+        registro = registroRede.toDouble()
     }
 
     fun setTemProblema (parametro: Int){

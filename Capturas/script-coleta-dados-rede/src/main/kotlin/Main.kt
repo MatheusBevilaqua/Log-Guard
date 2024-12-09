@@ -6,25 +6,24 @@ val capturaRepo = CapturaRepositorio()
 val captura = Captura()
 val looca = Looca()
 
-var lastByteRecebidos: Long = 0
-var lastByteEnviados: Long = 0
-var lastCaptureTime: Long = System.currentTimeMillis()
 
 fun main() {
     capturaRepo.configurar()
-    listarInterfaces() // Listar todas as interfaces de rede
-    obtemIDMaquina()
+//    listarInterfaces() // Listar todas as interfaces de rede
 
-    // Atualizar as leituras iniciais para evitar calculos errados na primeira vez.
-    val dadosCaptura = looca.rede.grupoDeInterfaces.interfaces[5]
-    lastByteRecebidos = dadosCaptura.bytesRecebidos
-    lastByteEnviados = dadosCaptura.bytesEnviados
+    detectaMaquina()
 
     while (true) {
         capturaBandaLarga()
         capturaRepo.inserirCaptura(captura)
+        capturaPacotesPerdidos()
+        capturaRepo.inserirCapturaPacotes(captura)
         Thread.sleep(5000)
     }
+}
+
+fun detectaMaquina(){
+    obtemIDMaquina()
 }
 
 fun listarInterfaces() {
@@ -37,8 +36,15 @@ fun listarInterfaces() {
     }
 }
 
+fun formataMAC(enderecoMAC: String):String{
+    return enderecoMAC.replace(":", "-").uppercase()
+}
+
 fun obtemIDMaquina() {
-    val enderecoMAC = looca.rede.grupoDeInterfaces.interfaces[5].enderecoMac
+    var enderecoMAC = looca.rede.grupoDeInterfaces.interfaces[3].enderecoMac
+
+    enderecoMAC = formataMAC(enderecoMAC)
+
     println("MAC Address: $enderecoMAC")
     val fkMaquinaLista = capturaRepo.buscarIdPorMAC(enderecoMAC)
 
@@ -47,47 +53,45 @@ fun obtemIDMaquina() {
         captura.setFkMaquinaCaptura(fkMaquina)
     } else {
         println("Erro: Nenhuma máquina encontrada para o endereço MAC $enderecoMAC")
-        // Adicionar entrada no banco de dados ou lidar com o erro conforme necessário
-        // Aqui está um exemplo simples:
         println("Adicionando máquina com o endereço MAC $enderecoMAC no banco de dados")
-        // Captura a exceção se o MAC Address não existir no banco de dados
         capturaRepo.inserirMaquina(enderecoMAC)
-        println("Máquina adicionada com sucesso, recarregue a aplicação para continuar")
+        println("Máquina adicionada com sucesso.")
+        detectaMaquina()
     }
 }
 
 fun capturaBandaLarga() {
-    val dadosCaptura = looca.rede.grupoDeInterfaces.interfaces[5]
+    val dadosCaptura = looca.rede.grupoDeInterfaces.interfaces[3]
 
     val byteRecebidos = dadosCaptura.bytesRecebidos
     val byteEnviados = dadosCaptura.bytesEnviados
 
-    val currentTime = System.currentTimeMillis()
-    val elapsedTime = (currentTime - lastCaptureTime) / 1000.0 // Tempo decorrido em segundos
+    val totalBytes = byteRecebidos + byteEnviados
+    val taxaUsoBandaLarga = ((totalBytes / 60) * 8) / 1000000
 
-    val bytesRecebidosDiff = byteRecebidos - lastByteRecebidos
-    val bytesEnviadosDiff = byteEnviados - lastByteEnviados
+    println(taxaUsoBandaLarga)
 
-    println("Bytes Recebidos Diff: $bytesRecebidosDiff")
-    println("Bytes Enviados Diff: $bytesEnviadosDiff")
+   captura.setDataHoraCaptura(pegaDataHoraCaptura())
+   captura.setRegistro(taxaUsoBandaLarga)
+   captura.setTemProblema(100)
 
-    lastByteRecebidos = byteRecebidos
-    lastByteEnviados = byteEnviados
-    lastCaptureTime = currentTime
+}
 
-    if (elapsedTime > 0) {
-        val bitsRecebidos = bytesRecebidosDiff * 8
-        val bitsEnviados = bytesEnviadosDiff * 8
-        val totalBits = bitsRecebidos + bitsEnviados
-        val usoBandaLarga = totalBits / (elapsedTime * 1000000.0) // Mbps
+fun capturaPacotesPerdidos(){
 
-        println("Taxa de uso de banda larga: $usoBandaLarga Mbps")
+    val dadosPacotes = looca.rede.grupoDeInterfaces.interfaces[3]
 
-        captura.setDataHoraCaptura(pegaDataHoraCaptura())
-        captura.setRegistro(usoBandaLarga)
-    } else {
-        println("Erro: O tempo decorrido é zero ou negativo.")
-    }
+    val pacotesEnviados = dadosPacotes.pacotesEnviados
+    val pacotesRecebidos = dadosPacotes.pacotesRecebidos
+
+    var pacotesPerdidos = ((pacotesEnviados - pacotesRecebidos)/pacotesEnviados) * 100
+
+    if (pacotesPerdidos < 0){ pacotesPerdidos = 0}
+
+    captura.setDataHoraCaptura(pegaDataHoraCaptura())
+    captura.setRegistro(pacotesPerdidos)
+    
+
 }
 
 fun pegaDataHoraCaptura(): String {

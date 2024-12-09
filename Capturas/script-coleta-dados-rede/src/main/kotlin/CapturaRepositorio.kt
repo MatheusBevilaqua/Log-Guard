@@ -10,7 +10,7 @@ class CapturaRepositorio {
         datasource.driverClassName = "com.mysql.cj.jdbc.Driver"
         datasource.url = "jdbc:mysql://localhost:3306/logGuard?serverTimezone=America/Sao_Paulo"
         datasource.username = "root"
-        datasource.password = "1234"
+        datasource.password = "Senha123"
 
         jdbcTemplate = JdbcTemplate(datasource)
     }
@@ -39,6 +39,21 @@ class CapturaRepositorio {
         val qtdLinhasInseridas = jdbcTemplate.update(
             """
                INSERT INTO captura VALUES(default, ?, 4, 4, ?, ?, ?);
+            """,
+            novaCaptura.fkMaquinaCaptura,
+            novaCaptura.registro,
+            novaCaptura.tem_problema,
+            novaCaptura.dtCriacaoCaptura
+        )
+        return qtdLinhasInseridas > 0
+    }
+
+    fun inserirCapturaPacotes(novaCaptura: Captura): Boolean {
+        println("Inserindo captura: ${novaCaptura.fkMaquinaCaptura}, ${novaCaptura.registro}, ${novaCaptura.tem_problema}, ${novaCaptura.dtCriacaoCaptura}")
+
+        val qtdLinhasInseridas = jdbcTemplate.update(
+            """
+               INSERT INTO captura VALUES(default, ?, 5, 5, ?, ?, ?);
             """,
             novaCaptura.fkMaquinaCaptura,
             novaCaptura.registro,

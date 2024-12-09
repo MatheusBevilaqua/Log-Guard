@@ -116,15 +116,414 @@ function cadastrarLocalidade(req, res){
           res.status(500).json(erro.sqlMessage);
       });
     }
+
+    function usoCPUPorMaquinaLocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.usoCPUPorMaquinaLocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+
+      function usoCPUTempo(req, res) {
+
+        const limite_linhas = 7;
     
+        var idLocalidade = req.params.idLocalidadeAtual;
+    
+        console.log(`Recuperando as ultimas ${limite_linhas} capturas`);
+    
+        localidadesModel.usoCPUTempo(idLocalidade, limite_linhas).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+
+    function buscarMedidasEmTempoReal(req, res) {
+
+        var idLocalidade = req.params.idLocalidadeAtual;
+    
+        console.log(`Recuperando medidas em tempo real`);
+    
+        localidadesModel.buscarMedidasEmTempoReal(idLocalidade).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+
+    function porcentagemUsoCPULocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.porcentagemUsoCPULocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+      
+    function quantidadeLocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.quantidadeLocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+      function qtdEmAlertaCPULocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.qtdEmAlertaCPULocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+      function porcentagemUsoMemoriaLocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.porcentagemUsoMemoriaLocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
 
 
-  
+      function qtdEmAlertaMemoriaLocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.qtdEmAlertaMemoriaLocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+      function usoMemoriaPorMaquinaLocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.usoMemoriaPorMaquinaLocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+
+      function usoMemoriaTempo(req, res) {
+
+        const limite_linhas = 7;
+    
+        var idLocalidade = req.params.idLocalidadeAtual;
+    
+        console.log(`Recuperando as ultimas ${limite_linhas} capturas`);
+    
+        localidadesModel.usoMemoriaTempo(idLocalidade, limite_linhas).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+
+    function buscarMedidasEmTempoRealRam(req, res) {
+
+        var idLocalidade = req.params.idLocalidadeAtual;
+    
+        console.log(`Recuperando medidas em tempo real`);
+    
+        localidadesModel.buscarMedidasEmTempoRealRam(idLocalidade).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+
+
+    function porcentagemUsoDiscoLocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.porcentagemUsoDiscoLocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+    function qtdEmAlertaDiscoLocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.qtdEmAlertaDiscoLocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+    function usoDiscoPorMaquinaLocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.usoDiscoPorMaquinaLocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+    function usoDiscoTempo(req, res) {
+
+        const limite_linhas = 7;
+    
+        var idLocalidade = req.params.idLocalidadeAtual;
+    
+        console.log(`Recuperando as ultimas ${limite_linhas} capturas`);
+    
+        localidadesModel.usoDiscoTempo(idLocalidade, limite_linhas).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+
+    function porcentagemPerdaPacotesLocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.porcentagemPerdaPacotesLocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+      function usoBandaLocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.usoBandaLocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+
+      function usoBandaPorMaquinaLocalidade(req, res) {
+
+        var fkLocalidadeMaquina = req.body.idLocalidadeServer;
+      
+        localidadesModel.usoBandaPorMaquinaLocalidade(fkLocalidadeMaquina).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+      
+      }
+
+      function usoRedeTempo(req, res) {
+
+        const limite_linhas = 7;
+    
+        var idLocalidade = req.params.idLocalidadeAtual;
+    
+        console.log(`Recuperando as ultimas ${limite_linhas} capturas`);
+    
+        localidadesModel.usoRedeTempo(idLocalidade, limite_linhas).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+
+    function buscarMedidasEmTempoRealRede(req, res) {
+
+        var idLocalidade = req.params.idLocalidadeAtual;
+    
+        console.log(`Recuperando medidas em tempo real`);
+    
+        localidadesModel.buscarMedidasEmTempoRealRede(idLocalidade).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+
+
 
 module.exports = {
   visualizarLocalidades,
   exibirDadosEdicaoLocalidade,
   cadastrarLocalidade,
   editarLocalidades,
-  deletarLocalidade
+  deletarLocalidade,
+  usoCPUPorMaquinaLocalidade,
+  usoCPUTempo,
+  buscarMedidasEmTempoReal,
+  porcentagemUsoCPULocalidade,
+  quantidadeLocalidade,
+  qtdEmAlertaCPULocalidade,
+  porcentagemUsoMemoriaLocalidade,
+  qtdEmAlertaMemoriaLocalidade,
+  usoMemoriaPorMaquinaLocalidade,
+  usoMemoriaTempo,
+  buscarMedidasEmTempoRealRam,
+  porcentagemUsoDiscoLocalidade,
+  qtdEmAlertaDiscoLocalidade,
+  usoDiscoPorMaquinaLocalidade,
+  usoDiscoTempo,
+  porcentagemPerdaPacotesLocalidade,
+  usoBandaLocalidade,
+  usoBandaPorMaquinaLocalidade,
+  usoRedeTempo,
+  buscarMedidasEmTempoRealRede
 }

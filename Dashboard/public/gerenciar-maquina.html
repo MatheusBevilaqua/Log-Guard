@@ -11,7 +11,7 @@
     <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body onload="validarCargo();validarSessao();visualizarMaquinas()">
+<body onload="validarCargo();validarSessao();visualizarMaquinas();visualizarLocalidades()">
 
     </div>
     
@@ -205,8 +205,10 @@
                     <div class="divisorias-maquinas-2">
                         <p>Disco(TB)</p>
                         <input placeholder="Ex: 20" type="text" id="disco_input">
-                        <p>Localidade</p>
-                        <input placeholder="Ex: Datacenter 5" type="text" id="localidade_input">
+                        <p>Localidade</p>      
+                    <select class="login-form-input black-text" id="localidade_input">
+                    <option value="#" disabled selected>Selecione uma Localidade</option>
+                    </select>
                         <p>Endereço MAC</p>
                         <input placeholder="Ex: 00:19:B9:FB:E2:58" type="text" id="MACAdress_input" oninput="mascaraMAC(this)">
                     </div>
@@ -414,7 +416,7 @@ function selectFiltro() {
             modeloCPUVAR == "" ||
             capacidadeRAMVAR == "" ||
             discoVAR == "" ||
-            localidadeVAR == "" ||
+            localidadeVAR == "#" ||
             MACAdressVAR == ""
         ) {
             alert("Todos os campos dever ser preenchidos!")
@@ -709,18 +711,38 @@ function selectFiltro() {
         }
     }
 
+function visualizarLocalidades() {
+
+fetch("/localidades/visualizarLocalidades", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        idEmpresaUsuarioServer: idEmpresaUsuario
+    }),
+})
+.then(function (resposta) {
+        resposta.json().then((resultado) => {
+            resultado.forEach((resultado) => {
+                localidade_input.innerHTML += `<option value=${resultado.id_localidade}>${resultado.localidade}</option>`;
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.error(resposta);
+    });
+}
+
     function mascaraMAC(element) {
-        // Remove caracteres que não sejam dígitos ou letras
-        let value = element.value.replace(/[^A-Fa-f0-9]/g, '');
-        
-        // Aplica a máscara ao valor
-        let formatted = '';
-        for (let i = 0; i < value.length && i < 12; i += 2) {
-            formatted += value.substring(i, i + 2) + (i < 10 ? ':' : '');
-        }
-        
-        // Atualiza o valor no campo de entrada
-        element.value = formatted;
+
+    let value = element.value.replace(/[^A-Fa-f0-9]/g, '').toUpperCase();
+    let formatted = '';
+    for (let i = 0; i < value.length && i < 12; i += 2) {
+        formatted += value.substring(i, i + 2) + (i < 10 ? '-' : '');
     }
+    
+    element.value = formatted;
+}
 
 </script>
