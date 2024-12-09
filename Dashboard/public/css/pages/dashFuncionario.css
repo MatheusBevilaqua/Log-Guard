@@ -13,7 +13,7 @@
 
 .alerta-funcionario {
 
-    display: flex;
+    display: grid;
     background-color: white;
     border-radius: 10px;
     width: 100%;
@@ -96,6 +96,7 @@
     background-color: rgb(255, 255, 255);
     color: black;
     padding: var(--gap-1);
+    overflow-y: scroll;
 }
 
 .dash-func-riscos {
@@ -111,6 +112,7 @@
     padding-left: 1%;
     padding-right: 1%;
     overflow: unset;
+    overflow-y: scroll;
 }
 
 .listas-funcionario-logs-dashfunc {
@@ -133,12 +135,7 @@
     padding: 10px;
 }
 
-.barra-titulo-funcionario {
-    display: flex;
-    flex-direction: row;
-    gap:25px;
-    justify-content: space-evenly;
-}
+
 
 .barra-titulo-funcionario a {
     color: black;
@@ -174,13 +171,21 @@
     padding-top: 7%;
 }
 
-
+.barra-titulo-funcionario {
+    display: flex;
+    flex-direction: row;
+    gap:25px;
+    justify-content: space-evenly;
+}
 
 .titulos-func-maquinasrisco {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
     color: black;
     align-items: baseline;
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 2fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     flex-direction: row;
     height: 35px;
 }
@@ -281,7 +286,7 @@
     background: #e3e3e3;
 
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 2fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .coluna-gerente{
