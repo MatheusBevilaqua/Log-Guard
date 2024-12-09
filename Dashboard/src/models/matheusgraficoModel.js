@@ -31,18 +31,18 @@ function buscarCritico(idEmpresaMaquina) {
     r.nomeRecurso AS Componente,
     c.registro AS Registros,
     DATE_FORMAT(c.dtCriacaoCaptura, '%d-%m-%Y %H:%i') AS dtCaptura
-FROM 
+    FROM 
     maquina m
-JOIN 
+    JOIN 
     localidade l ON m.fkLocalidadeMaquina = l.idLocalidade
-JOIN 
+    JOIN 
     captura c ON m.idMaquina = c.fkMaquinaCaptura
-JOIN 
+    JOIN 
     recurso r ON c.fkRecursoCaptura = r.idRecurso
-JOIN 
+    JOIN 
     maquinaRecurso mr ON c.fkMaquinaRecursoCaptura = mr.idMaquinaRecurso
-WHERE 
-    c.dtCriacaoCaptura >= NOW() - INTERVAL 1 DAY
+    WHERE 
+    c.dtCriacaoCaptura >= NOW() - INTERVAL 3 DAY
     AND
     m.fkEmpresaMaquina = ${idEmpresaMaquina}
     AND (

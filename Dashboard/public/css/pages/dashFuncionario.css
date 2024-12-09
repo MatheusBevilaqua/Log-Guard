@@ -135,12 +135,7 @@
     padding: 10px;
 }
 
-.barra-titulo-funcionario {
-    display: flex;
-    flex-direction: row;
-    gap:25px;
-    justify-content: space-evenly;
-}
+
 
 .barra-titulo-funcionario a {
     color: black;
@@ -176,9 +171,17 @@
     padding-top: 7%;
 }
 
-
+.barra-titulo-funcionario {
+    display: flex;
+    flex-direction: row;
+    gap:25px;
+    justify-content: space-evenly;
+}
 
 .titulos-func-maquinasrisco {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
     color: black;
     align-items: baseline;
     display: grid;

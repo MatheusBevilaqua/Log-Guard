@@ -10,6 +10,7 @@
   <script src="js/sessao.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png" />
+  <script src="js/timer.js"></script>
 </head>
 
 <body onload="validarCargo(); validarSessao(); visualizarMaquinas(); buscarCritico(); buscarComponentes()">
@@ -67,6 +68,10 @@
                 <b> Ajuda </b>
               </span>
             </a>
+          </li>
+
+          <li>
+            <div class="counter"><span id="counter" style="color: black;">00:00:00</span></div>
           </li>
         </ul>
 
@@ -462,4 +467,84 @@ function Grafico() {
   function sair() {
     window.location.href = "index.html";
   }
+</script>
+
+<!-- PARTE DO TIMER -------------------------------------------------------------------------------------------------------------- -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+  // Adiciona o evento de atualização do gráfico de tarefas nas colunas
+  document.querySelectorAll('.column').forEach(column => {
+    column.addEventListener('drop', updateTaskChart);
+  });
+
+  // Inicia a contagem de tempo para o gráfico de linha
+  setInterval(updateCounter, 1000);
+</script>
+
+<script>
+  // Variáveis para rastrear o tempo e o gráfico
+  let seconds = 0, minutes = 0, hours = 0, minuteCounter = 0;
+  let timerInterval;
+
+  // Configuração do gráfico de linha
+  const lineCtx = document.getElementById('lineChart').getContext('2d');
+  const lineChart = new Chart(lineCtx, {
+    type: 'line',
+    data: {
+      labels: [], // Armazena os minutos passados no eixo X
+      datasets: [{
+        label: 'Minutos Decorridos',
+        data: [], // Armazena os dados do eixo Y (por exemplo, quantidade de minutos)
+        borderColor: 'rgb(68, 43, 179)',
+        borderWidth: 2,
+        fill: false
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          title: { display: true, text: 'Tempo (em minutos)' }
+        },
+        y: {
+          title: { display: true, text: 'Minutos' }
+        }
+      }
+    }
+  });
+
+  // Função para carregar o tempo e o progresso do gráfico do localStorage
+// Função para carregar o estado salvo do gráfico
+function loadGraphData() {
+  const savedGraphData = localStorage.getItem('graphData');
+  const savedMinutes = localStorage.getItem('minuteCounter');
+
+  // Inicializa o contador de minutos e os dados do gráfico
+  minuteCounter = savedMinutes ? Number(savedMinutes) : 0;
+
+  if (savedGraphData) {
+    const graphData = JSON.parse(savedGraphData);
+    lineChart.data.labels = graphData.labels;
+    lineChart.data.datasets[0].data = graphData.data;
+    lineChart.update();
+  }
+}
+
+// Função para exibir e atualizar o gráfico
+function updateGraph() {
+  // Adiciona um novo ponto ao gráfico
+  lineChart.data.labels.push(minuteCounter); // Adiciona o minuto ao eixo X
+  lineChart.data.datasets[0].data.push(minuteCounter); // Adiciona o valor no eixo Y
+  lineChart.update();
+
+  // Salva os dados do gráfico no localStorage
+  localStorage.setItem('minuteCounter', minuteCounter);
+  localStorage.setItem('graphData', JSON.stringify({
+    labels: lineChart.data.labels,
+    data: lineChart.data.datasets[0].data
+  }));
+}
+
 </script>
