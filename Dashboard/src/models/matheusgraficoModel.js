@@ -42,7 +42,7 @@ JOIN
 JOIN 
     maquinaRecurso mr ON c.fkMaquinaRecursoCaptura = mr.idMaquinaRecurso
 WHERE 
-    c.dtCriacaoCaptura >= NOW() - INTERVAL 3 DAY
+    c.dtCriacaoCaptura >= NOW() - INTERVAL 1 DAY
     AND m.fkEmpresaMaquina = ${idEmpresaMaquina}
     AND (
         (mr.fkrecurso = 1 AND mr.parametro >= 65.0) OR

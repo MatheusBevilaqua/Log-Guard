@@ -14,7 +14,7 @@
   <link rel="shortcut icon" type="imagex/png" href="./img/logo_vetorizada6.png">
 </head>
 
-<body onload="validarCargo();validarSessao()">
+<body onload="validarCargo();validarSessao();">
   <section class="page-dash">
     <nav id="sidebar">
       <div id="sidebar_content">
@@ -49,7 +49,7 @@
             <a href="dashboardFuncionario.html">
               <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
               <span class="item-description">
-                <b > Visão Geral </b>
+                <b> Visão Geral </b>
               </span>
             </a>
           </li>
@@ -58,7 +58,7 @@
             <a href="relatorios.html">
               <i> <img src="./img/icon-cnpj.png" class="nav-dash-icon"> </i>
               <span class="item-description">
-                <b> Relatórios </b>
+                <b > Relatórios </b>
               </span>
             </a>
           </li>
@@ -71,6 +71,10 @@
               </span>
             </a>
           </li>
+
+          <li>
+            <div class="counter"><span id="counter" style="color: black;">00:00:00</span></div>
+        </li>
 
 
         <button id="open_btn">
@@ -474,7 +478,6 @@ function updateGraph() {
 
   function contabilizaTarefas() {
 
-    alert("ESTOU NA FUNC")
 
     let qtdTarefasImportantes = 0;
     let qtdTarefasDesejaveis = 0;
@@ -521,7 +524,7 @@ function updateGraph() {
 
         if (resposta.ok) {
 
-          alert("CADASTRO EXECUTADO!")
+
 
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";

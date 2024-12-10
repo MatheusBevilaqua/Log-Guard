@@ -9,7 +9,7 @@ val looca = Looca()
 
 fun main() {
     capturaRepo.configurar()
-//    listarInterfaces() // Listar todas as interfaces de rede
+   //listarInterfaces() // Listar todas as interfaces de rede
 
     detectaMaquina()
 
@@ -41,7 +41,7 @@ fun formataMAC(enderecoMAC: String):String{
 }
 
 fun obtemIDMaquina() {
-    var enderecoMAC = looca.rede.grupoDeInterfaces.interfaces[3].enderecoMac
+    var enderecoMAC = looca.rede.grupoDeInterfaces.interfaces[5].enderecoMac
 
     enderecoMAC = formataMAC(enderecoMAC)
 
@@ -61,7 +61,7 @@ fun obtemIDMaquina() {
 }
 
 fun capturaBandaLarga() {
-    val dadosCaptura = looca.rede.grupoDeInterfaces.interfaces[3]
+    val dadosCaptura = looca.rede.grupoDeInterfaces.interfaces[5]
 
     val byteRecebidos = dadosCaptura.bytesRecebidos
     val byteEnviados = dadosCaptura.bytesEnviados
@@ -79,10 +79,14 @@ fun capturaBandaLarga() {
 
 fun capturaPacotesPerdidos(){
 
-    val dadosPacotes = looca.rede.grupoDeInterfaces.interfaces[3]
+    val dadosPacotes = looca.rede.grupoDeInterfaces.interfaces[5]
 
     val pacotesEnviados = dadosPacotes.pacotesEnviados
     val pacotesRecebidos = dadosPacotes.pacotesRecebidos
+
+    println(pacotesEnviados)
+    println(pacotesRecebidos)
+
 
     var pacotesPerdidos = ((pacotesEnviados - pacotesRecebidos)/pacotesEnviados) * 100
 

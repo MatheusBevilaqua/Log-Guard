@@ -19,7 +19,7 @@
 </head>
 
 <body>
-   <section class="page-dash">
+  <section class="page-dash">
     <nav id="sidebar">
       <div id="sidebar_content">
 
@@ -41,7 +41,7 @@
               </span>
             </span>
             <span class="item-description " id="cargo_usuario" style="color: #442BB3;">
-              Descrição
+              Lorem Ipsum
             </span>
           </p>
         </div>
@@ -49,9 +49,9 @@
         <ul id="side_items">
 
 
-          <li class="side_item ">
-            <a href="dashboard_ADM.html">
-              <i> <img src="./img/olho.png" class="nav-dash-icon" style="width: 25px;"> </i>
+          <li class="side_item active">
+            <a href="dashboardFuncionario.html">
+              <i> <img src="./img/olhoBranco.png" class="nav-dash-icon" style="width: 25px;"> </i>
               <span class="item-description">
                 <b> Visão Geral </b>
               </span>
@@ -67,66 +67,26 @@
             </a>
           </li>
 
-          <li class="side_item">
-            <a href="gerenciar-maquina.html">
-              <i> <img src="./img/monitor.svg" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> Empresas </b>
-              </span>
-            </a>
-          </li>
-
-          <li class="side_item">
-            <a href="gerenciar-usuario-func.html">
-              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> Usuários </b>
-              </span>
-            </a>
-          </li>
-
-          <li class="side_item">
-            <a href="gerenciar-usuario-func.html">
-              <i> <img src="./img/icon-man.png" class="nav-dash-icon"> </i>
-              <span class="item-description">
-                <b> FeedBacks </b>
-              </span>
-            </a>
-          </li>
-
-          <li class="side_item active">
+          <li class="side_item ">
             <a href="dash_Gerenciamento_Operacao.html">
-              <i> <img src="img/engrenagem_OperacaoBranco.png" class="nav-dash-icon"> </i>
-              <span class="item-descriptionAtivo">
+              <i> <img src="img/engrenagem_Operacao.png" class="nav-dash-icon"> </i>
+              <span class="item-description">
                 <b style="color: aliceblue;"> Operações </b>
               </span>
             </a>
           </li>
 
-          <!-- <li>
-            <div class="counter"><span id="counter" style="color: black;">00:00:00</span></div>
-          </li> -->
-
-
-
           <li class="side_item">
-            <a href="feedback.html">
-              <i> <img src="./img/e-mail.png" class="nav-dash-icon" style="width: 25px;"> </i>
-              <span class="item-descriptionAtivo">
-                <b> feedback </b>
+            <a href="dash_Gerenciamento_Operacao.html">
+              <span class="item-description">
+                <span id="counter" style="color: black;">00:00:00</span>
               </span>
             </a>
           </li>
-
-          <li>
-            <div class="counter"><span id="counter" style="color: black;">00:00:00</span></div>
-          </li>
-
-        </ul>
-
-        <button id="open_btn">
-          <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
-        </button>
+            
+          <button id="open_btn">
+            <i> <img src="./img/seta-direita.png" class="nav-dash-icon"> </i>
+          </button>
       </div>
 
       <div id="logout">
@@ -143,7 +103,8 @@
       <!-- Seção de KPIs -->
       <div style="margin: 20px;">
         <h1 style="color: black; font-weight: bold;">Uso dos Componentes</h1>
-        <p style="color: black; font-size: 18px;">ID Máquina: <span id="IdDaMaquina"  style="color: black; font-size: 18px;"></span></p>
+        <p style="color: black; font-size: 18px;">ID Máquina: <span id="IdDaMaquina"
+            style="color: black; font-size: 18px;"></span></p>
       </div>
 
       <div class="kpi-row">
@@ -194,7 +155,7 @@
           <div class="chart-header">
             <h3 style="color: black;">Uso - Rede</h3>
             <h3 style="color: black;">Uso limite recomendado: 100 Mbps</h3>
-    
+
           </div>
           <canvas id="redeAlertsChart"></canvas>
         </div>
@@ -209,7 +170,7 @@
           </div>
         </div>
       </div>
-      </section>
+  </section>
 
 </body>
 
@@ -249,7 +210,7 @@
 
         metricas.forEach((metrica) => {
           const { fkRecursoCaptura, registro } = metrica;
-          const registroArredondado = parseFloat(registro).toFixed(1);
+          const registroArredondado = parseFloat(registro /10).toFixed(2);
 
           switch (fkRecursoCaptura) {
             case 1: // CPU
@@ -374,77 +335,77 @@
 
   setInterval(atualizarGraficoCPU, 2000);
   atualizarGraficoCPU();
-  
+
   async function fetchNetworkData() {
-  try {
-    const response = await fetch('/maquina_individualRota/metricasrede');
-    console.log("Fetch de /api/metricas-rede executado, status:", response.status);
+    try {
+      const response = await fetch('/maquina_individualRota/metricasrede');
+      console.log("Fetch de /api/metricas-rede executado, status:", response.status);
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Dados recebidos para o gráfico de rede:", data);
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Dados recebidos para o gráfico de rede:", data);
 
-      // Formatar as datas para mostrar apenas HH:mm:ss
-      let labels = data.map(item => {
-        const dataObj = new Date(item.dtCriacaoCaptura); // Cria um objeto Date
-        const horas = dataObj.getHours().toString().padStart(2, '0'); // Hora com 2 dígitos
-        const minutos = dataObj.getMinutes().toString().padStart(2, '0'); // Minutos com 2 dígitos
-        const segundos = dataObj.getSeconds().toString().padStart(2, '0'); // Segundos com 2 dígitos
-        return `${horas}:${minutos}:${segundos}`; // Retorna no formato HH:mm:ss
-      });
+        // Formatar as datas para mostrar apenas HH:mm:ss
+        let labels = data.map(item => {
+          const dataObj = new Date(item.dtCriacaoCaptura); // Cria um objeto Date
+          const horas = dataObj.getHours().toString().padStart(2, '0'); // Hora com 2 dígitos
+          const minutos = dataObj.getMinutes().toString().padStart(2, '0'); // Minutos com 2 dígitos
+          const segundos = dataObj.getSeconds().toString().padStart(2, '0'); // Segundos com 2 dígitos
+          return `${horas}:${minutos}:${segundos}`; // Retorna no formato HH:mm:ss
+        });
 
-      let valores = data.map(item => item.registro);
+        let valores = data.map(item => item.registro);
 
-      // Inverter a ordem para garantir que o mais recente fique à direita
-      labels.reverse();
-      valores.reverse();
+        // Inverter a ordem para garantir que o mais recente fique à direita
+        labels.reverse();
+        valores.reverse();
 
-      // Criar ou atualizar o gráfico
-      const ctx = document.getElementById('redeAlertsChart').getContext('2d');
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: 'Uso de Rede (Mbps)',
-            data: valores,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            fill: true,
-            tension: 0.1
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: 'Hora'
-              }
-            },
-            y: {
-              title: {
-                display: true,
-                text: 'Uso (Mbps)'
+        // Criar ou atualizar o gráfico
+        const ctx = document.getElementById('redeAlertsChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Uso de Rede (Mbps)',
+              data: valores,
+              borderColor: 'rgba(75, 192, 192, 1)',
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              fill: true,
+              tension: 0.1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: 'Hora'
+                }
               },
-              min: 0,
-              max: 100,
-              stepSize: 10
+              y: {
+                title: {
+                  display: true,
+                  text: 'Uso (Mbps)'
+                },
+                min: 0,
+                max: 100,
+                stepSize: 10
+              }
             }
           }
-        }
-      });
-    } else {
-      console.error("Erro ao buscar métricas de rede:", response.statusText);
+        });
+      } else {
+        console.error("Erro ao buscar métricas de rede:", response.statusText);
+      }
+    } catch (erro) {
+      console.error("Erro na requisição de métricas de rede:", erro);
     }
-  } catch (erro) {
-    console.error("Erro na requisição de métricas de rede:", erro);
   }
-}
 
 
-setInterval(fetchNetworkData, 2000);
-fetchNetworkData();
+  setInterval(fetchNetworkData, 2000);
+  fetchNetworkData();
 
 </script>

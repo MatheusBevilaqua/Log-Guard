@@ -10,7 +10,7 @@ class CapturaRepositorio {
         datasource.driverClassName = "com.mysql.cj.jdbc.Driver"
         datasource.url = "jdbc:mysql://localhost:3306/logGuard?serverTimezone=America/Sao_Paulo"
         datasource.username = "root"
-        datasource.password = "Senha123"
+        datasource.password = "1234"
 
         jdbcTemplate = JdbcTemplate(datasource)
     }
